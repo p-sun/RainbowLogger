@@ -1,5 +1,5 @@
 //
-//  LogsTablewView.h
+//  LogsTableView.h
 //  iOSLogConsole
 //
 //  Created by Paige Sun on 2020-05-24.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LogsTablewView : NSTableView
+@interface LogsTableView : NSTableView <NSTableViewDataSource, NSTableViewDelegate>
 
 @end
 
