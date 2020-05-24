@@ -10,18 +10,23 @@
 
 @implementation ViewController
 
+- (void)awakeFromNib {
+    self.view.wantsLayer = YES;
+    self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:0.227f
+                                                                   green:0.251f
+                                                                    blue:0.337
+                                                                   alpha:0.8].CGColor;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Do any additional setup after loading the view.
 }
-
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
 
     // Update the view, if already loaded.
 }
-
 
 @end

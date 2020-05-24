@@ -12,6 +12,7 @@
 		9B99B40B247A58D200734B8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B99B40A247A58D200734B8E /* Assets.xcassets */; };
 		9B99B40E247A58D200734B8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B99B40C247A58D200734B8E /* Main.storyboard */; };
 		9B99B411247A58D200734B8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B410247A58D200734B8E /* main.m */; };
+		9B99B41A247A5C4F00734B8E /* LogsTablewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B419247A5C4F00734B8E /* LogsTablewView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,8 @@
 		9B99B40F247A58D200734B8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B99B410247A58D200734B8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9B99B412247A58D200734B8E /* iOSLogConsole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSLogConsole.entitlements; sourceTree = "<group>"; };
+		9B99B418247A5C4F00734B8E /* LogsTablewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsTablewView.h; sourceTree = "<group>"; };
+		9B99B419247A5C4F00734B8E /* LogsTablewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsTablewView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +64,8 @@
 				9B99B405247A58D100734B8E /* AppDelegate.m */,
 				9B99B407247A58D100734B8E /* ViewController.h */,
 				9B99B408247A58D100734B8E /* ViewController.m */,
+				9B99B418247A5C4F00734B8E /* LogsTablewView.h */,
+				9B99B419247A5C4F00734B8E /* LogsTablewView.m */,
 				9B99B40A247A58D200734B8E /* Assets.xcassets */,
 				9B99B40C247A58D200734B8E /* Main.storyboard */,
 				9B99B40F247A58D200734B8E /* Info.plist */,
@@ -141,6 +146,7 @@
 			files = (
 				9B99B409247A58D100734B8E /* ViewController.m in Sources */,
 				9B99B411247A58D200734B8E /* main.m in Sources */,
+				9B99B41A247A5C4F00734B8E /* LogsTablewView.m in Sources */,
 				9B99B406247A58D100734B8E /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
