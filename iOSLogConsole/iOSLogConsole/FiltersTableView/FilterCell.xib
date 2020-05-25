@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <tableCellView id="FUr-wE-i1z">
+            <rect key="frame" x="0.0" y="0.0" width="712" height="56"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dU0-g0-YeE">
+                    <rect key="frame" x="12" y="0.0" width="688" height="56"/>
+                    <subviews>
+                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i24-rd-9Vc" userLabel="Filters Popup">
+                            <rect key="frame" x="-2" y="15" width="205" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="9X1-ak-257"/>
+                            </constraints>
+                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="yMC-7E-e4G" id="dQA-G5-DiW">
+                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <menu key="menu" id="68b-3x-JWK">
+                                    <items>
+                                        <menuItem state="on" id="yMC-7E-e4G">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Contains" id="2SQ-Nh-neP"/>
+                                        <menuItem title="Contains any of" id="Nyc-R5-ds8"/>
+                                        <menuItem title="Regex" id="RpV-xL-9Gi"/>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                        </popUpButton>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eAm-mw-qJk">
+                            <rect key="frame" x="206" y="20" width="140" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Filter By Label" id="nRl-xN-L76">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rPv-CE-rXv" userLabel="Colors Popup">
+                            <rect key="frame" x="350" y="15" width="205" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="SFC-R6-1s8"/>
+                            </constraints>
+                            <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="shm-2B-9wu" id="brW-Y2-5Qo">
+                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <menu key="menu" id="tXt-pe-piA">
+                                    <items>
+                                        <menuItem title="Item 1" state="on" id="shm-2B-9wu"/>
+                                        <menuItem title="Item 2" id="Udc-6j-36X"/>
+                                        <menuItem title="Item 3" id="vqC-Er-B8T"/>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                        </popUpButton>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KZc-CQ-Lxe">
+                            <rect key="frame" x="558" y="19" width="64" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="iJW-au-TRT"/>
+                            </constraints>
+                            <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="only" state="on" inset="2" id="bKF-yU-jas">
+                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Om3-Ja-qXb">
+                            <rect key="frame" x="628" y="18" width="60" height="19"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="FvT-JM-OwO"/>
+                            </constraints>
+                            <buttonCell key="cell" type="recessed" title="x" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JT1-oQ-9Oe">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                <font key="font" metaFont="systemBold" size="12"/>
+                            </buttonCell>
+                        </button>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="dU0-g0-YeE" firstAttribute="top" secondItem="FUr-wE-i1z" secondAttribute="top" id="ACG-DI-1DQ"/>
+                <constraint firstItem="dU0-g0-YeE" firstAttribute="leading" secondItem="FUr-wE-i1z" secondAttribute="leading" constant="12" id="Bye-dO-pTW"/>
+                <constraint firstAttribute="trailing" secondItem="dU0-g0-YeE" secondAttribute="trailing" constant="12" id="Pdj-8Y-8EP"/>
+                <constraint firstAttribute="bottom" secondItem="dU0-g0-YeE" secondAttribute="bottom" id="Q7h-zR-pp5"/>
+            </constraints>
+            <point key="canvasLocation" x="269" y="153"/>
+        </tableCellView>
+    </objects>
+</document>

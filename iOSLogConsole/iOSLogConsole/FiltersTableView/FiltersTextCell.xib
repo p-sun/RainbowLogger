@@ -9,12 +9,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <tableCellView id="RWG-x6-m6J">
-            <rect key="frame" x="0.0" y="0.0" width="914" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="914" height="24"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="418-P4-yPm">
-                    <rect key="frame" x="0.0" y="27" width="914" height="17"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="418-P4-yPm">
+                    <rect key="frame" x="10" y="4" width="894" height="16"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Logs Text Cell" id="c4t-5f-ZiE">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -22,6 +21,12 @@
                     </textFieldCell>
                 </textField>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="418-P4-yPm" secondAttribute="trailing" constant="12" id="K9m-EQ-tSa"/>
+                <constraint firstItem="418-P4-yPm" firstAttribute="top" secondItem="RWG-x6-m6J" secondAttribute="top" constant="4" id="KBe-3p-Ivz"/>
+                <constraint firstAttribute="bottom" secondItem="418-P4-yPm" secondAttribute="bottom" constant="4" id="jn0-9P-p7s"/>
+                <constraint firstItem="418-P4-yPm" firstAttribute="leading" secondItem="RWG-x6-m6J" secondAttribute="leading" constant="12" id="vxh-Ep-FMh"/>
+            </constraints>
             <connections>
                 <outlet property="textField" destination="418-P4-yPm" id="sEr-CU-Kf3"/>
             </connections>

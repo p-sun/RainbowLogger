@@ -19,66 +19,52 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
 
 @implementation FiltersTableView
 
-BOOL didSetupTable;
-NSArray<NSString *> *columnTitles;
-NSInteger numberOfColumns;
-
 - (void)awakeFromNib {
     self.delegate = self;
     self.dataSource = self;
     
-    NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FiltersTextCell" bundle:nil];
-    [self registerNib:textNib forIdentifier:@"FiltersTextCell"];
-    
-    NSNib *logsSwitchNib = [[NSNib alloc] initWithNibNamed:@"FiltersSwitchCell" bundle:nil];
-    [self registerNib:logsSwitchNib forIdentifier:@"FiltersSwitchCell"];
+    NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FilterCell" bundle:nil];
+    [self registerNib:textNib forIdentifier:@"FilterCell"];
 }
 
 - (void)setupTable {
     [self setupColumns];
-    didSetupTable = YES;
+    _didSetupTable = YES;
 }
 
 - (void)setupColumns {
-    columnTitles = @[@"Filter By", @"Text", @"Color", @"Enabled", @"Delete"];
-    numberOfColumns = 5;
+    _columnTitles = @[@"Filters"];
+    _columnsCount = 1;
     
-    for (NSString* title in columnTitles) {
+    for (NSString* title in _columnTitles) {
         NSTableColumn *column = [[NSTableColumn alloc]initWithIdentifier:title];
         column.title = title;
         [self addTableColumn:column];
     }
+    
+    self.tableColumns[0].width = 1200;
 }
 
 # pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfColumns {
-    return didSetupTable ? numberOfColumns : 0;
+    return _didSetupTable ? _columnsCount : 0;
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return 50;
 }
 
+# pragma mark - NSTableViewDelegate
+
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSTableCellView *cell = [self makeViewWithIdentifier:@"FiltersTextCell" owner:self];
+    NSTableCellView *cell = [self makeViewWithIdentifier:@"FilterCell" owner:self];
     
-    if ([tableColumn.identifier  isEqual: @"Filter By"]) {
-        NSTableCellView *cell = [self makeViewWithIdentifier:@"FiltersSwitchCell" owner:self];
-        return cell;
-    } else if ([tableColumn.identifier  isEqual: @"TimeColumn"]) {
-        cell.textField.stringValue = @"TimeColumn";
-    } else if ([tableColumn.identifier  isEqual: @"MessageColumn"]) {
-        cell.textField.stringValue = @"MessageColumn";
+    NSString *identifier = tableColumn.identifier;
+    if ([identifier isEqual: @"Filters"]) {
+        cell.textField.stringValue = @"Filter By Column";
     }
     return cell;
 }
-
-# pragma mark - NSTableViewDelegate
-
-- (void)tableViewSelectionDidChange:(NSNotification *)notification {
-    
-}
-
 
 @end

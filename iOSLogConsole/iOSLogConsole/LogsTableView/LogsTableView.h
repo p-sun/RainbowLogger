@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LogsTableView : NSTableView <NSTableViewDataSource, NSTableViewDelegate>
 
+@property (nonatomic, readonly) BOOL didSetupTable;
+@property (nonatomic, readonly) NSInteger columnsCount;
+@property (nonatomic, readonly, copy) NSArray<NSString *> *columnTitles;
+
 - (void)setupTable;
 
 @end
