@@ -59,7 +59,7 @@
 -(void)readLines {
     NSString* line = nil;
     while ((line = [self readLine])) {
-        [self.delegate didReadLine:line];
+        [self.delegate fileReaderDidReadLine:line];
     }
 }
 

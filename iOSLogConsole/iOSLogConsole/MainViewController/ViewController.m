@@ -34,7 +34,9 @@
     [self.fileReader setDelegate:self];
 }
 
--(void)didReadLine:(NSString *)line {
+#pragma mark - FileReaderDelegate
+
+-(void)fileReaderDidReadLine:(NSString *)line {
     NSLog(@"%@", line);
 }
 
