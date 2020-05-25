@@ -26,7 +26,7 @@
 
     [self setupSimulatorFile];
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0
+    [NSTimer scheduledTimerWithTimeInterval:3.0
     target:self
     selector:@selector(onTick:)
     userInfo:nil
@@ -36,32 +36,11 @@
 - (void)setupSimulatorFile {
      system("xcrun simctl spawn booted log stream --level=debug > test.log&");
     
-//    self.fileStreamer = [[FileStreamer alloc] init];
-//    [self.fileStreamer openFileWithFileAtPath:@"test.log"];
-    
     self.fileReader = [[FileReader alloc] initWithFilePath:@"test.log"];
-    
     [self readLines];
-    
-//    NSString * line = nil;
-//    while ((line = [self.fileReader readLine])) {
-//      NSLog(@"read line: %@", line);
-//    }
-//
-//    self.documentReader = [[DocumentReader alloc] init];
-//    [self.documentReader openFileWithFilename:"test.log"];
-//    [self.documentReader readFile];
 }
 
 -(void)onTick:(NSTimer *)timer {
-//    NSString *line = [self readLine:_inputStream];
-//    NSLog(line);
-//    [_inputStream open];
-    
-//    NSString * line = nil;
-//    while ((line = [self.fileReader readLine])) {
-//      NSLog(@"onTick line: %@", line);
-//    }
     [self readLines];
 }
 

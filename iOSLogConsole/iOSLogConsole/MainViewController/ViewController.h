@@ -9,16 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import "LogsTableView.h"
 #import "FiltersTableView.h"
-#import "DocumentReader.h"
-#import "FileStreamer.h"
 #import "FileReader.h"
 
 @interface ViewController : NSViewController
 
 @property (weak) IBOutlet LogsTableView *logsTableView;
 @property (weak) IBOutlet FiltersTableView *filtersTableView;
-@property (nonatomic, strong) DocumentReader *documentReader;
-@property (nonatomic, strong) FileStreamer *fileStreamer;
 @property (nonatomic, strong) FileReader *fileReader;
 
 @end
