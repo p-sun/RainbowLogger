@@ -1,6 +1,7 @@
 //
 //  FileReader.m
 //  iOSLogConsole
+//  https://stackoverflow.com/questions/3707427/how-to-read-data-from-nsfilehandle-line-by-line
 
 #import "FileReader.h"
 #import "NSDataExtensions.h"
@@ -13,33 +14,32 @@
 @implementation FileReader
 
 - (void)dealloc{
-    m_fileHandle = nil;
+    fileHandle = nil;
 }
 
 /**
     Initialized a file reader object.
-    @param filePath A file path.
+    @param path A file path.
     @returns An initialized FileReader object or nil if the object could not be created.
  */
-- (id)initWithFilePath:(NSString*)filePath {
+- (id)initWithFilePath:(NSString*)path {
 
     self = [super init];
     if (self != nil) {
-        if (!filePath || [filePath length] <= 0) {
+        if (!path || [path length] <= 0) {
             return nil;
         }
-        m_fileHandle = [NSFileHandle fileHandleForReadingAtPath:filePath];
-        if (m_fileHandle == nil) {
+        fileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
+        if (fileHandle == nil) {
             return nil;
         }
-        // TODO: How can I use NSLineSeparatorCharacter instead of \n here?
-        m_lineDelimiter = @"\n";
-        m_filePath = filePath;
-        m_currentOffset = 0ULL;
+        lineDelimiter = @"\n";
+        filePath = path;
+        currentOffset = 0ULL;
         m_chunkSize = 10;
-        [m_fileHandle seekToEndOfFile];
-        m_totalFileLength = [m_fileHandle offsetInFile];        
-        // NSLog(@"%qu characters in %@", m_totalFileLength, [filePath lastPathComponent]); /* DEBUG LOG */
+        [fileHandle seekToEndOfFile];
+        totalFileLength = [fileHandle offsetInFile];        
+        // NSLog(@"%qu characters in %@", totalFileLength, [filePath lastPathComponent]); /* DEBUG LOG */
     }
     
     [self readLines];
@@ -57,6 +57,9 @@
 }
 
 -(void)readLines {
+    [fileHandle seekToEndOfFile];
+    totalFileLength = [fileHandle offsetInFile];
+
     NSString* line = nil;
     while ((line = [self readLine])) {
         [self.delegate fileReaderDidReadLine:line];
@@ -77,26 +80,20 @@
     @returns Another single line on each call or nil if the file end has been reached.
  */
 - (NSString*)readLine {
-
-    // TODO MOVE THIS Out
-    [m_fileHandle seekToEndOfFile];
-    m_totalFileLength = [m_fileHandle offsetInFile];
-    
-    
-    if (m_totalFileLength == 0 || m_currentOffset >= m_totalFileLength) {
+    if (totalFileLength == 0 || currentOffset >= totalFileLength) {
         return nil;
     }
     
-    NSData* newLineData = [m_lineDelimiter dataUsingEncoding:NSUTF8StringEncoding];
-    [m_fileHandle seekToFileOffset:m_currentOffset];
+    NSData* newLineData = [lineDelimiter dataUsingEncoding:NSUTF8StringEncoding];
+    [fileHandle seekToFileOffset:currentOffset];
     NSMutableData* currentData = [[NSMutableData alloc] init];
     BOOL shouldReadMore = YES;
     
     while (shouldReadMore) {
-        if (m_currentOffset >= m_totalFileLength) {
+        if (currentOffset >= totalFileLength) {
             break;
         }
-        NSData* chunk = [m_fileHandle readDataOfLength:m_chunkSize]; // always length = 10
+        NSData* chunk = [fileHandle readDataOfLength:m_chunkSize]; // always length = 10
         // Find the location and length of the next line delimiter.
         NSRange newLineRange = [chunk rangeOfData:newLineData];
         if (newLineRange.location != NSNotFound) {
@@ -106,7 +103,7 @@
             shouldReadMore = NO;
         }
         [currentData appendData:chunk];
-        m_currentOffset += [chunk length];
+        currentOffset += [chunk length];
     }
 
     NSString* line = [currentData stringValueWithEncoding:NSUTF8StringEncoding];
