@@ -19,6 +19,9 @@
 		9BDE6915247BE0D400F7599F /* FileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6914247BE0D400F7599F /* FileReader.m */; };
 		9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6917247BE17300F7599F /* NSDataExtensions.m */; };
 		9BDE691B247C54D800F7599F /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BDE691A247C54D800F7599F /* FilterCell.xib */; };
+		9BDE691E247C5E7900F7599F /* FilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE691D247C5E7900F7599F /* FilterCell.m */; };
+		9BDE6921247C5F3600F7599F /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6920247C5F3600F7599F /* Filter.m */; };
+		9BDE6924247C690400F7599F /* FilterColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6923247C690400F7599F /* FilterColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,12 @@
 		9BDE6917247BE17300F7599F /* NSDataExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataExtensions.m; sourceTree = "<group>"; };
 		9BDE6919247BE18A00F7599F /* NSDataExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDataExtensions.h; sourceTree = "<group>"; };
 		9BDE691A247C54D800F7599F /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
+		9BDE691C247C5E7900F7599F /* FilterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterCell.h; sourceTree = "<group>"; };
+		9BDE691D247C5E7900F7599F /* FilterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterCell.m; sourceTree = "<group>"; };
+		9BDE691F247C5F3600F7599F /* Filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		9BDE6920247C5F3600F7599F /* Filter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
+		9BDE6922247C690400F7599F /* FilterColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterColor.h; sourceTree = "<group>"; };
+		9BDE6923247C690400F7599F /* FilterColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterColor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +121,10 @@
 		9B99B444247BA56600734B8E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9BDE691F247C5F3600F7599F /* Filter.h */,
+				9BDE6920247C5F3600F7599F /* Filter.m */,
+				9BDE6922247C690400F7599F /* FilterColor.h */,
+				9BDE6923247C690400F7599F /* FilterColor.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -124,6 +137,8 @@
 				9B99B41B247A675100734B8E /* FiltersTextCell.xib */,
 				9BDE6903247BAEA600F7599F /* FiltersSwitchCell.xib */,
 				9BDE691A247C54D800F7599F /* FilterCell.xib */,
+				9BDE691C247C5E7900F7599F /* FilterCell.h */,
+				9BDE691D247C5E7900F7599F /* FilterCell.m */,
 			);
 			path = FiltersTableView;
 			sourceTree = "<group>";
@@ -216,8 +231,11 @@
 				9B99B409247A58D100734B8E /* ViewController.m in Sources */,
 				9BDE6908247BB2D600F7599F /* FiltersTableView.m in Sources */,
 				9B99B411247A58D200734B8E /* main.m in Sources */,
+				9BDE691E247C5E7900F7599F /* FilterCell.m in Sources */,
 				9B99B41A247A5C4F00734B8E /* LogsTableView.m in Sources */,
+				9BDE6921247C5F3600F7599F /* Filter.m in Sources */,
 				9B99B406247A58D100734B8E /* AppDelegate.m in Sources */,
+				9BDE6924247C690400F7599F /* FilterColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

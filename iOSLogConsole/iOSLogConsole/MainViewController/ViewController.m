@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     self.view.wantsLayer = YES;
+    
     self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:0.227f
                                                                    green:0.251f
                                                                     blue:0.337
