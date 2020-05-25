@@ -41,7 +41,34 @@
         m_totalFileLength = [m_fileHandle offsetInFile];        
         // NSLog(@"%qu characters in %@", m_totalFileLength, [filePath lastPathComponent]); /* DEBUG LOG */
     }
+    
+    [self readLines];
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+    target:self
+    selector:@selector(onTick:)
+    userInfo:nil
+    repeats:YES];
+    
     return self;
+}
+
+-(void)onTick:(NSTimer *)timer {
+    [self readLines];
+}
+
+-(void)readLines {
+    NSString* line = nil;
+    while ((line = [self readLine])) {
+        [self.delegate didReadLine:line];
+    }
+}
+
+/**
+    Reads the file forwards while trimming white spaces.
+    @returns Another single line on each call or nil if the file end has been reached.
+ */
+- (NSString*)readTrimmedLine {
+    return [[self readLine] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
 /**
@@ -86,25 +113,6 @@
     // finished with data
     currentData = nil;
     return line;
-}
-
-/**
-    Reads the file forwards while trimming white spaces.
-    @returns Another single line on each call or nil if the file end has been reached.
- */
-- (NSString*)readTrimmedLine {
-    
-    return [[self readLine] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-}
-
-/**
-    Reads the file forwards using a block object.
- */
-- (void)enumerateLinesUsingBlock:(void(^)(NSString*))block {
-    NSString* line = nil;
-    while ((line = [self readLine])) {
-        block(line);
-    }
 }
 
 @end

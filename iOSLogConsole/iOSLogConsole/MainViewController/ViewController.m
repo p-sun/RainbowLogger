@@ -25,29 +25,17 @@
     [self.filtersTableView setupTable];
 
     [self setupSimulatorFile];
-    
-    [NSTimer scheduledTimerWithTimeInterval:3.0
-    target:self
-    selector:@selector(onTick:)
-    userInfo:nil
-    repeats:YES];
 }
 
 - (void)setupSimulatorFile {
      system("xcrun simctl spawn booted log stream --level=debug > test.log&");
     
     self.fileReader = [[FileReader alloc] initWithFilePath:@"test.log"];
-    [self readLines];
+    [self.fileReader setDelegate:self];
 }
 
--(void)onTick:(NSTimer *)timer {
-    [self readLines];
-}
-
--(void)readLines {
-    [self.fileReader enumerateLinesUsingBlock:^(NSString *line) {
-        NSLog(@"%@", line);
-    }];
+-(void)didReadLine:(NSString *)line {
+    NSLog(@"%@", line);
 }
 
 @end

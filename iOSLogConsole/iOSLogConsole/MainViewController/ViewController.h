@@ -11,7 +11,7 @@
 #import "FiltersTableView.h"
 #import "FileReader.h"
 
-@interface ViewController : NSViewController
+@interface ViewController : NSViewController <FileReaderDelegate>
 
 @property (weak) IBOutlet LogsTableView *logsTableView;
 @property (weak) IBOutlet FiltersTableView *filtersTableView;

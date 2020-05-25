@@ -8,7 +8,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FileReader : NSObject {
+@protocol FileReaderDelegate <NSObject>
+
+-(void)didReadLine:(NSString*)line;
+
+@end
+
+@interface FileReader: NSObject {
     NSString*            m_filePath;                /**< File path. */
     NSFileHandle*        m_fileHandle;            /**< File handle. */
     unsigned long long    m_currentOffset;        /**< Current offset is needed for forwards reading. */
@@ -17,10 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
     NSUInteger            m_chunkSize;            /**< Standard block size. */
 }
 
+@property (nullable, weak) id<FileReaderDelegate> delegate;
+
 - (id)initWithFilePath:(NSString*)filePath;
 - (NSString*)readLine;
 - (NSString*)readTrimmedLine;
-- (void)enumerateLinesUsingBlock:(void(^)(NSString*))block;
 
 @end
 
