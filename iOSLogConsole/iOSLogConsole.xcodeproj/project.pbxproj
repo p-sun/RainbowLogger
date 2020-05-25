@@ -13,7 +13,13 @@
 		9B99B40E247A58D200734B8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B99B40C247A58D200734B8E /* Main.storyboard */; };
 		9B99B411247A58D200734B8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B410247A58D200734B8E /* main.m */; };
 		9B99B41A247A5C4F00734B8E /* LogsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B419247A5C4F00734B8E /* LogsTableView.m */; };
-		9B99B41C247A675100734B8E /* LogsTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B99B41B247A675100734B8E /* LogsTextCell.xib */; };
+		9B99B41C247A675100734B8E /* FiltersTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B99B41B247A675100734B8E /* FiltersTextCell.xib */; };
+		9BDE6904247BAEA600F7599F /* FiltersSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BDE6903247BAEA600F7599F /* FiltersSwitchCell.xib */; };
+		9BDE6908247BB2D600F7599F /* FiltersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6907247BB2D600F7599F /* FiltersTableView.m */; };
+		9BDE690C247BB90A00F7599F /* DocumentReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE690B247BB90A00F7599F /* DocumentReader.m */; };
+		9BDE6912247BCC7600F7599F /* FileStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6911247BCC7600F7599F /* FileStreamer.m */; };
+		9BDE6915247BE0D400F7599F /* FileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6914247BE0D400F7599F /* FileReader.m */; };
+		9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6917247BE17300F7599F /* NSDataExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +35,18 @@
 		9B99B412247A58D200734B8E /* iOSLogConsole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSLogConsole.entitlements; sourceTree = "<group>"; };
 		9B99B418247A5C4F00734B8E /* LogsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsTableView.h; sourceTree = "<group>"; };
 		9B99B419247A5C4F00734B8E /* LogsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsTableView.m; sourceTree = "<group>"; };
-		9B99B41B247A675100734B8E /* LogsTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsTextCell.xib; sourceTree = "<group>"; };
+		9B99B41B247A675100734B8E /* FiltersTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiltersTextCell.xib; sourceTree = "<group>"; };
+		9BDE6903247BAEA600F7599F /* FiltersSwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiltersSwitchCell.xib; sourceTree = "<group>"; };
+		9BDE6906247BB2D600F7599F /* FiltersTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersTableView.h; sourceTree = "<group>"; };
+		9BDE6907247BB2D600F7599F /* FiltersTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltersTableView.m; sourceTree = "<group>"; };
+		9BDE690A247BB90A00F7599F /* DocumentReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DocumentReader.h; sourceTree = "<group>"; };
+		9BDE690B247BB90A00F7599F /* DocumentReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DocumentReader.m; sourceTree = "<group>"; };
+		9BDE6910247BCC7600F7599F /* FileStreamer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileStreamer.h; sourceTree = "<group>"; };
+		9BDE6911247BCC7600F7599F /* FileStreamer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileStreamer.m; sourceTree = "<group>"; };
+		9BDE6913247BE0D400F7599F /* FileReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileReader.h; sourceTree = "<group>"; };
+		9BDE6914247BE0D400F7599F /* FileReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileReader.m; sourceTree = "<group>"; };
+		9BDE6917247BE17300F7599F /* NSDataExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataExtensions.m; sourceTree = "<group>"; };
+		9BDE6919247BE18A00F7599F /* NSDataExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDataExtensions.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +81,9 @@
 			children = (
 				9B99B41E247A6B4600734B8E /* MainViewController */,
 				9B99B41D247A6B1600734B8E /* LogsTableView */,
+				9BDE6905247BB27400F7599F /* FiltersTableView */,
+				9BDE6909247BB8D900F7599F /* Document */,
+				9B99B444247BA56600734B8E /* Models */,
 				9B99B40A247A58D200734B8E /* Assets.xcassets */,
 				9B99B40F247A58D200734B8E /* Info.plist */,
 				9B99B412247A58D200734B8E /* iOSLogConsole.entitlements */,
@@ -76,7 +96,6 @@
 			children = (
 				9B99B418247A5C4F00734B8E /* LogsTableView.h */,
 				9B99B419247A5C4F00734B8E /* LogsTableView.m */,
-				9B99B41B247A675100734B8E /* LogsTextCell.xib */,
 			);
 			path = LogsTableView;
 			sourceTree = "<group>";
@@ -92,6 +111,47 @@
 				9B99B40C247A58D200734B8E /* Main.storyboard */,
 			);
 			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		9B99B444247BA56600734B8E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9BDE6905247BB27400F7599F /* FiltersTableView */ = {
+			isa = PBXGroup;
+			children = (
+				9BDE6906247BB2D600F7599F /* FiltersTableView.h */,
+				9BDE6907247BB2D600F7599F /* FiltersTableView.m */,
+				9B99B41B247A675100734B8E /* FiltersTextCell.xib */,
+				9BDE6903247BAEA600F7599F /* FiltersSwitchCell.xib */,
+			);
+			path = FiltersTableView;
+			sourceTree = "<group>";
+		};
+		9BDE6909247BB8D900F7599F /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				9BDE6916247BE15500F7599F /* LineReader */,
+				9BDE690A247BB90A00F7599F /* DocumentReader.h */,
+				9BDE690B247BB90A00F7599F /* DocumentReader.m */,
+				9BDE6910247BCC7600F7599F /* FileStreamer.h */,
+				9BDE6911247BCC7600F7599F /* FileStreamer.m */,
+			);
+			path = Document;
+			sourceTree = "<group>";
+		};
+		9BDE6916247BE15500F7599F /* LineReader */ = {
+			isa = PBXGroup;
+			children = (
+				9BDE6913247BE0D400F7599F /* FileReader.h */,
+				9BDE6914247BE0D400F7599F /* FileReader.m */,
+				9BDE6919247BE18A00F7599F /* NSDataExtensions.h */,
+				9BDE6917247BE17300F7599F /* NSDataExtensions.m */,
+			);
+			path = LineReader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,7 +211,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B99B41C247A675100734B8E /* LogsTextCell.xib in Resources */,
+				9B99B41C247A675100734B8E /* FiltersTextCell.xib in Resources */,
+				9BDE6904247BAEA600F7599F /* FiltersSwitchCell.xib in Resources */,
 				9B99B40B247A58D200734B8E /* Assets.xcassets in Resources */,
 				9B99B40E247A58D200734B8E /* Main.storyboard in Resources */,
 			);
@@ -164,7 +225,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BDE690C247BB90A00F7599F /* DocumentReader.m in Sources */,
+				9BDE6912247BCC7600F7599F /* FileStreamer.m in Sources */,
+				9BDE6915247BE0D400F7599F /* FileReader.m in Sources */,
+				9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */,
 				9B99B409247A58D100734B8E /* ViewController.m in Sources */,
+				9BDE6908247BB2D600F7599F /* FiltersTableView.m in Sources */,
 				9B99B411247A58D200734B8E /* main.m in Sources */,
 				9B99B41A247A5C4F00734B8E /* LogsTableView.m in Sources */,
 				9B99B406247A58D100734B8E /* AppDelegate.m in Sources */,

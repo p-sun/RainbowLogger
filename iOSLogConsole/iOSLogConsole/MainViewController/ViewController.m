@@ -21,12 +21,54 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self.logsTableView setupTable];
+    [self.filtersTableView setupTable];
+
+    [self setupSimulatorFile];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0
+    target:self
+    selector:@selector(onTick:)
+    userInfo:nil
+    repeats:YES];
 }
 
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
+- (void)setupSimulatorFile {
+     system("xcrun simctl spawn booted log stream --level=debug > test.log&");
+    
+//    self.fileStreamer = [[FileStreamer alloc] init];
+//    [self.fileStreamer openFileWithFileAtPath:@"test.log"];
+    
+    self.fileReader = [[FileReader alloc] initWithFilePath:@"test.log"];
+    
+    [self readLines];
+    
+//    NSString * line = nil;
+//    while ((line = [self.fileReader readLine])) {
+//      NSLog(@"read line: %@", line);
+//    }
+//
+//    self.documentReader = [[DocumentReader alloc] init];
+//    [self.documentReader openFileWithFilename:"test.log"];
+//    [self.documentReader readFile];
+}
 
-    // Update the view, if already loaded.
+-(void)onTick:(NSTimer *)timer {
+//    NSString *line = [self readLine:_inputStream];
+//    NSLog(line);
+//    [_inputStream open];
+    
+//    NSString * line = nil;
+//    while ((line = [self.fileReader readLine])) {
+//      NSLog(@"onTick line: %@", line);
+//    }
+    [self readLines];
+}
+
+-(void)readLines {
+    [self.fileReader enumerateLinesUsingBlock:^(NSString *line) {
+        NSLog(@"%@", line);
+    }];
 }
 
 @end

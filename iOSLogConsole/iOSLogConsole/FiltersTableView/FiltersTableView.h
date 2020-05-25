@@ -1,8 +1,8 @@
 //
-//  LogsTableView.h
+//  FiltersTableView.h
 //  iOSLogConsole
 //
-//  Created by Paige Sun on 2020-05-24.
+//  Created by Paige Sun on 2020-05-25.
 //  Copyright © 2020 Paige Sun. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LogsTableView : NSTableView <NSTableViewDataSource, NSTableViewDelegate>
+@interface FiltersTableView : NSTableView <NSTableViewDataSource, NSTableViewDelegate>
 
 - (void)setupTable;
 
