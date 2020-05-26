@@ -15,13 +15,13 @@
     [self setDelegate:self];
     [self setDataSource:self];
 
-    _lines = [[NSMutableArray alloc] init];
-    
     NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FiltersTextCell" bundle:nil];
     [self registerNib:textNib forIdentifier:@"FiltersTextCell"];
 }
 
 - (void)setupTable {
+    _lines = [[NSMutableArray alloc] init];
+
     self.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     [self setupColumns];
     _didSetupTable = YES;
@@ -56,7 +56,7 @@
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     NSTableCellView *cell = [self makeViewWithIdentifier:@"FiltersTextCell" owner:self];
-
+    
     if ([tableColumn.identifier  isEqual: @"Message"]) {
         if (row < _lines.count) {
             cell.textField.stringValue = _lines[row];
@@ -65,6 +65,18 @@
         cell.textField.stringValue = @"Other column";
     }
     return cell;
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    NSInteger row = self.selectedRow;
+    if (row != 0) {
+        // Copy line to Pasteboard
+        NSString *line = _lines[row];
+        NSLog(@"^^^^ Copied line: %@", line);
+        NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+        [pasteboard declareTypes:@[NSPasteboardTypeString] owner:nil];
+        [pasteboard setString:line forType:NSPasteboardTypeString];
+    }
 }
 
 @end

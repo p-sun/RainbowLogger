@@ -63,14 +63,17 @@
 -(void)fileReaderDidReadLine:(NSString *)line {
     _hasReadLine = YES;
     
-    BOOL shouldScrollToBottom = _logsTableView.enclosingScrollView.verticalScroller.floatValue == 1;
+    // TODO: Autoscroll is turned on first run
+    // Then it turns OFF if users scrolls and lands on a place that's not the bottom
+    BOOL autoScroll = _logsTableView.enclosingScrollView.verticalScroller.floatValue == 1 || _logsTableView.enclosingScrollView.verticalScroller.floatValue == 0;
     
     [_logsTableView.lines addObject:line];
     [_logsTableView reloadData];
     
-    if (shouldScrollToBottom) {
-        [_logsTableView scrollToEndOfDocument:self];
+    if (autoScroll) {
+        [_logsTableView scrollToEndOfDocument:nil];
     }
 }
+
 
 @end
