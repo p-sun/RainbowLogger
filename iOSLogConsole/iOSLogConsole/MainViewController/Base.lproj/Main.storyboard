@@ -757,13 +757,13 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <scrollView autohidesScrollers="YES" horizontalLineScroll="28" horizontalPageScroll="10" verticalLineScroll="28" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T74-pn-Zb2">
-                                                <rect key="frame" x="0.0" y="0.0" width="810" height="273"/>
+                                                <rect key="frame" x="0.0" y="40" width="810" height="233"/>
                                                 <clipView key="contentView" id="PWz-NT-IL0">
-                                                    <rect key="frame" x="1" y="0.0" width="808" height="272"/>
+                                                    <rect key="frame" x="1" y="0.0" width="808" height="232"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="26" headerView="rUr-6a-bnv" id="o3l-qO-VAC" customClass="FiltersTableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="808" height="247"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="808" height="207"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -784,10 +784,19 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableHeaderView>
                                             </scrollView>
+                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x4V-x5-AFk">
+                                                <rect key="frame" x="0.0" y="0.0" width="810" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="lW1-zO-JJA"/>
+                                                </constraints>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="T74-pn-Zb2" secondAttribute="bottom" id="4Bi-SS-mSR"/>
+                                            <constraint firstAttribute="trailing" secondItem="x4V-x5-AFk" secondAttribute="trailing" id="4U9-eM-bCj"/>
+                                            <constraint firstItem="x4V-x5-AFk" firstAttribute="top" secondItem="T74-pn-Zb2" secondAttribute="bottom" id="App-62-jd9"/>
                                             <constraint firstItem="T74-pn-Zb2" firstAttribute="top" secondItem="Brm-11-Xg9" secondAttribute="top" id="Jjz-Ab-pOw"/>
+                                            <constraint firstItem="x4V-x5-AFk" firstAttribute="leading" secondItem="Brm-11-Xg9" secondAttribute="leading" id="MzW-Db-HvE"/>
+                                            <constraint firstAttribute="bottom" secondItem="x4V-x5-AFk" secondAttribute="bottom" id="NyY-wZ-D3c"/>
                                             <constraint firstAttribute="trailing" secondItem="T74-pn-Zb2" secondAttribute="trailing" id="ef3-BK-7Js"/>
                                             <constraint firstItem="T74-pn-Zb2" firstAttribute="leading" secondItem="Brm-11-Xg9" secondAttribute="leading" id="nAK-nQ-GbS"/>
                                         </constraints>

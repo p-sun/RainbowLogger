@@ -13,7 +13,7 @@
  */
 @implementation FileReader
 
-- (void)dealloc{
+- (void)dealloc {
     fileHandle = nil;
 }
 
@@ -31,11 +31,12 @@
         }
         fileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
         if (fileHandle == nil) {
+            NSLog(@"No file exist at path: %@", path);
             return nil;
         }
         lineDelimiter = @"\n";
         filePath = path;
-        currentOffset = 0ULL;
+        currentOffset = 0;
         m_chunkSize = 10;
         [fileHandle seekToEndOfFile];
         totalFileLength = [fileHandle offsetInFile];        

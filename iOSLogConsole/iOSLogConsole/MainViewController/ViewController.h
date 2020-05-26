@@ -16,6 +16,7 @@
 @property (weak) IBOutlet LogsTableView *logsTableView;
 @property (weak) IBOutlet FiltersTableView *filtersTableView;
 @property (nonatomic, strong) FileReader *fileReader;
+@property (nonatomic, readonly) BOOL hasReadLine;
 
 @end
 

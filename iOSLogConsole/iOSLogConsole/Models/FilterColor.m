@@ -13,6 +13,7 @@
 
 +(NSArray*)allColors {
     return [NSArray arrayWithObjects:
+            [[FilterColor alloc] initWithColor:[NSColor clearColor] name:@""],
             [[FilterColor alloc] initWithColor:[NSColor greenColor] name:@"Green"],
             [[FilterColor alloc] initWithColor:[NSColor blueColor] name:@"Blue"],
             [[FilterColor alloc] initWithColor:[NSColor yellowColor] name:@"Yellow"],

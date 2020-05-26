@@ -7,16 +7,14 @@
 //
 
 #import "ViewController.h"
+#import "NSColorExtensions.h"
 
 @implementation ViewController
 
 - (void)awakeFromNib {
     self.view.wantsLayer = YES;
     
-    self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:0.227f
-                                                                   green:0.251f
-                                                                    blue:0.337
-                                                                   alpha:0.8].CGColor;
+    self.view.layer.backgroundColor = [NSColor NSColorFrom255Red:46.0 green:44.0 blue:54.0 alpha:1.0].CGColor;
 }
 
 - (void)viewDidLoad {
@@ -25,20 +23,43 @@
     [self.logsTableView setupTable];
     [self.filtersTableView setupTable];
 
-    [self setupSimulatorFile];
+    [NSTimer scheduledTimerWithTimeInterval:2.0
+    target:self
+    selector:@selector(writeLogsToFileIfNeeded:)
+    userInfo:nil
+    repeats:NO];
+    
+    [self startFileReader];
 }
 
-- (void)setupSimulatorFile {
-     system("xcrun simctl spawn booted log stream --level=debug > test.log&");
-    
-    self.fileReader = [[FileReader alloc] initWithFilePath:@"test.log"];
+#pragma mark - Logs
+
+- (void)startFileReader {
+    self.fileReader = [[FileReader alloc] initWithFilePath:@"bootedSimulator.log"];
     [self.fileReader setDelegate:self];
+}
+
+- (void)clearLogs {
+    system("rm -f bootedSimulator.log");
+    // TODO Quit the xcrun stream if possible
+}
+
+-(void)writeLogsToFileIfNeeded:(NSTimer *)timer {
+    if (!_hasReadLine) {
+        [self writeLogsToFile];
+    }
+}
+
+- (void)writeLogsToFile {
+    system("xcrun simctl spawn booted log stream --level=debug > bootedSimulator.log&");
+    [self startFileReader];
 }
 
 #pragma mark - FileReaderDelegate
 
 -(void)fileReaderDidReadLine:(NSString *)line {
     NSLog(@"%@", line);
+    _hasReadLine = YES;
 }
 
 @end
