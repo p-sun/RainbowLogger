@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak) IBOutlet NSButton *isEnabledToggle;
 
 @property (nonatomic, strong) Filter *filter;
+@property (nonatomic, copy) void(^onDelete)(void);
+
+- (IBAction)deleteButtonPressed:(id)sender;
 
 @end
 

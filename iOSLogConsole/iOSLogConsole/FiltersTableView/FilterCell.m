@@ -18,6 +18,10 @@
     }
 }
 
+- (IBAction)deleteButtonPressed:(id)sender {
+    _onDelete();
+}
+
 - (NSImage *)swatchForColor:(NSColor *)color {
     NSSize size = NSMakeSize(12, 12);
     NSImage *image = [[NSImage alloc] initWithSize:size];

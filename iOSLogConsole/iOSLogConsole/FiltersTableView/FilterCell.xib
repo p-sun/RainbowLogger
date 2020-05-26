@@ -76,6 +76,9 @@ CA
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <connections>
+                                <action selector="deleteButtonPressed:" target="FUr-wE-i1z" id="dwA-un-a8g"/>
+                            </connections>
                         </button>
                     </subviews>
                     <visibilityPriorities>

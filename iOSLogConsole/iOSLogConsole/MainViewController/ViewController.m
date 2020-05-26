@@ -13,7 +13,6 @@
 
 - (void)awakeFromNib {
     self.view.wantsLayer = YES;
-    
     self.view.layer.backgroundColor = [NSColor NSColorFrom255Red:46.0 green:44.0 blue:54.0 alpha:1.0].CGColor;
 }
 
@@ -30,6 +29,7 @@
 - (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
     [_filtersTableView addFilterWithText:sender.stringValue];
     sender.stringValue = @"";
+    [_filtersTableView scrollToEndOfDocument:self];
 }
 
 #pragma mark - Logs

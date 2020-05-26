@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
 - (void)awakeFromNib {
     self.delegate = self;
     self.dataSource = self;
-    
+
     if (_filters == nil) {
         _filters = [[NSMutableArray alloc] init];
     }
@@ -60,6 +60,11 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     [self reloadData];
 }
 
+- (void)deleteFilterAtIndex:(NSInteger)index {
+    [_filters removeObjectAtIndex:index];
+    [self reloadData];
+}
+
 # pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfColumns {
@@ -76,9 +81,17 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     
     FilterCell *cell = (FilterCell *)[self makeViewWithIdentifier:@"FilterCell" owner:self];
     if (row < _filters.count) {
+        __weak __typeof__(self) weakSelf = self;
         [cell setFilter:_filters[row]];
+        cell.onDelete = ^{
+            [weakSelf deleteFilterAtIndex:row];
+        };
     }
     return cell;
+}
+
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
+    return NO;
 }
 
 @end
