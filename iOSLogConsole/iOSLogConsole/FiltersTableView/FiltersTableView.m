@@ -7,7 +7,8 @@
 //
 
 #import "FiltersTableView.h"
-#import <Cocoa/Cocoa.h>
+#import "Filter.h"
+#import "FilterCell.h"
 
 typedef NS_ENUM(NSInteger, LogsColumnType) {
     LogsColumnTypeFilterBy = 0,
@@ -19,9 +20,15 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
 
 @implementation FiltersTableView
 
+# pragma mark - Setup
+
 - (void)awakeFromNib {
     self.delegate = self;
     self.dataSource = self;
+    
+    if (_filters == nil) {
+        _filters = [[NSMutableArray alloc] init];
+    }
     
     NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FilterCell" bundle:nil];
     [self registerNib:textNib forIdentifier:@"FilterCell"];
@@ -45,6 +52,14 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     self.tableColumns[0].width = 1200;
 }
 
+# pragma mark - Filters
+
+- (void)addFilterWithText:(NSString *)text {
+    Filter *filter = [[Filter alloc] initWithText:text];
+    [_filters addObject:filter];
+    [self reloadData];
+}
+
 # pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfColumns {
@@ -52,17 +67,16 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return 50;
+    return _filters.count;
 }
 
 # pragma mark - NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSTableCellView *cell = [self makeViewWithIdentifier:@"FilterCell" owner:self];
     
-    NSString *identifier = tableColumn.identifier;
-    if ([identifier isEqual: @"Filters"]) {
-        cell.textField.stringValue = @"Filter By Column";
+    FilterCell *cell = (FilterCell *)[self makeViewWithIdentifier:@"FilterCell" owner:self];
+    if (row < _filters.count) {
+        [cell setFilter:_filters[row]];
     }
     return cell;
 }

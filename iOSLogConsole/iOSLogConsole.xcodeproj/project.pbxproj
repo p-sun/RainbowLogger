@@ -93,6 +93,7 @@
 				9BDE6905247BB27400F7599F /* FiltersTableView */,
 				9BDE6916247BE15500F7599F /* FileReader */,
 				9B99B444247BA56600734B8E /* Models */,
+				9BC08BED247CA7780088354B /* Extensions */,
 				9B99B40A247A58D200734B8E /* Assets.xcassets */,
 				9B99B40F247A58D200734B8E /* Info.plist */,
 				9B99B412247A58D200734B8E /* iOSLogConsole.entitlements */,
@@ -125,14 +126,29 @@
 		9B99B444247BA56600734B8E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9BC08BEC247CA7530088354B /* Filters */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9BC08BEC247CA7530088354B /* Filters */ = {
+			isa = PBXGroup;
+			children = (
 				9BDE691F247C5F3600F7599F /* Filter.h */,
 				9BDE6920247C5F3600F7599F /* Filter.m */,
 				9BDE6922247C690400F7599F /* FilterColor.h */,
 				9BDE6923247C690400F7599F /* FilterColor.m */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		9BC08BED247CA7780088354B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
 				9BC08BE8247CA0B60088354B /* NSColorExtensions.h */,
 				9BC08BEA247CA2050088354B /* NSColorExtensions.m */,
 			);
-			path = Models;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		9BDE6905247BB27400F7599F /* FiltersTableView */ = {

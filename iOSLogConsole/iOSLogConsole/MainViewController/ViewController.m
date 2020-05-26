@@ -23,13 +23,13 @@
     [self.logsTableView setupTable];
     [self.filtersTableView setupTable];
 
-    [NSTimer scheduledTimerWithTimeInterval:2.0
-    target:self
-    selector:@selector(writeLogsToFileIfNeeded:)
-    userInfo:nil
-    repeats:NO];
-    
     [self startFileReader];
+    [self waitForLogs];
+}
+
+- (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
+    [_filtersTableView addFilterWithText:sender.stringValue];
+    sender.stringValue = @"";
 }
 
 #pragma mark - Logs
@@ -39,20 +39,23 @@
     [self.fileReader setDelegate:self];
 }
 
-- (void)clearLogs {
-    system("rm -f bootedSimulator.log");
-    // TODO Quit the xcrun stream if possible
+- (void)waitForLogs {
+    [NSTimer scheduledTimerWithTimeInterval:2.0
+                                     target:self
+                                   selector:@selector(writeLogsToFileIfNeeded:)
+                                   userInfo:nil
+                                    repeats:NO];
 }
 
 -(void)writeLogsToFileIfNeeded:(NSTimer *)timer {
     if (!_hasReadLine) {
-        [self writeLogsToFile];
+        system("xcrun simctl spawn booted log stream --level=debug > bootedSimulator.log&");
+        [self startFileReader];
     }
 }
 
-- (void)writeLogsToFile {
-    system("xcrun simctl spawn booted log stream --level=debug > bootedSimulator.log&");
-    [self startFileReader];
+- (void)clearLogs {
+    system("rm -f bootedSimulator.log");
 }
 
 #pragma mark - FileReaderDelegate

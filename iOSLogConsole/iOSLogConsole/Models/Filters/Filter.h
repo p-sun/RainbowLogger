@@ -19,10 +19,13 @@ typedef NS_ENUM(NSInteger, FilterByType) {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Filter : NSObject
-    @property (nonatomic, readwrite) FilterByType *type;
-    @property (nonatomic, readwrite) NSString *text;
-    @property (nonatomic, readwrite) FilterColor *color;
-    @property (nonatomic, readwrite) BOOL isEnabled;
+
+@property (nonatomic, readwrite) FilterByType type;
+@property (nonatomic, readwrite) NSString *text;
+@property (nonatomic, readwrite) FilterColor *color;
+@property (nonatomic, readwrite) BOOL isEnabled;
+
+- (instancetype)initWithText:(NSString *)text;
 
 @end
 
