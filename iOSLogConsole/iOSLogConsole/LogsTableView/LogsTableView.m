@@ -20,7 +20,7 @@
 }
 
 - (void)setupTable {
-//    [self setRowHeight:24];
+    self.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     [self setupColumns];
     _didSetupTable = YES;
     [self reloadData];
@@ -61,10 +61,6 @@
         cell.textField.stringValue = @"Other column";
     }
     return cell;
-}
-
-- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
-    return NO;
 }
 
 @end

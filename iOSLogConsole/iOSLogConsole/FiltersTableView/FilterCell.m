@@ -22,6 +22,10 @@
     _onDelete();
 }
 
+- (IBAction)enableToggled:(NSButton *)sender {
+    _onEnableToggle(sender.state == NSControlStateValueOn);
+}
+
 - (NSImage *)swatchForColor:(NSColor *)color {
     NSSize size = NSMakeSize(12, 12);
     NSImage *image = [[NSImage alloc] initWithSize:size];

@@ -20,8 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) Filter *filter;
 @property (nonatomic, copy) void(^onDelete)(void);
+@property (nonatomic, copy) void(^onEnableToggle)(BOOL);
 
 - (IBAction)deleteButtonPressed:(id)sender;
+- (IBAction)enableToggled:(id)sender;
 
 @end
 

@@ -66,6 +66,9 @@ CA
                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <connections>
+                                <action selector="enableToggled:" target="FUr-wE-i1z" id="DfD-4P-F3F"/>
+                            </connections>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Om3-Ja-qXb">
                             <rect key="frame" x="628" y="16" width="60" height="23"/>

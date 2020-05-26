@@ -65,6 +65,11 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     [self reloadData];
 }
 
+- (void)setEnabledAtIndex:(NSInteger)index isEnabled:(BOOL)isEnabled {
+    Filter *filter = [_filters objectAtIndex:index];
+    filter.isEnabled = isEnabled;
+}
+
 # pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfColumns {
@@ -85,6 +90,9 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
         [cell setFilter:_filters[row]];
         cell.onDelete = ^{
             [weakSelf deleteFilterAtIndex:row];
+        };
+        cell.onEnableToggle = ^(BOOL isEnabled) {
+            [weakSelf setEnabledAtIndex:row isEnabled:isEnabled];
         };
     }
     return cell;
