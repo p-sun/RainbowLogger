@@ -49,7 +49,7 @@
 
 -(void)writeLogsToFileIfNeeded:(NSTimer *)timer {
     if (!_hasReadLine) {
-        system("xcrun simctl spawn booted log stream --level=debug > bootedSimulator.log&");
+        system("xcrun simctl spawn booted log stream --level=debug --style=compact > bootedSimulator.log&");
         [self startFileReader];
     }
 }
@@ -61,8 +61,16 @@
 #pragma mark - FileReaderDelegate
 
 -(void)fileReaderDidReadLine:(NSString *)line {
-    NSLog(@"%@", line);
     _hasReadLine = YES;
+    
+    BOOL shouldScrollToBottom = _logsTableView.enclosingScrollView.verticalScroller.floatValue == 1;
+    
+    [_logsTableView.lines addObject:line];
+    [_logsTableView reloadData];
+    
+    if (shouldScrollToBottom) {
+        [_logsTableView scrollToEndOfDocument:self];
+    }
 }
 
 @end

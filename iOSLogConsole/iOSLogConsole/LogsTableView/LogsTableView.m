@@ -15,6 +15,8 @@
     [self setDelegate:self];
     [self setDataSource:self];
 
+    _lines = [[NSMutableArray alloc] init];
+    
     NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FiltersTextCell" bundle:nil];
     [self registerNib:textNib forIdentifier:@"FiltersTextCell"];
 }
@@ -47,7 +49,7 @@
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return 50;
+    return _lines.count;
 }
 
 # pragma mark - NSTableViewDelegate
@@ -56,7 +58,9 @@
     NSTableCellView *cell = [self makeViewWithIdentifier:@"FiltersTextCell" owner:self];
 
     if ([tableColumn.identifier  isEqual: @"Message"]) {
-        cell.textField.stringValue = @"MessageColumn MessageColumn MessageColumn MessageColumn";
+        if (row < _lines.count) {
+            cell.textField.stringValue = _lines[row];
+        }
     } else {
         cell.textField.stringValue = @"Other column";
     }
