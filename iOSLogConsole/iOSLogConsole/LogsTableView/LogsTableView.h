@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BOOL didSetupTable;
 @property (nonatomic, readonly) NSInteger columnsCount;
 @property (nonatomic, readonly, copy) NSArray<NSString *> *columnTitles;
-@property (nonatomic, readwrite, copy) NSArray<NSString *> *lines;
+@property (nonatomic, readwrite, copy) NSArray<NSAttributedString *> *attributedLines;
 
 - (void)setupTable;
 

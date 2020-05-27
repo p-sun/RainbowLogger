@@ -95,7 +95,7 @@
     return !hasAOneOrMoreOfFilter || passOneOrMoreOfFilter;
 }
 
-+(BOOL) matchesRegexPattern:(NSString*)pattern forLog:(NSString *)log {
++ (BOOL)matchesRegexPattern:(NSString*)pattern forLog:(NSString *)log {
     NSError *error = NULL;
     NSRegularExpression *regex = [NSRegularExpression
                                   regularExpressionWithPattern:pattern

@@ -18,7 +18,7 @@
     NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FiltersTextCell" bundle:nil];
     [self registerNib:textNib forIdentifier:@"FiltersTextCell"];
     
-    _lines = [[NSArray alloc] init];
+    _attributedLines = [[NSArray alloc] init];
 
     self.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     [self setupColumns];
@@ -40,8 +40,8 @@
     self.tableColumns[0].width = NSScreen.mainScreen.frame.size.width;
 }
 
-- (void)setLines:(NSArray<NSString *> *)lines {
-    _lines = lines;
+- (void)setAttributedLines:(NSArray<NSAttributedString *> *)attributedLines {
+    _attributedLines = attributedLines;
     [self reloadData];
 }
 
@@ -52,7 +52,7 @@
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return _lines.count;
+    return _attributedLines.count;
 }
 
 # pragma mark - NSTableViewDelegate
@@ -61,8 +61,8 @@
     NSTableCellView *cell = [self makeViewWithIdentifier:@"FiltersTextCell" owner:self];
     
     if ([tableColumn.identifier  isEqual: @"Message"]) {
-        if (row < _lines.count) {
-            cell.textField.stringValue = _lines[row];
+        if (row < _attributedLines.count) {
+            cell.textField.attributedStringValue = _attributedLines[row];
         }
     } else {
         cell.textField.stringValue = @"Other column";
@@ -74,7 +74,7 @@
     NSInteger row = self.selectedRow;
     if (row != 0) {
         // Copy line to Pasteboard
-        NSString *line = _lines[row];
+        NSString *line = _attributedLines[row].string;
         NSLog(@"^^^^^^ Copied line: %@", line);
         NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
         [pasteboard declareTypes:@[NSPasteboardTypeString] owner:nil];

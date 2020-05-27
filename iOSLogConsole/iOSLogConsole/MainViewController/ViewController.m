@@ -136,8 +136,53 @@
 - (void)didChangeFilteredLogs:(NSArray<NSString *>*)logs {
     // NSLog(@"******** %lu", (long) logs.count);
     if (_pauseButton.state != NSControlStateValueOn) {
-        [_logsTableView setLines:logs];
+        NSArray *attrLogs = [ViewController coloredStringsFromLogs:logs usingFilters:_filtersManager.filters];
+        [_logsTableView setAttributedLines:attrLogs];
     }
+}
+
+#pragma mark - Coloring Logs with Filters
+
++ (NSArray<NSAttributedString *>*)coloredStringsFromLogs:(NSArray<NSString *>*)logs usingFilters:(NSArray<Filter *>*)filters {
+    NSMutableArray<NSAttributedString *>* attrLogs = [[NSMutableArray<NSAttributedString *> alloc] init];
+    for (NSString *log in logs) {
+        NSAttributedString *coloredLog = [ViewController coloredLog:log usingFilters:filters];
+        [attrLogs addObject:coloredLog];
+    }
+    return attrLogs;
+}
+
++ (NSAttributedString *)coloredLog:(NSString *)log usingFilters:(NSArray<Filter *>*)filters {
+    NSError *error = NULL;
+    NSMutableAttributedString *coloredString = [[NSMutableAttributedString alloc] initWithString:log];
+
+    for (Filter* filter in filters) {
+        if (!filter.isEnabled || filter.type == FilterByTypeNoFilter) {
+            continue;
+        }
+        NSString *regexPattern;
+        if (filter.type == FilterByTypeRegex) {
+            regexPattern = filter.text;
+        } else {
+            regexPattern = [NSRegularExpression escapedPatternForString:filter.text];
+        }
+        
+        NSRegularExpression *regex = [NSRegularExpression
+                                      regularExpressionWithPattern:regexPattern
+                                      options:0
+                                      error:&error];
+        NSRange searchedRange = NSMakeRange(0, [log length]);
+        NSArray* matches = [regex matchesInString:log options:0 range: searchedRange];
+        for (NSTextCheckingResult *match in matches) {
+            FilterColorPopupInfo *info = Filter.allColors[filter.colorTag];
+            [coloredString addAttributes:@{
+                NSForegroundColorAttributeName:[NSColor whiteColor],
+                NSBackgroundColorAttributeName:info.color
+            } range:match.range];
+        }
+    }
+    
+    return coloredString;
 }
 
 @end
