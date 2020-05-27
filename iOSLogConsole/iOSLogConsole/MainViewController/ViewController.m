@@ -76,10 +76,11 @@
 }
 
 // If we waited 2 seconds bootedSimulator.log doesn't update, create a new process to tail logs to file
+// TODO clean up process when app is killed
 -(void)writeLogsToFileIfNeeded:(NSTimer *)timer {
     if (!_hasReadLine) {
         system("rm -f bootedSimulator.log");
-        system("killall log"); // Kill extra xcrun processes
+        system("killall log");
         system("xcrun simctl spawn booted log stream --level=debug --style=compact > bootedSimulator.log&");
         [self startFileReader];
     }

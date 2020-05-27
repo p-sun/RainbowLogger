@@ -7,6 +7,7 @@
 //
 
 #import "LogsManager.h"
+#import <Foundation/Foundation.h>
 
 @implementation LogsManager
 
@@ -51,7 +52,6 @@
     return filtered;
 }
 
-// TODO
 + (BOOL)doesLog:(NSString *)log passFilters:(NSArray<Filter *>*)filters {
     BOOL hasAOneOrMoreOfFilter = NO;
     BOOL passOneOrMoreOfFilter = NO;
@@ -83,14 +83,28 @@
                 }
                 break;
             case FilterByTypeRegex:
-                // TODO
+                if (![LogsManager matchesRegexPattern:filter.text forLog:log]) {
+                    return NO;
+                }
                 break;
             case FilterByTypeNoFilter:
                 break;
         }
     }
-
+    
     return !hasAOneOrMoreOfFilter || passOneOrMoreOfFilter;
+}
+
++(BOOL) matchesRegexPattern:(NSString*)pattern forLog:(NSString *)log {
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression
+                                  regularExpressionWithPattern:pattern
+                                  options:0
+                                  error:&error];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:log
+                                                        options:0
+                                                          range:NSMakeRange(0, [log length])];
+    return numberOfMatches > 0;
 }
 
 @end
