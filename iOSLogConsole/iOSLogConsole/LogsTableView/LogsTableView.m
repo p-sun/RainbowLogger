@@ -40,6 +40,11 @@
     self.tableColumns[0].width = NSScreen.mainScreen.frame.size.width;
 }
 
+- (void)setLines:(NSArray<NSString *> *)lines {
+    _lines = lines;
+    [self reloadData];
+}
+
 # pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfColumns {

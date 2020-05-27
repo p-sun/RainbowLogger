@@ -51,39 +51,11 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     self.tableColumns[0].width = 1200;
 }
 
-# pragma mark - Filters Management
-// TODO Move Filter creation out of this tableView
-
-- (void)addFilterWithText:(NSString *)text {
-    Filter *filter = [[Filter alloc] initWithText:text];
-    [self updateFilters:[_filters arrayByAddingObject:filter]];
-}
-
-- (void)deleteFilterAtIndex:(NSInteger)index {
-    NSMutableArray<Filter *> *newFilters = [[NSMutableArray alloc] init];
-    if (index > 0) {
-        NSRange frontRange = NSMakeRange(0, index);
-        [newFilters addObjectsFromArray: [_filters subarrayWithRange: frontRange]];
-    }
-    if (index < _filters.count - 1) {
-        NSInteger length = _filters.count - 1 - index;
-        NSRange backRange = NSMakeRange(index + 1, length);
-        [newFilters addObjectsFromArray: [_filters subarrayWithRange: backRange]];
-    }
-    [self updateFilters:newFilters];
-}
-
--(void)updateFilters:(NSArray<Filter *>*)newFilters {
-    if (![newFilters isEqualToArray:_filters]) {
-        _filters = newFilters;
+- (void)setFilters:(NSArray *)filters {
+    if (![_filters isEqualToArray:filters]) {
+        _filters = filters;
         [self reloadData];
-        [_filtersDelegate didChangeFilters:newFilters];
     }
-}
-
-- (void)setEnabledAtIndex:(NSInteger)index isEnabled:(BOOL)isEnabled {
-    Filter *filter = [_filters objectAtIndex:index];
-    filter.isEnabled = isEnabled;
 }
 
 # pragma mark - NSTableViewDataSource
@@ -105,10 +77,10 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
         __weak __typeof__(self) weakSelf = self;
         [cell setFilter:_filters[row]];
         cell.onDelete = ^{
-            [weakSelf deleteFilterAtIndex:row];
+            [weakSelf.filtersDelegate didDeleteFilterAtIndex:row];
         };
         cell.onEnableToggle = ^(BOOL isEnabled) {
-            [weakSelf setEnabledAtIndex:row isEnabled:isEnabled];
+            [weakSelf.filtersDelegate didToggleFilterAtIndex:row isEnabled:isEnabled];
         };
     }
     return cell;

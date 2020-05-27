@@ -12,7 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol FiltersTableViewDelegate <NSObject>
 
--(void)didChangeFilters:(NSArray<Filter *>*)filters;
+- (void)didDeleteFilterAtIndex:(NSInteger)index;
+- (void)didToggleFilterAtIndex:(NSInteger)index isEnabled:(BOOL)isEnabled;
 
 @end
 
@@ -26,7 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, weak) id<FiltersTableViewDelegate> filtersDelegate;
 
 - (void)setupTable;
-- (void)addFilterWithText:(NSString *)text;
 
 @end
 

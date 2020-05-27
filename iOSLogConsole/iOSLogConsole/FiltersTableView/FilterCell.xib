@@ -40,6 +40,9 @@ CA
                         </popUpButton>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eAm-mw-qJk">
                             <rect key="frame" x="206" y="20" width="140" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="136" id="HRy-je-EYQ"/>
+                            </constraints>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="Filter By Label" id="nRl-xN-L76">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -103,7 +106,7 @@ CA
             <constraints>
                 <constraint firstItem="dU0-g0-YeE" firstAttribute="top" secondItem="FUr-wE-i1z" secondAttribute="top" id="ACG-DI-1DQ"/>
                 <constraint firstItem="dU0-g0-YeE" firstAttribute="leading" secondItem="FUr-wE-i1z" secondAttribute="leading" constant="12" id="Bye-dO-pTW"/>
-                <constraint firstAttribute="trailing" secondItem="dU0-g0-YeE" secondAttribute="trailing" constant="12" id="Pdj-8Y-8EP"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dU0-g0-YeE" secondAttribute="trailing" constant="12" id="Pdj-8Y-8EP"/>
                 <constraint firstAttribute="bottom" secondItem="dU0-g0-YeE" secondAttribute="bottom" id="Q7h-zR-pp5"/>
             </constraints>
             <connections>

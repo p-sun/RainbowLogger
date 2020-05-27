@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "NSColorExtensions.h"
+#import "Filter.h"
 
 @implementation ViewController
 
@@ -19,7 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _allLogs = [[NSArray alloc] init];
+    _filtersManager = [[FiltersManager alloc] init];
+    [_filtersManager setDelegate: self];
+    
+    _logsManager = [[LogsManager alloc] init];
+    [_logsManager setDelegate:self];
     
     [self.filtersTableView setFiltersDelegate:self];
     
@@ -35,12 +40,14 @@
 }
 
 - (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
-    [_filtersTableView addFilterWithText:sender.stringValue];
+    Filter *filter = [[Filter alloc] initWithText:sender.stringValue];
+    [_filtersManager addFilter:filter];
+
     sender.stringValue = @"";
     [_filtersTableView scrollToEndOfDocument:self];
 }
 
-#pragma mark - Logs
+#pragma mark - FileReader
 
 - (void)startFileReader {
     self.fileReader = [[FileReader alloc] initWithFilePath:@"bootedSimulator.log"];
@@ -77,76 +84,35 @@
     // Then it turns OFF if users scrolls and lands on a place that's not the bottom
     BOOL autoScroll = _logsTableView.enclosingScrollView.verticalScroller.floatValue == 1 || _logsTableView.enclosingScrollView.verticalScroller.floatValue == 0;
     
-    [self addLog:line];
+    [_logsManager addLog:line passingFilters:_filtersTableView.filters];
     
     if (autoScroll) {
         [_logsTableView scrollToEndOfDocument:nil];
     }
 }
 
-#pragma mark - Logs & Filter Management
-
-// Add a log -> Filter just the one log
-- (void)addLog:(NSString *)line {
-    _allLogs = [_allLogs arrayByAddingObject:line];
-    
-    if ([self predicateForFilters:_filtersTableView.filters onLog:line]) {
-        NSLog(@"*********** add log to %lu", (unsigned long)_logsTableView.lines.count);
-
-        _logsTableView.lines = [_logsTableView.lines arrayByAddingObject:line];
-        [_logsTableView reloadData];
-    }
-}
-
-- (NSArray<NSString *>*)filteredLogsFromAllLogs:(NSArray<Filter *>*)filters {
-    NSMutableArray<NSString *> *filtered = [[NSMutableArray alloc] init];
-    for (NSString *log in _allLogs) {
-        if ([self predicateForFilters:filters onLog:log]) {
-            [filtered addObject:log];
-        }
-    }
-    return filtered;
-}
-
-- (BOOL)predicateForFilters:(NSArray *)filters onLog:(NSString *)log {
-    if (filters.count == 0) {
-        return true;
-    }
-    // Must contain ALL the contains
-    
-    // Must contain ALL the Regexes
-    
-    // Must contain >= of ContainsAnyOF
-    
-    // Must contain NONe of the NOTContains
-    
-    for (Filter *filter in filters) {
-        if (filter.type == FilterByTypeContains) {
-            if ([log containsString:filter.text]) {
-                return true;
-            }
-        } else if (filter.type == FilterByTypeNone) {
-            if ([log containsString:filter.text]) {
-                return false;
-            }
-        } else if (filter.type == FilterByTypeRegex) {
-            // TODO
-        } else if (filter.type == FilterByTypeContainsAnyOf) {
-            // TODO
-        }
-    }
-    
-    return false;
-}
-
 #pragma mark - FiltersTableViewDelegate
 
-// Change Filter -> Re-filter all Logs
--(void)didChangeFilters:(NSArray<Filter *>*)filters {
-    NSMutableArray<NSString *> *newLines = [[NSMutableArray alloc]
-                                            initWithArray:[self filteredLogsFromAllLogs: filters]];
-    [_logsTableView setLines:newLines];
-    [_logsTableView reloadData];
+- (void)didDeleteFilterAtIndex:(NSInteger)index {
+    [_filtersManager deleteFilterAtIndex:index];
+}
+
+- (void)didToggleFilterAtIndex:(NSInteger)index isEnabled:(BOOL)isEnabled {
+    [_filtersManager setEnabledAtIndex:index isEnabled:isEnabled];
+}
+
+#pragma mark - FilterManagerDelegate
+
+- (void)didChangeFilters:(NSArray<Filter *> *)filters {
+    [_filtersTableView setFilters:filters];
+    [_logsManager filterLogsBy:filters];
+}
+
+#pragma mark - FilteredLogManagerDelegate
+
+- (void)didChangeFilteredLogs:(NSArray<NSString *>*)logs {
+    NSLog(@"******** %lu", (long) logs.count);
+    [_logsTableView setLines:logs];
 }
 
 @end
