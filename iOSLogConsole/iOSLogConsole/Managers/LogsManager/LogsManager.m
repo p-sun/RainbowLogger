@@ -31,10 +31,8 @@
 
 - (void)filterLogsBy:(NSArray<Filter *>*)filters {
     NSArray<NSString *>* newFilteredLogs = [LogsManager logs:_allLogs filteredBy:filters];
-    if (![newFilteredLogs isEqualToArray:_filteredLogs]) {
-        _filteredLogs = newFilteredLogs;
-        [_delegate didChangeFilteredLogs:_filteredLogs];
-    }
+    _filteredLogs = newFilteredLogs;
+    [_delegate didChangeFilteredLogs:_filteredLogs];
 }
 
 + (NSArray<NSString *>*)logs:(NSArray<NSString *>*)logs filteredBy:(NSArray<Filter *>*)filters {
@@ -49,28 +47,33 @@
 
 // TODO
 + (BOOL)doesLog:(NSString *)log passFilters:(NSArray<Filter *>*)filters {
-    BOOL hasContainsAnyOfFilter = NO;
-    BOOL passAtLeastOneContainsAnyOfFilter = NO;
+    BOOL hasAOneOrMoreOfFilter = NO;
+    BOOL passOneOrMoreOfFilter = NO;
 
     for (Filter *filter in filters) {
         if (!filter.isEnabled) {
             continue;
         }
         switch (filter.type) {
-            case FilterByTypeContains:
+            case FilterByTypeMustContain:
                 if (![log containsString:filter.text]) {
                     return NO;
                 }
                 break;
-            case FilterByTypeNotContains:
+            case FilterByTypeMustNotContain:
                 if ([log containsString:filter.text]) {
-                     return NO;
+                    return NO;
+                }
+                break;
+            case FilterByTypeContainsOneOrMoreOf:
+                hasAOneOrMoreOfFilter = YES;
+                if (!passOneOrMoreOfFilter && [log containsString:filter.text]) {
+                    passOneOrMoreOfFilter = YES;
                 }
                 break;
             case FilterByTypeContainsAnyOf:
-                hasContainsAnyOfFilter = YES;
-                if (!passAtLeastOneContainsAnyOfFilter && [log containsString:filter.text]) {
-                    passAtLeastOneContainsAnyOfFilter = YES;
+                if ([log containsString:filter.text]) {
+                    return YES;
                 }
                 break;
             case FilterByTypeRegex:
@@ -81,7 +84,7 @@
         }
     }
 
-    return !hasContainsAnyOfFilter || passAtLeastOneContainsAnyOfFilter;
+    return !hasAOneOrMoreOfFilter || passOneOrMoreOfFilter;
 }
 
 @end

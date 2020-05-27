@@ -24,10 +24,11 @@
 + (NSArray*)allFilterByTypes {
   return [NSArray arrayWithObjects:
           [[FilterTypePopupInfo alloc] initWithType:FilterByTypeNoFilter name:@""],
-          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContains name:@"Contains"],
-          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAnyOf name:@"Contains Any Of"],
-          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeNotContains name:@"Does Not Contain"],
-          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeRegex name:@"Contains Regex"],
+          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustContain name:@"Must contain"],
+          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsOneOrMoreOf name:@"Contains at least one of"],
+          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAnyOf name:@"Contains any of"],
+          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustNotContain name:@"Must not contain"],
+          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeRegex name:@"Must contains regex"],
   nil];
 }
 

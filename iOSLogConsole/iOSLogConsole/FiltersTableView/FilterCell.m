@@ -35,12 +35,12 @@
 }
 
 - (IBAction)filterByChanged:(NSPopUpButton *)sender {
-    _filter.type = sender.tag;
+    _filter.type = sender.selectedTag;
     _onFilterChanged(_filter);
 }
 
 - (IBAction)colorChanged:(NSPopUpButton *)sender {
-    _filter.colorTag = sender.tag;
+    _filter.colorTag = sender.selectedTag;
     _onFilterChanged(_filter);
 }
 
