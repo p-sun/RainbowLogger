@@ -7,15 +7,23 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Filter.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol FiltersTableViewDelegate <NSObject>
+
+-(void)didChangeFilters:(NSArray<Filter *>*)filters;
+
+@end
 
 @interface FiltersTableView : NSTableView <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (nonatomic, readonly) BOOL didSetupTable;
 @property (nonatomic, readonly) NSInteger columnsCount;
 @property (nonatomic, readonly, copy) NSArray<NSString *> *columnTitles;
-@property (nonatomic, readwrite) NSMutableArray *filters;
+@property (nonatomic, readwrite) NSArray *filters;
+
+@property (nullable, weak) id<FiltersTableViewDelegate> filtersDelegate;
 
 - (void)setupTable;
 - (void)addFilterWithText:(NSString *)text;

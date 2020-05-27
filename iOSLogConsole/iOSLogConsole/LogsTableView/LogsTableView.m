@@ -11,16 +11,14 @@
 
 @implementation LogsTableView
 
-- (void)awakeFromNib {
+- (void)setupTable {
     [self setDelegate:self];
     [self setDataSource:self];
-
+    
     NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FiltersTextCell" bundle:nil];
     [self registerNib:textNib forIdentifier:@"FiltersTextCell"];
-}
-
-- (void)setupTable {
-    _lines = [[NSMutableArray alloc] init];
+    
+    _lines = [[NSArray alloc] init];
 
     self.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     [self setupColumns];
@@ -72,7 +70,7 @@
     if (row != 0) {
         // Copy line to Pasteboard
         NSString *line = _lines[row];
-        NSLog(@"^^^^ Copied line: %@", line);
+        NSLog(@"^^^^^^ Copied line: %@", line);
         NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
         [pasteboard declareTypes:@[NSPasteboardTypeString] owner:nil];
         [pasteboard setString:line forType:NSPasteboardTypeString];

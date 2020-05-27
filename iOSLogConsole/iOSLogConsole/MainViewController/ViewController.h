@@ -11,15 +11,15 @@
 #import "FiltersTableView.h"
 #import "FileReader.h"
 
-@interface ViewController : NSViewController <FileReaderDelegate>
+@interface ViewController : NSViewController <FileReaderDelegate, FiltersTableViewDelegate>
 
 @property (weak) IBOutlet LogsTableView *logsTableView;
 @property (weak) IBOutlet FiltersTableView *filtersTableView;
 @property (weak) IBOutlet NSTextField *addFilterTextField;
 - (IBAction)addFilterOnTextFieldEnter:(NSTextField *)sender;
-
 @property (nonatomic, strong) FileReader *fileReader;
 @property (nonatomic, readonly) BOOL hasReadLine;
+@property (nonatomic, readonly, copy) NSArray<NSString *> *allLogs;
 
 @end
 

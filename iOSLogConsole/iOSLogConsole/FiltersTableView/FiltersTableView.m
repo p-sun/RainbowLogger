@@ -7,7 +7,6 @@
 //
 
 #import "FiltersTableView.h"
-#import "Filter.h"
 #import "FilterCell.h"
 
 typedef NS_ENUM(NSInteger, LogsColumnType) {
@@ -27,7 +26,7 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     self.dataSource = self;
 
     if (_filters == nil) {
-        _filters = [[NSMutableArray alloc] init];
+        _filters = [[NSArray alloc] init];
     }
     
     NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FilterCell" bundle:nil];
@@ -52,17 +51,34 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     self.tableColumns[0].width = 1200;
 }
 
-# pragma mark - Filters
+# pragma mark - Filters Management
+// TODO Move Filter creation out of this tableView
 
 - (void)addFilterWithText:(NSString *)text {
     Filter *filter = [[Filter alloc] initWithText:text];
-    [_filters addObject:filter];
-    [self reloadData];
+    [self updateFilters:[_filters arrayByAddingObject:filter]];
 }
 
 - (void)deleteFilterAtIndex:(NSInteger)index {
-    [_filters removeObjectAtIndex:index];
-    [self reloadData];
+    NSMutableArray<Filter *> *newFilters = [[NSMutableArray alloc] init];
+    if (index > 0) {
+        NSRange frontRange = NSMakeRange(0, index);
+        [newFilters addObjectsFromArray: [_filters subarrayWithRange: frontRange]];
+    }
+    if (index < _filters.count - 1) {
+        NSInteger length = _filters.count - 1 - index;
+        NSRange backRange = NSMakeRange(index + 1, length);
+        [newFilters addObjectsFromArray: [_filters subarrayWithRange: backRange]];
+    }
+    [self updateFilters:newFilters];
+}
+
+-(void)updateFilters:(NSArray<Filter *>*)newFilters {
+    if (![newFilters isEqualToArray:_filters]) {
+        _filters = newFilters;
+        [self reloadData];
+        [_filtersDelegate didChangeFilters:newFilters];
+    }
 }
 
 - (void)setEnabledAtIndex:(NSInteger)index isEnabled:(BOOL)isEnabled {
