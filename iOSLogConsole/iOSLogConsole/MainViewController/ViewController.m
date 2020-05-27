@@ -47,6 +47,10 @@
     [self clearLogs];
 }
 
+- (IBAction)addFilterButtonPressed:(id)sender {
+    [self addFilterOnTextFieldEnter:_addFilterTextField];
+}
+
 - (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
     Filter *filter = [[Filter alloc] initWithType:FilterByTypeContainsOneOrMoreOf
                                              text:sender.stringValue
@@ -176,8 +180,7 @@
         for (NSTextCheckingResult *match in matches) {
             FilterColorPopupInfo *info = Filter.allColors[filter.colorTag];
             [coloredString addAttributes:@{
-                NSForegroundColorAttributeName:[NSColor whiteColor],
-                NSBackgroundColorAttributeName:info.color
+                NSForegroundColorAttributeName:info.color,
             } range:match.range];
         }
     }

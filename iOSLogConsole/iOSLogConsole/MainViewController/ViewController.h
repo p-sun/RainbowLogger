@@ -29,6 +29,7 @@ FiltersManagerDelegate, LogsManagerDelegate, LogsScrollViewDelegate>
 @property (weak) IBOutlet NSButton *pauseButton;
 @property (weak) IBOutlet NSButton *autoscrollButton;
 
+- (IBAction)addFilterButtonPressed:(id)sender;
 - (IBAction)addFilterOnTextFieldEnter:(NSTextField *)sender;
 
 - (IBAction)trashPressed:(id)sender;

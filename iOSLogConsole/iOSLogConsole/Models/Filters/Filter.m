@@ -35,9 +35,9 @@
 + (NSArray*)allColors {
     return [NSArray arrayWithObjects:
             [[FilterColorPopupInfo alloc] initWithColor:[NSColor clearColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor greenColor] name:@"Green"],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor blueColor] name:@"Blue"],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor yellowColor] name:@"Yellow"],
+            [[FilterColorPopupInfo alloc] initWithColor:[NSColor greenColor] name:@""],
+            [[FilterColorPopupInfo alloc] initWithColor:[NSColor blueColor] name:@""],
+            [[FilterColorPopupInfo alloc] initWithColor:[NSColor yellowColor] name:@""],
             nil];
 }
 

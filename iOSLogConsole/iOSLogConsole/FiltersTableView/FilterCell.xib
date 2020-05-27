@@ -13,7 +13,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dU0-g0-YeE">
-                    <rect key="frame" x="12" y="0.0" width="636" height="56"/>
+                    <rect key="frame" x="12" y="0.0" width="564" height="56"/>
                     <subviews>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KZc-CQ-Lxe">
                             <rect key="frame" x="-2" y="19" width="24" height="18"/>
@@ -54,11 +54,11 @@
                             </textFieldCell>
                         </textField>
                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rPv-CE-rXv" userLabel="Colors Popup">
-                            <rect key="frame" x="414" y="15" width="145" height="25"/>
+                            <rect key="frame" x="414" y="15" width="73" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="140" id="SFC-R6-1s8"/>
+                                <constraint firstAttribute="width" constant="68" id="SFC-R6-1s8"/>
                             </constraints>
-                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="brW-Y2-5Qo">
+                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="brW-Y2-5Qo">
                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                                 <menu key="menu" id="tXt-pe-piA"/>
@@ -68,7 +68,7 @@
                             </connections>
                         </popUpButton>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Om3-Ja-qXb">
-                            <rect key="frame" x="568" y="16" width="68" height="23"/>
+                            <rect key="frame" x="496" y="16" width="68" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="FvT-JM-OwO"/>
                             </constraints>
