@@ -31,7 +31,7 @@ FiltersManagerDelegate, LogsManagerDelegate, LogsScrollViewDelegate>
 
 - (IBAction)addFilterOnTextFieldEnter:(NSTextField *)sender;
 
-- (IBAction)pauseToggled:(NSButton *)sender;
+- (IBAction)trashPressed:(id)sender;
 
 @end
 

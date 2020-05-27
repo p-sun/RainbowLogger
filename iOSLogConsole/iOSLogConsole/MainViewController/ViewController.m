@@ -43,8 +43,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scrollViewDidEndScroll:) name:NSScrollViewDidEndLiveScrollNotification object:_logsScrollView];
 }
 
-- (IBAction)pauseToggled:(NSButton *)sender {
-    
+- (IBAction)trashPressed:(id)sender {
+    [self clearLogs];
 }
 
 - (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
@@ -75,15 +75,18 @@
     }
 }
 
+// If we waited 2 seconds bootedSimulator.log doesn't update, create a new process to tail logs to file
 -(void)writeLogsToFileIfNeeded:(NSTimer *)timer {
     if (!_hasReadLine) {
+        system("rm -f bootedSimulator.log");
+        system("killall log"); // Kill extra xcrun processes
         system("xcrun simctl spawn booted log stream --level=debug --style=compact > bootedSimulator.log&");
         [self startFileReader];
     }
 }
 
 - (void)clearLogs {
-    system("rm -f bootedSimulator.log");
+    [_logsManager clearLogs];
 }
 
 #pragma mark - FileReaderDelegate

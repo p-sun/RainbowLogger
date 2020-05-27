@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addLog:(NSString*)log passingFilters:(NSArray<Filter *>*)filters;
 - (void)filterLogsBy:(NSArray<Filter *>*)filters;
+- (void)clearLogs;
 
 @end
 

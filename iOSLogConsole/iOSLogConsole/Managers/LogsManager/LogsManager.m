@@ -20,6 +20,12 @@
     return self;
 }
 
+- (void)clearLogs {
+    _allLogs = [[NSArray alloc] init];
+    _filteredLogs = [[NSArray alloc] init];
+    [_delegate didChangeFilteredLogs:_filteredLogs];
+}
+
 - (void)addLog:(NSString*)log passingFilters:(NSArray<Filter *>*)filters {
     _allLogs = [_allLogs arrayByAddingObject:log];
     
