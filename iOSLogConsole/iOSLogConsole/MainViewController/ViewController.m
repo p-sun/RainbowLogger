@@ -19,24 +19,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     _filtersManager = [[FiltersManager alloc] init];
     [_filtersManager setDelegate: self];
     
     _logsManager = [[LogsManager alloc] init];
     [_logsManager setDelegate:self];
     
-    [self.filtersTableView setFiltersDelegate:self];
-    
-    [self.logsTableView setupTable];
-    [self.filtersTableView setupTable];
+    [_logsTableView setupTable];
+
+    [_logsScrollView setScrollDelegate:self];
+
+    [_filtersTableView setFiltersDelegate:self];
+    [_filtersTableView setupTable];
 
     [self startFileReader];
 }
 
-- (void)viewWillAppear {
-    [super viewWillAppear];
+- (void)viewDidAppear {
+    [super viewDidAppear];
     [self waitForLogs];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scrollViewDidEndScroll:) name:NSScrollViewDidEndLiveScrollNotification object:_logsScrollView];
+}
+
+- (IBAction)pauseToggled:(NSButton *)sender {
+    
 }
 
 - (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
@@ -82,15 +90,23 @@
 
 -(void)fileReaderDidReadLine:(NSString *)line {
     _hasReadLine = YES;
-    
-    // TODO: Autoscroll is turned on first run
-    // Then it turns OFF if users scrolls and lands on a place that's not the bottom
-    BOOL autoScroll = _logsTableView.enclosingScrollView.verticalScroller.floatValue == 1 || _logsTableView.enclosingScrollView.verticalScroller.floatValue == 0;
-    
     [_logsManager addLog:line passingFilters:_filtersTableView.filters];
-    
-    if (autoScroll) {
+
+    if (_autoscrollButton.state == NSControlStateValueOn) {
         [_logsTableView scrollToEndOfDocument:nil];
+    }
+}
+
+#pragma mark - Autoscroll
+
+- (void)logsScrollViewDidScrollUp {
+    _autoscrollButton.state = NSControlStateValueOff;
+}
+
+- (void)scrollViewDidEndScroll:(NSNotification *)aNotification {
+    if (aNotification.object == _logsTableView.enclosingScrollView) {
+        BOOL autoScroll = _logsTableView.enclosingScrollView.verticalScroller.floatValue == 1;
+        _autoscrollButton.state = autoScroll ? NSControlStateValueOn : NSControlStateValueOff;
     }
 }
 
@@ -114,7 +130,7 @@
 #pragma mark - FilteredLogManagerDelegate
 
 - (void)didChangeFilteredLogs:(NSArray<NSString *>*)logs {
-    NSLog(@"******** %lu", (long) logs.count);
+    // NSLog(@"******** %lu", (long) logs.count);
     [_logsTableView setLines:logs];
 }
 

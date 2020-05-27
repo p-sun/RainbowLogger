@@ -18,6 +18,7 @@
 		9BC08BEB247CA2050088354B /* NSColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BEA247CA2050088354B /* NSColorExtensions.m */; };
 		9BC08BF4247E11170088354B /* LogsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BF3247E11170088354B /* LogsManager.m */; };
 		9BC08BF7247E234E0088354B /* FiltersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BF6247E234E0088354B /* FiltersManager.m */; };
+		9BC08C07247E60D60088354B /* LogsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08C06247E60D60088354B /* LogsScrollView.m */; };
 		9BDE6904247BAEA600F7599F /* FiltersSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BDE6903247BAEA600F7599F /* FiltersSwitchCell.xib */; };
 		9BDE6908247BB2D600F7599F /* FiltersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6907247BB2D600F7599F /* FiltersTableView.m */; };
 		9BDE6915247BE0D400F7599F /* FileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6914247BE0D400F7599F /* FileReader.m */; };
@@ -48,6 +49,8 @@
 		9BC08BF3247E11170088354B /* LogsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsManager.m; sourceTree = "<group>"; };
 		9BC08BF5247E234E0088354B /* FiltersManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersManager.h; sourceTree = "<group>"; };
 		9BC08BF6247E234E0088354B /* FiltersManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltersManager.m; sourceTree = "<group>"; };
+		9BC08C05247E60D60088354B /* LogsScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsScrollView.h; sourceTree = "<group>"; };
+		9BC08C06247E60D60088354B /* LogsScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsScrollView.m; sourceTree = "<group>"; };
 		9BDE6903247BAEA600F7599F /* FiltersSwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiltersSwitchCell.xib; sourceTree = "<group>"; };
 		9BDE6906247BB2D600F7599F /* FiltersTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersTableView.h; sourceTree = "<group>"; };
 		9BDE6907247BB2D600F7599F /* FiltersTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltersTableView.m; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 			children = (
 				9B99B418247A5C4F00734B8E /* LogsTableView.h */,
 				9B99B419247A5C4F00734B8E /* LogsTableView.m */,
+				9BC08C05247E60D60088354B /* LogsScrollView.h */,
+				9BC08C06247E60D60088354B /* LogsScrollView.m */,
 			);
 			path = LogsTableView;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */,
 				9B99B409247A58D100734B8E /* ViewController.m in Sources */,
 				9BDE6908247BB2D600F7599F /* FiltersTableView.m in Sources */,
+				9BC08C07247E60D60088354B /* LogsScrollView.m in Sources */,
 				9B99B411247A58D200734B8E /* main.m in Sources */,
 				9BDE691E247C5E7900F7599F /* FilterCell.m in Sources */,
 				9BC08BF4247E11170088354B /* LogsManager.m in Sources */,
