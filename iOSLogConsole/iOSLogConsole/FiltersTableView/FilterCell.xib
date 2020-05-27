@@ -33,23 +33,14 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="9X1-ak-257"/>
                             </constraints>
-                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="yMC-7E-e4G" id="dQA-G5-DiW">
+                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="dQA-G5-DiW">
                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
-                                <menu key="menu" id="68b-3x-JWK">
-                                    <items>
-                                        <menuItem state="on" id="yMC-7E-e4G">
-                                            <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Contains" id="2SQ-Nh-neP"/>
-                                        <menuItem title="Contains any of" id="Nyc-R5-ds8"/>
-                                        <menuItem title="Regex" id="RpV-xL-9Gi"/>
-                                    </items>
-                                </menu>
+                                <menu key="menu" id="68b-3x-JWK"/>
                             </popUpButtonCell>
+                            <connections>
+                                <action selector="filterByChanged:" target="FUr-wE-i1z" id="Zid-8h-IY7"/>
+                            </connections>
                         </popUpButton>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eAm-mw-qJk">
                             <rect key="frame" x="242" y="20" width="164" height="16"/>
@@ -72,6 +63,9 @@ CA
                                 <font key="font" metaFont="system"/>
                                 <menu key="menu" id="tXt-pe-piA"/>
                             </popUpButtonCell>
+                            <connections>
+                                <action selector="colorChanged:" target="FUr-wE-i1z" id="wKV-Ov-a2Q"/>
+                            </connections>
                         </popUpButton>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Om3-Ja-qXb">
                             <rect key="frame" x="568" y="16" width="68" height="23"/>

@@ -13,8 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol FiltersTableViewDelegate <NSObject>
 
 - (void)didDeleteFilterAtIndex:(NSInteger)index;
-- (void)didToggleFilterAtIndex:(NSInteger)index isEnabled:(BOOL)isEnabled;
-
+- (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index;
 @end
 
 @interface FiltersTableView : NSTableView <NSTableViewDataSource, NSTableViewDelegate>

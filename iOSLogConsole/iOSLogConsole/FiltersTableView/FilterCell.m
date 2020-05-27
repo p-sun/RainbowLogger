@@ -11,11 +11,17 @@
 @implementation FilterCell
 
 - (void)awakeFromNib {
-    [FilterColor.allColors
-     enumerateObjectsUsingBlock:^(FilterColor* filterColor, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:filterColor.name action:nil keyEquivalent:@""];
-        menuItem.image = [self swatchForColor:filterColor.color];
-        [self.colorsPopup.menu addItem:menuItem];
+    [Filter.allFilterByTypes enumerateObjectsUsingBlock:^(FilterTypePopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
+        menuItem.tag = idx;
+        [_filterByPopup.menu addItem:menuItem];
+    }];
+    [Filter.allColors
+     enumerateObjectsUsingBlock:^(FilterColorPopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
+        menuItem.image = [self swatchForColor:info.color];
+        menuItem.tag = idx;
+        [_colorsPopup.menu addItem:menuItem];
     }];
 }
 
@@ -24,7 +30,18 @@
 }
 
 - (IBAction)enableToggled:(NSButton *)sender {
-    _onEnableToggle(sender.state == NSControlStateValueOn);
+    _filter.isEnabled = sender.state == NSControlStateValueOn;
+    _onFilterChanged(_filter);
+}
+
+- (IBAction)filterByChanged:(NSPopUpButton *)sender {
+    _filter.type = sender.tag;
+    _onFilterChanged(_filter);
+}
+
+- (IBAction)colorChanged:(NSPopUpButton *)sender {
+    _filter.colorTag = sender.tag;
+    _onFilterChanged(_filter);
 }
 
 - (NSImage *)swatchForColor:(NSColor *)color {
@@ -41,6 +58,8 @@
     self.isEnabledToggle.state = filter.isEnabled ? NSControlStateValueOn : NSControlStateValueOff;
     [self.colorsPopup selectItemWithTag:filter.colorTag];
     [self.filterByPopup selectItemWithTag:filter.type];
+    
+    _filter = filter;
 }
 
 @end

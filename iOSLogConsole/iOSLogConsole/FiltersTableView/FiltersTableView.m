@@ -79,8 +79,8 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
         cell.onDelete = ^{
             [weakSelf.filtersDelegate didDeleteFilterAtIndex:row];
         };
-        cell.onEnableToggle = ^(BOOL isEnabled) {
-            [weakSelf.filtersDelegate didToggleFilterAtIndex:row isEnabled:isEnabled];
+        cell.onFilterChanged = ^(Filter* filter) {
+            [weakSelf.filtersDelegate didChangeFilter:filter atIndex:row];
         };
     }
     return cell;

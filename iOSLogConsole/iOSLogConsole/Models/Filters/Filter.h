@@ -7,17 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FilterColor.h"
+#import "FilterColorPopupInfo.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, FilterByType) {
     FilterByTypeNoFilter,
     FilterByTypeContains,
-    FilterByTypeNotContains,
     FilterByTypeContainsAnyOf,
+    FilterByTypeNotContains,
     FilterByTypeRegex
 };
-
-NS_ASSUME_NONNULL_BEGIN
 
 @interface Filter : NSObject
 
@@ -26,7 +26,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite) NSInteger colorTag;
 @property (nonatomic, readwrite) BOOL isEnabled;
 
-- (instancetype)initWithText:(NSString *)text;
+- (instancetype)initWithType:(FilterByType)type text:(NSString *)text colorTag:(NSInteger)colorTag isEnabled:(BOOL)isEnabled;
+
++ (NSArray*)allFilterByTypes;
++ (NSArray*)allColors;
+
+@end
+
+@interface FilterTypePopupInfo : NSObject
+
+@property FilterByType type;
+@property NSString * _Nonnull name;
+
+- (instancetype)initWithType:(FilterByType)type name:(NSString*)name;
 
 @end
 

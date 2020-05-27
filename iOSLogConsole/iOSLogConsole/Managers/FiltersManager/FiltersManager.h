@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)deleteFilterAtIndex:(NSInteger)index;
 
-- (void)setEnabledAtIndex:(NSInteger)index isEnabled:(BOOL)isEnabled;
+- (void)setFilter:(Filter *)filter atIndex:(NSInteger)index;
 
 @end
 

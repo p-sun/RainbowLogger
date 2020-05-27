@@ -40,7 +40,10 @@
 }
 
 - (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
-    Filter *filter = [[Filter alloc] initWithText:sender.stringValue];
+    Filter *filter = [[Filter alloc] initWithType:FilterByTypeContainsAnyOf
+                                             text:sender.stringValue
+                                         colorTag:1
+                                        isEnabled:YES];
     [_filtersManager addFilter:filter];
 
     sender.stringValue = @"";
@@ -97,8 +100,8 @@
     [_filtersManager deleteFilterAtIndex:index];
 }
 
-- (void)didToggleFilterAtIndex:(NSInteger)index isEnabled:(BOOL)isEnabled {
-    [_filtersManager setEnabledAtIndex:index isEnabled:isEnabled];
+- (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index {
+    [_filtersManager setFilter:filter atIndex:index];
 }
 
 #pragma mark - FilterManagerDelegate

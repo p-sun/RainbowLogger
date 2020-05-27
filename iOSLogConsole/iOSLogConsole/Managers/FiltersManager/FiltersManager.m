@@ -44,12 +44,8 @@
     }
 }
 
-- (void)setEnabledAtIndex:(NSInteger)index isEnabled:(BOOL)isEnabled {
-    Filter *filter = [_filters objectAtIndex:index];
-    if (filter.isEnabled != isEnabled) {
-        filter.isEnabled = isEnabled;
-        [_delegate didChangeFilters:_filters];
-    }
+- (void)setFilter:(Filter *)filter atIndex:(NSInteger)index {
+    [_delegate didChangeFilters:_filters];
 }
 
 @end
