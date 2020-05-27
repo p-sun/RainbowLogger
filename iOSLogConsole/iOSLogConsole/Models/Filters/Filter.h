@@ -10,8 +10,9 @@
 #import "FilterColor.h"
 
 typedef NS_ENUM(NSInteger, FilterByType) {
-    FilterByTypeNone,
+    FilterByTypeNoFilter,
     FilterByTypeContains,
+    FilterByTypeNotContains,
     FilterByTypeContainsAnyOf,
     FilterByTypeRegex
 };
@@ -22,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readwrite) FilterByType type;
 @property (nonatomic, readwrite) NSString *text;
-@property (nonatomic, readwrite) FilterColor *color;
+@property (nonatomic, readwrite) NSInteger colorTag;
 @property (nonatomic, readwrite) BOOL isEnabled;
 
 - (instancetype)initWithText:(NSString *)text;

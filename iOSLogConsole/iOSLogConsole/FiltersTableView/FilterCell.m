@@ -11,11 +11,12 @@
 @implementation FilterCell
 
 - (void)awakeFromNib {
-    for (FilterColor *filterColor in [FilterColor allColors]) {
+    [FilterColor.allColors
+     enumerateObjectsUsingBlock:^(FilterColor* filterColor, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:filterColor.name action:nil keyEquivalent:@""];
         menuItem.image = [self swatchForColor:filterColor.color];
         [self.colorsPopup.menu addItem:menuItem];
-    }
+    }];
 }
 
 - (IBAction)deleteButtonPressed:(id)sender {
@@ -35,14 +36,11 @@
     return image;
 }
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-    
-    // Drawing code here.
-}
-
 - (void)setFilter:(Filter *)filter {
     self.filterByText.stringValue = filter.text;
+    self.isEnabledToggle.state = filter.isEnabled ? NSControlStateValueOn : NSControlStateValueOff;
+    [self.colorsPopup selectItemWithTag:filter.colorTag];
+    [self.filterByPopup selectItemWithTag:filter.type];
 }
 
 @end

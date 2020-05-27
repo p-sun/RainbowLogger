@@ -14,9 +14,9 @@
 {
     self = [super init];
     if (self) {
-        self.type = FilterByTypeContains;
+        self.type = FilterByTypeContainsAnyOf;
         self.text = text;
-        self.color = [[FilterColor alloc] initWithColor:[NSColor greenColor] name:@"Green"];
+        self.colorTag = 1;
         self.isEnabled = YES;
     }
     return self;

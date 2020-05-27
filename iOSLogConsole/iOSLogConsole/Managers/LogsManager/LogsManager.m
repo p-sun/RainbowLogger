@@ -49,34 +49,39 @@
 
 // TODO
 + (BOOL)doesLog:(NSString *)log passFilters:(NSArray<Filter *>*)filters {
-    if (filters.count == 0) {
-        return true;
-    }
-    // Must contain ALL the contains
-    
-    // Must contain ALL the Regexes
-    
-    // Must contain >= of ContainsAnyOF
-    
-    // Must contain NONe of the NOTContains
-    
+    BOOL hasContainsAnyOfFilter = NO;
+    BOOL passAtLeastOneContainsAnyOfFilter = NO;
+
     for (Filter *filter in filters) {
-        if (filter.type == FilterByTypeContains) {
-            if ([log containsString:filter.text]) {
-                return true;
-            }
-        } else if (filter.type == FilterByTypeNone) {
-            if ([log containsString:filter.text]) {
-                return false;
-            }
-        } else if (filter.type == FilterByTypeRegex) {
-            // TODO
-        } else if (filter.type == FilterByTypeContainsAnyOf) {
-            // TODO
+        if (!filter.isEnabled) {
+            continue;
+        }
+        switch (filter.type) {
+            case FilterByTypeContains:
+                if (![log containsString:filter.text]) {
+                    return NO;
+                }
+                break;
+            case FilterByTypeNotContains:
+                if ([log containsString:filter.text]) {
+                     return NO;
+                }
+                break;
+            case FilterByTypeContainsAnyOf:
+                hasContainsAnyOfFilter = YES;
+                if (!passAtLeastOneContainsAnyOfFilter && [log containsString:filter.text]) {
+                    passAtLeastOneContainsAnyOfFilter = YES;
+                }
+                break;
+            case FilterByTypeRegex:
+                // TODO
+                break;
+            case FilterByTypeNoFilter:
+                break;
         }
     }
-    
-    return false;
+
+    return !hasContainsAnyOfFilter || passAtLeastOneContainsAnyOfFilter;
 }
 
 @end

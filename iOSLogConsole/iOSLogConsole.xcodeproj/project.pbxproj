@@ -161,12 +161,28 @@
 		9BC08BEE247E0FB20088354B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				9BC08BFB247E33070088354B /* LogsManager */,
+				9BC08BFC247E330E0088354B /* FiltersManager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		9BC08BFB247E33070088354B /* LogsManager */ = {
+			isa = PBXGroup;
+			children = (
 				9BC08BF2247E11170088354B /* LogsManager.h */,
 				9BC08BF3247E11170088354B /* LogsManager.m */,
+			);
+			path = LogsManager;
+			sourceTree = "<group>";
+		};
+		9BC08BFC247E330E0088354B /* FiltersManager */ = {
+			isa = PBXGroup;
+			children = (
 				9BC08BF5247E234E0088354B /* FiltersManager.h */,
 				9BC08BF6247E234E0088354B /* FiltersManager.m */,
 			);
-			path = Managers;
+			path = FiltersManager;
 			sourceTree = "<group>";
 		};
 		9BDE6905247BB27400F7599F /* FiltersTableView */ = {
