@@ -161,7 +161,7 @@
     NSMutableAttributedString *coloredString = [[NSMutableAttributedString alloc] initWithString:log];
 
     for (Filter* filter in filters) {
-        if (!filter.isEnabled || filter.type == FilterByTypeNoFilter) {
+        if (!filter.isEnabled) {
             continue;
         }
         NSString *regexPattern;

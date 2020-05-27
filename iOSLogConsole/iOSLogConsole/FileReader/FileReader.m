@@ -44,7 +44,7 @@
     }
     
     [self readLines];
-    [NSTimer scheduledTimerWithTimeInterval:1.0
+    [NSTimer scheduledTimerWithTimeInterval:0.3
     target:self
     selector:@selector(onTick:)
     userInfo:nil
@@ -61,10 +61,16 @@
     [fileHandle seekToEndOfFile];
     totalFileLength = [fileHandle offsetInFile];
 
+    if (isReading) {
+        return;
+    }
+    
+    isReading = true;
     NSString* line = nil;
     while ((line = [self readLine])) {
         [self.delegate fileReaderDidReadLine:line];
     }
+    isReading = false;
 }
 
 /**

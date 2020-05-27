@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
     unsigned long long totalFileLength;        /**< Total number of bytes in file. */
     NSString* lineDelimiter;        /**< Character for line break or page break. */
     NSUInteger m_chunkSize;            /**< Standard block size. */
+    BOOL isReading;
 }
 
 @property (nullable, weak) id<FileReaderDelegate> delegate;
