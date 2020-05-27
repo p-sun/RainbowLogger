@@ -131,7 +131,9 @@
 
 - (void)didChangeFilteredLogs:(NSArray<NSString *>*)logs {
     // NSLog(@"******** %lu", (long) logs.count);
-    [_logsTableView setLines:logs];
+    if (_pauseButton.state != NSControlStateValueOn) {
+        [_logsTableView setLines:logs];
+    }
 }
 
 @end
