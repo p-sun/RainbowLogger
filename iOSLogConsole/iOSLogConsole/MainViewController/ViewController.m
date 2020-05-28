@@ -41,7 +41,7 @@
 }
 
 - (IBAction)trashPressed:(id)sender {
-    [self clearLogs];
+    [_logsManager clearLogs];
 }
 
 - (IBAction)addFilterButtonPressed:(id)sender {
@@ -106,10 +106,6 @@
                                             repeats:NO];
         }
     }
-}
-
-- (void)clearLogs {
-    [_logsManager clearLogs];
 }
 
 #pragma mark - FileReaderDelegate
