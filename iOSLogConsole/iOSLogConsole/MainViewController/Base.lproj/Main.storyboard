@@ -706,7 +706,7 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="m2S-Jp-Qdl">
+                    <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1346" height="514"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -852,8 +852,18 @@
                                                             <action selector="addFilterButtonPressed:" target="XfG-lQ-9wD" id="q0h-Z9-r1h"/>
                                                         </connections>
                                                     </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IPR-3I-PV7">
+                                                        <rect key="frame" x="553" y="1" width="99" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Add Filter" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OqG-k1-Zj2">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="addFilterButtonPressed:" target="XfG-lQ-9wD" id="G2h-7e-CEY"/>
+                                                        </connections>
+                                                    </button>
                                                     <customView horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="CGH-Bx-CJB">
-                                                        <rect key="frame" x="559" y="0.0" width="535" height="29"/>
+                                                        <rect key="frame" x="662" y="0.0" width="432" height="29"/>
                                                     </customView>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JxZ-z8-zQP">
                                                         <rect key="frame" x="1110" y="3" width="60" height="22"/>
@@ -908,8 +918,10 @@
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
+                                                    <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>

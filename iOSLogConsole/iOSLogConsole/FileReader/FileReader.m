@@ -23,7 +23,6 @@
     @returns An initialized FileReader object or nil if the object could not be created.
  */
 - (id)initWithFilePath:(NSString*)path {
-
     self = [super init];
     if (self != nil) {
         if (!path || [path length] <= 0) {
@@ -74,7 +73,7 @@
     
     isReading = true;
     NSString* line = nil;
-    while ((line = [self readLine])) {
+    while ((line = [self readTrimmedLine])) {
         [self.delegate fileReaderDidReadLine:line];
     }
     isReading = false;
@@ -95,6 +94,7 @@
  */
 - (NSString*)readLine {
     if (totalFileLength == 0 || currentOffset >= totalFileLength) {
+        currentOffset = totalFileLength;
         return nil;
     }
     

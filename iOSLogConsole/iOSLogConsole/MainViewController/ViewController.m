@@ -30,7 +30,7 @@
     [_filtersTableView setFiltersDelegate:self];
     [_filtersTableView setupTable];
     
-    [self startFileReader];
+    [self startFileReader:nil];
 }
 
 - (void)viewDidAppear {
@@ -67,12 +67,7 @@
     _shouldAutoScroll = sender.state == NSControlStateValueOn;
 }
 
-#pragma mark - FileReader
-
-- (void)startFileReader {
-    self.fileReader = [[FileReader alloc] initWithFilePath:@"bootedSimulator.log"];
-    [self.fileReader setDelegate:self];
-}
+#pragma mark - Start FileReader
 
 - (void)waitForLogs {
     if (!_hasReadLine) {
@@ -88,10 +83,28 @@
 // TODO clean up process when app is killed
 -(void)writeLogsToFileIfNeeded:(NSTimer *)timer {
     if (!_hasReadLine) {
-        system("rm -f bootedSimulator.log");
+        NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"bootedSimulator.log"];
+        [[[NSData alloc] init] writeToFile:filePath atomically:YES];
+        
         system("killall log");
         system("xcrun simctl spawn booted log stream --style=compact > bootedSimulator.log&"); // --process=AppName --level=debug
-        [self startFileReader];
+        
+        [self startFileReader:nil];
+    }
+}
+
+- (void)startFileReader:(NSTimer *)timer {
+    if (!self.fileReader) {
+        self.fileReader = [[FileReader alloc] initWithFilePath:@"bootedSimulator.log"];
+        [self.fileReader setDelegate:self];
+
+        if (!self.fileReader) {
+            [NSTimer scheduledTimerWithTimeInterval:0.8
+                                             target:self
+                                           selector:@selector(startFileReader:)
+                                           userInfo:nil
+                                            repeats:NO];
+        }
     }
 }
 
@@ -103,9 +116,7 @@
 
 -(void)fileReaderDidReadLine:(NSString *)line {
     _hasReadLine = YES;
-    NSString *trimmedString = [line stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    
-    [_logsManager addLog:trimmedString passingFilters:_filtersTableView.filters];
+    [_logsManager addLog:line passingFilters:_filtersTableView.filters];
 }
 
 #pragma mark - Autoscroll
