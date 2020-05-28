@@ -17,7 +17,6 @@
     
     _attributedLines = [[NSArray alloc] init];
 
-    self.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     self.tableColumns[0].width = NSScreen.mainScreen.frame.size.width;
     _didSetupTable = YES;
     [self reloadData];
@@ -54,6 +53,7 @@
     NSTableCellView *view = [self makeViewWithIdentifier:@"LogsCellView" owner:self];
     if (row < _attributedLines.count) {
         [[view textField] setAttributedStringValue:_attributedLines[row]];
+        [[view textField] setSelectable:YES];
     }
     return view;
 }
