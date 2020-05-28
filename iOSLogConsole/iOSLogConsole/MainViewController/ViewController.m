@@ -80,7 +80,7 @@
     if (!_hasReadLine) {
         system("rm -f bootedSimulator.log");
         system("killall log");
-        system("xcrun simctl spawn booted log stream --level=debug --style=compact > bootedSimulator.log&");
+        system("xcrun simctl spawn booted log stream --level=debug > bootedSimulator.log&"); // --style=compact --process=AppName
         [self startFileReader];
     }
 }
@@ -93,7 +93,8 @@
 
 -(void)fileReaderDidReadLine:(NSString *)line {
     _hasReadLine = YES;
-    [_logsManager addLog:line passingFilters:_filtersTableView.filters];
+    NSString *trimmedString = [line stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    [_logsManager addLog:trimmedString passingFilters:_filtersTableView.filters];
 
     if (_autoscrollButton.state == NSControlStateValueOn) {
         [_logsTableView scrollToEndOfDocument:nil];

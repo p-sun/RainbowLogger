@@ -13,7 +13,6 @@
 		9B99B40E247A58D200734B8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B99B40C247A58D200734B8E /* Main.storyboard */; };
 		9B99B411247A58D200734B8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B410247A58D200734B8E /* main.m */; };
 		9B99B41A247A5C4F00734B8E /* LogsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B419247A5C4F00734B8E /* LogsTableView.m */; };
-		9B99B41C247A675100734B8E /* FiltersTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B99B41B247A675100734B8E /* FiltersTextCell.xib */; };
 		9BC08BE9247CA0B60088354B /* NSColorExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BE8247CA0B60088354B /* NSColorExtensions.h */; };
 		9BC08BEB247CA2050088354B /* NSColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BEA247CA2050088354B /* NSColorExtensions.m */; };
 		9BC08BF4247E11170088354B /* LogsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BF3247E11170088354B /* LogsManager.m */; };
@@ -42,7 +41,6 @@
 		9B99B412247A58D200734B8E /* iOSLogConsole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSLogConsole.entitlements; sourceTree = "<group>"; };
 		9B99B418247A5C4F00734B8E /* LogsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsTableView.h; sourceTree = "<group>"; };
 		9B99B419247A5C4F00734B8E /* LogsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsTableView.m; sourceTree = "<group>"; };
-		9B99B41B247A675100734B8E /* FiltersTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiltersTextCell.xib; sourceTree = "<group>"; };
 		9BC08BE8247CA0B60088354B /* NSColorExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSColorExtensions.h; sourceTree = "<group>"; };
 		9BC08BEA247CA2050088354B /* NSColorExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSColorExtensions.m; sourceTree = "<group>"; };
 		9BC08BF2247E11170088354B /* LogsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsManager.h; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 			children = (
 				9BDE6906247BB2D600F7599F /* FiltersTableView.h */,
 				9BDE6907247BB2D600F7599F /* FiltersTableView.m */,
-				9B99B41B247A675100734B8E /* FiltersTextCell.xib */,
 				9BDE6903247BAEA600F7599F /* FiltersSwitchCell.xib */,
 				9BDE691A247C54D800F7599F /* FilterCell.xib */,
 				9BDE691C247C5E7900F7599F /* FilterCell.h */,
@@ -272,7 +269,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B99B41C247A675100734B8E /* FiltersTextCell.xib in Resources */,
 				9BDE6904247BAEA600F7599F /* FiltersSwitchCell.xib in Resources */,
 				9B99B40B247A58D200734B8E /* Assets.xcassets in Resources */,
 				9B99B40E247A58D200734B8E /* Main.storyboard in Resources */,
