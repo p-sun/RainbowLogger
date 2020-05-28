@@ -24,11 +24,11 @@
 }
 
 - (void)setAttributedLines:(NSArray<NSAttributedString *> *)attributedLines shouldAutoscroll:(BOOL)shouldAutoscroll {
-    _attributedLines = attributedLines;
     if (!_isLoadingTable) {
         _isLoadingTable = YES;
         __weak __typeof__(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.attributedLines = attributedLines;
             [weakSelf reloadData];
             if (shouldAutoscroll) {
                 [weakSelf scrollToEndOfDocument:nil];

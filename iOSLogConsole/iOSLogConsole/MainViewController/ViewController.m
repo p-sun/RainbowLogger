@@ -90,7 +90,7 @@
     if (!_hasReadLine) {
         system("rm -f bootedSimulator.log");
         system("killall log");
-        system("xcrun simctl spawn booted log stream --level=debug > bootedSimulator.log&"); // --style=compact --process=AppName
+        system("xcrun simctl spawn booted log stream --style=compact > bootedSimulator.log&"); // --process=AppName --level=debug
         [self startFileReader];
     }
 }
@@ -146,7 +146,6 @@
 #pragma mark - FilteredLogManagerDelegate
 
 - (void)didChangeFilteredLogs:(NSArray<NSString *>*)logs {
-    // NSLog(@"******** %lu", (long) logs.count);
     if (!_isPaused) {
         NSArray *attrLogs = [ViewController coloredStringsFromLogs:logs usingFilters:_filtersManager.filters];
         [_logsTableView setAttributedLines:attrLogs shouldAutoscroll:_shouldAutoScroll];
