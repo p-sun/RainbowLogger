@@ -11,6 +11,6 @@
 
 @interface NSColor (Additions)
 
-+ (NSColor*) NSColorFrom255Red:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
++ (NSColor*) NSColorFrom255Red:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
 
 @end
