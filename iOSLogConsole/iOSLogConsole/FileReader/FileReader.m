@@ -41,10 +41,14 @@
         [fileHandle seekToEndOfFile];
         totalFileLength = [fileHandle offsetInFile];        
         // NSLog(@"%qu characters in %@", totalFileLength, [filePath lastPathComponent]); /* DEBUG LOG */
+        
+        dispatch_queue_attr_t qos = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_BACKGROUND, -1);
+        fileReaderQueue = dispatch_queue_create("fileReaderQueue", qos);
     }
     
     [self readLines];
-    [NSTimer scheduledTimerWithTimeInterval:0.3
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.4
     target:self
     selector:@selector(onTick:)
     userInfo:nil
@@ -54,7 +58,10 @@
 }
 
 -(void)onTick:(NSTimer *)timer {
-    [self readLines];
+    __weak __typeof__(self) weakSelf = self;
+    dispatch_async(fileReaderQueue, ^{
+        [weakSelf readLines];
+    });
 }
 
 -(void)readLines {

@@ -730,9 +730,9 @@
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                             <tableColumns>
-                                                                <tableColumn width="116" minWidth="40" maxWidth="1000" id="Qsl-qL-839">
+                                                                <tableColumn width="285" minWidth="40" maxWidth="1000" id="Qsl-qL-839">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                                        <font key="font" metaFont="label" size="11"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
@@ -743,12 +743,12 @@
                                                                     </textFieldCell>
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
-                                                                        <tableCellView identifier="LogsCellView" misplaced="YES" id="2a2-dk-fif">
-                                                                            <rect key="frame" x="1" y="1" width="116" height="17"/>
+                                                                        <tableCellView identifier="LogsCellView" id="2a2-dk-fif">
+                                                                            <rect key="frame" x="1" y="1" width="285" height="24"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="fTk-KX-3nl">
-                                                                                    <rect key="frame" x="12" y="4" width="92" height="16"/>
+                                                                                    <rect key="frame" x="12" y="4" width="261" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="fOM-K5-ByZ">
                                                                                         <font key="font" metaFont="system"/>
                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -842,8 +842,18 @@
                                                             <action selector="addFilterOnTextFieldEnter:" target="XfG-lQ-9wD" id="ckb-2R-BPY"/>
                                                         </connections>
                                                     </textField>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lGW-YR-kAj">
+                                                        <rect key="frame" x="450" y="-3" width="99" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Add Filter" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PET-fc-hrF">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="addFilterButtonPressed:" target="XfG-lQ-9wD" id="q0h-Z9-r1h"/>
+                                                        </connections>
+                                                    </button>
                                                     <customView horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="CGH-Bx-CJB">
-                                                        <rect key="frame" x="456" y="0.0" width="638" height="29"/>
+                                                        <rect key="frame" x="559" y="0.0" width="535" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="999" constant="283" id="h1d-PE-YHq"/>
                                                         </constraints>
@@ -868,6 +878,9 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                                        <connections>
+                                                            <action selector="pauseButtonToggled:" target="XfG-lQ-9wD" id="vNB-CV-nKS"/>
+                                                        </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q4w-f8-bsx" userLabel="Autoscroll">
                                                         <rect key="frame" x="1255" y="6" width="83" height="18"/>
@@ -876,12 +889,16 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                                        <connections>
+                                                            <action selector="autoscrollButtonToggled:" target="XfG-lQ-9wD" id="ce2-Cy-77I"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <edgeInsets key="edgeInsets" left="10" right="10" top="0.0" bottom="0.0"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="JxZ-z8-zQP" secondAttribute="bottom" constant="4" id="99g-CV-rKE"/>
                                                     <constraint firstItem="q4w-f8-bsx" firstAttribute="centerY" secondItem="x4V-x5-AFk" secondAttribute="centerY" id="OQ1-By-LA2"/>
+                                                    <constraint firstItem="lGW-YR-kAj" firstAttribute="centerY" secondItem="x4V-x5-AFk" secondAttribute="centerY" id="YB7-O3-cxG"/>
                                                     <constraint firstItem="JxZ-z8-zQP" firstAttribute="top" secondItem="x4V-x5-AFk" secondAttribute="top" constant="4" id="bos-U4-zSN"/>
                                                     <constraint firstItem="lTV-Rh-SIs" firstAttribute="centerY" secondItem="x4V-x5-AFk" secondAttribute="centerY" id="eyZ-Jc-yqT"/>
                                                     <constraint firstAttribute="bottom" secondItem="lTV-Rh-SIs" secondAttribute="bottom" constant="4" id="k8a-Sk-ERn"/>
@@ -893,8 +910,10 @@
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
+                                                    <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
@@ -929,11 +948,10 @@
                     </view>
                     <connections>
                         <outlet property="addFilterTextField" destination="lTV-Rh-SIs" id="hOK-EJ-cTr"/>
-                        <outlet property="autoscrollButton" destination="q4w-f8-bsx" id="Cj2-FD-tFi"/>
+                        <outlet property="autoscrollButton" destination="q4w-f8-bsx" id="y7w-SE-thd"/>
                         <outlet property="filtersTableView" destination="o3l-qO-VAC" id="MVr-xA-VT8"/>
                         <outlet property="logsScrollView" destination="Ipl-fR-Vq0" id="HeN-fJ-Co3"/>
                         <outlet property="logsTableView" destination="cWZ-Nw-aJD" id="pOr-XG-UgS"/>
-                        <outlet property="pauseButton" destination="2Rb-3R-62X" id="4qY-zF-lBl"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

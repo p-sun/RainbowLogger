@@ -19,6 +19,8 @@ FiltersManagerDelegate, LogsManagerDelegate, LogsScrollViewDelegate>
 
 @property (nonatomic, strong) FileReader *fileReader;
 @property (nonatomic, readonly) BOOL hasReadLine;
+@property (nonatomic, readonly) BOOL isPaused;
+@property (nonatomic, readonly) BOOL shouldAutoScroll;
 @property (nonatomic, readonly) FiltersManager *filtersManager;
 @property (nonatomic, readonly) LogsManager *logsManager;
 
@@ -26,13 +28,13 @@ FiltersManagerDelegate, LogsManagerDelegate, LogsScrollViewDelegate>
 @property (weak) IBOutlet LogsTableView *logsTableView;
 @property (weak) IBOutlet FiltersTableView *filtersTableView;
 @property (weak) IBOutlet NSTextField *addFilterTextField;
-@property (weak) IBOutlet NSButton *pauseButton;
 @property (weak) IBOutlet NSButton *autoscrollButton;
 
 - (IBAction)addFilterButtonPressed:(id)sender;
 - (IBAction)addFilterOnTextFieldEnter:(NSTextField *)sender;
-
 - (IBAction)trashPressed:(id)sender;
+- (IBAction)pauseButtonToggled:(NSButton *)sender;
+- (IBAction)autoscrollButtonToggled:(NSButton *)sender;
 
 @end
 

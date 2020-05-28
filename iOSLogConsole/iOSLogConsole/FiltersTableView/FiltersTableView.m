@@ -54,7 +54,10 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
 - (void)setFilters:(NSArray *)filters {
     if (![_filters isEqualToArray:filters]) {
         _filters = filters;
-        [self reloadData];
+        __weak __typeof__(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf reloadData];
+        });
     }
 }
 

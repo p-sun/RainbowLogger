@@ -23,9 +23,19 @@
     [self reloadData];
 }
 
-- (void)setAttributedLines:(NSArray<NSAttributedString *> *)attributedLines {
+- (void)setAttributedLines:(NSArray<NSAttributedString *> *)attributedLines shouldAutoscroll:(BOOL)shouldAutoscroll {
     _attributedLines = attributedLines;
-    [self reloadData];
+    if (!_isLoadingTable) {
+        _isLoadingTable = YES;
+        __weak __typeof__(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf reloadData];
+            if (shouldAutoscroll) {
+                [weakSelf scrollToEndOfDocument:nil];
+            }
+            weakSelf.isLoadingTable = NO;
+        });
+    }
 }
 
 # pragma mark - NSTableViewDataSource

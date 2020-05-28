@@ -16,8 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSInteger columnsCount;
 @property (nonatomic, readonly, copy) NSArray<NSString *> *columnTitles;
 @property (nonatomic, readwrite, copy) NSArray<NSAttributedString *> *attributedLines;
+@property (nonatomic, readwrite) BOOL isLoadingTable;
 
 - (void)setupTable;
+
+- (void)setAttributedLines:(NSArray<NSAttributedString *> *)attributedLines shouldAutoscroll:(BOOL)shouldAutoscroll;
 
 @end
 

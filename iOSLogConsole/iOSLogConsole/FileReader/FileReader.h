@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSString* lineDelimiter;        /**< Character for line break or page break. */
     NSUInteger m_chunkSize;            /**< Standard block size. */
     BOOL isReading;
+    dispatch_queue_t fileReaderQueue;
 }
 
 @property (nullable, weak) id<FileReaderDelegate> delegate;

@@ -15,6 +15,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _shouldAutoScroll = _autoscrollButton.state == NSControlStateValueOn;
+    
     _filtersManager = [[FiltersManager alloc] init];
     [_filtersManager setDelegate: self];
     
@@ -27,7 +29,7 @@
 
     [_filtersTableView setFiltersDelegate:self];
     [_filtersTableView setupTable];
-
+    
     [self startFileReader];
 }
 
@@ -55,6 +57,14 @@
 
     sender.stringValue = @"";
     [_filtersTableView scrollToEndOfDocument:self];
+}
+
+- (IBAction)pauseButtonToggled:(NSButton *)sender {
+    _isPaused = sender.state == NSControlStateValueOn;
+}
+
+- (IBAction)autoscrollButtonToggled:(NSButton *)sender {
+    _shouldAutoScroll = sender.state == NSControlStateValueOn;
 }
 
 #pragma mark - FileReader
@@ -94,24 +104,26 @@
 -(void)fileReaderDidReadLine:(NSString *)line {
     _hasReadLine = YES;
     NSString *trimmedString = [line stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
     [_logsManager addLog:trimmedString passingFilters:_filtersTableView.filters];
-
-    if (_autoscrollButton.state == NSControlStateValueOn) {
-        [_logsTableView scrollToEndOfDocument:nil];
-    }
 }
 
 #pragma mark - Autoscroll
 
 - (void)logsScrollViewDidScrollUp {
-    _autoscrollButton.state = NSControlStateValueOff;
+    [self setAutoscrollState:NO];
 }
 
 - (void)scrollViewDidEndScroll:(NSNotification *)aNotification {
     if (aNotification.object == _logsTableView.enclosingScrollView) {
         BOOL autoScroll = _logsTableView.enclosingScrollView.verticalScroller.floatValue == 1;
-        _autoscrollButton.state = autoScroll ? NSControlStateValueOn : NSControlStateValueOff;
+        [self setAutoscrollState:autoScroll];
     }
+}
+
+- (void)setAutoscrollState:(BOOL)autoScroll {
+    _shouldAutoScroll = autoScroll;
+    _autoscrollButton.state = autoScroll ? NSControlStateValueOn : NSControlStateValueOff;
 }
 
 #pragma mark - FiltersTableViewDelegate
@@ -135,9 +147,9 @@
 
 - (void)didChangeFilteredLogs:(NSArray<NSString *>*)logs {
     // NSLog(@"******** %lu", (long) logs.count);
-    if (_pauseButton.state != NSControlStateValueOn) {
+    if (!_isPaused) {
         NSArray *attrLogs = [ViewController coloredStringsFromLogs:logs usingFilters:_filtersManager.filters];
-        [_logsTableView setAttributedLines:attrLogs];
+        [_logsTableView setAttributedLines:attrLogs shouldAutoscroll:_shouldAutoScroll];
     }
 }
 
