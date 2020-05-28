@@ -8,7 +8,37 @@
 
 #import "Filter.h"
 
+static NSArray<FilterTypePopupInfo *> *filterPopupInfosArray;
+static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
+
 @implementation Filter
+
++(void)initialize {
+    if (self == [Filter class]) {
+        filterPopupInfosArray = [NSArray arrayWithObjects:
+                           [[FilterTypePopupInfo alloc] initWithType:FilterByTypeNoFilter name:@""],
+                           [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustContain name:@"Must contain"],
+                           [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsOneOrMoreOf name:@"Contains at least one of"],
+                           [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAnyOf name:@"Contains any of"],
+                           [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustNotContain name:@"Must not contain"],
+                           [[FilterTypePopupInfo alloc] initWithType:FilterByTypeRegex name:@"Must contains regex"],
+                           nil];
+        
+        colorPopupInfosArray = [NSArray arrayWithObjects:
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor clearColor] name:@""],
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor whiteColor] name:@""],
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor greenColor] name:@""],
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor blueColor] name:@""],
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor yellowColor] name:@""],
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor redColor] name:@""],
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor orangeColor] name:@""],
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor cyanColor] name:@""],
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor purpleColor] name:@""],
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor magentaColor] name:@""],
+                           [[FilterColorPopupInfo alloc] initWithColor:[NSColor lightGrayColor] name:@""],
+                           nil];
+    }
+}
 
 - (instancetype)initWithType:(FilterByType)type text:(NSString *)text colorTag:(NSInteger)colorTag isEnabled:(BOOL)isEnabled {
     self = [super init];
@@ -21,31 +51,12 @@
     return self;
 }
 
-+ (NSArray*)allFilterByTypes {
-  return [NSArray arrayWithObjects:
-          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeNoFilter name:@""],
-          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustContain name:@"Must contain"],
-          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsOneOrMoreOf name:@"Contains at least one of"],
-          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAnyOf name:@"Contains any of"],
-          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustNotContain name:@"Must not contain"],
-          [[FilterTypePopupInfo alloc] initWithType:FilterByTypeRegex name:@"Must contains regex"],
-  nil];
++ (NSArray*)filterPopupInfos {
+    return filterPopupInfosArray;
 }
 
-+ (NSArray*)allColors {
-    return [NSArray arrayWithObjects:
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor clearColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor whiteColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor greenColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor blueColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor yellowColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor redColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor orangeColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor cyanColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor purpleColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor magentaColor] name:@""],
-            [[FilterColorPopupInfo alloc] initWithColor:[NSColor lightGrayColor] name:@""],
-            nil];
++ (NSArray*)colorPopupInfos {
+    return colorPopupInfosArray;
 }
 
 @end

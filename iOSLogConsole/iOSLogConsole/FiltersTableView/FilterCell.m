@@ -7,16 +7,18 @@
 //
 
 #import "FilterCell.h"
+#import "Filter.h"
 
 @implementation FilterCell
 
 - (void)awakeFromNib {
-    [Filter.allFilterByTypes enumerateObjectsUsingBlock:^(FilterTypePopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
+    
+    [Filter.filterPopupInfos enumerateObjectsUsingBlock:^(FilterTypePopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
         menuItem.tag = idx;
         [_filterByPopup.menu addItem:menuItem];
     }];
-    [Filter.allColors
+    [Filter.colorPopupInfos
      enumerateObjectsUsingBlock:^(FilterColorPopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
         menuItem.image = [self swatchForColor:info.color];

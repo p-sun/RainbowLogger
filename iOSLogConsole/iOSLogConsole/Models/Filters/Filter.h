@@ -29,8 +29,8 @@ typedef NS_ENUM(NSInteger, FilterByType) {
 
 - (instancetype)initWithType:(FilterByType)type text:(NSString *)text colorTag:(NSInteger)colorTag isEnabled:(BOOL)isEnabled;
 
-+ (NSArray*)allFilterByTypes;
-+ (NSArray*)allColors;
++ (NSArray*)filterPopupInfos;
++ (NSArray*)colorPopupInfos;
 
 @end
 

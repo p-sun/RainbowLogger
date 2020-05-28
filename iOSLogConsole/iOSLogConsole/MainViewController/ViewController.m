@@ -173,7 +173,7 @@
         NSRange searchedRange = NSMakeRange(0, [log length]);
         NSArray* matches = [regex matchesInString:log options:0 range: searchedRange];
         for (NSTextCheckingResult *match in matches) {
-            FilterColorPopupInfo *info = Filter.allColors[filter.colorTag];
+            FilterColorPopupInfo *info = [Filter colorPopupInfos][filter.colorTag];
             [coloredString addAttributes:@{
                 NSForegroundColorAttributeName:info.color,
             } range:match.range];
