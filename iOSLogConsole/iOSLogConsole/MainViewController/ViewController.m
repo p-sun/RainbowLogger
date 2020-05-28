@@ -12,11 +12,6 @@
 
 @implementation ViewController
 
-- (void)awakeFromNib {
-    self.view.wantsLayer = YES;
-    self.view.layer.backgroundColor = [NSColor NSColorFrom255Red:46.0 green:44.0 blue:54.0 alpha:1.0].CGColor;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
