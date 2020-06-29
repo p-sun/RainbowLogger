@@ -15,11 +15,31 @@
     [self setDelegate:self];
     [self setDataSource:self];
     
-    _attributedLines = [[NSArray alloc] init];
+    _attributedLines = [[NSMutableArray alloc] init];
 
     self.tableColumns[0].width = NSScreen.mainScreen.frame.size.width;
     _didSetupTable = YES;
     [self reloadData];
+}
+
+- (void)addAttributedLine:(NSAttributedString *)attributedLine shouldAutoscroll:(BOOL)shouldAutoscroll {
+    if (!_isLoadingTable) {
+        _isLoadingTable = YES;
+        __weak __typeof__(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+
+            [strongSelf.attributedLines addObject:attributedLine];
+            
+            NSIndexSet *rowIndex = [[NSIndexSet alloc] initWithIndex:strongSelf.attributedLines.count - 1];
+            NSIndexSet *columnIndex = [[NSIndexSet alloc] initWithIndex:0];
+            [strongSelf reloadDataForRowIndexes:rowIndex columnIndexes:columnIndex];
+            if (shouldAutoscroll) {
+                [strongSelf scrollToEndOfDocument:nil];
+            }
+            strongSelf.isLoadingTable = NO;
+        });
+    }
 }
 
 - (void)setAttributedLines:(NSArray<NSAttributedString *> *)attributedLines shouldAutoscroll:(BOOL)shouldAutoscroll {
@@ -27,7 +47,7 @@
         _isLoadingTable = YES;
         __weak __typeof__(self) weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
-            weakSelf.attributedLines = attributedLines;
+            [weakSelf.attributedLines setArray:attributedLines];
             [weakSelf reloadData];
             if (shouldAutoscroll) {
                 [weakSelf scrollToEndOfDocument:nil];

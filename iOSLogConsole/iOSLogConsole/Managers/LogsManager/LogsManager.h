@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LogsManagerDelegate <NSObject>
 
+- (void)didAddFilteredLog:(NSString *)log;
 - (void)didChangeFilteredLogs:(NSArray<NSString *>*)logs;
 
 @end

@@ -83,11 +83,11 @@
 // TODO clean up process when app is killed
 -(void)writeLogsToFileIfNeeded:(NSTimer *)timer {
     if (!_hasReadLine) {
-        NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"bootedSimulator.log"];
+        NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"bootedSimulator4.log"];
         [[[NSData alloc] init] writeToFile:filePath atomically:YES];
         
         system("killall log");
-        system("xcrun simctl spawn booted log stream --style=compact > bootedSimulator.log&"); // --process=AppName --level=debug
+        system("xcrun simctl spawn booted log stream --level=debug --process=Facebook --style=compact --predicate 'eventMessage contains \"****\"' > bootedSimulator4.log&"); // --process=AppName --level=debug
         
         [self startFileReader:nil];
     }
@@ -95,7 +95,7 @@
 
 - (void)startFileReader:(NSTimer *)timer {
     if (!self.fileReader) {
-        self.fileReader = [[FileReader alloc] initWithFilePath:@"bootedSimulator.log"];
+        self.fileReader = [[FileReader alloc] initWithFilePath:@"bootedSimulator4.log"];
         [self.fileReader setDelegate:self];
 
         if (!self.fileReader) {
@@ -150,18 +150,24 @@
     [_logsManager filterLogsBy:filters];
 }
 
-#pragma mark - FilteredLogManagerDelegate
+#pragma mark - LogsManagerDelegate
+- (void)didAddFilteredLog:(NSString *)log {
+    if (!_isPaused) {
+        NSAttributedString *attrLog = [ViewController coloredLog:log usingFilters:_filtersManager.filters];
+        [_logsTableView addAttributedLine:attrLog shouldAutoscroll:_shouldAutoScroll];
+    }
+}
 
 - (void)didChangeFilteredLogs:(NSArray<NSString *>*)logs {
     if (!_isPaused) {
-        NSArray *attrLogs = [ViewController coloredStringsFromLogs:logs usingFilters:_filtersManager.filters];
+        NSArray *attrLogs = [ViewController coloredLogs:logs usingFilters:_filtersManager.filters];
         [_logsTableView setAttributedLines:attrLogs shouldAutoscroll:_shouldAutoScroll];
     }
 }
 
 #pragma mark - Coloring Logs with Filters
 
-+ (NSArray<NSAttributedString *>*)coloredStringsFromLogs:(NSArray<NSString *>*)logs usingFilters:(NSArray<Filter *>*)filters {
++ (NSArray<NSAttributedString *>*)coloredLogs:(NSArray<NSString *>*)logs usingFilters:(NSArray<Filter *>*)filters {
     NSMutableArray<NSAttributedString *>* attrLogs = [[NSMutableArray<NSAttributedString *> alloc] init];
     for (NSString *log in logs) {
         NSAttributedString *coloredLog = [ViewController coloredLog:log usingFilters:filters];
