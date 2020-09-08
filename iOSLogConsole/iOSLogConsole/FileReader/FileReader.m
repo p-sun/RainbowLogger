@@ -11,43 +11,45 @@
     Files can be read forwards or backwards by calling the
     corresponding function multiple times.
  */
-@implementation FileReader
+@implementation FileReader{
+    NSTask *task_;
+    NSFileHandle* fileHandle_;
+    dispatch_queue_t fileReaderQueue_;
+}
 
 - (void)dealloc {
-    fileHandle = nil;
+    fileHandle_ = nil;
 }
 
 /**
     Initialized a file reader object.
-    @param path A file path.
     @returns An initialized FileReader object or nil if the object could not be created.
  */
-- (id)initWithFilePath:(NSString*)path {
+- (id)init {
     self = [super init];
     if (self != nil) {
-        if (!path || [path length] <= 0) {
-            return nil;
-        }
-        fileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
-        if (fileHandle == nil) {
-            NSLog(@"No file exist at path: %@", path);
-            return nil;
-        }
-        lineDelimiter = @"\n";
-        filePath = path;
-        currentOffset = 0;
-        m_chunkSize = 10;
-        [fileHandle seekToEndOfFile];
-        totalFileLength = [fileHandle offsetInFile];        
-        // NSLog(@"%qu characters in %@", totalFileLength, [filePath lastPathComponent]); /* DEBUG LOG */
+        NSTask *task = [[NSTask alloc] init];
+        NSDictionary *environmentDict = [[NSProcessInfo processInfo] environment];
+        NSString *shellString = [environmentDict objectForKey:@"SHELL"];
+        [task setLaunchPath: shellString];
+        task.arguments = @[@"-l",
+                           @"-c",
+                           @"xcrun simctl spawn booted log stream --level=debug --style=compact --predicate 'eventMessage contains \"****\"';"];
+        // Other args: --process=AppName
         
+        NSPipe *p = [NSPipe pipe];
+        [task setStandardOutput:p];
+        fileHandle_ = [p fileHandleForReading];
+        [fileHandle_ waitForDataInBackgroundAndNotify];
+        [task launch];
+
         dispatch_queue_attr_t qos = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_BACKGROUND, -1);
-        fileReaderQueue = dispatch_queue_create("fileReaderQueue", qos);
+        fileReaderQueue_ = dispatch_queue_create("fileReaderQueue", qos);
     }
     
     [self readLines];
-    
-    [NSTimer scheduledTimerWithTimeInterval:0.4
+
+    [NSTimer scheduledTimerWithTimeInterval:0.3
     target:self
     selector:@selector(onTick:)
     userInfo:nil
@@ -57,73 +59,29 @@
 }
 
 -(void)onTick:(NSTimer *)timer {
-    __weak __typeof__(self) weakSelf = self;
-    dispatch_async(fileReaderQueue, ^{
-        [weakSelf readLines];
-    });
+    [self readLines];
 }
 
 -(void)readLines {
-    [fileHandle seekToEndOfFile];
-    totalFileLength = [fileHandle offsetInFile];
-
-    if (isReading) {
-        return;
+    NSData *data = [fileHandle_ availableData];
+    if (data.length > 0) { // if data is found, re-register for more data (and print)
+        NSString *longString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        __weak __typeof__(self) weakSelf = self;
+        dispatch_async(fileReaderQueue_, ^{
+            [weakSelf parseLinesFromString:longString];
+        });
     }
-    
-    isReading = true;
-    NSString* line = nil;
-    while ((line = [self readTrimmedLine])) {
-        [self.delegate fileReaderDidReadLine:line];
-    }
-    isReading = false;
 }
 
-/**
-    Reads the file forwards while trimming white spaces.
-    @returns Another single line on each call or nil if the file end has been reached.
- */
-- (NSString*)readTrimmedLine {
-    return [[self readLine] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-}
-
-/**
-    Reads the file forwards.
-    Empty lines are not returned.
-    @returns Another single line on each call or nil if the file end has been reached.
- */
-- (NSString*)readLine {
-    if (totalFileLength == 0 || currentOffset >= totalFileLength) {
-        currentOffset = totalFileLength;
-        return nil;
+- (void)parseLinesFromString:(NSString *)longString {
+    NSArray *linesArray = [longString componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet];
+    for (NSUInteger index = 0; index < [linesArray count] - 1; index++) {
+        NSString *oneLine = linesArray[index];
+        [self.delegate fileReaderDidReadLine:oneLine];
     }
     
-    NSData* newLineData = [lineDelimiter dataUsingEncoding:NSUTF8StringEncoding];
-    [fileHandle seekToFileOffset:currentOffset];
-    NSMutableData* currentData = [[NSMutableData alloc] init];
-    BOOL shouldReadMore = YES;
-    
-    while (shouldReadMore) {
-        if (currentOffset >= totalFileLength) {
-            break;
-        }
-        NSData* chunk = [fileHandle readDataOfLength:m_chunkSize]; // always length = 10
-        // Find the location and length of the next line delimiter.
-        NSRange newLineRange = [chunk rangeOfData:newLineData];
-        if (newLineRange.location != NSNotFound) {
-            // Include the length so we can include the delimiter in the string.
-            NSRange subDataRange = NSMakeRange(0, newLineRange.location + [newLineData length]);
-            chunk = [chunk subdataWithRange:subDataRange];
-            shouldReadMore = NO;
-        }
-        [currentData appendData:chunk];
-        currentOffset += [chunk length];
-    }
-
-    NSString* line = [currentData stringValueWithEncoding:NSUTF8StringEncoding];
-    // finished with data
-    currentData = nil;
-    return line;
+    [fileHandle_ waitForDataInBackgroundAndNotify];
 }
 
 @end

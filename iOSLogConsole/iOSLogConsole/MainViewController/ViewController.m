@@ -30,12 +30,12 @@
     [_filtersTableView setFiltersDelegate:self];
     [_filtersTableView setupTable];
     
-    [self startFileReader:nil];
+    self.fileReader = [[FileReader alloc] init];
+    [self.fileReader setDelegate:self];
 }
 
 - (void)viewDidAppear {
     [super viewDidAppear];
-    [self waitForLogs];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scrollViewDidEndScroll:) name:NSScrollViewDidEndLiveScrollNotification object:_logsScrollView];
 }
@@ -65,47 +65,6 @@
 
 - (IBAction)autoscrollButtonToggled:(NSButton *)sender {
     _shouldAutoScroll = sender.state == NSControlStateValueOn;
-}
-
-#pragma mark - Start FileReader
-
-- (void)waitForLogs {
-    if (!_hasReadLine) {
-        [NSTimer scheduledTimerWithTimeInterval:2.0
-                                         target:self
-                                       selector:@selector(writeLogsToFileIfNeeded:)
-                                       userInfo:nil
-                                        repeats:NO];
-    }
-}
-
-// If we waited 2 seconds bootedSimulator.log doesn't update, create a new process to tail logs to file
-// TODO clean up process when app is killed
--(void)writeLogsToFileIfNeeded:(NSTimer *)timer {
-    if (!_hasReadLine) {
-        NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:@"bootedSimulator4.log"];
-        [[[NSData alloc] init] writeToFile:filePath atomically:YES];
-        
-        system("killall log");
-        system("xcrun simctl spawn booted log stream --level=debug --process=Facebook --style=compact --predicate 'eventMessage contains \"****\"' > bootedSimulator4.log&"); // --process=AppName --level=debug
-        
-        [self startFileReader:nil];
-    }
-}
-
-- (void)startFileReader:(NSTimer *)timer {
-    if (!self.fileReader) {
-        self.fileReader = [[FileReader alloc] initWithFilePath:@"bootedSimulator4.log"];
-        [self.fileReader setDelegate:self];
-
-        if (!self.fileReader) {
-            [NSTimer scheduledTimerWithTimeInterval:0.8
-                                             target:self
-                                           selector:@selector(startFileReader:)
-                                           userInfo:nil
-                                            repeats:NO];
-        }
-    }
 }
 
 #pragma mark - FileReaderDelegate

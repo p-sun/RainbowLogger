@@ -7,9 +7,22 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <QuartzCore/QuartzCore.h>
 #import "LogsTableView.h"
+#include <pthread.h>
 
-@implementation LogsTableView
+@implementation LogsTableView {
+    pthread_mutex_t mutex;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        pthread_mutex_init(&mutex, NULL);
+    }
+    return self;
+}
 
 - (void)setupTable {
     [self setDelegate:self];
@@ -43,18 +56,36 @@
 }
 
 - (void)setAttributedLines:(NSArray<NSAttributedString *> *)attributedLines shouldAutoscroll:(BOOL)shouldAutoscroll {
-    if (!_isLoadingTable) {
-        _isLoadingTable = YES;
-        __weak __typeof__(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.attributedLines setArray:attributedLines];
-            [weakSelf reloadData];
-            if (shouldAutoscroll) {
-                [weakSelf scrollToEndOfDocument:nil];
-            }
-            weakSelf.isLoadingTable = NO;
-        });
-    }
+
+    __weak __typeof__(self) weakSelf = self;
+
+    if (_isLoadingTable) {
+         return;
+     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        __strong __typeof__(self) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        
+        if (!strongSelf.isLoadingTable) {
+            pthread_mutex_lock(&strongSelf->mutex);
+            strongSelf.isLoadingTable = YES;
+            [strongSelf.attributedLines setArray:attributedLines];
+            
+            [CATransaction begin];
+            [CATransaction setCompletionBlock:^{
+                if (shouldAutoscroll) {
+                    [strongSelf scrollPoint: NSMakePoint(0, strongSelf.frame.size.height)];
+                }
+                strongSelf.isLoadingTable = NO;
+                pthread_mutex_unlock(&strongSelf->mutex);
+            }];
+            [strongSelf reloadData];
+            [CATransaction commit];
+        }
+    });
 }
 
 # pragma mark - NSTableViewDataSource
