@@ -65,15 +65,18 @@
 }
 
 -(void)readLines {
-    NSData *data = [fileHandle_ availableData];
-    if (data.length > 0) { // if data is found, re-register for more data (and print)
-        NSString *longString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        
-        __weak __typeof__(self) weakSelf = self;
-        dispatch_async(fileReaderQueue_, ^{
-            [weakSelf parseLinesFromString:longString];
-        });
-    }
+    __weak __typeof__(self) weakSelf = self;
+    dispatch_async(fileReaderQueue_, ^{
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) {
+            return;
+        }
+        NSData *data = [strongSelf->fileHandle_ availableData];
+        if (data.length > 0) {
+            NSString *longString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            [strongSelf parseLinesFromString:longString];
+        }
+    });
 }
 
 - (void)parseLinesFromString:(NSString *)concatenatedLines {
