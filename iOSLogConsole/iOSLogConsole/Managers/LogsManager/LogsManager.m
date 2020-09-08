@@ -27,13 +27,21 @@
     [_delegate didChangeFilteredLogs:_filteredLogs];
 }
 
-- (void)addLog:(NSString*)log passingFilters:(NSArray<Filter *>*)filters {
-    _allLogs = [_allLogs arrayByAddingObject:log];
+- (void)addLogs:(NSArray<NSString*>*)logs passingFilters:(NSArray<Filter *>*)filters {
+    _allLogs = [_allLogs arrayByAddingObjectsFromArray:logs];
     
-    if ([LogsManager doesLog:log passFilters:filters]) {
-        _filteredLogs = [_filteredLogs arrayByAddingObject:log];
-        [_delegate didChangeFilteredLogs:_filteredLogs];
+    // To limit memeory usage,
+    // if we exceed the max number of lines, keep only the last half of the logs in memory
+    int maxLines = 1000;
+    int halfOfMaxLine = maxLines / 2;
+    if ([_allLogs count] > maxLines) {
+        // The first value of NSRange is the start index, second is the length
+        // So to get last 4 elements in an array of length 10: NSMakeRange{10 - 4, 4}
+        // to get items at index 6, 7, 8, 9
+        _allLogs = [_allLogs subarrayWithRange:NSMakeRange(([_allLogs count] - halfOfMaxLine), halfOfMaxLine)];
     }
+    
+    [self filterLogsBy:filters];
 }
 
 - (void)filterLogsBy:(NSArray<Filter *>*)filters {

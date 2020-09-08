@@ -71,6 +71,7 @@
         
         if (!strongSelf.isLoadingTable) {
             pthread_mutex_lock(&strongSelf->mutex);
+            
             strongSelf.isLoadingTable = YES;
             [strongSelf.attributedLines setArray:attributedLines];
             

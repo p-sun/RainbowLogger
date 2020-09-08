@@ -9,7 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol FileReaderDelegate <NSObject>
 
--(void)fileReaderDidReadLine:(NSString*)line;
+-(void)fileReaderDidReadLines:(NSArray<NSString *>*)lines;
 
 @end
 

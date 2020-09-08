@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, weak) id<LogsManagerDelegate> delegate;
 
-- (void)addLog:(NSString*)log passingFilters:(NSArray<Filter *>*)filters;
+- (void)addLogs:(NSArray<NSString*>*)logs passingFilters:(NSArray<Filter *>*)filters;
 - (void)filterLogsBy:(NSArray<Filter *>*)filters;
 - (void)clearLogs;
 

@@ -15,9 +15,11 @@
     NSTask *task_;
     NSFileHandle* fileHandle_;
     dispatch_queue_t fileReaderQueue_;
+    NSString *lastLine_;
 }
 
 - (void)dealloc {
+    [task_ terminate];
     fileHandle_ = nil;
 }
 
@@ -74,14 +76,15 @@
     }
 }
 
-- (void)parseLinesFromString:(NSString *)longString {
-    NSArray *linesArray = [longString componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet];
-    for (NSUInteger index = 0; index < [linesArray count] - 1; index++) {
-        NSString *oneLine = linesArray[index];
-        [self.delegate fileReaderDidReadLine:oneLine];
+- (void)parseLinesFromString:(NSString *)concatenatedLines {
+    NSString *newConcatenatedLines = lastLine_ ? [lastLine_ stringByAppendingString:concatenatedLines] : concatenatedLines;
+    NSArray *linesArray = [newConcatenatedLines componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet];
+    if (linesArray.count > 0) {
+        // The last object is often half a line, so append it to the beginning of the next concatenatedLines
+        lastLine_ = linesArray.lastObject;
+        NSArray *removingLast = [linesArray subarrayWithRange:NSMakeRange(0, linesArray.count - 1)];
+        [self.delegate fileReaderDidReadLines:removingLast];
     }
-    
-    [fileHandle_ waitForDataInBackgroundAndNotify];
 }
 
 @end

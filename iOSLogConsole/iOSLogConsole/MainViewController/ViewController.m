@@ -69,9 +69,9 @@
 
 #pragma mark - FileReaderDelegate
 
--(void)fileReaderDidReadLine:(NSString *)line {
+-(void)fileReaderDidReadLines:(NSArray<NSString *>*)lines {
     _hasReadLine = YES;
-    [_logsManager addLog:line passingFilters:_filtersTableView.filters];
+    [_logsManager addLogs:lines passingFilters:_filtersTableView.filters];
 }
 
 #pragma mark - Autoscroll
