@@ -26,7 +26,7 @@
     }];
     
     [_filterByText setTarget:self];
-    [_filterByText setAction:@selector(filterTextDidEndEditing:)];
+    [_filterByText setAction:@selector(filterTextChanged:)];
 }
 
 - (IBAction)deleteButtonPressed:(id)sender {
@@ -48,8 +48,15 @@
     _onFilterChanged(_filter);
 }
 
-- (void)filterTextDidEndEditing:(NSTextField *)sender {
+- (void)filterTextChanged:(NSTextField *)sender {
     if (![_filter.text isEqualToString:sender.stringValue]) {
+        if ([sender.stringValue isEqualToString:@""]) {
+            _filter.isEnabled = false;
+            [_isEnabledToggle setState:NSControlStateValueOff];
+        } else {
+            _filter.isEnabled = true;
+            [_isEnabledToggle setState:NSControlStateValueOn];
+        }
         _filter.text = sender.stringValue;
         _onFilterChanged(_filter);
     }
