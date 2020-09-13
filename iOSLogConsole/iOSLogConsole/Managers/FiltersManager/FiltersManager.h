@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSArray<Filter *>* filters;
 
+- (void)clearFilters;
+
 - (void)appendFilter:(Filter *)filter;
 
 - (void)deleteFilterAtIndex:(NSInteger)index;

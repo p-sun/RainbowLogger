@@ -18,6 +18,9 @@
     }
     return self;
 }
+- (void)clearFilters {
+    _filters = [[NSArray alloc] init];
+}
 
 - (void)appendFilter:(Filter *)filter {
     _filters = [_filters arrayByAddingObject:filter];

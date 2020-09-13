@@ -32,9 +32,10 @@
 
 - (IBAction)addFilterButtonPressed:(id)sender;
 - (IBAction)addFilterOnTextFieldEnter:(NSTextField *)sender;
-- (IBAction)trashPressed:(id)sender;
+- (IBAction)clearLogs:(id)sender;
 - (IBAction)pauseButtonToggled:(NSButton *)sender;
 - (IBAction)autoscrollButtonToggled:(NSButton *)sender;
+- (IBAction)clearFilters:(id)sender;
 
 @end
 

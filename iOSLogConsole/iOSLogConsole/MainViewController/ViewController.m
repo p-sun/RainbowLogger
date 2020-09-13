@@ -42,8 +42,14 @@
      object:_logsTextView.enclosingScrollView];
 }
 
-- (IBAction)trashPressed:(id)sender {
+- (IBAction)clearLogs:(id)sender {
     [_logsManager clearLogs];
+    [self _filterAllLogsAndUpdateTextView];
+}
+
+- (IBAction)clearFilters:(id)sender {
+    [_filtersManager clearFilters];
+    [_filtersTableView setFilters:_filtersManager.filters];
     [self _filterAllLogsAndUpdateTextView];
 }
 
