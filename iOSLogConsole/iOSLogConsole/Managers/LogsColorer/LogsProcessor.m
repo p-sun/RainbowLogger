@@ -49,7 +49,7 @@
         
         NSRegularExpression *regex = [NSRegularExpression
                                       regularExpressionWithPattern:regexPattern
-                                      options:0
+                                      options:NSRegularExpressionCaseInsensitive
                                       error:&error];
         NSRange searchedRange = NSMakeRange(0, [log length]);
         NSArray* matches = [regex matchesInString:log options:0 range: searchedRange];
@@ -76,23 +76,23 @@
         }
         switch (filter.type) {
             case FilterByTypeMustContain:
-                if (![log containsString:filter.text]) {
+                if (![log localizedCaseInsensitiveContainsString:filter.text]) {
                     return NO;
                 }
                 break;
             case FilterByTypeMustNotContain:
-                if ([log containsString:filter.text]) {
+                if ([log localizedCaseInsensitiveContainsString:filter.text]) {
                     return NO;
                 }
                 break;
             case FilterByTypeContainsOneOrMoreOf:
                 hasAOneOrMoreOfFilter = YES;
-                if (!passOneOrMoreOfFilter && [log containsString:filter.text]) {
+                if (!passOneOrMoreOfFilter && [log localizedCaseInsensitiveContainsString:filter.text]) {
                     passOneOrMoreOfFilter = YES;
                 }
                 break;
             case FilterByTypeContainsAnyOf:
-                if ([log containsString:filter.text]) {
+                if ([log localizedCaseInsensitiveContainsString:filter.text]) {
                     return YES;
                 }
                 break;
