@@ -17,7 +17,12 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     LogsColumnTypeDelete = 4
 };
 
-@implementation FiltersTableView
+@implementation FiltersTableView {
+    BOOL _didSetupTable;
+    NSInteger _columnsCount;
+    NSArray<NSString *> *_columnTitles;
+    NSArray *_filters;
+}
 
 # pragma mark - Setup
 
@@ -51,7 +56,7 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     self.tableColumns[0].width = 1200;
 }
 
-- (void)setFilters:(NSArray *)filters {
+- (void)setFilters:(NSArray<Filter *>*)filters {
     if (![_filters isEqualToArray:filters]) {
         _filters = filters;
         __weak __typeof__(self) weakSelf = self;

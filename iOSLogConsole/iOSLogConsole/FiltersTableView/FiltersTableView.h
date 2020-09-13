@@ -13,19 +13,18 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol FiltersTableViewDelegate <NSObject>
 
 - (void)didDeleteFilterAtIndex:(NSInteger)index;
+
 - (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index;
+
 @end
 
 @interface FiltersTableView : NSTableView <NSTableViewDataSource, NSTableViewDelegate>
 
-@property (nonatomic, readonly) BOOL didSetupTable;
-@property (nonatomic, readonly) NSInteger columnsCount;
-@property (nonatomic, readonly, copy) NSArray<NSString *> *columnTitles;
-@property (nonatomic, readwrite) NSArray *filters;
-
 @property (nullable, weak) id<FiltersTableViewDelegate> filtersDelegate;
 
 - (void)setupTable;
+
+- (void)setFilters:(NSArray<Filter *>*)filters;
 
 @end
 
