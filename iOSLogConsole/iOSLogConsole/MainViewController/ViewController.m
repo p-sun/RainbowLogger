@@ -67,8 +67,8 @@
     
     [_filtersManager appendFilter:filter];
     [_filtersTableView setFilters:_filtersManager.filters];
-    [_filtersTableView scrollToEndOfDocument:self];
-    
+    [_filtersTableView reloadData];
+    [_filtersTableView scrollToEndOfDocument:nil];
     [self _filterAllLogsAndUpdateTextView];
 }
 
