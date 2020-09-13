@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B2D798D250E37DC00E39435 /* LogsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D798C250E37DC00E39435 /* LogsProcessor.m */; };
+		9B83570A250DC55400D60206 /* LogsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B835709250DC55400D60206 /* LogsTextView.m */; };
 		9B99B406247A58D100734B8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B405247A58D100734B8E /* AppDelegate.m */; };
 		9B99B409247A58D100734B8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B408247A58D100734B8E /* ViewController.m */; };
 		9B99B40B247A58D200734B8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B99B40A247A58D200734B8E /* Assets.xcassets */; };
@@ -29,6 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B2D7988250E315B00E39435 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		9B2D798B250E37DC00E39435 /* LogsProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsProcessor.h; sourceTree = "<group>"; };
+		9B2D798C250E37DC00E39435 /* LogsProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsProcessor.m; sourceTree = "<group>"; };
+		9B835708250DC55400D60206 /* LogsTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsTextView.h; sourceTree = "<group>"; };
+		9B835709250DC55400D60206 /* LogsTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsTextView.m; sourceTree = "<group>"; };
+		9B83570B250E1BA600D60206 /* LogsScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsScrollViewDelegate.h; sourceTree = "<group>"; };
 		9B99B401247A58D100734B8E /* iOSLogConsole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSLogConsole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B99B404247A58D100734B8E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9B99B405247A58D100734B8E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -76,6 +84,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B2D798A250E37C900E39435 /* LogsColorer */ = {
+			isa = PBXGroup;
+			children = (
+				9B2D798B250E37DC00E39435 /* LogsProcessor.h */,
+				9B2D798C250E37DC00E39435 /* LogsProcessor.m */,
+			);
+			path = LogsColorer;
+			sourceTree = "<group>";
+		};
+		9B835707250DC4A000D60206 /* LogsTextView */ = {
+			isa = PBXGroup;
+			children = (
+				9B835708250DC55400D60206 /* LogsTextView.h */,
+				9B835709250DC55400D60206 /* LogsTextView.m */,
+				9B83570B250E1BA600D60206 /* LogsScrollViewDelegate.h */,
+			);
+			path = LogsTextView;
+			sourceTree = "<group>";
+		};
 		9B99B3F8247A58D100734B8E = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +124,7 @@
 			children = (
 				9B99B41E247A6B4600734B8E /* MainViewController */,
 				9B99B41D247A6B1600734B8E /* LogsTableView */,
+				9B835707250DC4A000D60206 /* LogsTextView */,
 				9BDE6905247BB27400F7599F /* FiltersTableView */,
 				9BDE6916247BE15500F7599F /* FileReader */,
 				9BC08BEE247E0FB20088354B /* Managers */,
@@ -137,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				9BC08BEC247CA7530088354B /* Filters */,
+				9B2D7988250E315B00E39435 /* Log.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -164,6 +193,7 @@
 		9BC08BEE247E0FB20088354B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				9B2D798A250E37C900E39435 /* LogsColorer */,
 				9BC08BFB247E33070088354B /* LogsManager */,
 				9BC08BFC247E330E0088354B /* FiltersManager */,
 			);
@@ -285,6 +315,7 @@
 			files = (
 				9BDE6915247BE0D400F7599F /* FileReader.m in Sources */,
 				9BC08BE9247CA0B60088354B /* NSColorExtensions.h in Sources */,
+				9B2D798D250E37DC00E39435 /* LogsProcessor.m in Sources */,
 				9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */,
 				9B99B409247A58D100734B8E /* ViewController.m in Sources */,
 				9BDE6908247BB2D600F7599F /* FiltersTableView.m in Sources */,
@@ -297,6 +328,7 @@
 				9BDE6921247C5F3600F7599F /* Filter.m in Sources */,
 				9B99B406247A58D100734B8E /* AppDelegate.m in Sources */,
 				9BC08BEB247CA2050088354B /* NSColorExtensions.m in Sources */,
+				9B83570A250DC55400D60206 /* LogsTextView.m in Sources */,
 				9BDE6924247C690400F7599F /* FilterColorPopupInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

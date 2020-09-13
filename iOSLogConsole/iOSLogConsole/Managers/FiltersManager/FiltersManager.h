@@ -11,22 +11,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol FiltersManagerDelegate <NSObject>
-
--(void)didChangeFilters:(NSArray<Filter *>*)filters;
-
-@end
-
 @interface FiltersManager : NSObject
 
-@property (nonatomic, readonly) NSArray *filters;
-@property (nullable, weak) id<FiltersManagerDelegate> delegate;
+@property (nonatomic, readonly) NSArray<Filter *>* filters;
 
-- (void)addFilter:(Filter *)filter;
+- (void)appendFilter:(Filter *)filter;
 
 - (void)deleteFilterAtIndex:(NSInteger)index;
 
-- (void)setFilter:(Filter *)filter atIndex:(NSInteger)index;
+- (void)replaceFilter:(Filter *)filter atIndex:(NSInteger)index;
 
 @end
 

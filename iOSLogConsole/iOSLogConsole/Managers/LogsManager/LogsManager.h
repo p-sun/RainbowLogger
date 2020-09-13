@@ -8,25 +8,25 @@
 
 #import <Foundation/Foundation.h>
 #import "Filter.h"
+#import "Log.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
 @protocol LogsManagerDelegate <NSObject>
 
-- (void)didAddFilteredLog:(NSString *)log;
-- (void)didChangeFilteredLogs:(NSArray<NSString *>*)logs;
+- (void)didAppendLogs:(NSArray<Log *>*)logs;
+
+- (void)didChangeLogs:(NSArray<Log *>*)logs;
 
 @end
 
 @interface LogsManager : NSObject
 
-@property (nonatomic, readonly, copy) NSArray<NSString *> *allLogs;
-@property (nonatomic, readonly, copy) NSArray<NSString *> *filteredLogs;
-
 @property (nullable, weak) id<LogsManagerDelegate> delegate;
 
-- (void)addLogs:(NSArray<NSString*>*)logs passingFilters:(NSArray<Filter *>*)filters;
-- (void)filterLogsBy:(NSArray<Filter *>*)filters;
+- (NSArray<Log *>*)getLogs;
+
+- (void)appendLogs:(NSArray<Log *>*)logs;
+
 - (void)clearLogs;
 
 @end

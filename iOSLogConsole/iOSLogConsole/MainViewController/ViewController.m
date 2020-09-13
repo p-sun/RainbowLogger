@@ -6,9 +6,11 @@
 //  Copyright © 2020 Paige Sun. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "ViewController.h"
 #import "NSColorExtensions.h"
 #import "Filter.h"
+#import "LogsProcessor.h"
 
 @implementation ViewController
 
@@ -18,15 +20,11 @@
     _shouldAutoScroll = _autoscrollButton.state == NSControlStateValueOn;
     
     _filtersManager = [[FiltersManager alloc] init];
-    [_filtersManager setDelegate: self];
     
     _logsManager = [[LogsManager alloc] init];
     [_logsManager setDelegate:self];
+    [_logsTextView setScrollDelegate:self];
     
-    [_logsTableView setupTable];
-
-    [_logsScrollView setScrollDelegate:self];
-
     [_filtersTableView setFiltersDelegate:self];
     [_filtersTableView setupTable];
     
@@ -37,11 +35,16 @@
 - (void)viewDidAppear {
     [super viewDidAppear];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scrollViewDidEndScroll:) name:NSScrollViewDidEndLiveScrollNotification object:_logsScrollView];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(scrollViewDidEndScroll:)
+     name:NSScrollViewDidEndLiveScrollNotification
+     object:_logsTextView.enclosingScrollView];
 }
 
 - (IBAction)trashPressed:(id)sender {
     [_logsManager clearLogs];
+    [self _filterAllLogsAndUpdateTextView];
 }
 
 - (IBAction)addFilterButtonPressed:(id)sender {
@@ -53,14 +56,21 @@
                                              text:sender.stringValue
                                          colorTag:1
                                         isEnabled:YES];
-    [_filtersManager addFilter:filter];
-
     sender.stringValue = @"";
+    
+    [_filtersManager appendFilter:filter];
+    [_filtersTableView setFilters:_filtersManager.filters];
     [_filtersTableView scrollToEndOfDocument:self];
+    
+    [self _filterAllLogsAndUpdateTextView];
 }
 
 - (IBAction)pauseButtonToggled:(NSButton *)sender {
     _isPaused = sender.state == NSControlStateValueOn;
+    if (!_isPaused) {
+        [self setAutoscrollState:true];
+        [self _filterAllLogsAndUpdateTextView];
+    }
 }
 
 - (IBAction)autoscrollButtonToggled:(NSButton *)sender {
@@ -71,7 +81,7 @@
 
 -(void)fileReaderDidReadLines:(NSArray<NSString *>*)lines {
     _hasReadLine = YES;
-    [_logsManager addLogs:lines passingFilters:_filtersTableView.filters];
+    [_logsManager appendLogs:lines];
 }
 
 #pragma mark - Autoscroll
@@ -80,10 +90,15 @@
     [self setAutoscrollState:NO];
 }
 
+- (void)logsScrollViewDidScrollDown {
+    BOOL shouldAutoScroll = _logsTextView.enclosingScrollView.verticalScroller.floatValue == 1;
+    [self setAutoscrollState:shouldAutoScroll];
+}
+
 - (void)scrollViewDidEndScroll:(NSNotification *)aNotification {
-    if (aNotification.object == _logsTableView.enclosingScrollView) {
-        BOOL autoScroll = _logsTableView.enclosingScrollView.verticalScroller.floatValue == 1;
-        [self setAutoscrollState:autoScroll];
+    // When the user drags the scrollwheel to the bottom, set autoscroll on
+    if (aNotification.object == _logsTextView.enclosingScrollView) {
+        [self logsScrollViewDidScrollDown];
     }
 }
 
@@ -96,75 +111,31 @@
 
 - (void)didDeleteFilterAtIndex:(NSInteger)index {
     [_filtersManager deleteFilterAtIndex:index];
+    [self _filterAllLogsAndUpdateTextView];
 }
 
 - (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index {
-    [_filtersManager setFilter:filter atIndex:index];
-}
-
-#pragma mark - FilterManagerDelegate
-
-- (void)didChangeFilters:(NSArray<Filter *> *)filters {
-    [_filtersTableView setFilters:filters];
-    [_logsManager filterLogsBy:filters];
+    [_filtersManager replaceFilter:filter atIndex:index];
+    [self _filterAllLogsAndUpdateTextView];
 }
 
 #pragma mark - LogsManagerDelegate
-- (void)didAddFilteredLog:(NSString *)log {
+- (void)didAppendLogs:(NSArray<Log *>*)logs {
     if (!_isPaused) {
-        NSAttributedString *attrLog = [ViewController coloredLog:log usingFilters:_filtersManager.filters];
-        [_logsTableView addAttributedLine:attrLog shouldAutoscroll:_shouldAutoScroll];
+        NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:logs filteredBy:_filtersManager.filters];
+        [_logsTextView addAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
     }
 }
 
-- (void)didChangeFilteredLogs:(NSArray<NSString *>*)logs {
+- (void)didChangeLogs:(NSArray<Log *>*)logs {
     if (!_isPaused) {
-        NSArray *attrLogs = [ViewController coloredLogs:logs usingFilters:_filtersManager.filters];
-        [_logsTableView setAttributedLines:attrLogs shouldAutoscroll:_shouldAutoScroll];
+        [self _filterAllLogsAndUpdateTextView];
     }
 }
 
-#pragma mark - Coloring Logs with Filters
-
-+ (NSArray<NSAttributedString *>*)coloredLogs:(NSArray<NSString *>*)logs usingFilters:(NSArray<Filter *>*)filters {
-    NSMutableArray<NSAttributedString *>* attrLogs = [[NSMutableArray<NSAttributedString *> alloc] init];
-    for (NSString *log in logs) {
-        NSAttributedString *coloredLog = [ViewController coloredLog:log usingFilters:filters];
-        [attrLogs addObject:coloredLog];
-    }
-    return attrLogs;
-}
-
-+ (NSAttributedString *)coloredLog:(NSString *)log usingFilters:(NSArray<Filter *>*)filters {
-    NSError *error = NULL;
-    NSMutableAttributedString *coloredString = [[NSMutableAttributedString alloc] initWithString:log];
-
-    for (Filter* filter in filters) {
-        if (!filter.isEnabled) {
-            continue;
-        }
-        NSString *regexPattern;
-        if (filter.type == FilterByTypeRegex) {
-            regexPattern = filter.text;
-        } else {
-            regexPattern = [NSRegularExpression escapedPatternForString:filter.text];
-        }
-        
-        NSRegularExpression *regex = [NSRegularExpression
-                                      regularExpressionWithPattern:regexPattern
-                                      options:0
-                                      error:&error];
-        NSRange searchedRange = NSMakeRange(0, [log length]);
-        NSArray* matches = [regex matchesInString:log options:0 range: searchedRange];
-        for (NSTextCheckingResult *match in matches) {
-            FilterColorPopupInfo *info = [Filter colorPopupInfos][filter.colorTag];
-            [coloredString addAttributes:@{
-                NSForegroundColorAttributeName:info.color,
-            } range:match.range];
-        }
-    }
-    
-    return coloredString;
+- (void)_filterAllLogsAndUpdateTextView {
+    NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:_logsManager.getLogs filteredBy:_filtersManager.filters];
+    [_logsTextView setAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
 }
 
 @end

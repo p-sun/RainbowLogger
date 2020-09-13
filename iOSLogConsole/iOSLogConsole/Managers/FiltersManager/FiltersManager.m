@@ -19,8 +19,8 @@
     return self;
 }
 
-- (void)addFilter:(Filter *)filter {
-    [self updateFilters:[_filters arrayByAddingObject:filter]];
+- (void)appendFilter:(Filter *)filter {
+    _filters = [_filters arrayByAddingObject:filter];
 }
 
 - (void)deleteFilterAtIndex:(NSInteger)index {
@@ -34,18 +34,22 @@
         NSRange backRange = NSMakeRange(index + 1, length);
         [newFilters addObjectsFromArray: [_filters subarrayWithRange: backRange]];
     }
-    [self updateFilters:newFilters];
+    _filters = newFilters;
 }
 
--(void)updateFilters:(NSArray<Filter *>*)newFilters {
-    if (![newFilters isEqualToArray:_filters]) {
-        _filters = newFilters;
-        [_delegate didChangeFilters:newFilters];
+- (void)replaceFilter:(Filter *)filter atIndex:(NSInteger)index {
+    NSMutableArray<Filter *> *newFilters = [[NSMutableArray alloc] init];
+    if (index > 0) {
+        NSRange frontRange = NSMakeRange(0, index);
+        [newFilters addObjectsFromArray: [_filters subarrayWithRange: frontRange]];
     }
-}
-
-- (void)setFilter:(Filter *)filter atIndex:(NSInteger)index {
-    [_delegate didChangeFilters:_filters];
+    [newFilters addObject:filter];
+    if (index < _filters.count - 1) {
+        NSInteger length = _filters.count - 1 - index;
+        NSRange backRange = NSMakeRange(index + 1, length);
+        [newFilters addObjectsFromArray: [_filters subarrayWithRange: backRange]];
+    }
+    _filters = newFilters;
 }
 
 @end

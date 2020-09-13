@@ -7,13 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "LogsScrollViewDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol LogsScrollViewDelegate <NSObject>
-
-- (void)logsScrollViewDidScrollUp;
-
-@end
 
 @interface LogsScrollView : NSScrollView
 
