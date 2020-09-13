@@ -17,6 +17,7 @@
         menuItem.tag = idx;
         [_filterByPopup.menu addItem:menuItem];
     }];
+    
     [Filter.colorPopupInfos
      enumerateObjectsUsingBlock:^(FilterColorPopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
@@ -35,6 +36,8 @@
 
 - (IBAction)enableToggled:(NSButton *)sender {
     _filter.isEnabled = sender.state == NSControlStateValueOn;
+    [_filterByText setEnabled:_filter.isEnabled];
+    [_filtersButton setEnabled:true];
     _onFilterChanged(_filter);
 }
 
@@ -50,16 +53,15 @@
 
 - (void)filterTextChanged:(NSTextField *)sender {
     if (![_filter.text isEqualToString:sender.stringValue]) {
-        if ([sender.stringValue isEqualToString:@""]) {
-            _filter.isEnabled = false;
-            [_isEnabledToggle setState:NSControlStateValueOff];
-        } else {
-            _filter.isEnabled = true;
-            [_isEnabledToggle setState:NSControlStateValueOn];
-        }
+        BOOL isSenderEmpty = [sender.stringValue isEqualToString:@""];
+        [_isEnabledToggle setState: isSenderEmpty ? NSControlStateValueOff : NSControlStateValueOn];
+        [self enableToggled:_isEnabledToggle];
+
         _filter.text = sender.stringValue;
         _onFilterChanged(_filter);
     }
+    
+    [_filtersButton setEnabled:true];
 }
 
 - (NSImage *)swatchForColor:(NSColor *)color {
@@ -74,6 +76,8 @@
 - (void)setFilter:(Filter *)filter {
     self.filterByText.stringValue = filter.text;
     self.isEnabledToggle.state = filter.isEnabled ? NSControlStateValueOn : NSControlStateValueOff;
+    [_filterByText setEnabled:filter.isEnabled];
+    [_filtersButton setEnabled:true];
     [self.colorsPopup selectItemWithTag:filter.colorTag];
     [self.filterByPopup selectItemWithTag:filter.type];
     
@@ -81,6 +85,8 @@
 }
 
 - (IBAction)filterPressed:(id)sender {
+    [_filtersButton setEnabled:false];
+    [_filterByText setEnabled:true];
     [_filterByText becomeFirstResponder];
 }
 

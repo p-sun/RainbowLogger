@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak) IBOutlet NSPopUpButton *colorsPopup;
 @property (weak) IBOutlet NSButton *isEnabledToggle;
 
+@property (weak) IBOutlet NSButton *filtersButton;
 @property (nonatomic, strong) Filter *filter;
 @property (nonatomic, copy) void(^onDelete)(void);
 @property (nonatomic, copy) void(^onFilterChanged)(Filter *);
