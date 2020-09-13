@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)deleteButtonPressed:(id)sender;
 - (IBAction)enableToggled:(id)sender;
 - (IBAction)filterByChanged:(id)sender;
+- (IBAction)filterPressed:(id)sender;
 - (IBAction)colorChanged:(id)sender;
 
 @end

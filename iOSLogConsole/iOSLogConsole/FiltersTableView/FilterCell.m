@@ -12,7 +12,6 @@
 @implementation FilterCell
 
 - (void)awakeFromNib {
-    
     [Filter.filterPopupInfos enumerateObjectsUsingBlock:^(FilterTypePopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
         menuItem.tag = idx;
@@ -25,6 +24,9 @@
         menuItem.tag = idx;
         [_colorsPopup.menu addItem:menuItem];
     }];
+    
+    [_filterByText setTarget:self];
+    [_filterByText setAction:@selector(filterTextDidEndEditing:)];
 }
 
 - (IBAction)deleteButtonPressed:(id)sender {
@@ -46,6 +48,13 @@
     _onFilterChanged(_filter);
 }
 
+- (void)filterTextDidEndEditing:(NSTextField *)sender {
+    if (![_filter.text isEqualToString:sender.stringValue]) {
+        _filter.text = sender.stringValue;
+        _onFilterChanged(_filter);
+    }
+}
+
 - (NSImage *)swatchForColor:(NSColor *)color {
     NSSize size = NSMakeSize(12, 12);
     NSImage *image = [[NSImage alloc] initWithSize:size];
@@ -64,4 +73,9 @@
     _filter = filter;
 }
 
+- (IBAction)filterPressed:(id)sender {
+    [_filterByText becomeFirstResponder];
+}
+
 @end
+

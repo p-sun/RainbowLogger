@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B2D798D250E37DC00E39435 /* LogsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D798C250E37DC00E39435 /* LogsProcessor.m */; };
+		9B2D7996250E7E0100E39435 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D7995250E7E0100E39435 /* MainWindow.m */; };
 		9B83570A250DC55400D60206 /* LogsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B835709250DC55400D60206 /* LogsTextView.m */; };
 		9B99B406247A58D100734B8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B405247A58D100734B8E /* AppDelegate.m */; };
 		9B99B409247A58D100734B8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B408247A58D100734B8E /* ViewController.m */; };
@@ -34,6 +35,8 @@
 		9B2D7988250E315B00E39435 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		9B2D798B250E37DC00E39435 /* LogsProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsProcessor.h; sourceTree = "<group>"; };
 		9B2D798C250E37DC00E39435 /* LogsProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsProcessor.m; sourceTree = "<group>"; };
+		9B2D7994250E7E0100E39435 /* MainWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
+		9B2D7995250E7E0100E39435 /* MainWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
 		9B835708250DC55400D60206 /* LogsTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsTextView.h; sourceTree = "<group>"; };
 		9B835709250DC55400D60206 /* LogsTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsTextView.m; sourceTree = "<group>"; };
 		9B83570B250E1BA600D60206 /* LogsScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsScrollViewDelegate.h; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				9B99B404247A58D100734B8E /* AppDelegate.h */,
 				9B99B405247A58D100734B8E /* AppDelegate.m */,
 				9B99B407247A58D100734B8E /* ViewController.h */,
+				9B2D7994250E7E0100E39435 /* MainWindow.h */,
+				9B2D7995250E7E0100E39435 /* MainWindow.m */,
 				9B99B408247A58D100734B8E /* ViewController.m */,
 				9B99B40C247A58D200734B8E /* Main.storyboard */,
 			);
@@ -315,6 +320,7 @@
 			files = (
 				9BDE6915247BE0D400F7599F /* FileReader.m in Sources */,
 				9BC08BE9247CA0B60088354B /* NSColorExtensions.h in Sources */,
+				9B2D7996250E7E0100E39435 /* MainWindow.m in Sources */,
 				9B2D798D250E37DC00E39435 /* LogsProcessor.m in Sources */,
 				9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */,
 				9B99B409247A58D100734B8E /* ViewController.m in Sources */,
