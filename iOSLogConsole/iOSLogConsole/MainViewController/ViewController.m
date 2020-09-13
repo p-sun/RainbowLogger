@@ -20,7 +20,8 @@
     _shouldAutoScroll = _autoscrollButton.state == NSControlStateValueOn;
     
     _filtersManager = [[FiltersManager alloc] init];
-    
+    [_filtersTableView setFilters:_filtersManager.filters];
+
     _logsManager = [[LogsManager alloc] init];
     [_logsManager setDelegate:self];
     [_logsTextView setScrollDelegate:self];
@@ -117,6 +118,7 @@
 
 - (void)didDeleteFilterAtIndex:(NSInteger)index {
     [_filtersManager deleteFilterAtIndex:index];
+    [_filtersTableView setFilters:_filtersManager.filters];
     [self _filterAllLogsAndUpdateTextView];
 }
 

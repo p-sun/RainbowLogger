@@ -47,7 +47,7 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
     }
 }
 
-- (instancetype)initWithType:(FilterByType)type text:(NSString *)text colorTag:(NSInteger)colorTag isEnabled:(BOOL)isEnabled {
+- (instancetype)initWithType:(FilterByType)type text:(NSString *)text colorTag:(NSUInteger)colorTag isEnabled:(BOOL)isEnabled {
     self = [super init];
     if (self) {
         _type = type;
@@ -58,12 +58,34 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
     return self;
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:[NSNumber numberWithUnsignedInteger:self.type] forKey:@"type"];
+    [encoder encodeObject:self.text forKey:@"text"];
+    [encoder encodeObject:[NSNumber numberWithUnsignedInteger:self.colorTag] forKey:@"colorTag"];
+    [encoder encodeObject:[NSNumber numberWithBool:self.isEnabled] forKey:@"isEnabled"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    if (self = [super init]) {
+        self.type = [[decoder decodeObjectForKey:@"type"] unsignedIntegerValue];
+        self.text = [decoder decodeObjectForKey:@"text"];
+        self.colorTag = [[decoder decodeObjectForKey:@"colorTag"] unsignedIntegerValue];
+        self.isEnabled = [[decoder decodeObjectForKey:@"isEnabled"] unsignedIntegerValue];
+    }
+    return self;
+}
+
 + (NSArray*)filterPopupInfos {
     return filterPopupInfosArray;
 }
 
 + (NSArray*)colorPopupInfos {
     return colorPopupInfosArray;
+}
+
++ (BOOL)supportsSecureCoding {
+    return YES;
 }
 
 @end

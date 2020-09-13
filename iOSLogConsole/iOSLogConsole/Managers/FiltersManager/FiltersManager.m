@@ -14,16 +14,18 @@
 {
     self = [super init];
     if (self) {
-        _filters = [[NSArray alloc] init];
+        _filters = [self _loadFilters];
     }
     return self;
 }
 - (void)clearFilters {
     _filters = [[NSArray alloc] init];
+    [self _saveFilters];
 }
 
 - (void)appendFilter:(Filter *)filter {
     _filters = [_filters arrayByAddingObject:filter];
+    [self _saveFilters];
 }
 
 - (void)deleteFilterAtIndex:(NSInteger)index {
@@ -38,6 +40,7 @@
         [newFilters addObjectsFromArray: [_filters subarrayWithRange: backRange]];
     }
     _filters = newFilters;
+    [self _saveFilters];
 }
 
 - (void)replaceFilter:(Filter *)filter atIndex:(NSInteger)index {
@@ -53,6 +56,31 @@
         [newFilters addObjectsFromArray: [_filters subarrayWithRange: backRange]];
     }
     _filters = newFilters;
+    [self _saveFilters];
+}
+
+-(void)_saveFilters {
+    NSError *error;
+    NSArray *myFilters = _filters;
+    NSData *encodedFilters = [NSKeyedArchiver archivedDataWithRootObject:myFilters requiringSecureCoding:YES error:&error];
+    [NSUserDefaults.standardUserDefaults setObject:encodedFilters forKey:@"filters"];
+    if (error) {
+        NSLog(@"Error with saving filters: %@", error);
+    }
+}
+
+-(NSArray<Filter *>*)_loadFilters {
+    NSError *error;
+    NSData *data = [NSUserDefaults.standardUserDefaults objectForKey:@"filters"];
+    NSSet *set = [[NSSet alloc] init];
+    [set setByAddingObject:[Filter class]];
+    
+    NSSet *classes = [[NSSet alloc] initWithArray:@[Filter.class, NSArray.class]];
+    NSArray *storedFilters = [NSKeyedUnarchiver unarchivedObjectOfClasses:classes fromData:data error:&error];
+    if (error) {
+        NSLog(@"Error with loading filters: %@", error.localizedDescription);
+    }
+    return storedFilters != nil ? storedFilters : [[NSArray alloc] init];
 }
 
 @end

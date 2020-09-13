@@ -20,14 +20,14 @@ typedef NS_ENUM(NSInteger, FilterByType) {
     FilterByTypeRegex
 };
 
-@interface Filter : NSObject
+@interface Filter : NSObject <NSCoding, NSSecureCoding>
 
 @property (nonatomic, readwrite) FilterByType type;
 @property (nonatomic, readwrite) NSString *text;
-@property (nonatomic, readwrite) NSInteger colorTag;
+@property (nonatomic, readwrite) NSUInteger colorTag;
 @property (nonatomic, readwrite) BOOL isEnabled;
 
-- (instancetype)initWithType:(FilterByType)type text:(NSString *)text colorTag:(NSInteger)colorTag isEnabled:(BOOL)isEnabled;
+- (instancetype)initWithType:(FilterByType)type text:(NSString *)text colorTag:(NSUInteger)colorTag isEnabled:(BOOL)isEnabled;
 
 + (NSArray*)filterPopupInfos;
 + (NSArray*)colorPopupInfos;
