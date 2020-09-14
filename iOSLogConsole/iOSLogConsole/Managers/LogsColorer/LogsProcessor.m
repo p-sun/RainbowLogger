@@ -43,7 +43,7 @@
             continue;
         }
         NSString *regexPattern;
-        if (filter.type == FilterByTypeRegex) {
+        if (filter.type == FilterByTypeMustContainRegex || filter.type == FilterByTypeMustContainsOneOrMoreOfRegex) {
             regexPattern = filter.text;
         } else {
             regexPattern = [NSRegularExpression escapedPatternForString:filter.text];
@@ -98,7 +98,13 @@
                     return YES;
                 }
                 break;
-            case FilterByTypeRegex:
+            case FilterByTypeMustContainsOneOrMoreOfRegex:
+                hasAOneOrMoreOfFilter = YES;
+                if (!passOneOrMoreOfFilter && [LogsProcessor matchesRegexPattern:filter.text forLog:log]) {
+                    passOneOrMoreOfFilter = YES;
+                }
+                break;
+            case FilterByTypeMustContainRegex:
                 if (![LogsProcessor matchesRegexPattern:filter.text forLog:log]) {
                     return NO;
                 }

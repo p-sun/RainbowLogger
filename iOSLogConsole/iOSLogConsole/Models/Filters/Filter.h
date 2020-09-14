@@ -17,7 +17,8 @@ typedef NS_ENUM(NSInteger, FilterByType) {
     FilterByTypeContainsOneOrMoreOf,
     FilterByTypeContainsAnyOf,
     FilterByTypeMustNotContain,
-    FilterByTypeRegex
+    FilterByTypeMustContainRegex,
+    FilterByTypeMustContainsOneOrMoreOfRegex
 };
 
 @interface Filter : NSObject <NSCoding, NSSecureCoding>

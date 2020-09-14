@@ -22,7 +22,8 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
                                  [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsOneOrMoreOf name:@"Contains at least one of"],
                                  [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAnyOf name:@"Contains any of"],
                                  [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustNotContain name:@"Must not contain"],
-                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeRegex name:@"Must contains regex"],
+                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustContainRegex name:@"Must contains regex"],
+                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustContainsOneOrMoreOfRegex name:@"Contains at least one of regex"],
                                  nil];
         ;
         colorPopupInfosArray = [NSArray arrayWithObjects:
