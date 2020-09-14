@@ -727,12 +727,13 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="1331" height="386"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" red="0.1234426275" green="0.1237224266" blue="0.1390360296" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <size key="minSize" width="1331" height="386"/>
                                                             <size key="maxSize" width="1346" height="10000000"/>
                                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         </textView>
                                                     </subviews>
+                                                    <color key="backgroundColor" red="0.057738954791182184" green="0.11764705882352941" blue="0.11208819968489014" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </clipView>
                                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="6Q5-Gs-vep">
                                                     <rect key="frame" x="-100" y="-100" width="225" height="15"/>
@@ -830,7 +831,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="1344" height="218"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
-                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" red="0.098711981341812041" green="0.10360247243680172" blue="0.13920128349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         </tableView>
                                                     </subviews>

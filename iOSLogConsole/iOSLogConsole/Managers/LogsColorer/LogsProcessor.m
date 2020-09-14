@@ -33,7 +33,7 @@
     
     [coloredString addAttributes:@{
         NSForegroundColorAttributeName:[NSColor whiteColor],
-        NSFontAttributeName:[NSFont fontWithName:@"Helvetica" size:13.5],
+        NSFontAttributeName:[NSFont fontWithName:@"Menlo" size:13],
     } range:NSMakeRange(0, [log length])];
 
     for (Filter* filter in filters) {
