@@ -11,6 +11,13 @@
 
 @implementation LogsTextView
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    // Setting richText allows the text colors to be copied to other editors
+    self.richText = true;
+}
+
 - (void)addAttributedLines:(NSAttributedString *)attributedLines shouldAutoscroll:(BOOL)shouldAutoscroll {
     
     __weak __typeof__(self) weakSelf = self;

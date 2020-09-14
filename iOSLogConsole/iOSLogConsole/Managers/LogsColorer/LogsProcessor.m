@@ -8,6 +8,7 @@
 
 #import "LogsProcessor.h"
 #import "Log.h"
+#import "NSColorExtensions.h"
 
 @implementation LogsProcessor
 
@@ -31,8 +32,9 @@
     NSError *error = NULL;
     NSMutableAttributedString *coloredString = [[NSMutableAttributedString alloc] initWithString:log];
     
+    NSColor *almostWhite = [NSColor NSColorFrom255Red:244 green:248 blue:248];
     [coloredString addAttributes:@{
-        NSForegroundColorAttributeName:[NSColor whiteColor],
+        NSForegroundColorAttributeName:almostWhite,
         NSFontAttributeName:[NSFont fontWithName:@"Menlo" size:13],
     } range:NSMakeRange(0, [log length])];
 
