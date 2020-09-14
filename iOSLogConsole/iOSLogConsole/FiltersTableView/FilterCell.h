@@ -13,13 +13,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FilterCell : NSTableCellView
 
-@property (weak) IBOutlet NSPopUpButton *filterByPopup;
-@property (weak) IBOutlet NSTextField *filterByText;
-@property (weak) IBOutlet NSPopUpButton *colorsPopup;
 @property (weak) IBOutlet NSButton *isEnabledToggle;
+@property (weak) IBOutlet NSPopUpButton *filterByPopup;
 
+@property (weak) IBOutlet NSTextField *filterByText;
 @property (weak) IBOutlet NSButton *filtersButton;
+
+@property (weak) IBOutlet NSPopUpButton *colorsPopup;
+@property (weak) IBOutlet NSButton *deleteButton;
+
 @property (nonatomic, strong) Filter *filter;
+
 @property (nonatomic, copy) void(^onDelete)(void);
 @property (nonatomic, copy) void(^onFilterChanged)(Filter *);
 

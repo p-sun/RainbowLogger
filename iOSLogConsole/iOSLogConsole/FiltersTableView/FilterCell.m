@@ -12,6 +12,16 @@
 @implementation FilterCell
 
 - (void)awakeFromNib {
+    NSPopUpButtonCell *cell = (NSPopUpButtonCell *)_colorsPopup.cell;
+    cell.arrowPosition = NSPopUpNoArrow;
+    cell = (NSPopUpButtonCell *)_filterByPopup.cell;
+    cell.arrowPosition = NSPopUpNoArrow;
+    [_filterByPopup setBezelStyle:NSBezelStyleRegularSquare];
+    [_colorsPopup setBezelStyle:NSBezelStyleRegularSquare];
+    [_filterByPopup setButtonType:NSButtonTypeMomentaryLight];
+    [_colorsPopup setButtonType:NSButtonTypeMomentaryLight];
+    [_deleteButton setBezelStyle:NSBezelStyleTexturedRounded];
+    
     [Filter.filterPopupInfos enumerateObjectsUsingBlock:^(FilterTypePopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
         menuItem.tag = idx;

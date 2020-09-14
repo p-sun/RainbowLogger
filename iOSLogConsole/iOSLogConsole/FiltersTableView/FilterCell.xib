@@ -116,6 +116,7 @@
             </constraints>
             <connections>
                 <outlet property="colorsPopup" destination="rPv-CE-rXv" id="Y1S-uk-sLW"/>
+                <outlet property="deleteButton" destination="Om3-Ja-qXb" id="qtt-Tq-S20"/>
                 <outlet property="filterByPopup" destination="i24-rd-9Vc" id="r9m-Sg-Pnd"/>
                 <outlet property="filterByText" destination="eAm-mw-qJk" id="itV-3V-G5R"/>
                 <outlet property="filtersButton" destination="O3f-mk-3Qx" id="ce6-ga-BCj"/>

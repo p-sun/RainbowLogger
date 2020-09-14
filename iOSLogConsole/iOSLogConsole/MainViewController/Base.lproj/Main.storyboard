@@ -685,7 +685,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="iOS Color Logger" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="MainWindow">
+                    <window key="window" title="ColorConsole" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="MainWindow">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="958" height="521"/>
@@ -723,7 +723,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="1331" height="386"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="anf-7r-VvA" customClass="LogsTextView">
+                                                        <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="anf-7r-VvA" customClass="LogsTextView">
                                                             <rect key="frame" x="0.0" y="0.0" width="1331" height="386"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -749,21 +749,8 @@
                                                     <customView horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="EzP-tQ-MvW">
                                                         <rect key="frame" x="10" y="0.0" width="1084" height="26"/>
                                                     </customView>
-                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-eU-Zgo">
-                                                        <rect key="frame" x="1110" y="3" width="60" height="19"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="60" id="AfK-Dk-ajM"/>
-                                                        </constraints>
-                                                        <buttonCell key="cell" type="recessed" title="🗑" bezelStyle="recessed" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="piN-n4-VBZ">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="systemBold" size="12"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="clearLogs:" target="XfG-lQ-9wD" id="DrO-zF-XhD"/>
-                                                        </connections>
-                                                    </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bY2-Oh-iS1" userLabel="Pause">
-                                                        <rect key="frame" x="1184" y="4" width="59" height="18"/>
+                                                        <rect key="frame" x="1108" y="4" width="59" height="18"/>
                                                         <buttonCell key="cell" type="check" title="Pause" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tfk-fI-d62">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -774,7 +761,7 @@
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HI5-H6-78b" userLabel="Autoscroll">
-                                                        <rect key="frame" x="1255" y="4" width="83" height="18"/>
+                                                        <rect key="frame" x="1179" y="4" width="83" height="18"/>
                                                         <buttonCell key="cell" type="check" title="Autoscroll" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="fkf-G1-xF8">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -782,6 +769,19 @@
                                                         <color key="contentTintColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
                                                         <connections>
                                                             <action selector="autoscrollButtonToggled:" target="XfG-lQ-9wD" id="y3u-8b-uCh"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-eU-Zgo">
+                                                        <rect key="frame" x="1276" y="3" width="60" height="19"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="60" id="AfK-Dk-ajM"/>
+                                                        </constraints>
+                                                        <buttonCell key="cell" type="recessed" title="🗑" bezelStyle="recessed" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="piN-n4-VBZ">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="systemBold" size="12"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="clearLogs:" target="XfG-lQ-9wD" id="DrO-zF-XhD"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
