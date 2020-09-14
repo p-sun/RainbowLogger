@@ -33,6 +33,7 @@
 - (IBAction)addFilterButtonPressed:(id)sender;
 - (IBAction)addFilterOnTextFieldEnter:(NSTextField *)sender;
 - (IBAction)clearLogs:(id)sender;
+- (IBAction)restartPressed:(id)sender;
 - (IBAction)pauseButtonToggled:(NSButton *)sender;
 - (IBAction)autoscrollButtonToggled:(NSButton *)sender;
 - (IBAction)clearFilters:(id)sender;

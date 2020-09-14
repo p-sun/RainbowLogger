@@ -30,41 +30,52 @@
 - (id)init {
     self = [super init];
     if (self != nil) {
-        NSTask *task = [[NSTask alloc] init];
-        NSDictionary *environmentDict = [[NSProcessInfo processInfo] environment];
-        NSString *shellString = [environmentDict objectForKey:@"SHELL"];
-        [task setLaunchPath: shellString];
-        task.arguments = @[@"-l",
-                           @"-c",
-                           @"xcrun simctl spawn booted log stream --level=debug --style=compact --predicate 'eventMessage contains \"****\"';"];
-        // Other args: --process=AppName
-        
-        NSPipe *p = [NSPipe pipe];
-        [task setStandardOutput:p];
-        fileHandle_ = [p fileHandleForReading];
-        [fileHandle_ waitForDataInBackgroundAndNotify];
-        [task launch];
-
+        [self reattachToSimulator];
         dispatch_queue_attr_t qos = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_BACKGROUND, -1);
         fileReaderQueue_ = dispatch_queue_create("fileReaderQueue", qos);
     }
     
-    [self readLines];
+    [self _readLines];
 
     [NSTimer scheduledTimerWithTimeInterval:0.3
     target:self
-    selector:@selector(onTick:)
+    selector:@selector(_onTick:)
     userInfo:nil
     repeats:YES];
     
     return self;
 }
 
--(void)onTick:(NSTimer *)timer {
-    [self readLines];
+- (void)reattachToSimulator {
+    [task_ terminate];
+
+    NSTask *task = [[NSTask alloc] init];
+    NSDictionary *environmentDict = [[NSProcessInfo processInfo] environment];
+    NSString *shellString = [environmentDict objectForKey:@"SHELL"];
+    [task setLaunchPath: shellString];
+    task.arguments = @[@"-l",
+                       @"-c",
+                       @"xcrun simctl spawn booted log stream --level=debug --style=compact --predicate 'eventMessage contains \"****\"';"];
+    // Other args: --process=AppName
+    
+    NSPipe *p = [NSPipe pipe];
+    [task setStandardOutput:p];
+    fileHandle_ = [p fileHandleForReading];
+    [fileHandle_ waitForDataInBackgroundAndNotify];
+    NSError *error;
+    [task launchAndReturnError:&error];
+    if (error) {
+        NSLog(@"**** Error %@", error);
+    }
+    
+    task_ = task;
 }
 
--(void)readLines {
+-(void)_onTick:(NSTimer *)timer {
+    [self _readLines];
+}
+
+-(void)_readLines {
     __weak __typeof__(self) weakSelf = self;
     dispatch_async(fileReaderQueue_, ^{
         __strong __typeof(weakSelf) strongSelf = weakSelf;
@@ -74,12 +85,12 @@
         NSData *data = [strongSelf->fileHandle_ availableData];
         if (data.length > 0) {
             NSString *longString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            [strongSelf parseLinesFromString:longString];
+            [strongSelf _parseLinesFromString:longString];
         }
     });
 }
 
-- (void)parseLinesFromString:(NSString *)concatenatedLines {
+- (void)_parseLinesFromString:(NSString *)concatenatedLines {
     NSString *newConcatenatedLines = lastLine_ ? [lastLine_ stringByAppendingString:concatenatedLines] : concatenatedLines;
     NSArray *linesArray = [newConcatenatedLines componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet];
     if (linesArray.count > 0) {

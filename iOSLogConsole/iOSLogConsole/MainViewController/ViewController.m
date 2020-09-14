@@ -72,6 +72,10 @@
     [self _filterAllLogsAndUpdateTextView];
 }
 
+- (IBAction)restartPressed:(id)sender {
+    [self.fileReader reattachToSimulator];
+}
+
 - (IBAction)pauseButtonToggled:(NSButton *)sender {
     _isPaused = sender.state == NSControlStateValueOn;
     if (!_isPaused) {
