@@ -43,7 +43,9 @@
             continue;
         }
         NSString *regexPattern;
-        if (filter.type == FilterByTypeMustContainRegex || filter.type == FilterByTypeMustContainsOneOrMoreOfRegex) {
+        if (filter.type == FilterByTypeColorContainingTextRegex
+            || filter.type == FilterByTypeMustContainRegex
+            || filter.type == FilterByTypeMustContainsOneOrMoreOfRegex) {
             regexPattern = filter.text;
         } else {
             regexPattern = [NSRegularExpression escapedPatternForString:filter.text];
@@ -109,8 +111,9 @@
                     return NO;
                 }
                 break;
-            case FilterByTypeNoFilter:
-                break;
+            case FilterByTypeColorContainingText:
+            case FilterByTypeColorContainingTextRegex:
+              break;// Color only, no filer
         }
     }
     

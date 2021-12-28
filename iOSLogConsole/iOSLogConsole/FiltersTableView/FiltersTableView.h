@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index;
 
+- (void)didMoveFilter:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
+
 @end
 
 @interface FiltersTableView : NSTableView <NSTableViewDataSource, NSTableViewDelegate>

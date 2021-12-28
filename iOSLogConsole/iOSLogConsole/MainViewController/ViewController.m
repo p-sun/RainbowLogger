@@ -19,15 +19,17 @@
     
     _shouldAutoScroll = _autoscrollButton.state == NSControlStateValueOn;
     
+    [_filtersTableView setFiltersDelegate:self];
+    [_filtersTableView setupTable];
+  
     _filtersManager = [[FiltersManager alloc] init];
+    [_filtersManager setDelegate:self];
+  
     [_filtersTableView setFilters:_filtersManager.filters];
 
     _logsManager = [[LogsManager alloc] init];
     [_logsManager setDelegate:self];
     [_logsTextView setScrollDelegate:self];
-    
-    [_filtersTableView setFiltersDelegate:self];
-    [_filtersTableView setupTable];
     
     self.fileReader = [[FileReader alloc] init];
     [self.fileReader setDelegate:self];
@@ -50,8 +52,6 @@
 
 - (IBAction)clearFilters:(id)sender {
     [_filtersManager clearFilters];
-    [_filtersTableView setFilters:_filtersManager.filters];
-    [self _filterAllLogsAndUpdateTextView];
 }
 
 - (IBAction)addFilterButtonPressed:(id)sender {
@@ -66,10 +66,6 @@
     sender.stringValue = @"";
     
     [_filtersManager appendFilter:filter];
-    [_filtersTableView setFilters:_filtersManager.filters];
-    [_filtersTableView reloadData];
-    [_filtersTableView scrollToEndOfDocument:nil];
-    [self _filterAllLogsAndUpdateTextView];
 }
 
 - (IBAction)restartPressed:(id)sender {
@@ -118,17 +114,28 @@
     _autoscrollButton.state = autoScroll ? NSControlStateValueOn : NSControlStateValueOff;
 }
 
+#pragma mark - FiltersManagerDelegate
+
+-(void)filtersDidUpdate: (NSArray<Filter *>*) filters {
+  [_filtersTableView setFilters:filters];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self->_filtersTableView reloadData];
+    [self _filterAllLogsAndUpdateTextView];
+  });
+}
+
 #pragma mark - FiltersTableViewDelegate
 
 - (void)didDeleteFilterAtIndex:(NSInteger)index {
     [_filtersManager deleteFilterAtIndex:index];
-    [_filtersTableView setFilters:_filtersManager.filters];
-    [self _filterAllLogsAndUpdateTextView];
 }
 
 - (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index {
     [_filtersManager replaceFilter:filter atIndex:index];
-    [self _filterAllLogsAndUpdateTextView];
+}
+
+- (void)didMoveFilter:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
+  [_filtersManager moveFilterFromIndex:fromIndex toIndex:toIndex];
 }
 
 #pragma mark - LogsManagerDelegate

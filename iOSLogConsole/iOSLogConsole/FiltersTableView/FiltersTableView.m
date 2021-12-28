@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     NSInteger _columnsCount;
     NSArray<NSString *> *_columnTitles;
     NSArray *_filters;
+    NSInteger _sourceDragRow;
 }
 
 # pragma mark - Setup
@@ -36,6 +37,9 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     
     NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FilterCell" bundle:nil];
     [self registerNib:textNib forIdentifier:@"FilterCell"];
+  
+    self.verticalMotionCanBeginDrag = YES;
+    [self registerForDraggedTypes:@[NSPasteboardTypeString]];
 }
 
 - (void)setupTable {
@@ -96,6 +100,30 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
     return NO;
+}
+
+# pragma mark - Dragging
+
+- (id<NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row {
+  NSPasteboardItem *item = [[NSPasteboardItem alloc] init];
+  [item setString:@"string" forType:NSPasteboardTypeString];
+  _sourceDragRow = row;
+  return item;
+}
+
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id<NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
+  return dropOperation == NSTableViewDropAbove ? NSDragOperationMove : NSDragOperationNone;
+}
+
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id<NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
+  NSPasteboardItem *item = info.draggingPasteboard.pasteboardItems.firstObject;
+  if (item == NULL) {
+    return NO;
+  }
+  
+  [self.filtersDelegate didMoveFilter:_sourceDragRow toIndex:row];
+  
+  return true;
 }
 
 @end

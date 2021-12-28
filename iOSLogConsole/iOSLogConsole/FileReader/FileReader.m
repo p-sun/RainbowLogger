@@ -53,10 +53,25 @@
     NSDictionary *environmentDict = [[NSProcessInfo processInfo] environment];
     NSString *shellString = [environmentDict objectForKey:@"SHELL"];
     [task setLaunchPath: shellString];
+  
+    // Really close to Flipper's FB logs. Still shows some Network and Security logs though
+    // Test command in terminal by removing the \ escape before the quotes
+    
+    NSString *predicate = @"'(NOT (subsystem contains \"com.apple\")) AND eventMessage contains \"****\"'";
+    //    NSString *predicate = @"'NOT (subsystem contains \"com.apple\")";
     task.arguments = @[@"-l",
                        @"-c",
-                       @"xcrun simctl spawn booted log stream --level=debug --style=compact --predicate 'eventMessage contains \"****\"';"];
-    // Other args: --process=AppName
+                       [@"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate " stringByAppendingString:predicate]];
+    
+    // Device logs
+    //        task.arguments = @[@"-l",
+    //                           @"-c",
+    //                           @"idevicesyslog -p Facebook -m \"****\""];
+    
+    /*
+     xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate '(NOT (subsystem contains "com.apple")) AND eventMessage contains "****"'
+     **/
+    
     
     NSPipe *p = [NSPipe pipe];
     [task setStandardOutput:p];
@@ -85,7 +100,9 @@
         NSData *data = [strongSelf->fileHandle_ availableData];
         if (data.length > 0) {
             NSString *longString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            [strongSelf _parseLinesFromString:longString];
+            if (longString) {
+              [strongSelf _parseLinesFromString:longString];
+            }
         }
     });
 }

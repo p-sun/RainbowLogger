@@ -15,7 +15,7 @@
 #import "LogsScrollView.h"
 #import "LogsTextView.h"
 
-@interface ViewController : NSViewController <FileReaderDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate>
+@interface ViewController : NSViewController <FileReaderDelegate, FiltersManagerDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate>
 
 @property (nonatomic, strong) FileReader *fileReader;
 @property (nonatomic, readonly) BOOL hasReadLine;

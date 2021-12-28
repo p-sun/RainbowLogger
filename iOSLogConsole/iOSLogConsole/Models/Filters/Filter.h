@@ -12,7 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, FilterByType) {
-    FilterByTypeNoFilter,
+    FilterByTypeColorContainingText, // For coloring text only
+    FilterByTypeColorContainingTextRegex, // For coloring text only
     FilterByTypeMustContain,
     FilterByTypeContainsOneOrMoreOf,
     FilterByTypeContainsAnyOf,
