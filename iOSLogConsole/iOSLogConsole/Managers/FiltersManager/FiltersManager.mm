@@ -19,12 +19,12 @@ typedef NSArray<Filter *>* (^new_filters_provider)(NSArray<Filter *>* currentFil
 
 - (instancetype)init
 {
-    self = [super init];
-    if (self) {
-      _filters = [self _loadFiltersData];
-      pthread_mutex_init(&mutex, NULL);
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    _filters = [self _loadFiltersData];
+    pthread_mutex_init(&mutex, NULL);
+  }
+  return self;
 }
 
 # pragma mark Filter Modifications
@@ -47,15 +47,15 @@ typedef NSArray<Filter *>* (^new_filters_provider)(NSArray<Filter *>* currentFil
 - (void)deleteFilterAtIndex:(NSInteger)index {
   [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
-
+    
     if (index > 0) {
-        NSRange frontRange = NSMakeRange(0, index);
-        [filters addObjectsFromArray: [currentFilters subarrayWithRange: frontRange]];
+      NSRange frontRange = NSMakeRange(0, index);
+      [filters addObjectsFromArray: [currentFilters subarrayWithRange: frontRange]];
     }
     if (index < currentFilters.count - 1) {
-        NSInteger length = currentFilters.count - 1 - index;
-        NSRange backRange = NSMakeRange(index + 1, length);
-        [filters addObjectsFromArray: [currentFilters subarrayWithRange: backRange]];
+      NSInteger length = currentFilters.count - 1 - index;
+      NSRange backRange = NSMakeRange(index + 1, length);
+      [filters addObjectsFromArray: [currentFilters subarrayWithRange: backRange]];
     }
     return filters;
   }];
@@ -64,16 +64,16 @@ typedef NSArray<Filter *>* (^new_filters_provider)(NSArray<Filter *>* currentFil
 - (void)replaceFilter:(Filter *)filter atIndex:(NSInteger)index {
   [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
-
+    
     if (index > 0) {
-        NSRange frontRange = NSMakeRange(0, index);
-        [filters addObjectsFromArray: [currentFilters subarrayWithRange: frontRange]];
+      NSRange frontRange = NSMakeRange(0, index);
+      [filters addObjectsFromArray: [currentFilters subarrayWithRange: frontRange]];
     }
     [filters addObject:filter];
     if (index < currentFilters.count - 1) {
-        NSInteger length = currentFilters.count - 1 - index;
-        NSRange backRange = NSMakeRange(index + 1, length);
-        [filters addObjectsFromArray: [currentFilters subarrayWithRange: backRange]];
+      NSInteger length = currentFilters.count - 1 - index;
+      NSRange backRange = NSMakeRange(index + 1, length);
+      [filters addObjectsFromArray: [currentFilters subarrayWithRange: backRange]];
     }
     return filters;
   }];
@@ -82,14 +82,14 @@ typedef NSArray<Filter *>* (^new_filters_provider)(NSArray<Filter *>* currentFil
 - (void)moveFilterFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
   [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
-
+    
     Filter *filterToMove = [filters objectAtIndex:fromIndex];
     [filters insertObject:filterToMove atIndex:toIndex];
-
+    
     if (fromIndex < toIndex) {
-        [filters removeObjectAtIndex:fromIndex];
+      [filters removeObjectAtIndex:fromIndex];
     } else {
-        [filters removeObjectAtIndex:fromIndex+1];
+      [filters removeObjectAtIndex:fromIndex+1];
     }
     return filters;
   }];
@@ -98,27 +98,27 @@ typedef NSArray<Filter *>* (^new_filters_provider)(NSArray<Filter *>* currentFil
 # pragma mark Save and Load Filters from File
 
 -(void)_saveFiltersData {
-    NSError *error;
-    NSArray *myFilters = _filters;
-    NSData *encodedFilters = [NSKeyedArchiver archivedDataWithRootObject:myFilters requiringSecureCoding:YES error:&error];
-    [NSUserDefaults.standardUserDefaults setObject:encodedFilters forKey:@"filters"];
-    if (error) {
-        NSLog(@"Error with saving filters: %@", error);
-    }
+  NSError *error;
+  NSArray *myFilters = _filters;
+  NSData *encodedFilters = [NSKeyedArchiver archivedDataWithRootObject:myFilters requiringSecureCoding:YES error:&error];
+  [NSUserDefaults.standardUserDefaults setObject:encodedFilters forKey:@"filters"];
+  if (error) {
+    NSLog(@"Error with saving filters: %@", error);
+  }
 }
 
 -(NSArray<Filter *>*)_loadFiltersData {
-    NSError *error;
-    NSData *data = [NSUserDefaults.standardUserDefaults objectForKey:@"filters"];
-    NSSet *set = [[NSSet alloc] init];
-    [set setByAddingObject:[Filter class]];
-    
-    NSSet *classes = [[NSSet alloc] initWithArray:@[Filter.class, NSArray.class]];
-    NSArray *storedFilters = [NSKeyedUnarchiver unarchivedObjectOfClasses:classes fromData:data error:&error];
-    if (error) {
-        NSLog(@"Error with loading filters: %@", error.localizedDescription);
-    }
-    return storedFilters != nil ? storedFilters : [[NSArray alloc] init];
+  NSError *error;
+  NSData *data = [NSUserDefaults.standardUserDefaults objectForKey:@"filters"];
+  NSSet *set = [[NSSet alloc] init];
+  [set setByAddingObject:[Filter class]];
+  
+  NSSet *classes = [[NSSet alloc] initWithArray:@[Filter.class, NSArray.class]];
+  NSArray *storedFilters = [NSKeyedUnarchiver unarchivedObjectOfClasses:classes fromData:data error:&error];
+  if (error) {
+    NSLog(@"Error with loading filters: %@", error.localizedDescription);
+  }
+  return storedFilters != nil ? storedFilters : [[NSArray alloc] init];
 }
 
 # pragma mark Call Delegate
