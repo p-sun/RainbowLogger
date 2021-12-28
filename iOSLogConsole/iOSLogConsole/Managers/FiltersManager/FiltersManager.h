@@ -19,8 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FiltersManager : NSObject
 
-@property (nonatomic, readonly) NSArray<Filter *>* filters;
 @property (nullable, weak) id<FiltersManagerDelegate> delegate;
+
+- (NSArray<Filter *>*)getFilters;
 
 - (void)clearFilters;
 

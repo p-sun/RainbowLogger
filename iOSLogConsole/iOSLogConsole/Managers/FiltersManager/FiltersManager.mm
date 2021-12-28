@@ -9,125 +9,95 @@
 #import "FiltersManager.h"
 #include <pthread.h>
 
+// Given current filters, return new filters
+typedef NSArray<Filter *>* (^new_filters_provider)(NSArray<Filter *>* currentFilters);
+
 @implementation FiltersManager{
   pthread_mutex_t mutex;
-
+  NSArray<Filter *>* _filters;
 }
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-      _filters = [self _loadFilters];
+      _filters = [self _loadFiltersData];
       pthread_mutex_init(&mutex, NULL);
     }
     return self;
 }
 
 # pragma mark Filter Modifications
+- (NSArray<Filter *>*)getFilters {
+  return _filters;
+}
 
 - (void)clearFilters {
-    __weak __typeof(self) weakSelf = self; // TODO Cleanup by moving the mutex stuff into a private func
-  {
-    __typeof(self) strongSelf = weakSelf;
-    if (!strongSelf) { return; }
-      
-      pthread_mutex_lock(&strongSelf->mutex);
-      strongSelf->_filters = [[NSArray alloc] init];
-      [strongSelf _updateAndSaveFilters];
-      pthread_mutex_unlock(&strongSelf->mutex);
-  }
+  [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
+    return [[NSArray alloc] init];
+  }];
 }
 
 - (void)appendFilter:(Filter *)filter {
-  __weak __typeof(self) weakSelf = self;
-  {
-    __typeof(self) strongSelf = weakSelf;
-    if (!strongSelf) { return; }
-      
-    pthread_mutex_lock(&strongSelf->mutex);
-    strongSelf->_filters = [self->_filters arrayByAddingObject:filter];
-    [strongSelf _updateAndSaveFilters];
-    pthread_mutex_unlock(&strongSelf->mutex);
-  }
+  [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
+    return [currentFilters arrayByAddingObject:filter];
+  }];
 }
 
 - (void)deleteFilterAtIndex:(NSInteger)index {
-  __weak __typeof(self) weakSelf = self;
-  {
-    __typeof(self) strongSelf = weakSelf;
-    if (!strongSelf) { return; }
-      
-    pthread_mutex_lock(&strongSelf->mutex);
-    NSMutableArray<Filter *> *newFilters = [[NSMutableArray alloc] init];
+  [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
+    NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
+
     if (index > 0) {
         NSRange frontRange = NSMakeRange(0, index);
-        [newFilters addObjectsFromArray: [strongSelf->_filters subarrayWithRange: frontRange]];
+        [filters addObjectsFromArray: [currentFilters subarrayWithRange: frontRange]];
     }
-    if (index < strongSelf->_filters.count - 1) {
-        NSInteger length = strongSelf->_filters.count - 1 - index;
+    if (index < currentFilters.count - 1) {
+        NSInteger length = currentFilters.count - 1 - index;
         NSRange backRange = NSMakeRange(index + 1, length);
-        [newFilters addObjectsFromArray: [strongSelf->_filters subarrayWithRange: backRange]];
+        [filters addObjectsFromArray: [currentFilters subarrayWithRange: backRange]];
     }
-    strongSelf->_filters = newFilters;
-    [strongSelf _updateAndSaveFilters];
-    pthread_mutex_unlock(&strongSelf->mutex);
-  }
+    return filters;
+  }];
 }
 
 - (void)replaceFilter:(Filter *)filter atIndex:(NSInteger)index {
-  __weak __typeof(self) weakSelf = self;
-  {
-    __typeof(self) strongSelf = weakSelf;
-    if (!strongSelf) { return; }
-    
-    pthread_mutex_lock(&strongSelf->mutex);
+  [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
+    NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
 
-    NSMutableArray<Filter *> *newFilters = [[NSMutableArray alloc] init];
     if (index > 0) {
         NSRange frontRange = NSMakeRange(0, index);
-        [newFilters addObjectsFromArray: [strongSelf->_filters subarrayWithRange: frontRange]];
+        [filters addObjectsFromArray: [currentFilters subarrayWithRange: frontRange]];
     }
-    [newFilters addObject:filter];
-    if (index < strongSelf->_filters.count - 1) {
-        NSInteger length = strongSelf->_filters.count - 1 - index;
+    [filters addObject:filter];
+    if (index < currentFilters.count - 1) {
+        NSInteger length = currentFilters.count - 1 - index;
         NSRange backRange = NSMakeRange(index + 1, length);
-        [newFilters addObjectsFromArray: [strongSelf->_filters subarrayWithRange: backRange]];
+        [filters addObjectsFromArray: [currentFilters subarrayWithRange: backRange]];
     }
-    strongSelf->_filters = newFilters;
-    [strongSelf _updateAndSaveFilters];
-    pthread_mutex_unlock(&strongSelf->mutex);
-  }
+    return filters;
+  }];
 }
 
 - (void)moveFilterFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
-  __weak __typeof(self) weakSelf = self;
-  {
-    __typeof(self) strongSelf = weakSelf;
-    if (!strongSelf) { return; }
-    
-    pthread_mutex_lock(&strongSelf->mutex);
- 
-    Filter *filterToMove = [_filters objectAtIndex:fromIndex];
-    NSMutableArray<Filter *> *newFilters = [[NSMutableArray alloc] initWithArray:_filters];
+  [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
+    NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
 
-    [newFilters insertObject:filterToMove atIndex:toIndex];
+    Filter *filterToMove = [filters objectAtIndex:fromIndex];
+    [filters insertObject:filterToMove atIndex:toIndex];
 
     if (fromIndex < toIndex) {
-        [newFilters removeObjectAtIndex:fromIndex];
+        [filters removeObjectAtIndex:fromIndex];
     } else {
-        [newFilters removeObjectAtIndex:fromIndex+1];
+        [filters removeObjectAtIndex:fromIndex+1];
     }
-
-    strongSelf->_filters = newFilters;
-    [strongSelf _updateAndSaveFilters];
-    pthread_mutex_unlock(&strongSelf->mutex);
-  }
+    return filters;
+  }];
 }
 
 # pragma mark Save and Load Filters from File
 
--(void)_saveFilters {
+-(void)_saveFiltersData {
     NSError *error;
     NSArray *myFilters = _filters;
     NSData *encodedFilters = [NSKeyedArchiver archivedDataWithRootObject:myFilters requiringSecureCoding:YES error:&error];
@@ -137,7 +107,7 @@
     }
 }
 
--(NSArray<Filter *>*)_loadFilters {
+-(NSArray<Filter *>*)_loadFiltersData {
     NSError *error;
     NSData *data = [NSUserDefaults.standardUserDefaults objectForKey:@"filters"];
     NSSet *set = [[NSSet alloc] init];
@@ -153,9 +123,23 @@
 
 # pragma mark Call Delegate
 
+-(void)_updateAndSaveFilters:(new_filters_provider)getNewFilters {
+  __weak __typeof(self) weakSelf = self;
+  {
+    __typeof(self) strongSelf = weakSelf;
+    if (!strongSelf) { return; }
+    
+    pthread_mutex_lock(&strongSelf->mutex);
+    strongSelf->_filters = getNewFilters(_filters);
+    [self _saveFiltersData];
+    [_delegate filtersDidUpdate:_filters];
+    pthread_mutex_unlock(&strongSelf->mutex);
+  }
+}
+
 -(void)_updateAndSaveFilters {
   [_delegate filtersDidUpdate:_filters];
-  [self _saveFilters];
+  [self _saveFiltersData];
 }
 
 @end

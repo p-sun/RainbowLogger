@@ -25,7 +25,7 @@
     _filtersManager = [[FiltersManager alloc] init];
     [_filtersManager setDelegate:self];
   
-    [_filtersTableView setFilters:_filtersManager.filters];
+    [_filtersTableView setFilters:[_filtersManager getFilters]];
 
     _logsManager = [[LogsManager alloc] init];
     [_logsManager setDelegate:self];
@@ -127,11 +127,11 @@
 #pragma mark - FiltersTableViewDelegate
 
 - (void)didDeleteFilterAtIndex:(NSInteger)index {
-    [_filtersManager deleteFilterAtIndex:index];
+  [_filtersManager deleteFilterAtIndex:index];
 }
 
 - (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index {
-    [_filtersManager replaceFilter:filter atIndex:index];
+  [_filtersManager replaceFilter:filter atIndex:index];
 }
 
 - (void)didMoveFilter:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
@@ -141,7 +141,7 @@
 #pragma mark - LogsManagerDelegate
 - (void)didAppendLogs:(NSArray<Log *>*)logs {
     if (!_isPaused) {
-        NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:logs filteredBy:_filtersManager.filters];
+        NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:logs filteredBy:[_filtersManager getFilters]];
         [_logsTextView addAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
     }
 }
@@ -153,7 +153,7 @@
 }
 
 - (void)_filterAllLogsAndUpdateTextView {
-    NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:_logsManager.getLogs filteredBy:_filtersManager.filters];
+    NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:_logsManager.getLogs filteredBy:[_filtersManager getFilters]];
     [_logsTextView setAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
 }
 
