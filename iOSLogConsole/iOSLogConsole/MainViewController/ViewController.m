@@ -59,7 +59,7 @@
 }
 
 - (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
-  Filter *filter = [[Filter alloc] initWithType:FilterByTypeContainsOneOrMoreOf
+  Filter *filter = [[Filter alloc] initWithType:FilterByTypeColorContainingText
                                            text:sender.stringValue
                                        colorTag:1
                                       isEnabled:YES];

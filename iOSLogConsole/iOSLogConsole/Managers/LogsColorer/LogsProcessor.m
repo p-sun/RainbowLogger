@@ -44,8 +44,9 @@
         }
         NSString *regexPattern;
         if (filter.type == FilterByTypeColorContainingTextRegex
-            || filter.type == FilterByTypeMustContainRegex
-            || filter.type == FilterByTypeMustContainsOneOrMoreOfRegex) {
+            || filter.type == FilterByTypeContainsAllRegex
+            || filter.type == FilterByTypeContainsAnyRegex
+            || filter.type == FilterByTypeNotContainsRegex) {
             regexPattern = filter.text;
         } else {
             regexPattern = [NSRegularExpression escapedPatternForString:filter.text];
@@ -71,53 +72,53 @@
 #pragma mark - Filter Logs
 
 + (BOOL)doesLog:(NSString *)log passFilters:(NSArray<Filter *>*)filters {
-    BOOL hasAOneOrMoreOfFilter = NO;
-    BOOL passOneOrMoreOfFilter = NO;
-
-    for (Filter *filter in filters) {
-        if (!filter.isEnabled) {
-            continue;
-        }
-        switch (filter.type) {
-            case FilterByTypeMustContain:
-                if (![log localizedCaseInsensitiveContainsString:filter.text]) {
-                    return NO;
-                }
-                break;
-            case FilterByTypeMustNotContain:
-                if ([log localizedCaseInsensitiveContainsString:filter.text]) {
-                    return NO;
-                }
-                break;
-            case FilterByTypeContainsOneOrMoreOf:
-                hasAOneOrMoreOfFilter = YES;
-                if (!passOneOrMoreOfFilter && [log localizedCaseInsensitiveContainsString:filter.text]) {
-                    passOneOrMoreOfFilter = YES;
-                }
-                break;
-            case FilterByTypeContainsAnyOf:
-                if ([log localizedCaseInsensitiveContainsString:filter.text]) {
-                    return YES;
-                }
-                break;
-            case FilterByTypeMustContainsOneOrMoreOfRegex:
-                hasAOneOrMoreOfFilter = YES;
-                if (!passOneOrMoreOfFilter && [LogsProcessor matchesRegexPattern:filter.text forLog:log]) {
-                    passOneOrMoreOfFilter = YES;
-                }
-                break;
-            case FilterByTypeMustContainRegex:
-                if (![LogsProcessor matchesRegexPattern:filter.text forLog:log]) {
-                    return NO;
-                }
-                break;
-            case FilterByTypeColorContainingText:
-            case FilterByTypeColorContainingTextRegex:
-              break;// Color only, no filer
-        }
+  BOOL hasContainsAnyFilter = NO;
+  BOOL passContainsAnyFilter = NO;
+  
+  for (Filter *filter in filters) {
+    if (!filter.isEnabled) {
+      continue;
     }
-    
-    return !hasAOneOrMoreOfFilter || passOneOrMoreOfFilter;
+    switch (filter.type) {
+      case FilterByTypeContainsAll:
+        if (![log localizedCaseInsensitiveContainsString:filter.text]) {
+          return NO;
+        }
+        break;
+      case FilterByTypeNotContains:
+        if ([log localizedCaseInsensitiveContainsString:filter.text]) {
+          return NO;
+        }
+        break;
+      case FilterByTypeContainsAny:
+        hasContainsAnyFilter = YES;
+        if (!passContainsAnyFilter && [log localizedCaseInsensitiveContainsString:filter.text]) {
+          passContainsAnyFilter = YES;
+        }
+        break;
+      case FilterByTypeContainsAllRegex:
+        if (![LogsProcessor matchesRegexPattern:filter.text forLog:log]) {
+          return NO;
+        }
+        break;
+      case FilterByTypeNotContainsRegex:
+        if ([LogsProcessor matchesRegexPattern:filter.text forLog:log]) {
+          return NO;
+        }
+        break;
+      case FilterByTypeContainsAnyRegex:
+        hasContainsAnyFilter = YES;
+        if (!passContainsAnyFilter && [LogsProcessor matchesRegexPattern:filter.text forLog:log]) {
+          passContainsAnyFilter = YES;
+        }
+        break;
+      case FilterByTypeColorContainingText:
+      case FilterByTypeColorContainingTextRegex:
+        break; // For coloring text only, no filter
+    }
+  }
+  
+  return hasContainsAnyFilter ? passContainsAnyFilter : YES;
 }
 
 + (BOOL)matchesRegexPattern:(NSString*)pattern forLog:(NSString *)log {

@@ -43,16 +43,7 @@
 - (void)deleteFilterAtIndex:(NSInteger)index {
   [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
-    
-    if (index > 0) {
-      NSRange frontRange = NSMakeRange(0, index);
-      [filters addObjectsFromArray: [currentFilters subarrayWithRange: frontRange]];
-    }
-    if (index < currentFilters.count - 1) {
-      NSInteger length = currentFilters.count - 1 - index;
-      NSRange backRange = NSMakeRange(index + 1, length);
-      [filters addObjectsFromArray: [currentFilters subarrayWithRange: backRange]];
-    }
+    [filters removeObjectAtIndex:index];
     return filters;
   }];
 }
@@ -60,17 +51,7 @@
 - (void)replaceFilter:(Filter *)filter atIndex:(NSInteger)index {
   [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
-    
-    if (index > 0) {
-      NSRange frontRange = NSMakeRange(0, index);
-      [filters addObjectsFromArray: [currentFilters subarrayWithRange: frontRange]];
-    }
-    [filters addObject:filter];
-    if (index < currentFilters.count - 1) {
-      NSInteger length = currentFilters.count - 1 - index;
-      NSRange backRange = NSMakeRange(index + 1, length);
-      [filters addObjectsFromArray: [currentFilters subarrayWithRange: backRange]];
-    }
+    [filters replaceObjectAtIndex:index withObject:filter];
     return filters;
   }];
 }

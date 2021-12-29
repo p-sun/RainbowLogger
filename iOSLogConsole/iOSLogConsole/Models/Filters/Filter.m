@@ -17,14 +17,16 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
 +(void)initialize {
     if (self == [Filter class]) {
         filterPopupInfosArray = [NSArray arrayWithObjects:
-                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeColorContainingText name:@""],
-                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeColorContainingTextRegex name:@"Regex"],
-                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustContain name:@"Filter - Must contain"],
-                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsOneOrMoreOf name:@"Filter - Contains at least one of"],
-                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAnyOf name:@"Filter - Contains any of"],
-                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustNotContain name:@"Filter - Must not contain"],
-                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustContainRegex name:@"Filter - Must contains regex"],
-                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeMustContainsOneOrMoreOfRegex name:@"Filter - Contains at least one of regex"],
+                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeColorContainingText name:@"Color"],
+                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeColorContainingTextRegex name:@"Color with Regex"],
+                                 
+                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAll name:@"Filter - Contains All"],
+                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAny name:@"Filter - Contains Any"],
+                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeNotContains name:@"Filter - Not contains"],
+                                 
+                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAllRegex name:@"Filter with Regex - Contains All"],
+                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAnyRegex name:@"Filter with Regex - Contains Any"],
+                                 [[FilterTypePopupInfo alloc] initWithType:FilterByTypeNotContainsRegex name:@"Filter with Regex - Not contains"],
                                  nil];
         ;
         colorPopupInfosArray = [NSArray arrayWithObjects:
