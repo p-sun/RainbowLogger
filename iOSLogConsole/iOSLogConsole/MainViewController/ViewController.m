@@ -125,6 +125,9 @@
 }
 
 #pragma mark - FiltersTableViewDelegate
+- (void)didToggleRegexAtIndex:(NSInteger)index {
+  [_filtersManager toggleRegexForFilterAtIndex:index];
+}
 
 - (void)didDeleteFilterAtIndex:(NSInteger)index {
   [_filtersManager deleteFilterAtIndex:index];

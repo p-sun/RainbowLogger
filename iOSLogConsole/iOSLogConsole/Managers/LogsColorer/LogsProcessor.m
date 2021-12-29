@@ -43,10 +43,7 @@
             continue;
         }
         NSString *regexPattern;
-        if (filter.type == FilterByTypeColorContainingTextRegex
-            || filter.type == FilterByTypeContainsAllRegex
-            || filter.type == FilterByTypeContainsAnyRegex
-            || filter.type == FilterByTypeNotContainsRegex) {
+        if (filter.isRegex) {
             regexPattern = filter.text;
         } else {
             regexPattern = [NSRegularExpression escapedPatternForString:filter.text];
@@ -81,47 +78,31 @@
     }
     switch (filter.type) {
       case FilterByTypeContainsAll:
-        if (![log localizedCaseInsensitiveContainsString:filter.text]) {
+        if (![LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
           return NO;
         }
         break;
       case FilterByTypeNotContains:
-        if ([log localizedCaseInsensitiveContainsString:filter.text]) {
+        if ([LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
           return NO;
         }
         break;
       case FilterByTypeContainsAny:
         hasContainsAnyFilter = YES;
-        if (!passContainsAnyFilter && [log localizedCaseInsensitiveContainsString:filter.text]) {
-          passContainsAnyFilter = YES;
-        }
-        break;
-      case FilterByTypeContainsAllRegex:
-        if (![LogsProcessor matchesRegexPattern:filter.text forLog:log]) {
-          return NO;
-        }
-        break;
-      case FilterByTypeNotContainsRegex:
-        if ([LogsProcessor matchesRegexPattern:filter.text forLog:log]) {
-          return NO;
-        }
-        break;
-      case FilterByTypeContainsAnyRegex:
-        hasContainsAnyFilter = YES;
-        if (!passContainsAnyFilter && [LogsProcessor matchesRegexPattern:filter.text forLog:log]) {
+        if (!passContainsAnyFilter && [LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
           passContainsAnyFilter = YES;
         }
         break;
       case FilterByTypeColorContainingText:
-      case FilterByTypeColorContainingTextRegex:
         break; // For coloring text only, no filter
     }
   }
   
   return hasContainsAnyFilter ? passContainsAnyFilter : YES;
 }
-
-+ (BOOL)matchesRegexPattern:(NSString*)pattern forLog:(NSString *)log {
+    
++ (BOOL)matchesPattern:(NSString*)pattern isRegex:(BOOL)isRegex forLog:(NSString *)log {
+  if (isRegex) {
     NSError *error = NULL;
     NSRegularExpression *regex = [NSRegularExpression
                                   regularExpressionWithPattern:pattern
@@ -131,6 +112,9 @@
                                                         options:0
                                                           range:NSMakeRange(0, [log length])];
     return numberOfMatches > 0;
+  } else {
+    return [log localizedCaseInsensitiveContainsString:pattern];
+  }
 }
 
 @end

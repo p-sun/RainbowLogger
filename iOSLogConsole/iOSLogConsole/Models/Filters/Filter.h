@@ -13,18 +13,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, FilterByType) {
     FilterByTypeColorContainingText, // For coloring text only
-    FilterByTypeColorContainingTextRegex, // For coloring text only
     FilterByTypeContainsAll,
     FilterByTypeContainsAny,
-    FilterByTypeNotContains,
-    FilterByTypeContainsAllRegex,
-    FilterByTypeContainsAnyRegex,
-    FilterByTypeNotContainsRegex,
+    FilterByTypeNotContains
 };
 
 @interface Filter : NSObject <NSCoding, NSSecureCoding>
 
 @property (nonatomic, readwrite) FilterByType type;
+@property (nonatomic, readwrite) BOOL isRegex;
+
 @property (nonatomic, readwrite) NSString *text;
 @property (nonatomic, readwrite) NSUInteger colorTag;
 @property (nonatomic, readwrite) BOOL isEnabled;

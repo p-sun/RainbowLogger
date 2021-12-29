@@ -12,6 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol FiltersTableViewDelegate <NSObject>
 
+- (void)didToggleRegexAtIndex:(NSInteger)index;
+
 - (void)didDeleteFilterAtIndex:(NSInteger)index;
 
 - (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index;

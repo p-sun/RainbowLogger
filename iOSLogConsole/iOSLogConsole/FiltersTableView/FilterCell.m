@@ -20,8 +20,9 @@
     [_colorsPopup setBezelStyle:NSBezelStyleRegularSquare];
     [_filterByPopup setButtonType:NSButtonTypeMomentaryLight];
     [_colorsPopup setButtonType:NSButtonTypeMomentaryLight];
+    [_regexButton setBezelStyle:NSBezelStyleTexturedRounded];
     [_deleteButton setBezelStyle:NSBezelStyleTexturedRounded];
-    
+  
     [Filter.filterPopupInfos enumerateObjectsUsingBlock:^(FilterTypePopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
         NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
         menuItem.tag = idx;
@@ -42,6 +43,10 @@
 
 - (IBAction)deleteButtonPressed:(id)sender {
     _onDelete();
+}
+
+- (IBAction)regexButtonPressed:(id)sender {
+    _onRegexToggled();
 }
 
 - (IBAction)enableToggled:(NSButton *)sender {
@@ -71,7 +76,7 @@
         _onFilterChanged(_filter);
     }
     
-    [_filtersButton setEnabled:true];
+  [_filtersButton setEnabled:true];
 }
 
 - (NSImage *)swatchForColor:(NSColor *)color {
@@ -86,11 +91,12 @@
 - (void)setFilter:(Filter *)filter {
     self.filterByText.stringValue = filter.text;
     self.isEnabledToggle.state = filter.isEnabled ? NSControlStateValueOn : NSControlStateValueOff;
+    self.regexButton.state = filter.isRegex ? NSControlStateValueOn : NSControlStateValueOff;
     [_filterByText setEnabled:filter.isEnabled];
     [_filtersButton setEnabled:true];
     [self.colorsPopup selectItemWithTag:filter.colorTag];
     [self.filterByPopup selectItemWithTag:filter.type];
-    
+  
     _filter = filter;
 }
 

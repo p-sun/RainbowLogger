@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak) IBOutlet NSButton *isEnabledToggle;
 @property (weak) IBOutlet NSPopUpButton *filterByPopup;
+@property (weak) IBOutlet NSButton *regexButton;
 
 @property (weak) IBOutlet NSTextField *filterByText;
 @property (weak) IBOutlet NSButton *filtersButton;
@@ -24,9 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) Filter *filter;
 
+@property (nonatomic, copy) void(^onRegexToggled)(void);
 @property (nonatomic, copy) void(^onDelete)(void);
 @property (nonatomic, copy) void(^onFilterChanged)(Filter *);
 
+- (IBAction)regexButtonPressed:(id)sender;
 - (IBAction)deleteButtonPressed:(id)sender;
 - (IBAction)enableToggled:(id)sender;
 - (IBAction)filterByChanged:(id)sender;

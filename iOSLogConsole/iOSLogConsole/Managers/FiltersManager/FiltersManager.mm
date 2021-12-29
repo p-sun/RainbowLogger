@@ -40,6 +40,15 @@
   }];
 }
 
+- (void)toggleRegexForFilterAtIndex:(NSInteger)index {
+  [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
+    NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
+    Filter *filterToChange = [filters objectAtIndex:index];
+    filterToChange.isRegex = !filterToChange.isRegex;
+    return filters;
+  }];
+}
+
 - (void)deleteFilterAtIndex:(NSInteger)index {
   [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];

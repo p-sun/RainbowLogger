@@ -22,7 +22,6 @@
 		9BC08BF4247E11170088354B /* LogsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BF3247E11170088354B /* LogsManager.m */; };
 		9BC08BF7247E234E0088354B /* FiltersManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BF6247E234E0088354B /* FiltersManager.mm */; };
 		9BC08C07247E60D60088354B /* LogsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08C06247E60D60088354B /* LogsScrollView.m */; };
-		9BDE6904247BAEA600F7599F /* FiltersSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BDE6903247BAEA600F7599F /* FiltersSwitchCell.xib */; };
 		9BDE6908247BB2D600F7599F /* FiltersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6907247BB2D600F7599F /* FiltersTableView.m */; };
 		9BDE6915247BE0D400F7599F /* FileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6914247BE0D400F7599F /* FileReader.m */; };
 		9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6917247BE17300F7599F /* NSDataExtensions.m */; };
@@ -63,7 +62,6 @@
 		9BC08BF6247E234E0088354B /* FiltersManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FiltersManager.mm; sourceTree = "<group>"; };
 		9BC08C05247E60D60088354B /* LogsScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsScrollView.h; sourceTree = "<group>"; };
 		9BC08C06247E60D60088354B /* LogsScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsScrollView.m; sourceTree = "<group>"; };
-		9BDE6903247BAEA600F7599F /* FiltersSwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FiltersSwitchCell.xib; sourceTree = "<group>"; };
 		9BDE6906247BB2D600F7599F /* FiltersTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersTableView.h; sourceTree = "<group>"; };
 		9BDE6907247BB2D600F7599F /* FiltersTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltersTableView.m; sourceTree = "<group>"; };
 		9BDE6913247BE0D400F7599F /* FileReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileReader.h; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 			children = (
 				9BDE6906247BB2D600F7599F /* FiltersTableView.h */,
 				9BDE6907247BB2D600F7599F /* FiltersTableView.m */,
-				9BDE6903247BAEA600F7599F /* FiltersSwitchCell.xib */,
 				9BDE691A247C54D800F7599F /* FilterCell.xib */,
 				9BDE691C247C5E7900F7599F /* FilterCell.h */,
 				9BDE691D247C5E7900F7599F /* FilterCell.m */,
@@ -309,7 +306,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BDE6904247BAEA600F7599F /* FiltersSwitchCell.xib in Resources */,
 				9B99B40B247A58D200734B8E /* Assets.xcassets in Resources */,
 				9B99B40E247A58D200734B8E /* Main.storyboard in Resources */,
 				9BDE691B247C54D800F7599F /* FilterCell.xib in Resources */,
