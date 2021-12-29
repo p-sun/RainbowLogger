@@ -7,45 +7,41 @@
 //
 
 #import "FiltersManager.h"
-#include <pthread.h>
 
-// Given current filters, return new filters
-typedef NSArray<Filter *>* (^new_filters_provider)(NSArray<Filter *>* currentFilters);
-
-@implementation FiltersManager{
-  pthread_mutex_t mutex;
-  NSArray<Filter *>* _filters;
+@implementation FiltersManager {
+  FiltersData *_filtersData;
 }
 
 - (instancetype)init
 {
   self = [super init];
   if (self) {
-    _filters = [self _loadFiltersData];
-    pthread_mutex_init(&mutex, NULL);
+    _filtersData = [[FiltersData alloc] init];
+    _filtersData.delegate = self;
   }
   return self;
 }
 
 # pragma mark Filter Modifications
+
 - (NSArray<Filter *>*)getFilters {
-  return _filters;
+  return [_filtersData getFilters];
 }
 
 - (void)clearFilters {
-  [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
+  [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
     return [[NSArray alloc] init];
   }];
 }
 
 - (void)appendFilter:(Filter *)filter {
-  [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
+  [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
     return [currentFilters arrayByAddingObject:filter];
   }];
 }
 
 - (void)deleteFilterAtIndex:(NSInteger)index {
-  [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
+  [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
     
     if (index > 0) {
@@ -62,7 +58,7 @@ typedef NSArray<Filter *>* (^new_filters_provider)(NSArray<Filter *>* currentFil
 }
 
 - (void)replaceFilter:(Filter *)filter atIndex:(NSInteger)index {
-  [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
+  [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
     
     if (index > 0) {
@@ -80,7 +76,7 @@ typedef NSArray<Filter *>* (^new_filters_provider)(NSArray<Filter *>* currentFil
 }
 
 - (void)moveFilterFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
-  [self _updateAndSaveFilters:^NSArray<Filter *> * (NSArray<Filter *> *currentFilters) {
+  [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
     
     Filter *filterToMove = [filters objectAtIndex:fromIndex];
@@ -95,51 +91,8 @@ typedef NSArray<Filter *>* (^new_filters_provider)(NSArray<Filter *>* currentFil
   }];
 }
 
-# pragma mark Save and Load Filters from File
-
--(void)_saveFiltersData {
-  NSError *error;
-  NSArray *myFilters = _filters;
-  NSData *encodedFilters = [NSKeyedArchiver archivedDataWithRootObject:myFilters requiringSecureCoding:YES error:&error];
-  [NSUserDefaults.standardUserDefaults setObject:encodedFilters forKey:@"filters"];
-  if (error) {
-    NSLog(@"Error with saving filters: %@", error);
-  }
-}
-
--(NSArray<Filter *>*)_loadFiltersData {
-  NSError *error;
-  NSData *data = [NSUserDefaults.standardUserDefaults objectForKey:@"filters"];
-  NSSet *set = [[NSSet alloc] init];
-  [set setByAddingObject:[Filter class]];
-  
-  NSSet *classes = [[NSSet alloc] initWithArray:@[Filter.class, NSArray.class]];
-  NSArray *storedFilters = [NSKeyedUnarchiver unarchivedObjectOfClasses:classes fromData:data error:&error];
-  if (error) {
-    NSLog(@"Error with loading filters: %@", error.localizedDescription);
-  }
-  return storedFilters != nil ? storedFilters : [[NSArray alloc] init];
-}
-
-# pragma mark Call Delegate
-
--(void)_updateAndSaveFilters:(new_filters_provider)getNewFilters {
-  __weak __typeof(self) weakSelf = self;
-  {
-    __typeof(self) strongSelf = weakSelf;
-    if (!strongSelf) { return; }
-    
-    pthread_mutex_lock(&strongSelf->mutex);
-    strongSelf->_filters = getNewFilters(_filters);
-    [self _saveFiltersData];
-    [_delegate filtersDidUpdate:_filters];
-    pthread_mutex_unlock(&strongSelf->mutex);
-  }
-}
-
--(void)_updateAndSaveFilters {
-  [_delegate filtersDidUpdate:_filters];
-  [self _saveFiltersData];
+-(void)filtersDidUpdate: (NSArray<Filter *>*) filters {
+  [self.delegate filtersDidUpdate:filters];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Filter.h"
+#import "FiltersData.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface FiltersManager : NSObject
+@interface FiltersManager : NSObject <FiltersDataDelegate>
 
 @property (nullable, weak) id<FiltersManagerDelegate> delegate;
 
