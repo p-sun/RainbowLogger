@@ -22,11 +22,11 @@
   return self;
 }
 
-# pragma mark Filter Modifications
-
 - (NSArray<Filter *>*)getFilters {
   return [_filtersData getFilters];
 }
+
+# pragma mark Filter Modifications
 
 - (void)clearFilters {
   [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
@@ -90,6 +90,8 @@
     return filters;
   }];
 }
+
+# pragma mark FiltersDataDelegate
 
 -(void)filtersDidUpdate: (NSArray<Filter *>*) filters {
   [self.delegate filtersDidUpdate:filters];
