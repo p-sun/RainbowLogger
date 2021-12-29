@@ -18,7 +18,6 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
 };
 
 @implementation FiltersTableView {
-    BOOL _didSetupTable;
     NSInteger _columnsCount;
     NSArray<NSString *> *_columnTitles;
     NSArray *_filters;
@@ -40,24 +39,19 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
   
     self.verticalMotionCanBeginDrag = YES;
     [self registerForDraggedTypes:@[NSPasteboardTypeString]];
+  
+  if (self.tableColumns.count == 0) {
+    NSTableColumn *column = [[NSTableColumn alloc]initWithIdentifier:@"titleColumn"];
+    column.title = @"Filters";
+    [self addTableColumn:column];
+  }
 }
 
-- (void)setupTable {
-    [self setupColumns];
-    _didSetupTable = YES;
-}
-
-- (void)setupColumns {
-    _columnTitles = @[@"Filters"];
-    _columnsCount = 1;
-    
-    for (NSString* title in _columnTitles) {
-        NSTableColumn *column = [[NSTableColumn alloc]initWithIdentifier:title];
-        column.title = title;
-        [self addTableColumn:column];
-    }
-    
-    self.tableColumns[0].width = 1200;
+- (void)resizeTableWidth {
+  CGFloat width = self.window.frame.size.width;
+  if (width > 0) {
+    self.tableColumns.firstObject.width = width;
+  }
 }
 
 - (void)setFilters:(NSArray<Filter *>*)filters {
@@ -71,10 +65,6 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
 }
 
 # pragma mark - NSTableViewDataSource
-
-- (NSInteger)numberOfColumns {
-    return _didSetupTable ? _columnsCount : 0;
-}
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return _filters.count;

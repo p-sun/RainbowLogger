@@ -29,8 +29,22 @@
                                 <action selector="enableToggled:" target="FUr-wE-i1z" id="DfD-4P-F3F"/>
                             </connections>
                         </button>
+                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rPv-CE-rXv" userLabel="Colors Popup">
+                            <rect key="frame" x="29" y="-4" width="75" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="68" id="SFC-R6-1s8"/>
+                            </constraints>
+                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="brW-Y2-5Qo">
+                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="menu"/>
+                                <menu key="menu" id="tXt-pe-piA"/>
+                            </popUpButtonCell>
+                            <connections>
+                                <action selector="colorChanged:" target="FUr-wE-i1z" id="wKV-Ov-a2Q"/>
+                            </connections>
+                        </popUpButton>
                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i24-rd-9Vc" userLabel="Filters Popup">
-                            <rect key="frame" x="29" y="-4" width="207" height="25"/>
+                            <rect key="frame" x="109" y="-4" width="207" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="9X1-ak-257"/>
                             </constraints>
@@ -44,7 +58,7 @@
                             </connections>
                         </popUpButton>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wKj-J0-1he">
-                            <rect key="frame" x="243" y="-2" width="70" height="23"/>
+                            <rect key="frame" x="323" y="-2" width="70" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="mgX-xk-fWa"/>
                             </constraints>
@@ -57,27 +71,13 @@
                             </connections>
                         </button>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eAm-mw-qJk">
-                            <rect key="frame" x="322" y="2" width="595" height="16"/>
+                            <rect key="frame" x="402" y="2" width="595" height="16"/>
                             <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Filter By Label" id="nRl-xN-L76">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rPv-CE-rXv" userLabel="Colors Popup">
-                            <rect key="frame" x="924" y="-4" width="75" height="25"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="SFC-R6-1s8"/>
-                            </constraints>
-                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="brW-Y2-5Qo">
-                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="menu"/>
-                                <menu key="menu" id="tXt-pe-piA"/>
-                            </popUpButtonCell>
-                            <connections>
-                                <action selector="colorChanged:" target="FUr-wE-i1z" id="wKV-Ov-a2Q"/>
-                            </connections>
-                        </popUpButton>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Om3-Ja-qXb">
                             <rect key="frame" x="1006" y="-2" width="70" height="23"/>
                             <constraints>
@@ -119,8 +119,8 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O3f-mk-3Qx">
-                    <rect key="frame" x="329" y="-7" width="605" height="32"/>
+                <button horizontalHuggingPriority="200" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O3f-mk-3Qx">
+                    <rect key="frame" x="409" y="-7" width="605" height="32"/>
                     <buttonCell key="cell" type="push" title="Transparent Button" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="yry-rv-Plz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>

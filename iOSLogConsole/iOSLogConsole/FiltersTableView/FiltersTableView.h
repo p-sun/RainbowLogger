@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, weak) id<FiltersTableViewDelegate> filtersDelegate;
 
-- (void)setupTable;
+- (void)resizeTableWidth;
 
 - (void)setFilters:(NSArray<Filter *>*)filters;
 

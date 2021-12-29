@@ -16,23 +16,29 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
+    
+  // Data
   _shouldAutoScroll = _autoscrollButton.state == NSControlStateValueOn;
-  
-  [_filtersTableView setFiltersDelegate:self];
-  [_filtersTableView setupTable];
-  
+
   _filtersManager = [[FiltersManager alloc] init];
   [_filtersManager setDelegate:self];
   
-  [_filtersTableView setFilters:[_filtersManager getFilters]];
-  
+  _fileReader = [[FileReader alloc] init];
+  [_fileReader setDelegate:self];
+
   _logsManager = [[LogsManager alloc] init];
   [_logsManager setDelegate:self];
-  [_logsTextView setScrollDelegate:self];
   
-  self.fileReader = [[FileReader alloc] init];
-  [self.fileReader setDelegate:self];
+  // Views
+  [_filtersTableView setFiltersDelegate:self];
+  [_filtersTableView setFilters:[_filtersManager getFilters]];
+  
+  [_logsTextView setScrollDelegate:self];
+}
+
+- (void)viewWillAppear {
+  [super viewWillAppear];
+  [_filtersTableView resizeTableWidth];
 }
 
 - (void)viewDidAppear {
@@ -120,6 +126,8 @@
   [_filtersTableView setFilters:filters];
   dispatch_async(dispatch_get_main_queue(), ^{
     [self->_filtersTableView reloadData];
+    [self->_filtersTableView resizeTableWidth];
+
     [self _filterAllLogsAndUpdateTextView];
   });
 }
