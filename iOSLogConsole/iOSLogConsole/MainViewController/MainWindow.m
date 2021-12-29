@@ -13,7 +13,7 @@
 // Allows TextFields to be edited
 - (BOOL)canBecomeKeyWindow
 {
-    return YES;
+  return YES;
 }
 
 @end

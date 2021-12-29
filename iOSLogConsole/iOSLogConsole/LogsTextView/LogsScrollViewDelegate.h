@@ -9,6 +9,7 @@
 @protocol LogsScrollViewDelegate <NSObject>
 
 - (void)logsScrollViewDidScrollUp;
+
 - (void)logsScrollViewDidScrollDown;
 
 @end

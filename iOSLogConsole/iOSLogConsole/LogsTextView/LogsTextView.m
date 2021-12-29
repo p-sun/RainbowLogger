@@ -12,64 +12,60 @@
 @implementation LogsTextView
 
 - (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    // Setting richText allows the text colors to be copied to other editors
-    self.richText = true;
+  [super awakeFromNib];
+  
+  // Setting richText allows the text colors to be copied to other editors
+  self.richText = true;
 }
 
 - (void)addAttributedLines:(NSAttributedString *)attributedLines shouldAutoscroll:(BOOL)shouldAutoscroll {
+  __weak __typeof__(self) weakSelf = self;
+  [self _updateTextViewAndShouldAutoscroll:shouldAutoscroll actionBlock:^{
+    __strong __typeof__(self) strongSelf = weakSelf;
+    if (!strongSelf) {
+      return;
+    }
     
-    __weak __typeof__(self) weakSelf = self;
-    [self _updateTextViewAndShouldAutoscroll:shouldAutoscroll actionBlock:^{
-        __strong __typeof__(self) strongSelf = weakSelf;
-        if (!strongSelf) {
-            return;
-        }
-        
-        [strongSelf.textStorage appendAttributedString:attributedLines];
-    }];
+    [strongSelf.textStorage appendAttributedString:attributedLines];
+  }];
 }
 
 - (void)setAttributedLines:(NSAttributedString *)attributedLines shouldAutoscroll:(BOOL)shouldAutoscroll {
+  __weak __typeof__(self) weakSelf = self;
+  [self _updateTextViewAndShouldAutoscroll:shouldAutoscroll actionBlock:^{
+    __strong __typeof__(self) strongSelf = weakSelf;
+    if (!strongSelf) {
+      return;
+    }
     
-    __weak __typeof__(self) weakSelf = self;
-    [self _updateTextViewAndShouldAutoscroll:shouldAutoscroll actionBlock:^{
-        __strong __typeof__(self) strongSelf = weakSelf;
-        if (!strongSelf) {
-            return;
-        }
-        
-        [strongSelf.textStorage setAttributedString:attributedLines];
-    }];
+    [strongSelf.textStorage setAttributedString:attributedLines];
+  }];
 }
 
 - (void)_updateTextViewAndShouldAutoscroll:(BOOL)shouldAutoscroll actionBlock:(void (^)(void))actionBlock {
+  __weak __typeof__(self) weakSelf = self;
+  dispatch_async(dispatch_get_main_queue(), ^{
+    __strong __typeof__(self) strongSelf = weakSelf;
+    if (!strongSelf) {
+      return;
+    }
     
-    __weak __typeof__(self) weakSelf = self;
+    actionBlock();
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        __strong __typeof__(self) strongSelf = weakSelf;
-        if (!strongSelf) {
-            return;
-        }
-        
-        actionBlock();
-        
-        if (shouldAutoscroll) {
-            [strongSelf scrollToEndOfDocument:nil];
-        }
-    });
+    if (shouldAutoscroll) {
+      [strongSelf scrollToEndOfDocument:nil];
+    }
+  });
 }
 
 - (void)scrollWheel:(NSEvent *)event {
-    [super scrollWheel:event];
-    
-    if (event.deltaY > 0) {
-        [_scrollDelegate logsScrollViewDidScrollUp];
-    } else {
-        [_scrollDelegate logsScrollViewDidScrollDown];
-    }
+  [super scrollWheel:event];
+  
+  if (event.deltaY > 0) {
+    [_scrollDelegate logsScrollViewDidScrollUp];
+  } else {
+    [_scrollDelegate logsScrollViewDidScrollDown];
+  }
 }
 
 @end

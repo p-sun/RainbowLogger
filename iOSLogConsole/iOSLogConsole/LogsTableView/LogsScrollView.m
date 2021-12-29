@@ -11,10 +11,10 @@
 @implementation LogsScrollView
 
 - (void)scrollWheel:(NSEvent *)event {
-    [super scrollWheel:event];
-    if (event.deltaY > 0) {
-        [_scrollDelegate logsScrollViewDidScrollUp];
-    }
+  [super scrollWheel:event];
+  if (event.deltaY > 0) {
+    [_scrollDelegate logsScrollViewDidScrollUp];
+  }
 }
 
 @end

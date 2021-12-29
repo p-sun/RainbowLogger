@@ -15,55 +15,55 @@
 #pragma mark - Color Logs with Filters
 
 + (NSAttributedString *)coloredLinesFromLogs:(NSArray<NSString *>*)logs filteredBy:(NSArray<Filter *>*)filters {
-    
-    NSMutableAttributedString *lines = [[NSMutableAttributedString alloc] initWithString:@""];
-    for (NSString *log in logs) {
-        if ([LogsProcessor doesLog:log passFilters:filters]) {
-            NSAttributedString *coloredLog = [LogsProcessor coloredLog:log usingFilters:filters];
-            [lines appendAttributedString:coloredLog];
-            [lines appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
-        }
+  
+  NSMutableAttributedString *lines = [[NSMutableAttributedString alloc] initWithString:@""];
+  for (NSString *log in logs) {
+    if ([LogsProcessor doesLog:log passFilters:filters]) {
+      NSAttributedString *coloredLog = [LogsProcessor coloredLog:log usingFilters:filters];
+      [lines appendAttributedString:coloredLog];
+      [lines appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
     }
-    
-    return lines;
+  }
+  
+  return lines;
 }
 
 + (NSAttributedString *)coloredLog:(NSString *)log usingFilters:(NSArray<Filter *>*)filters {
-    NSError *error = NULL;
-    NSMutableAttributedString *coloredString = [[NSMutableAttributedString alloc] initWithString:log];
-    
-    NSColor *almostWhite = [NSColor NSColorFrom255Red:244 green:248 blue:248];
-    [coloredString addAttributes:@{
-        NSForegroundColorAttributeName:almostWhite,
-        NSFontAttributeName:[NSFont fontWithName:@"Menlo" size:13],
-    } range:NSMakeRange(0, [log length])];
-
-    for (Filter* filter in filters) {
-        if (!filter.isEnabled) {
-            continue;
-        }
-        NSString *regexPattern;
-        if (filter.isRegex) {
-            regexPattern = filter.text;
-        } else {
-            regexPattern = [NSRegularExpression escapedPatternForString:filter.text];
-        }
-        
-        NSRegularExpression *regex = [NSRegularExpression
-                                      regularExpressionWithPattern:regexPattern
-                                      options:NSRegularExpressionCaseInsensitive
-                                      error:&error];
-        NSRange searchedRange = NSMakeRange(0, [log length]);
-        NSArray* matches = [regex matchesInString:log options:0 range: searchedRange];
-        for (NSTextCheckingResult *match in matches) {
-            FilterColorPopupInfo *info = [Filter colorPopupInfos][filter.colorTag];
-            [coloredString addAttributes:@{
-                NSForegroundColorAttributeName:info.color,
-            } range:match.range];
-        }
+  NSError *error = NULL;
+  NSMutableAttributedString *coloredString = [[NSMutableAttributedString alloc] initWithString:log];
+  
+  NSColor *almostWhite = [NSColor NSColorFrom255Red:244 green:248 blue:248];
+  [coloredString addAttributes:@{
+    NSForegroundColorAttributeName:almostWhite,
+    NSFontAttributeName:[NSFont fontWithName:@"Menlo" size:13],
+  } range:NSMakeRange(0, [log length])];
+  
+  for (Filter* filter in filters) {
+    if (!filter.isEnabled) {
+      continue;
+    }
+    NSString *regexPattern;
+    if (filter.isRegex) {
+      regexPattern = filter.text;
+    } else {
+      regexPattern = [NSRegularExpression escapedPatternForString:filter.text];
     }
     
-    return coloredString;
+    NSRegularExpression *regex = [NSRegularExpression
+                                  regularExpressionWithPattern:regexPattern
+                                  options:NSRegularExpressionCaseInsensitive
+                                  error:&error];
+    NSRange searchedRange = NSMakeRange(0, [log length]);
+    NSArray* matches = [regex matchesInString:log options:0 range: searchedRange];
+    for (NSTextCheckingResult *match in matches) {
+      FilterColorPopupInfo *info = [Filter colorPopupInfos][filter.colorTag];
+      [coloredString addAttributes:@{
+        NSForegroundColorAttributeName:info.color,
+      } range:match.range];
+    }
+  }
+  
+  return coloredString;
 }
 
 #pragma mark - Filter Logs
@@ -100,7 +100,7 @@
   
   return hasContainsAnyFilter ? passContainsAnyFilter : YES;
 }
-    
+
 + (BOOL)matchesPattern:(NSString*)pattern isRegex:(BOOL)isRegex forLog:(NSString *)log {
   if (isRegex) {
     NSError *error = NULL;

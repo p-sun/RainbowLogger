@@ -13,12 +13,12 @@
 
 - (instancetype)initWithColor:(NSColor * _Nonnull)color name:(NSString*)name
 {
-    self = [super init];
-    if (self) {
-        self.color = color;
-        self.name = name;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    self.color = color;
+    self.name = name;
+  }
+  return self;
 }
 
 @end

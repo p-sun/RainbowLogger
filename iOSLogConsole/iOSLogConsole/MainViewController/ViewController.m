@@ -16,16 +16,16 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-    
+  
   // Data
   _shouldAutoScroll = _autoscrollButton.state == NSControlStateValueOn;
-
+  
   _filtersManager = [[FiltersManager alloc] init];
   [_filtersManager setDelegate:self];
   
   _fileReader = [[FileReader alloc] init];
   [_fileReader setDelegate:self];
-
+  
   _logsManager = [[LogsManager alloc] init];
   [_logsManager setDelegate:self];
   
@@ -127,7 +127,7 @@
   dispatch_async(dispatch_get_main_queue(), ^{
     [self->_filtersTableView reloadData];
     [self->_filtersTableView resizeTableWidth];
-
+    
     [self _filterAllLogsAndUpdateTextView];
   });
 }

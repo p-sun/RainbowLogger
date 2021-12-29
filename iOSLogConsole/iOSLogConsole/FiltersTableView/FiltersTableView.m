@@ -10,35 +10,35 @@
 #import "FilterCell.h"
 
 typedef NS_ENUM(NSInteger, LogsColumnType) {
-    LogsColumnTypeFilterBy = 0,
-    LogsColumnTypeText = 1,
-    LogsColumnTypeIsColor = 2,
-    LogsColumnTypeIsEnabled = 3,
-    LogsColumnTypeDelete = 4
+  LogsColumnTypeFilterBy = 0,
+  LogsColumnTypeText = 1,
+  LogsColumnTypeIsColor = 2,
+  LogsColumnTypeIsEnabled = 3,
+  LogsColumnTypeDelete = 4
 };
 
 @implementation FiltersTableView {
-    NSInteger _columnsCount;
-    NSArray<NSString *> *_columnTitles;
-    NSArray *_filters;
-    NSInteger _sourceDragRow;
+  NSInteger _columnsCount;
+  NSArray<NSString *> *_columnTitles;
+  NSArray *_filters;
+  NSInteger _sourceDragRow;
 }
 
 # pragma mark - Setup
 
 - (void)awakeFromNib {
-    self.delegate = self;
-    self.dataSource = self;
-
-    if (_filters == nil) {
-        _filters = [[NSArray alloc] init];
-    }
-    
-    NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FilterCell" bundle:nil];
-    [self registerNib:textNib forIdentifier:@"FilterCell"];
+  self.delegate = self;
+  self.dataSource = self;
   
-    self.verticalMotionCanBeginDrag = YES;
-    [self registerForDraggedTypes:@[NSPasteboardTypeString]];
+  if (_filters == nil) {
+    _filters = [[NSArray alloc] init];
+  }
+  
+  NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FilterCell" bundle:nil];
+  [self registerNib:textNib forIdentifier:@"FilterCell"];
+  
+  self.verticalMotionCanBeginDrag = YES;
+  [self registerForDraggedTypes:@[NSPasteboardTypeString]];
   
   if (self.tableColumns.count == 0) {
     NSTableColumn *column = [[NSTableColumn alloc]initWithIdentifier:@"titleColumn"];
@@ -55,44 +55,44 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
 }
 
 - (void)setFilters:(NSArray<Filter *>*)filters {
-    if (![_filters isEqualToArray:filters]) {
-        _filters = filters;
-        __weak __typeof__(self) weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf reloadData];
-        });
-    }
+  if (![_filters isEqualToArray:filters]) {
+    _filters = filters;
+    __weak __typeof__(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [weakSelf reloadData];
+    });
+  }
 }
 
 # pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return _filters.count;
+  return _filters.count;
 }
 
 # pragma mark - NSTableViewDelegate
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    
-    FilterCell *cell = (FilterCell *)[self makeViewWithIdentifier:@"FilterCell" owner:self];
-    if (row < _filters.count) {
-        __weak __typeof__(self) weakSelf = self;
-        [cell setFilter:_filters[row]];
-        cell.onDelete = ^{
-            [weakSelf.filtersDelegate didDeleteFilterAtIndex:row];
-        };
-        cell.onRegexToggled = ^{
-            [weakSelf.filtersDelegate didToggleRegexAtIndex:row];
-        };
-        cell.onFilterChanged = ^(Filter* filter) {
-            [weakSelf.filtersDelegate didChangeFilter:filter atIndex:row];
-        };
-    }
-    return cell;
+  
+  FilterCell *cell = (FilterCell *)[self makeViewWithIdentifier:@"FilterCell" owner:self];
+  if (row < _filters.count) {
+    __weak __typeof__(self) weakSelf = self;
+    [cell setFilter:_filters[row]];
+    cell.onDelete = ^{
+      [weakSelf.filtersDelegate didDeleteFilterAtIndex:row];
+    };
+    cell.onRegexToggled = ^{
+      [weakSelf.filtersDelegate didToggleRegexAtIndex:row];
+    };
+    cell.onFilterChanged = ^(Filter* filter) {
+      [weakSelf.filtersDelegate didChangeFilter:filter atIndex:row];
+    };
+  }
+  return cell;
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
-    return NO;
+  return NO;
 }
 
 # pragma mark - Dragging

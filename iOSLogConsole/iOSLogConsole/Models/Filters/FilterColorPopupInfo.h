@@ -12,8 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FilterColorPopupInfo : NSObject
-    @property NSColor * _Nonnull color;
-    @property NSString * _Nonnull name;
+@property NSColor * _Nonnull color;
+@property NSString * _Nonnull name;
 
 - (instancetype)initWithColor:(NSColor * _Nonnull)color name:(NSString*)name;
 
