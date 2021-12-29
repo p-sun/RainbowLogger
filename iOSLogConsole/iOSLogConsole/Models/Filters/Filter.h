@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, FilterByType) {
 @property (nonatomic, readwrite) BOOL isRegex;
 
 @property (nonatomic, readwrite) NSString *text;
+@property (nonatomic, readwrite) NSString *replacementText;
 @property (nonatomic, readwrite) NSUInteger colorTag;
 @property (nonatomic, readwrite) BOOL isEnabled;
 

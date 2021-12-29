@@ -37,8 +37,11 @@
     [_colorsPopup.menu addItem:menuItem];
   }];
   
-  [_filterByText setTarget:self];
-  [_filterByText setAction:@selector(filterTextChanged:)];
+  [_filterTextField setTarget:self];
+  [_filterTextField setAction:@selector(filterTextChanged:)];
+  
+  [_replaceFilterTextField setTarget:self];
+  [_replaceFilterTextField setAction:@selector(replaceFilterTextChanged:)];
 }
 
 - (IBAction)deleteButtonPressed:(id)sender {
@@ -51,12 +54,12 @@
 
 - (IBAction)enableToggled:(NSButton *)sender {
   _filter.isEnabled = sender.state == NSControlStateValueOn;
-  [_filterByText setEnabled:_filter.isEnabled];
   [_filtersButton setEnabled:true];
+  [_replaceFiltersButton setEnabled:true];
   _onFilterChanged(_filter);
 }
 
-- (IBAction)filterByChanged:(NSPopUpButton *)sender {
+- (IBAction)filterChanged:(NSPopUpButton *)sender {
   _filter.type = sender.selectedTag;
   _onFilterChanged(_filter);
 }
@@ -64,6 +67,44 @@
 - (IBAction)colorChanged:(NSPopUpButton *)sender {
   _filter.colorTag = sender.selectedTag;
   _onFilterChanged(_filter);
+}
+
+
+
+- (NSImage *)swatchForColor:(NSColor *)color {
+  NSSize size = NSMakeSize(12, 12);
+  NSImage *image = [[NSImage alloc] initWithSize:size];
+  [image lockFocus];
+  [color drawSwatchInRect:NSMakeRect(0, 0, size.width, size.height)];
+  [image unlockFocus];
+  return image;
+}
+
+- (void)setFilter:(Filter *)filter {
+  self.filterTextField.stringValue = filter.text;
+  self.replaceFilterTextField.stringValue = filter.replacementText ? filter.replacementText : @"";
+  
+  [_filtersButton setEnabled:true];
+  [_replaceFiltersButton setEnabled:true];
+  self.isEnabledToggle.state = filter.isEnabled ? NSControlStateValueOn : NSControlStateValueOff;
+  self.regexButton.state = filter.isRegex ? NSControlStateValueOn : NSControlStateValueOff;
+
+  [self.colorsPopup selectItemWithTag:filter.colorTag];
+  [self.filterByPopup selectItemWithTag:filter.type];
+  
+  _filter = filter;
+}
+
+#pragma mark - Filter Text Fields
+
+- (IBAction)filterPressed:(id)sender {
+  [_filtersButton setEnabled:false];
+  [_filterTextField becomeFirstResponder];
+}
+
+- (IBAction)replaceFilterPressed:(id)sender {
+  [_replaceFiltersButton setEnabled:false];
+  [_replaceFilterTextField becomeFirstResponder];
 }
 
 - (void)filterTextChanged:(NSTextField *)sender {
@@ -79,32 +120,17 @@
   [_filtersButton setEnabled:true];
 }
 
-- (NSImage *)swatchForColor:(NSColor *)color {
-  NSSize size = NSMakeSize(12, 12);
-  NSImage *image = [[NSImage alloc] initWithSize:size];
-  [image lockFocus];
-  [color drawSwatchInRect:NSMakeRect(0, 0, size.width, size.height)];
-  [image unlockFocus];
-  return image;
-}
-
-- (void)setFilter:(Filter *)filter {
-  self.filterByText.stringValue = filter.text;
-  self.isEnabledToggle.state = filter.isEnabled ? NSControlStateValueOn : NSControlStateValueOff;
-  self.regexButton.state = filter.isRegex ? NSControlStateValueOn : NSControlStateValueOff;
-  [_filterByText setEnabled:filter.isEnabled];
-  [_filtersButton setEnabled:true];
-  [self.colorsPopup selectItemWithTag:filter.colorTag];
-  [self.filterByPopup selectItemWithTag:filter.type];
+- (void)replaceFilterTextChanged:(NSTextField *)sender {
+  if (![_filter.replacementText isEqualToString:sender.stringValue]) {
+    BOOL isSenderEmpty = [sender.stringValue isEqualToString:@""];
+    [_isEnabledToggle setState: isSenderEmpty ? NSControlStateValueOff : NSControlStateValueOn];
+    [self enableToggled:_isEnabledToggle];
+    
+    _filter.replacementText = sender.stringValue;
+    _onFilterChanged(_filter);
+  }
   
-  _filter = filter;
+  [_replaceFiltersButton setEnabled:true];
 }
-
-- (IBAction)filterPressed:(id)sender {
-  [_filtersButton setEnabled:false];
-  [_filterByText setEnabled:true];
-  [_filterByText becomeFirstResponder];
-}
-
 @end
 

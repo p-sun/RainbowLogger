@@ -17,8 +17,8 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
 +(void)initialize {
   if (self == [Filter class]) {
     filterPopupInfosArray = [NSArray arrayWithObjects:
-                             [[FilterTypePopupInfo alloc] initWithType:FilterByTypeColorContainingText name:@""],
-                             [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAll name:@"Contains All"],
+                             [[FilterTypePopupInfo alloc] initWithType:FilterByTypeColorContainingText name:@"None"],
+                             [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAll name:@"Must Contain"],
                              [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAny name:@"Contains Any"],
                              [[FilterTypePopupInfo alloc] initWithType:FilterByTypeNotContains name:@"Not Contains"],
                              nil];

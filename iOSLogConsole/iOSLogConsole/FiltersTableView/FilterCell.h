@@ -17,8 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak) IBOutlet NSPopUpButton *filterByPopup;
 @property (weak) IBOutlet NSButton *regexButton;
 
-@property (weak) IBOutlet NSTextField *filterByText;
+@property (weak) IBOutlet NSTextField *filterTextField;
 @property (weak) IBOutlet NSButton *filtersButton;
+@property (weak) IBOutlet NSButton *replaceFiltersButton;
+@property (weak) IBOutlet NSTextField *replaceFilterTextField;
 
 @property (weak) IBOutlet NSPopUpButton *colorsPopup;
 @property (weak) IBOutlet NSButton *deleteButton;
@@ -32,8 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)regexButtonPressed:(id)sender;
 - (IBAction)deleteButtonPressed:(id)sender;
 - (IBAction)enableToggled:(id)sender;
-- (IBAction)filterByChanged:(id)sender;
+- (IBAction)filterChanged:(id)sender;
 - (IBAction)filterPressed:(id)sender;
+- (IBAction)replaceFilterPressed:(id)sender;
 - (IBAction)colorChanged:(id)sender;
 
 @end
