@@ -9,15 +9,15 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <tableCellView id="FUr-wE-i1z" customClass="FilterCell">
-            <rect key="frame" x="0.0" y="0.0" width="2324" height="20"/>
+        <tableCellView misplaced="YES" id="FUr-wE-i1z" customClass="FilterCell">
+            <rect key="frame" x="0.0" y="0.0" width="2455" height="22"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dU0-g0-YeE">
-                    <rect key="frame" x="12" y="0.0" width="2300" height="20"/>
+                <stackView wantsLayer="YES" distribution="fill" orientation="horizontal" alignment="centerY" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dU0-g0-YeE">
+                    <rect key="frame" x="12" y="0.0" width="2431" height="22"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-RL-q4b">
-                            <rect key="frame" x="-2" y="2" width="200" height="16"/>
+                            <rect key="frame" x="-2" y="3" width="124" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title=" ≡ " id="jO5-Jp-Rcl">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -25,22 +25,33 @@
                             </textFieldCell>
                         </textField>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KZc-CQ-Lxe">
-                            <rect key="frame" x="202" y="1" width="24" height="18"/>
+                            <rect key="frame" x="134" y="2" width="72" height="18"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="iJW-au-TRT"/>
+                                <constraint firstAttribute="width" constant="68" id="iJW-au-TRT"/>
                             </constraints>
-                            <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="leading" state="on" inset="2" id="bKF-yU-jas">
-                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                            <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="above" alignment="center" state="on" inset="2" id="bKF-yU-jas">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
                                 <action selector="enableToggled:" target="FUr-wE-i1z" id="DfD-4P-F3F"/>
                             </connections>
                         </button>
-                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i24-rd-9Vc" userLabel="Filters Popup">
-                            <rect key="frame" x="229" y="-4" width="107" height="25"/>
+                        <box focusRingType="none" boxType="custom" borderWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="DKe-or-nIo" userLabel="Divider">
+                            <rect key="frame" x="220" y="-38" width="1" height="70"/>
+                            <view key="contentView" id="6Rn-lV-Odx">
+                                <rect key="frame" x="0.0" y="0.0" width="1" height="70"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="9X1-ak-257"/>
+                                <constraint firstAttribute="width" constant="1" id="b50-1f-2gD"/>
+                            </constraints>
+                            <color key="fillColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                        </box>
+                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i24-rd-9Vc" userLabel="Filters Popup">
+                            <rect key="frame" x="234" y="-3" width="137" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="130" id="9X1-ak-257"/>
                             </constraints>
                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="dQA-G5-DiW">
                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -52,32 +63,43 @@
                             </connections>
                         </popUpButton>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eAm-mw-qJk">
-                            <rect key="frame" x="338" y="2" width="1204" height="16"/>
-                            <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Filter Text Field" placeholderString="Filter Text" id="nRl-xN-L76">
+                            <rect key="frame" x="383" y="0.0" width="1212" height="22"/>
+                            <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Filter Text Field" placeholderString="Filter Text" bezelStyle="round" id="nRl-xN-L76">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wKj-J0-1he">
-                            <rect key="frame" x="1547" y="-2" width="70" height="23"/>
+                            <rect key="frame" x="1609" y="2" width="72" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="mgX-xk-fWa"/>
                             </constraints>
-                            <buttonCell key="cell" type="roundTextured" title="Regex" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" inset="2" id="GVl-xG-bMh">
-                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                            <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="above" alignment="center" state="on" inset="2" id="GVl-xG-bMh">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
                                 <action selector="regexButtonPressed:" target="FUr-wE-i1z" id="pIB-Aw-6tR"/>
                             </connections>
                         </button>
-                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rPv-CE-rXv" userLabel="Colors Popup">
-                            <rect key="frame" x="1621" y="-4" width="75" height="25"/>
+                        <box focusRingType="none" boxType="custom" borderWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="ATy-wf-2kU" userLabel="Divider">
+                            <rect key="frame" x="1695" y="-38" width="1" height="70"/>
+                            <view key="contentView" id="xAJ-F8-LS5">
+                                <rect key="frame" x="0.0" y="0.0" width="1" height="70"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
                             <constraints>
-                                <constraint firstAttribute="width" constant="68" id="SFC-R6-1s8"/>
+                                <constraint firstAttribute="width" constant="1" id="yfd-Kc-uCq"/>
                             </constraints>
-                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="brW-Y2-5Qo">
+                            <color key="fillColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                        </box>
+                        <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rPv-CE-rXv" userLabel="Colors Popup">
+                            <rect key="frame" x="1709" y="-3" width="87" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="SFC-R6-1s8"/>
+                            </constraints>
+                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" id="brW-Y2-5Qo">
                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="menu"/>
                                 <menu key="menu" id="tXt-pe-piA"/>
@@ -86,9 +108,20 @@
                                 <action selector="colorChanged:" target="FUr-wE-i1z" id="wKV-Ov-a2Q"/>
                             </connections>
                         </popUpButton>
+                        <box focusRingType="none" boxType="custom" borderWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="Rrk-3j-kgj" userLabel="Divider">
+                            <rect key="frame" x="1808" y="-38" width="1" height="70"/>
+                            <view key="contentView" id="jmy-fN-eiV">
+                                <rect key="frame" x="0.0" y="0.0" width="1" height="70"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="k5w-du-7pd"/>
+                            </constraints>
+                            <color key="fillColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                        </box>
                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bnb-a3-dQU">
-                            <rect key="frame" x="1698" y="2" width="604" height="16"/>
-                            <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Replacement Filter TextField" placeholderString="Replacement Text" id="sHG-CP-HRX">
+                            <rect key="frame" x="1825" y="0.0" width="606" height="22"/>
+                            <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Replacement Filter TextField" placeholderString="Replacement Text" bezelStyle="round" id="sHG-CP-HRX">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -96,9 +129,18 @@
                         </textField>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="DKe-or-nIo" firstAttribute="top" secondItem="Rrk-3j-kgj" secondAttribute="top" id="10C-7R-ufN"/>
                         <constraint firstItem="bnb-a3-dQU" firstAttribute="width" secondItem="eAm-mw-qJk" secondAttribute="width" multiplier="0.5" id="EcZ-FU-Eqi"/>
+                        <constraint firstItem="DKe-or-nIo" firstAttribute="bottom" secondItem="ATy-wf-2kU" secondAttribute="bottom" id="Xxd-FT-cVi"/>
+                        <constraint firstItem="DKe-or-nIo" firstAttribute="top" secondItem="ATy-wf-2kU" secondAttribute="top" id="YjE-Wd-WFF"/>
+                        <constraint firstItem="DKe-or-nIo" firstAttribute="bottom" secondItem="Rrk-3j-kgj" secondAttribute="bottom" id="nHU-aw-AuH"/>
+                        <constraint firstItem="DKe-or-nIo" firstAttribute="top" secondItem="dU0-g0-YeE" secondAttribute="top" constant="-10" id="txc-Qw-zoa"/>
+                        <constraint firstAttribute="bottom" secondItem="DKe-or-nIo" secondAttribute="bottom" constant="-10" id="usS-Io-hcH"/>
                     </constraints>
                     <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
@@ -115,10 +157,13 @@
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
                 <button horizontalHuggingPriority="200" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O3f-mk-3Qx">
-                    <rect key="frame" x="345" y="-7" width="1214" height="32"/>
+                    <rect key="frame" x="388" y="-7" width="1226" height="34"/>
                     <buttonCell key="cell" type="push" title="Transparent Button" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="yry-rv-Plz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -134,7 +179,7 @@
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="200" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SJV-J5-lch">
-                    <rect key="frame" x="1705" y="-7" width="614" height="32"/>
+                    <rect key="frame" x="1830" y="-7" width="620" height="34"/>
                     <buttonCell key="cell" type="push" title="Transparent Button" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="UWf-WX-oIz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>

@@ -8,6 +8,7 @@
 
 #import "FilterCell.h"
 #import "Filter.h"
+#import "NSColorExtensions.h"
 
 @implementation FilterCell {
   struct FilterCellData _data;
@@ -15,14 +16,7 @@
 
 - (void)awakeFromNib {
   NSPopUpButtonCell *cell = (NSPopUpButtonCell *)_colorsPopup.cell;
-  cell.arrowPosition = NSPopUpNoArrow;
   cell = (NSPopUpButtonCell *)_filterByPopup.cell;
-  cell.arrowPosition = NSPopUpNoArrow;
-  [_filterByPopup setBezelStyle:NSBezelStyleRegularSquare];
-  [_colorsPopup setBezelStyle:NSBezelStyleRegularSquare];
-  [_filterByPopup setButtonType:NSButtonTypeMomentaryLight];
-  [_colorsPopup setButtonType:NSButtonTypeMomentaryLight];
-  [_regexButton setBezelStyle:NSBezelStyleTexturedRounded];
   
   [Filter.filterPopupInfos enumerateObjectsUsingBlock:^(FilterTypePopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
     NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
@@ -42,7 +36,7 @@
   [_filterTextField setAction:@selector(filterTextChanged:)];
   
   [_replaceFilterTextField setTarget:self];
-  [_replaceFilterTextField setAction:@selector(replaceFilterTextChanged:)];
+  [_replaceFilterTextField setAction:@selector(replaceFilterTextChanged:)];  
 }
 
 - (IBAction)regexButtonPressed:(id)sender {
