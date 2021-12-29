@@ -9,7 +9,9 @@
 #import "FilterCell.h"
 #import "Filter.h"
 
-@implementation FilterCell
+@implementation FilterCell {
+  struct FilterCellData _data;
+}
 
 - (void)awakeFromNib {
   NSPopUpButtonCell *cell = (NSPopUpButtonCell *)_colorsPopup.cell;
@@ -45,31 +47,29 @@
 }
 
 - (IBAction)deleteButtonPressed:(id)sender {
-  _onDelete();
+  _data.onDelete();
 }
 
 - (IBAction)regexButtonPressed:(id)sender {
-  _onRegexToggled();
+  _data.onRegexToggled();
 }
 
 - (IBAction)enableToggled:(NSButton *)sender {
-  _filter.isEnabled = sender.state == NSControlStateValueOn;
+  _data.filter.isEnabled = sender.state == NSControlStateValueOn;
   [_filtersButton setEnabled:true];
   [_replaceFiltersButton setEnabled:true];
-  _onFilterChanged(_filter);
+  _data.onFilterChanged(_data.filter);
 }
 
 - (IBAction)filterChanged:(NSPopUpButton *)sender {
-  _filter.type = sender.selectedTag;
-  _onFilterChanged(_filter);
+  _data.filter.type = sender.selectedTag;
+  _data.onFilterChanged(_data.filter);
 }
 
 - (IBAction)colorChanged:(NSPopUpButton *)sender {
-  _filter.colorTag = sender.selectedTag;
-  _onFilterChanged(_filter);
+  _data.filter.colorTag = sender.selectedTag;
+  _data.onFilterChanged(_data.filter);
 }
-
-
 
 - (NSImage *)swatchForColor:(NSColor *)color {
   NSSize size = NSMakeSize(12, 12);
@@ -80,7 +80,9 @@
   return image;
 }
 
-- (void)setFilter:(Filter *)filter {
+- (void)setCellData:(struct FilterCellData) data {
+  Filter *filter = data.filter;
+  
   self.filterTextField.stringValue = filter.text;
   self.replaceFilterTextField.stringValue = filter.replacementText ? filter.replacementText : @"";
   
@@ -92,7 +94,7 @@
   [self.colorsPopup selectItemWithTag:filter.colorTag];
   [self.filterByPopup selectItemWithTag:filter.type];
   
-  _filter = filter;
+  _data = data;
 }
 
 #pragma mark - Filter Text Fields
@@ -100,37 +102,43 @@
 - (IBAction)filterPressed:(id)sender {
   [_filtersButton setEnabled:false];
   [_filterTextField becomeFirstResponder];
+  
+  _data.onFilterSelected(_data.row);
 }
 
 - (IBAction)replaceFilterPressed:(id)sender {
   [_replaceFiltersButton setEnabled:false];
   [_replaceFilterTextField becomeFirstResponder];
+  _data.onFilterSelected(_data.row);
 }
 
 - (void)filterTextChanged:(NSTextField *)sender {
-  if (![_filter.text isEqualToString:sender.stringValue]) {
+  if (![_data.filter.text isEqualToString:sender.stringValue]) {
     BOOL isSenderEmpty = [sender.stringValue isEqualToString:@""];
     [_isEnabledToggle setState: isSenderEmpty ? NSControlStateValueOff : NSControlStateValueOn];
     [self enableToggled:_isEnabledToggle];
     
-    _filter.text = sender.stringValue;
-    _onFilterChanged(_filter);
+    _data.filter.text = sender.stringValue;
+    
+    _data.onFilterChanged(_data.filter);
   }
   
   [_filtersButton setEnabled:true];
 }
 
 - (void)replaceFilterTextChanged:(NSTextField *)sender {
-  if (![_filter.replacementText isEqualToString:sender.stringValue]) {
+  if (![_data.filter.replacementText isEqualToString:sender.stringValue]) {
     BOOL isSenderEmpty = [sender.stringValue isEqualToString:@""];
     [_isEnabledToggle setState: isSenderEmpty ? NSControlStateValueOff : NSControlStateValueOn];
     [self enableToggled:_isEnabledToggle];
     
-    _filter.replacementText = sender.stringValue;
-    _onFilterChanged(_filter);
+    _data.filter.replacementText = sender.stringValue;
+    
+    _data.onFilterChanged(_data.filter);
   }
   
   [_replaceFiltersButton setEnabled:true];
 }
+
 @end
 

@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
   NSArray<NSString *> *_columnTitles;
   NSArray *_filters;
   NSInteger _sourceDragRow;
+  NSInteger _selectedRow;
 }
 
 # pragma mark - Setup
@@ -45,6 +46,11 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     column.title = @"Filters";
     [self addTableColumn:column];
   }
+  
+  // Row Selection
+  NSTrackingArea *tracker = [[NSTrackingArea alloc] initWithRect:self.bounds options:NSTrackingMouseEnteredAndExited|NSTrackingMouseMoved|NSTrackingActiveInActiveApp owner:self userInfo:nil];
+  [self addTrackingArea:tracker];
+  _selectedRow = -1;
 }
 
 - (void)resizeTableWidth {
@@ -77,22 +83,41 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
   FilterCell *cell = (FilterCell *)[self makeViewWithIdentifier:@"FilterCell" owner:self];
   if (row < _filters.count) {
     __weak __typeof__(self) weakSelf = self;
-    [cell setFilter:_filters[row]];
-    cell.onDelete = ^{
-      [weakSelf.filtersDelegate didDeleteFilterAtIndex:row];
-    };
-    cell.onRegexToggled = ^{
-      [weakSelf.filtersDelegate didToggleRegexAtIndex:row];
-    };
-    cell.onFilterChanged = ^(Filter* filter) {
-      [weakSelf.filtersDelegate didChangeFilter:filter atIndex:row];
-    };
+    [cell setCellData:(struct FilterCellData) {
+      .filter = _filters[row],
+      .row = row,
+      .onDelete = ^{
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) { return; }
+        
+        [strongSelf.filtersDelegate didDeleteFilterAtIndex:row];
+      },
+      .onRegexToggled = ^{
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) { return; }
+        
+        [strongSelf.filtersDelegate didToggleRegexAtIndex:row];
+      },
+      .onFilterChanged = ^(Filter* filter) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) { return; }
+        
+        [strongSelf.filtersDelegate didChangeFilter:filter atIndex:row];
+      },
+      .onFilterSelected = ^(NSInteger row) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        if (!strongSelf) { return; }
+        
+        strongSelf->_selectedRow = row;
+        [strongSelf selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:false];
+      },
+    }];
   }
   return cell;
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
-  return NO;
+  return YES;
 }
 
 # pragma mark - Dragging

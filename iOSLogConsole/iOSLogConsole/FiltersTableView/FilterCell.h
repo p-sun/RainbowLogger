@@ -11,6 +11,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+struct FilterCellData {
+  Filter *filter;
+  NSInteger row;
+  
+  void(^onRegexToggled)(void);
+  void(^onDelete)(void);
+  void(^onFilterChanged)(Filter *);
+  void(^onFilterSelected)(NSInteger row);
+};
+
 @interface FilterCell : NSTableCellView
 
 @property (weak) IBOutlet NSButton *isEnabledToggle;
@@ -25,11 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak) IBOutlet NSPopUpButton *colorsPopup;
 @property (weak) IBOutlet NSButton *deleteButton;
 
-@property (nonatomic, strong) Filter *filter;
-
-@property (nonatomic, copy) void(^onRegexToggled)(void);
-@property (nonatomic, copy) void(^onDelete)(void);
-@property (nonatomic, copy) void(^onFilterChanged)(Filter *);
+- (void)setCellData:(struct FilterCellData) data;
 
 - (IBAction)regexButtonPressed:(id)sender;
 - (IBAction)deleteButtonPressed:(id)sender;

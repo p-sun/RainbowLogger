@@ -41,7 +41,8 @@
     __weak __typeof__(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
       __strong __typeof(weakSelf) strongSelf = weakSelf;
-      
+      if (!strongSelf) { return; }
+
       [strongSelf.attributedLines addObject:attributedLine];
       
       NSIndexSet *rowIndex = [[NSIndexSet alloc] initWithIndex:strongSelf.attributedLines.count - 1];
