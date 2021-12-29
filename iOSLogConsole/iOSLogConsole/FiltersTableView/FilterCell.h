@@ -16,7 +16,6 @@ struct FilterCellData {
   NSInteger row;
   
   void(^onRegexToggled)(void);
-  void(^onDelete)(void);
   void(^onFilterChanged)(Filter *);
   void(^onFilterSelected)(NSInteger row);
 };
@@ -33,12 +32,10 @@ struct FilterCellData {
 @property (weak) IBOutlet NSTextField *replaceFilterTextField;
 
 @property (weak) IBOutlet NSPopUpButton *colorsPopup;
-@property (weak) IBOutlet NSButton *deleteButton;
 
 - (void)setCellData:(struct FilterCellData) data;
 
 - (IBAction)regexButtonPressed:(id)sender;
-- (IBAction)deleteButtonPressed:(id)sender;
 - (IBAction)enableToggled:(id)sender;
 - (IBAction)filterChanged:(id)sender;
 - (IBAction)filterPressed:(id)sender;

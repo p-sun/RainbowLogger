@@ -17,7 +17,7 @@
                     <rect key="frame" x="12" y="0.0" width="2300" height="20"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a4b-RL-q4b">
-                            <rect key="frame" x="-2" y="2" width="124" height="16"/>
+                            <rect key="frame" x="-2" y="2" width="200" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title=" ≡ " id="jO5-Jp-Rcl">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -25,7 +25,7 @@
                             </textFieldCell>
                         </textField>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KZc-CQ-Lxe">
-                            <rect key="frame" x="126" y="1" width="24" height="18"/>
+                            <rect key="frame" x="202" y="1" width="24" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="iJW-au-TRT"/>
                             </constraints>
@@ -38,7 +38,7 @@
                             </connections>
                         </button>
                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i24-rd-9Vc" userLabel="Filters Popup">
-                            <rect key="frame" x="153" y="-4" width="107" height="25"/>
+                            <rect key="frame" x="229" y="-4" width="107" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="9X1-ak-257"/>
                             </constraints>
@@ -52,7 +52,7 @@
                             </connections>
                         </popUpButton>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eAm-mw-qJk">
-                            <rect key="frame" x="262" y="2" width="1204" height="16"/>
+                            <rect key="frame" x="338" y="2" width="1204" height="16"/>
                             <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Filter Text Field" placeholderString="Filter Text" id="nRl-xN-L76">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -60,7 +60,7 @@
                             </textFieldCell>
                         </textField>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wKj-J0-1he">
-                            <rect key="frame" x="1471" y="-2" width="70" height="23"/>
+                            <rect key="frame" x="1547" y="-2" width="70" height="23"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="mgX-xk-fWa"/>
                             </constraints>
@@ -73,7 +73,7 @@
                             </connections>
                         </button>
                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rPv-CE-rXv" userLabel="Colors Popup">
-                            <rect key="frame" x="1545" y="-4" width="75" height="25"/>
+                            <rect key="frame" x="1621" y="-4" width="75" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="SFC-R6-1s8"/>
                             </constraints>
@@ -87,32 +87,18 @@
                             </connections>
                         </popUpButton>
                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bnb-a3-dQU">
-                            <rect key="frame" x="1622" y="2" width="604" height="16"/>
+                            <rect key="frame" x="1698" y="2" width="604" height="16"/>
                             <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Replacement Filter TextField" placeholderString="Replacement Text" id="sHG-CP-HRX">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Om3-Ja-qXb">
-                            <rect key="frame" x="2231" y="-2" width="70" height="23"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="68" id="FvT-JM-OwO"/>
-                            </constraints>
-                            <buttonCell key="cell" type="roundTextured" title="🗑" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" inset="2" id="JT1-oQ-9Oe">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="deleteButtonPressed:" target="FUr-wE-i1z" id="dwA-un-a8g"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="bnb-a3-dQU" firstAttribute="width" secondItem="eAm-mw-qJk" secondAttribute="width" multiplier="0.5" id="EcZ-FU-Eqi"/>
                     </constraints>
                     <visibilityPriorities>
-                        <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
@@ -129,21 +115,26 @@
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
                 <button horizontalHuggingPriority="200" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O3f-mk-3Qx">
-                    <rect key="frame" x="269" y="-7" width="1214" height="32"/>
+                    <rect key="frame" x="345" y="-7" width="1214" height="32"/>
                     <buttonCell key="cell" type="push" title="Transparent Button" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="yry-rv-Plz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="filterPressed:" target="FUr-wE-i1z" id="5JZ-Vv-8fz"/>
                     </connections>
                 </button>
                 <button horizontalHuggingPriority="200" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SJV-J5-lch">
-                    <rect key="frame" x="1629" y="-7" width="614" height="32"/>
+                    <rect key="frame" x="1705" y="-7" width="614" height="32"/>
                     <buttonCell key="cell" type="push" title="Transparent Button" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="UWf-WX-oIz">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -169,7 +160,6 @@
             </constraints>
             <connections>
                 <outlet property="colorsPopup" destination="rPv-CE-rXv" id="Y1S-uk-sLW"/>
-                <outlet property="deleteButton" destination="Om3-Ja-qXb" id="qtt-Tq-S20"/>
                 <outlet property="filterByPopup" destination="i24-rd-9Vc" id="r9m-Sg-Pnd"/>
                 <outlet property="filterTextField" destination="eAm-mw-qJk" id="itV-3V-G5R"/>
                 <outlet property="filtersButton" destination="O3f-mk-3Qx" id="ce6-ga-BCj"/>

@@ -12,14 +12,17 @@
 #import "Filter.h"
 #import "LogsProcessor.h"
 
-@implementation ViewController
+@implementation ViewController {
+  NSInteger _previousSelectedRow;
+}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   
   // Data
   _shouldAutoScroll = _autoscrollButton.state == NSControlStateValueOn;
-  
+  _previousSelectedRow = -1;
+
   _filtersManager = [[FiltersManager alloc] init];
   [_filtersManager setDelegate:self];
   
@@ -28,11 +31,12 @@
   
   _logsManager = [[LogsManager alloc] init];
   [_logsManager setDelegate:self];
-  
+
   // Views
+  _filtersTableView.allowsMultipleSelection = YES;
   [_filtersTableView setFiltersDelegate:self];
   [_filtersTableView setFilters:[_filtersManager getFilters]];
-  
+
   [_logsTextView setScrollDelegate:self];
 }
 
@@ -56,8 +60,12 @@
   [self _filterAllLogsAndUpdateTextView];
 }
 
-- (IBAction)clearFilters:(id)sender {
-  [_filtersManager clearFilters];
+- (IBAction)deleteSelectedFilter:(id)sender {
+  NSIndexSet *selectedRows = _filtersTableView.selectedRowIndexes;
+  if (selectedRows.count >= 0) {
+    _previousSelectedRow = selectedRows.firstIndex;
+    [_filtersManager deleteFiltersAtIndexes:selectedRows];
+  }
 }
 
 - (IBAction)addFilterButtonPressed:(id)sender {
@@ -129,6 +137,8 @@
     [self->_filtersTableView resizeTableWidth];
     
     [self _filterAllLogsAndUpdateTextView];
+    
+    [self selectNextRow];
   });
 }
 
@@ -166,6 +176,19 @@
 - (void)_filterAllLogsAndUpdateTextView {
   NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:_logsManager.getLogs filteredBy:[_filtersManager getFilters]];
   [_logsTextView setAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
+}
+
+#pragma mark - Select Next Row After Deleting a Row
+
+- (void)selectNextRow {
+  if (_previousSelectedRow >= 0) {
+    if (_previousSelectedRow < _filtersTableView.numberOfRows) {
+      [self->_filtersTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:_previousSelectedRow] byExtendingSelection:false];
+    } else {
+      [self->_filtersTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:_previousSelectedRow - 1] byExtendingSelection:false];
+    }
+    _previousSelectedRow = -1;
+  }
 }
 
 @end

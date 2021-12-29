@@ -36,7 +36,7 @@
 - (IBAction)restartPressed:(id)sender;
 - (IBAction)pauseButtonToggled:(NSButton *)sender;
 - (IBAction)autoscrollButtonToggled:(NSButton *)sender;
-- (IBAction)clearFilters:(id)sender;
+- (IBAction)deleteSelectedFilter:(id)sender;
 
 @end
 

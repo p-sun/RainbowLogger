@@ -49,12 +49,17 @@
   }];
 }
 
-- (void)deleteFilterAtIndex:(NSInteger)index {
+- (void)deleteFiltersAtIndexes:(NSIndexSet*)indexes {
   [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
-    [filters removeObjectAtIndex:index];
+    [filters removeObjectsAtIndexes:indexes];
     return filters;
   }];
+}
+
+- (void)deleteFilterAtIndex:(NSInteger)index {
+  NSIndexSet *rowIndex = [[NSIndexSet alloc] initWithIndex:index];
+  [self deleteFiltersAtIndexes:rowIndex];
 }
 
 - (void)replaceFilter:(Filter *)filter atIndex:(NSInteger)index {

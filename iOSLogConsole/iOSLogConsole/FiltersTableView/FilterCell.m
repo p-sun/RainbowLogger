@@ -23,7 +23,6 @@
   [_filterByPopup setButtonType:NSButtonTypeMomentaryLight];
   [_colorsPopup setButtonType:NSButtonTypeMomentaryLight];
   [_regexButton setBezelStyle:NSBezelStyleTexturedRounded];
-  [_deleteButton setBezelStyle:NSBezelStyleTexturedRounded];
   
   [Filter.filterPopupInfos enumerateObjectsUsingBlock:^(FilterTypePopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
     NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
@@ -44,10 +43,6 @@
   
   [_replaceFilterTextField setTarget:self];
   [_replaceFilterTextField setAction:@selector(replaceFilterTextChanged:)];
-}
-
-- (IBAction)deleteButtonPressed:(id)sender {
-  _data.onDelete();
 }
 
 - (IBAction)regexButtonPressed:(id)sender {
@@ -102,7 +97,6 @@
 - (IBAction)filterPressed:(id)sender {
   [_filtersButton setEnabled:false];
   [_filterTextField becomeFirstResponder];
-  
   _data.onFilterSelected(_data.row);
 }
 

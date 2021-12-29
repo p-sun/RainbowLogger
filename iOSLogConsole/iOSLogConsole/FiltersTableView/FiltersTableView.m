@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
   NSArray<NSString *> *_columnTitles;
   NSArray *_filters;
   NSInteger _sourceDragRow;
-  NSInteger _selectedRow;
+  NSIndexSet *_previousShiftSelection;
 }
 
 # pragma mark - Setup
@@ -50,7 +50,6 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
   // Row Selection
   NSTrackingArea *tracker = [[NSTrackingArea alloc] initWithRect:self.bounds options:NSTrackingMouseEnteredAndExited|NSTrackingMouseMoved|NSTrackingActiveInActiveApp owner:self userInfo:nil];
   [self addTrackingArea:tracker];
-  _selectedRow = -1;
 }
 
 - (void)resizeTableWidth {
@@ -86,12 +85,6 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
     [cell setCellData:(struct FilterCellData) {
       .filter = _filters[row],
       .row = row,
-      .onDelete = ^{
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        if (!strongSelf) { return; }
-        
-        [strongSelf.filtersDelegate didDeleteFilterAtIndex:row];
-      },
       .onRegexToggled = ^{
         __strong __typeof(weakSelf) strongSelf = weakSelf;
         if (!strongSelf) { return; }
@@ -108,8 +101,7 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
         if (!strongSelf) { return; }
         
-        strongSelf->_selectedRow = row;
-        [strongSelf selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:false];
+        [strongSelf onFilterSelectedAtRow:row];
       },
     }];
   }
@@ -118,6 +110,48 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
   return YES;
+}
+
+/* Allow multiple selected rows similar to Finder.
+   * If Command is pressed, select or deselect current row.
+   * If Shift is pressed, add to selection all keys from previous selected row to currently row.
+   May be able to avoid this complex logic if it's possible to pass tap event to the NSTableView,
+   while allowing a button on the text fields to allow them to become first responder with one tap.
+ **/
+- (void)onFilterSelectedAtRow:(NSInteger)row {
+  NSUInteger flags = [[NSApp currentEvent] modifierFlags];
+  if (flags & NSEventModifierFlagCommand) {
+    if ([self.selectedRowIndexes containsIndex:row]) {
+      [self deselectRow:row];
+    } else {
+      [self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:true];
+    }
+    _previousShiftSelection = nil;
+  } else if (flags & NSEventModifierFlagShift) {
+    NSRange rangeToAdd;
+    if (self.selectedRow < 0) {
+      rangeToAdd = NSMakeRange(0, row + 1);
+    } else if (self.selectedRow <= row) {
+      rangeToAdd = NSMakeRange(self.selectedRow, row - self.selectedRow + 1);
+    } else {
+      rangeToAdd = NSMakeRange(row, self.selectedRow - row + 1);
+    }
+    NSIndexSet *indexesToAdd = [NSIndexSet indexSetWithIndexesInRange:rangeToAdd];
+
+    NSMutableIndexSet *indexesToSelect = [NSMutableIndexSet new];
+    [indexesToSelect addIndexes:self.selectedRowIndexes];
+    if (_previousShiftSelection) {
+      [indexesToSelect removeIndexes:_previousShiftSelection];
+      [indexesToSelect addIndexes:indexesToAdd];
+    } else {
+      [indexesToSelect addIndexes:indexesToAdd];
+    }
+    [self selectRowIndexes:indexesToSelect byExtendingSelection:false];
+    _previousShiftSelection = indexesToAdd;
+  } else {
+    [self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:false];
+    _previousShiftSelection = nil;
+  }
 }
 
 # pragma mark - Dragging
