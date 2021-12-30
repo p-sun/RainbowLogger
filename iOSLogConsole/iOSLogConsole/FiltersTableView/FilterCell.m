@@ -92,14 +92,14 @@
 
 - (IBAction)filterPressed:(id)sender {
   [_filtersButton setEnabled:false];
-  [_filterTextField becomeFirstResponder];
   _data.onFilterSelected(_data.row);
+  [_filterTextField becomeFirstResponder];
 }
 
 - (IBAction)replaceFilterPressed:(id)sender {
   [_replaceTextButton setEnabled:false];
-  [_replaceTextTextField becomeFirstResponder];
   _data.onFilterSelected(_data.row);
+  [_replaceTextTextField becomeFirstResponder];
 }
 
 - (void)filterTextChanged:(NSTextField *)sender {

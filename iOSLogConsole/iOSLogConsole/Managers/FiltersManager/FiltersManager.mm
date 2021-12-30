@@ -62,12 +62,8 @@
   [self deleteFiltersAtIndexes:rowIndex];
 }
 
-- (void)replaceFilter:(Filter *)filter atIndex:(NSInteger)index {
-  [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
-    NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];
-    [filters replaceObjectAtIndex:index withObject:filter];
-    return filters;
-  }];
+- (void)changeFilter:(Filter *)filter atIndex:(NSInteger)index {
+  [_filtersData saveFilters];
 }
 
 - (void)moveFilterFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {

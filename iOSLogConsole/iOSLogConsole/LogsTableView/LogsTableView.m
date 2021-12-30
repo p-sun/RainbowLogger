@@ -116,7 +116,7 @@
   if (row != 0) {
     // Copy line to Pasteboard
     NSString *line = _attributedLines[row].string;
-    NSLog(@"^^^^^^ Copied line to pasteboard: %@", line);
+    NSLog(@"**** Copied line to pasteboard: %@", line);
     NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
     [pasteboard declareTypes:@[NSPasteboardTypeString] owner:nil];
     [pasteboard setString:line forType:NSPasteboardTypeString];

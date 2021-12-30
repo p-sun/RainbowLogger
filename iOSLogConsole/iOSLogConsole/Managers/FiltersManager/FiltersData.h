@@ -28,6 +28,8 @@ typedef NSArray<Filter *>* _Nonnull (^new_filters_provider)(NSArray<Filter *>* c
 
 - (void)setFilters:(new_filters_provider)getNewFilters;
 
+- (void)saveFilters;
+
 @end
 
 NS_ASSUME_NONNULL_END

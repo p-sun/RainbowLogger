@@ -35,12 +35,12 @@
   
   _logsManager = [[LogsManager alloc] init];
   [_logsManager setDelegate:self];
-
+  
   // Views
   _filtersTableView.allowsMultipleSelection = YES;
   [_filtersTableView setFiltersDelegate:self];
   [_filtersTableView setFilters:[_filtersManager getFilters]];
-
+  
   [_logsTextView setScrollDelegate:self];
 }
 
@@ -61,7 +61,7 @@
 
 - (IBAction)clearLogs:(id)sender {
   [_logsManager clearLogs];
-  [self _filterAllLogsAndUpdateTextView];
+  [self _updateLogsTable];
 }
 
 - (IBAction)deleteSelectedFilter:(id)sender {
@@ -78,14 +78,14 @@
 
 - (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
   Filter *filter = [[Filter alloc] initWithCondition:FilterConditionColorContainingText
-                                           text:sender.stringValue
-                                       colorTag:_nextColor
-                                      isEnabled:YES];
+                                                text:sender.stringValue
+                                            colorTag:_nextColor
+                                           isEnabled:YES];
   // Calculate next color
   NSInteger minColor = 1; // Smaller index of next color
   NSInteger maxColor = 13; // Largest index of next color
   _nextColor = MAX((_nextColor + 1) % (maxColor + 1), minColor);
-
+  
   // Reset text field to empty
   sender.stringValue = @"";
   
@@ -103,7 +103,7 @@
   _isPaused = sender.state == NSControlStateValueOn;
   if (!_isPaused) {
     [self setAutoscrollState:true];
-    [self _filterAllLogsAndUpdateTextView];
+    [self _updateLogsTable];
   }
 }
 
@@ -146,20 +146,18 @@
 -(void)filtersDidUpdate: (NSArray<Filter *>*) filters {
   [_filtersTableView setFilters:filters];
   dispatch_async(dispatch_get_main_queue(), ^{
-    if (self->_previousSelectedRow < 0 && self->_filtersTableView.selectedRow) {
-      self->_previousSelectedRow = self->_filtersTableView.selectedRow;
-    }
+    // Update Filters Table
     [self->_filtersTableView reloadData];
     [self->_filtersTableView resizeTableWidth];
-    
-    [self _filterAllLogsAndUpdateTextView];
-    
     [self selectNextRow];
     
     if (self->_shouldScrollFiltersTable) {
       self->_shouldScrollFiltersTable = NO;
       [self->_filtersTableView scrollToEndOfDocument:nil];
     }
+    
+    // Update Logs Table
+    [self _updateLogsTable];
   });
 }
 
@@ -173,7 +171,9 @@
 }
 
 - (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index {
-  [_filtersManager replaceFilter:filter atIndex:index];
+  [_filtersManager changeFilter:filter atIndex:index];
+  // Since Filter is mutable, there's no need to call filtersDidUpdate to refresh the table
+  [self _updateLogsTable];
 }
 
 - (void)didMoveFilter:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
@@ -191,11 +191,11 @@
 
 - (void)didChangeLogs:(NSArray<Log *>*)logs {
   if (!_isPaused) {
-    [self _filterAllLogsAndUpdateTextView];
+    [self _updateLogsTable];
   }
 }
 
-- (void)_filterAllLogsAndUpdateTextView {
+- (void)_updateLogsTable {
   NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:_logsManager.getLogs filteredBy:[_filtersManager getFilters]];
   [_logsTextView setAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
 }

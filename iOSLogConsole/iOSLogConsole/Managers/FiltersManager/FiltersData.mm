@@ -10,7 +10,7 @@
 #include <pthread.h>
 
 @implementation FiltersData{
-  pthread_mutex_t mutex;
+  pthread_mutex_t _mutex;
   NSArray<Filter *>* _filters;
 }
 
@@ -19,7 +19,7 @@
   self = [super init];
   if (self) {
     _filters = [self _loadFiltersData];
-    pthread_mutex_init(&mutex, NULL);
+    pthread_mutex_init(&_mutex, NULL);
   }
   return self;
 }
@@ -36,17 +36,18 @@
     __typeof(self) strongSelf = weakSelf;
     if (!strongSelf) { return; }
     
-    pthread_mutex_lock(&strongSelf->mutex);
+    pthread_mutex_lock(&strongSelf->_mutex);
     strongSelf->_filters = getNewFilters(_filters);
     [_delegate filtersDidUpdate:_filters];
-    [self _saveFiltersData];
-    pthread_mutex_unlock(&strongSelf->mutex);
+    pthread_mutex_unlock(&strongSelf->_mutex);
+    [strongSelf saveFilters];
   }
 }
 
 # pragma mark Save and Load Filters from File
 
--(void)_saveFiltersData {
+-(void)saveFilters {
+  pthread_mutex_lock(&_mutex);
   NSError *error;
   NSArray *myFilters = _filters;
   NSData *encodedFilters = [NSKeyedArchiver archivedDataWithRootObject:myFilters requiringSecureCoding:YES error:&error];
@@ -54,6 +55,7 @@
   if (error) {
     NSLog(@"Error with saving filters: %@", error);
   }
+  pthread_mutex_unlock(&_mutex);
 }
 
 -(NSArray<Filter *>*)_loadFiltersData {
