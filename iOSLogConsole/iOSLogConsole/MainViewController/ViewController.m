@@ -88,6 +88,7 @@
   sender.stringValue = @"";
   
   // Add filter
+  _previousSelectedRow = _filtersTableView.numberOfRows;
   [_filtersManager appendFilter:filter];
 }
 
@@ -190,11 +191,13 @@
 #pragma mark - Select Next Row After Deleting a Row
 
 - (void)selectNextRow {
-  if (_previousSelectedRow >= 0) {
+  if (_previousSelectedRow >= 0 && _filtersTableView.numberOfRows > 0) {
     if (_previousSelectedRow < _filtersTableView.numberOfRows) {
-      [self->_filtersTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:_previousSelectedRow] byExtendingSelection:false];
+      [self->_filtersTableView selectRowIndexes:
+       [NSIndexSet indexSetWithIndex:_previousSelectedRow] byExtendingSelection:false];
     } else {
-      [self->_filtersTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:_previousSelectedRow - 1] byExtendingSelection:false];
+      [self->_filtersTableView selectRowIndexes:
+       [NSIndexSet indexSetWithIndex:_filtersTableView.numberOfRows - 1] byExtendingSelection:false];
     }
     _previousSelectedRow = -1;
   }
