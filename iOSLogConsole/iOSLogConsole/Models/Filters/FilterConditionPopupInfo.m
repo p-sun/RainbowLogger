@@ -20,7 +20,7 @@ static NSArray<FilterConditionPopupInfo *> *conditionPopupInfosArray;
                                 [[FilterConditionPopupInfo alloc] initWithCondition:FilterConditionColorContainingText name:@"None"],
                                 [[FilterConditionPopupInfo alloc] initWithCondition:FilterConditionContainsAll name:@"Must Contain"],
                                 [[FilterConditionPopupInfo alloc] initWithCondition:FilterConditionContainsAny name:@"Contains Any"],
-                                [[FilterConditionPopupInfo alloc] initWithCondition:FilterConditionNotContains name:@"Not Contains"],
+                                [[FilterConditionPopupInfo alloc] initWithCondition:FilterConditionNotContains name:@"Not Contain"],
                                 nil];
   }
 }
