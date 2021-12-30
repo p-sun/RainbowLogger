@@ -25,6 +25,7 @@
   _shouldAutoScroll = _autoscrollButton.state == NSControlStateValueOn;
   _previousSelectedRow = -1;
   _nextColor = 6; // Mint Green
+  _shouldScrollFiltersTable = NO;
   
   _filtersManager = [[FiltersManager alloc] init];
   [_filtersManager setDelegate:self];
@@ -177,6 +178,7 @@
 }
 
 #pragma mark - LogsManagerDelegate
+
 - (void)didAppendLogs:(NSArray<Log *>*)logs {
   if (!_isPaused) {
     NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:logs filteredBy:[_filtersManager getFilters]];
