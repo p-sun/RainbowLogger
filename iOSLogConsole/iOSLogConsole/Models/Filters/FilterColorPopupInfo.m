@@ -24,9 +24,9 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
                             [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:250 green:157 blue:0] name:@""], // Orange
                             [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:255 green:254 blue:1] name:@""], // Yellow
                             [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:78 green:237 blue:146] name:@""], // Mint
-                            [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:96 green:186 blue:71] name:@""], // Green
-                            [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:40 green:181 blue:181] name:@""], // Aqua
-                            [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:59 green:206 blue:255] name:@""], // Sky Blue
+                            [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:6 green:140 blue:28] name:@""], // Green
+                            [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:0 green:199 blue:196] name:@""], // Aqua
+                            [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:110 green:240 blue:255] name:@""], // Sky Blue
                             [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:0 green:111 blue:255] name:@""], // Medium Blue
                             [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:35 green:19 blue:158] name:@""], // Navy Blue
                             [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:95 green:76 blue:237] name:@""], // Blue-Purple
