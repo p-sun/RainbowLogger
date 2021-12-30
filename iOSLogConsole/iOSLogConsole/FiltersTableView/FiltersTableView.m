@@ -172,4 +172,21 @@
   return true;
 }
 
+# pragma mark - Delete Filter with Backspace
+
+- (BOOL)acceptsFirstResponder
+{
+  return YES;
+}
+
+-(void)keyDown:(NSEvent *)event
+{
+  [super keyDown:event];
+  unichar c = NSDeleteCharacter;
+  NSString *s = [NSString stringWithCharacters:&c length:1];
+  if ([event.charactersIgnoringModifiers isEqual:s]) {
+    [self.filtersDelegate didDeleteFilterAtIndexes:self.selectedRowIndexes];
+  }
+}
+
 @end

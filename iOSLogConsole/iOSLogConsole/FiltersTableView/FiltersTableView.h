@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)didToggleRegexAtIndex:(NSInteger)index;
 
-- (void)didDeleteFilterAtIndex:(NSInteger)index;
+- (void)didDeleteFilterAtIndexes:(NSIndexSet *)indexes;
 
 - (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index;
 

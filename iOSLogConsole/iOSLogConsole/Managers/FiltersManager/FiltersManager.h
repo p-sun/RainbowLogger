@@ -30,7 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)toggleRegexForFilterAtIndex:(NSInteger)index;
 
-- (void)deleteFilterAtIndex:(NSInteger)index;
 - (void)deleteFiltersAtIndexes:(NSIndexSet*)indexes;
 
 - (void)changeFilter:(Filter *)filter atIndex:(NSInteger)index;

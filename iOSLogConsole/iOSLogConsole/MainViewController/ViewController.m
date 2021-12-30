@@ -18,6 +18,8 @@
   BOOL _shouldScrollFiltersTable;
 }
 
+#pragma mark - View Controller Lifecycle
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   
@@ -162,12 +164,13 @@
 }
 
 #pragma mark - FiltersTableViewDelegate
+
 - (void)didToggleRegexAtIndex:(NSInteger)index {
   [_filtersManager toggleRegexForFilterAtIndex:index];
 }
 
-- (void)didDeleteFilterAtIndex:(NSInteger)index {
-  [_filtersManager deleteFilterAtIndex:index];
+- (void)didDeleteFilterAtIndexes:(NSIndexSet *)indexes {
+  [self deleteSelectedFilter:nil];
 }
 
 - (void)didChangeFilter:(Filter *)filter atIndex:(NSInteger)index {
