@@ -55,11 +55,20 @@
                                   error:&error];
     NSRange searchedRange = NSMakeRange(0, [log length]);
     NSArray* matches = [regex matchesInString:log options:0 range: searchedRange];
+    NSUInteger locationOffset = 0;
     for (NSTextCheckingResult *match in matches) {
+      // Add offset from the replacement of texts
+      NSRange rangeWithOffset = NSMakeRange(match.range.location + locationOffset, match.range.length);
+      
+      // Color text
       FilterColorPopupInfo *info = [Filter colorPopupInfos][filter.colorTag];
-      [coloredString addAttributes:@{
-        NSForegroundColorAttributeName:info.color,
-      } range:match.range];
+      [coloredString addAttributes:@{NSForegroundColorAttributeName:info.color} range:rangeWithOffset];
+      
+      // Replace text if needed
+      if ([filter.replacementText length] > 0) {
+        [coloredString replaceCharactersInRange:rangeWithOffset withString:filter.replacementText];
+        locationOffset += filter.replacementText.length - rangeWithOffset.length;
+      }
     }
   }
   

@@ -118,7 +118,6 @@
   if (![_data.filter.replacementText isEqualToString:sender.stringValue]) {
     BOOL isSenderEmpty = [sender.stringValue isEqualToString:@""];
     [_isEnabledToggle setState: isSenderEmpty ? NSControlStateValueOff : NSControlStateValueOn];
-    [self enableToggled:_isEnabledToggle];
     
     _data.filter.replacementText = sender.stringValue;
     
