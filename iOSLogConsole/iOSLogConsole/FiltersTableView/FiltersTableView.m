@@ -37,19 +37,21 @@ typedef NS_ENUM(NSInteger, LogsColumnType) {
   
   NSNib *textNib = [[NSNib alloc] initWithNibNamed:@"FilterCell" bundle:nil];
   [self registerNib:textNib forIdentifier:@"FilterCell"];
-  
+    
   self.verticalMotionCanBeginDrag = YES;
   [self registerForDraggedTypes:@[NSPasteboardTypeString]];
   
   if (self.tableColumns.count == 0) {
     NSTableColumn *column = [[NSTableColumn alloc]initWithIdentifier:@"titleColumn"];
-    column.title = @"Filters";
     [self addTableColumn:column];
   }
   
   // Row Selection
   NSTrackingArea *tracker = [[NSTrackingArea alloc] initWithRect:self.bounds options:NSTrackingMouseEnteredAndExited|NSTrackingMouseMoved|NSTrackingActiveInActiveApp owner:self userInfo:nil];
   [self addTrackingArea:tracker];
+  
+  // Header
+  [self setHeaderView: nil];
 }
 
 - (void)resizeTableWidth {
