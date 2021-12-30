@@ -11,24 +11,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, FilterByType) {
-  FilterByTypeColorContainingText, // For coloring text only
-  FilterByTypeContainsAll,
-  FilterByTypeContainsAny,
-  FilterByTypeNotContains
+typedef NS_ENUM(NSInteger, FilterCondition) {
+  FilterConditionColorContainingText, // For coloring text only
+  FilterConditionContainsAll,
+  FilterConditionContainsAny,
+  FilterConditionNotContains
 };
 
 @interface Filter : NSObject <NSCoding, NSSecureCoding>
 
-@property (nonatomic, readwrite) FilterByType type;
+@property (nonatomic, readwrite) FilterCondition condition;
 @property (nonatomic, readwrite) BOOL isRegex;
 
 @property (nonatomic, readwrite) NSString *text;
-@property (nonatomic, readwrite) NSString *replacementText;
+@property (nonatomic, nullable, readwrite) NSString *replacementText;
 @property (nonatomic, readwrite) NSUInteger colorTag;
 @property (nonatomic, readwrite) BOOL isEnabled;
 
-- (instancetype)initWithType:(FilterByType)type text:(NSString *)text colorTag:(NSUInteger)colorTag isEnabled:(BOOL)isEnabled;
+- (instancetype)initWithCondition:(FilterCondition)condition text:(NSString *)text colorTag:(NSUInteger)colorTag isEnabled:(BOOL)isEnabled;
 
 + (NSArray*)filterPopupInfos;
 + (NSArray*)colorPopupInfos;
@@ -37,10 +37,10 @@ typedef NS_ENUM(NSInteger, FilterByType) {
 
 @interface FilterTypePopupInfo : NSObject
 
-@property FilterByType type;
+@property FilterCondition type;
 @property NSString * _Nonnull name;
 
-- (instancetype)initWithType:(FilterByType)type name:(NSString*)name;
+- (instancetype)initWithCondition:(FilterCondition)condition name:(NSString*)name;
 
 @end
 

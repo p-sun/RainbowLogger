@@ -23,13 +23,13 @@ struct FilterCellData {
 @interface FilterCell : NSTableCellView
 
 @property (weak) IBOutlet NSButton *isEnabledToggle;
-@property (weak) IBOutlet NSPopUpButton *filterByPopup;
+@property (weak) IBOutlet NSPopUpButton *conditionPopup;
 @property (weak) IBOutlet NSButton *regexButton;
 
 @property (weak) IBOutlet NSTextField *filterTextField;
 @property (weak) IBOutlet NSButton *filtersButton;
-@property (weak) IBOutlet NSButton *replaceFiltersButton;
-@property (weak) IBOutlet NSTextField *replaceFilterTextField;
+@property (weak) IBOutlet NSButton *replaceTextButton;
+@property (weak) IBOutlet NSTextField *replaceTextTextField;
 
 @property (weak) IBOutlet NSPopUpButton *colorsPopup;
 

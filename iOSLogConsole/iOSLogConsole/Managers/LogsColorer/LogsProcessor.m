@@ -85,24 +85,24 @@
     if (!filter.isEnabled) {
       continue;
     }
-    switch (filter.type) {
-      case FilterByTypeContainsAll:
+    switch (filter.condition) {
+      case FilterConditionContainsAll:
         if (![LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
           return NO;
         }
         break;
-      case FilterByTypeNotContains:
+      case FilterConditionNotContains:
         if ([LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
           return NO;
         }
         break;
-      case FilterByTypeContainsAny:
+      case FilterConditionContainsAny:
         hasContainsAnyFilter = YES;
         if (!passContainsAnyFilter && [LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
           passContainsAnyFilter = YES;
         }
         break;
-      case FilterByTypeColorContainingText:
+      case FilterConditionColorContainingText:
         break; // For coloring text only, no filter
     }
   }

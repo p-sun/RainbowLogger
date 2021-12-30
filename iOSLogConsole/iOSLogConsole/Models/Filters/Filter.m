@@ -17,12 +17,11 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
 +(void)initialize {
   if (self == [Filter class]) {
     filterPopupInfosArray = [NSArray arrayWithObjects:
-                             [[FilterTypePopupInfo alloc] initWithType:FilterByTypeColorContainingText name:@"None"],
-                             [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAll name:@"Must Contain"],
-                             [[FilterTypePopupInfo alloc] initWithType:FilterByTypeContainsAny name:@"Contains Any"],
-                             [[FilterTypePopupInfo alloc] initWithType:FilterByTypeNotContains name:@"Not Contains"],
+                             [[FilterTypePopupInfo alloc] initWithCondition:FilterConditionColorContainingText name:@"None"],
+                             [[FilterTypePopupInfo alloc] initWithCondition:FilterConditionContainsAll name:@"Must Contain"],
+                             [[FilterTypePopupInfo alloc] initWithCondition:FilterConditionContainsAny name:@"Contains Any"],
+                             [[FilterTypePopupInfo alloc] initWithCondition:FilterConditionNotContains name:@"Not Contains"],
                              nil];
-    ;
     colorPopupInfosArray = [NSArray arrayWithObjects:
                             [[FilterColorPopupInfo alloc] initWithColor:[NSColor clearColor] name:@""],
                             [[FilterColorPopupInfo alloc] initWithColor:[NSColor NSColorFrom255Red:164 green:4 blue:199] name:@""], // Purple
@@ -47,10 +46,10 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
   }
 }
 
-- (instancetype)initWithType:(FilterByType)type text:(NSString *)text colorTag:(NSUInteger)colorTag isEnabled:(BOOL)isEnabled {
+- (instancetype)initWithCondition:(FilterCondition)condition text:(NSString *)text colorTag:(NSUInteger)colorTag isEnabled:(BOOL)isEnabled {
   self = [super init];
   if (self) {
-    _type = type;
+    _condition = condition;
     _text = text;
     _colorTag = colorTag;
     _isEnabled = isEnabled;
@@ -59,8 +58,9 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
-  [encoder encodeObject:[NSNumber numberWithUnsignedInteger:self.type] forKey:@"type"];
+  [encoder encodeObject:[NSNumber numberWithUnsignedInteger:self.condition] forKey:@"condition"];
   [encoder encodeObject:self.text forKey:@"text"];
+  [encoder encodeObject:self.replacementText forKey:@"replacementText"];
   [encoder encodeObject:[NSNumber numberWithUnsignedInteger:self.colorTag] forKey:@"colorTag"];
   [encoder encodeObject:[NSNumber numberWithBool:self.isRegex] forKey:@"isRegex"];
   [encoder encodeObject:[NSNumber numberWithBool:self.isEnabled] forKey:@"isEnabled"];
@@ -69,8 +69,9 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
   if (self = [super init]) {
-    self.type = [[decoder decodeObjectForKey:@"type"] unsignedIntegerValue];
+    self.condition = [[decoder decodeObjectForKey:@"condition"] unsignedIntegerValue];
     self.text = [decoder decodeObjectForKey:@"text"];
+    self.replacementText = [decoder decodeObjectForKey:@"replacementText"];
     self.colorTag = [[decoder decodeObjectForKey:@"colorTag"] unsignedIntegerValue];
     self.isRegex = [[decoder decodeObjectForKey:@"isRegex"] unsignedIntegerValue];
     self.isEnabled = [[decoder decodeObjectForKey:@"isEnabled"] unsignedIntegerValue];
@@ -94,7 +95,7 @@ static NSArray<FilterColorPopupInfo *> *colorPopupInfosArray;
 
 @implementation FilterTypePopupInfo
 
-- (instancetype)initWithType:(FilterByType)type name:(NSString*)name
+- (instancetype)initWithCondition:(FilterCondition)type name:(NSString*)name
 {
   self = [super init];
   if (self) {

@@ -202,13 +202,13 @@
             </constraints>
             <connections>
                 <outlet property="colorsPopup" destination="rPv-CE-rXv" id="Y1S-uk-sLW"/>
-                <outlet property="filterByPopup" destination="i24-rd-9Vc" id="r9m-Sg-Pnd"/>
+                <outlet property="conditionPopup" destination="i24-rd-9Vc" id="r9m-Sg-Pnd"/>
                 <outlet property="filterTextField" destination="eAm-mw-qJk" id="itV-3V-G5R"/>
                 <outlet property="filtersButton" destination="O3f-mk-3Qx" id="ce6-ga-BCj"/>
                 <outlet property="isEnabledToggle" destination="KZc-CQ-Lxe" id="PfM-X6-s8t"/>
                 <outlet property="regexButton" destination="wKj-J0-1he" id="bMn-1N-7er"/>
-                <outlet property="replaceFilterTextField" destination="bnb-a3-dQU" id="xih-sv-l0F"/>
-                <outlet property="replaceFiltersButton" destination="SJV-J5-lch" id="NKZ-Aq-7gA"/>
+                <outlet property="replaceTextButton" destination="SJV-J5-lch" id="NKZ-Aq-7gA"/>
+                <outlet property="replaceTextTextField" destination="bnb-a3-dQU" id="xih-sv-l0F"/>
             </connections>
             <point key="canvasLocation" x="-1880.5" y="-177"/>
         </tableCellView>

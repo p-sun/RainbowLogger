@@ -9,14 +9,6 @@
 #import "FiltersTableView.h"
 #import "FilterCell.h"
 
-typedef NS_ENUM(NSInteger, LogsColumnType) {
-  LogsColumnTypeFilterBy = 0,
-  LogsColumnTypeText = 1,
-  LogsColumnTypeIsColor = 2,
-  LogsColumnTypeIsEnabled = 3,
-  LogsColumnTypeDelete = 4
-};
-
 @implementation FiltersTableView {
   NSInteger _columnsCount;
   NSArray<NSString *> *_columnTitles;

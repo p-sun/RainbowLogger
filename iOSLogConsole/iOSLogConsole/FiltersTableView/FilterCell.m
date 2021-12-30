@@ -16,12 +16,12 @@
 
 - (void)awakeFromNib {
   NSPopUpButtonCell *cell = (NSPopUpButtonCell *)_colorsPopup.cell;
-  cell = (NSPopUpButtonCell *)_filterByPopup.cell;
+  cell = (NSPopUpButtonCell *)_conditionPopup.cell;
   
   [Filter.filterPopupInfos enumerateObjectsUsingBlock:^(FilterTypePopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
     NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
     menuItem.tag = idx;
-    [_filterByPopup.menu addItem:menuItem];
+    [_conditionPopup.menu addItem:menuItem];
   }];
   
   [Filter.colorPopupInfos
@@ -35,8 +35,8 @@
   [_filterTextField setTarget:self];
   [_filterTextField setAction:@selector(filterTextChanged:)];
   
-  [_replaceFilterTextField setTarget:self];
-  [_replaceFilterTextField setAction:@selector(replaceFilterTextChanged:)];  
+  [_replaceTextTextField setTarget:self];
+  [_replaceTextTextField setAction:@selector(replaceFilterTextChanged:)];  
 }
 
 - (IBAction)regexButtonPressed:(id)sender {
@@ -46,12 +46,12 @@
 - (IBAction)enableToggled:(NSButton *)sender {
   _data.filter.isEnabled = sender.state == NSControlStateValueOn;
   [_filtersButton setEnabled:true];
-  [_replaceFiltersButton setEnabled:true];
+  [_replaceTextButton setEnabled:true];
   _data.onFilterChanged(_data.filter);
 }
 
 - (IBAction)filterChanged:(NSPopUpButton *)sender {
-  _data.filter.type = sender.selectedTag;
+  _data.filter.condition = sender.selectedTag;
   _data.onFilterChanged(_data.filter);
 }
 
@@ -73,15 +73,15 @@
   Filter *filter = data.filter;
   
   self.filterTextField.stringValue = filter.text;
-  self.replaceFilterTextField.stringValue = filter.replacementText ? filter.replacementText : @"";
+  self.replaceTextTextField.stringValue = filter.replacementText ? filter.replacementText : @"";
   
   [_filtersButton setEnabled:true];
-  [_replaceFiltersButton setEnabled:true];
+  [_replaceTextButton setEnabled:true];
   self.isEnabledToggle.state = filter.isEnabled ? NSControlStateValueOn : NSControlStateValueOff;
   self.regexButton.state = filter.isRegex ? NSControlStateValueOn : NSControlStateValueOff;
 
   [self.colorsPopup selectItemWithTag:filter.colorTag];
-  [self.filterByPopup selectItemWithTag:filter.type];
+  [self.conditionPopup selectItemWithTag:filter.condition];
   
   _data = data;
 }
@@ -95,8 +95,8 @@
 }
 
 - (IBAction)replaceFilterPressed:(id)sender {
-  [_replaceFiltersButton setEnabled:false];
-  [_replaceFilterTextField becomeFirstResponder];
+  [_replaceTextButton setEnabled:false];
+  [_replaceTextTextField becomeFirstResponder];
   _data.onFilterSelected(_data.row);
 }
 
@@ -124,7 +124,7 @@
     _data.onFilterChanged(_data.filter);
   }
   
-  [_replaceFiltersButton setEnabled:true];
+  [_replaceTextButton setEnabled:true];
 }
 
 @end
