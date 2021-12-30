@@ -15,6 +15,7 @@
 @implementation ViewController {
   NSInteger _previousSelectedRow;
   NSInteger _nextColor;
+  BOOL _shouldScrollFiltersTable;
 }
 
 - (void)viewDidLoad {
@@ -75,7 +76,7 @@
 }
 
 - (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
-  Filter *filter = [[Filter alloc] initWithType:FilterByTypeColorContainingText
+  Filter *filter = [[Filter alloc] initWithCondition:FilterConditionColorContainingText
                                            text:sender.stringValue
                                        colorTag:_nextColor
                                       isEnabled:YES];
@@ -89,6 +90,7 @@
   
   // Add filter
   _previousSelectedRow = _filtersTableView.numberOfRows;
+  _shouldScrollFiltersTable = YES;
   [_filtersManager appendFilter:filter];
 }
 
@@ -149,6 +151,11 @@
     [self _filterAllLogsAndUpdateTextView];
     
     [self selectNextRow];
+    
+    if (self->_shouldScrollFiltersTable) {
+      self->_shouldScrollFiltersTable = NO;
+      [self->_filtersTableView scrollToEndOfDocument:nil];
+    }
   });
 }
 
