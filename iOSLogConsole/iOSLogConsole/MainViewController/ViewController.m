@@ -146,6 +146,9 @@
 -(void)filtersDidUpdate: (NSArray<Filter *>*) filters {
   [_filtersTableView setFilters:filters];
   dispatch_async(dispatch_get_main_queue(), ^{
+    if (self->_previousSelectedRow < 0 && self->_filtersTableView.selectedRow) {
+      self->_previousSelectedRow = self->_filtersTableView.selectedRow;
+    }
     [self->_filtersTableView reloadData];
     [self->_filtersTableView resizeTableWidth];
     
