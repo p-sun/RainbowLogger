@@ -30,13 +30,13 @@
 
 + (NSAttributedString *)coloredLog:(NSString *)log usingFilters:(NSArray<Filter *>*)filters {
   NSError *error = NULL;
-  NSMutableAttributedString *coloredString = [[NSMutableAttributedString alloc] initWithString:log];
+  NSMutableAttributedString *newLog = [[NSMutableAttributedString alloc] initWithString:log];
   
   NSColor *almostWhite = [NSColor NSColorFrom255Red:244 green:248 blue:248];
-  [coloredString addAttributes:@{
+  [newLog addAttributes:@{
     NSForegroundColorAttributeName:almostWhite,
     NSFontAttributeName:[NSFont fontWithName:@"Menlo" size:13],
-  } range:NSMakeRange(0, [log length])];
+  } range:NSMakeRange(0, [newLog length])];
   
   for (Filter* filter in filters) {
     if (!filter.isEnabled) {
@@ -53,8 +53,9 @@
                                   regularExpressionWithPattern:regexPattern
                                   options:NSRegularExpressionCaseInsensitive
                                   error:&error];
-    NSRange searchedRange = NSMakeRange(0, [log length]);
-    NSArray* matches = [regex matchesInString:log options:0 range: searchedRange];
+    NSRange searchedRange = NSMakeRange(0, [[newLog string] length]);
+    NSArray* matches = [regex matchesInString:[newLog string] options:0 range: searchedRange];
+    
     NSUInteger locationOffset = 0;
     for (NSTextCheckingResult *match in matches) {
       // Add offset from the replacement of texts
@@ -62,17 +63,17 @@
       
       // Color text
       FilterColorPopupInfo *info = [FilterColorPopupInfo colorPopupInfos][filter.colorTag];
-      [coloredString addAttributes:@{NSForegroundColorAttributeName:info.color} range:rangeWithOffset];
+      [newLog addAttributes:@{NSForegroundColorAttributeName:info.color} range:rangeWithOffset];
       
       // Replace text if needed
       if ([filter.replacementText length] > 0) {
-        [coloredString replaceCharactersInRange:rangeWithOffset withString:filter.replacementText];
+        [newLog replaceCharactersInRange:rangeWithOffset withString:filter.replacementText];
         locationOffset += filter.replacementText.length - rangeWithOffset.length;
       }
     }
   }
   
-  return coloredString;
+  return newLog;
 }
 
 #pragma mark - Filter Logs
