@@ -14,6 +14,7 @@
 
 @implementation ViewController {
   NSInteger _previousSelectedRow;
+  NSInteger _nextColor;
 }
 
 - (void)viewDidLoad {
@@ -22,7 +23,8 @@
   // Data
   _shouldAutoScroll = _autoscrollButton.state == NSControlStateValueOn;
   _previousSelectedRow = -1;
-
+  _nextColor = 6; // Mint Green
+  
   _filtersManager = [[FiltersManager alloc] init];
   [_filtersManager setDelegate:self];
   
@@ -75,10 +77,17 @@
 - (void)addFilterOnTextFieldEnter:(NSTextField *)sender {
   Filter *filter = [[Filter alloc] initWithType:FilterByTypeColorContainingText
                                            text:sender.stringValue
-                                       colorTag:6
+                                       colorTag:_nextColor
                                       isEnabled:YES];
+  // Calculate next color
+  NSInteger minColor = 1; // Smaller index of next color
+  NSInteger maxColor = 13; // Largest index of next color
+  _nextColor = MAX((_nextColor + 1) % (maxColor + 1), minColor);
+
+  // Reset text field to empty
   sender.stringValue = @"";
   
+  // Add filter
   [_filtersManager appendFilter:filter];
 }
 
