@@ -61,7 +61,7 @@
       NSRange rangeWithOffset = NSMakeRange(match.range.location + locationOffset, match.range.length);
       
       // Color text
-      FilterColorPopupInfo *info = [Filter colorPopupInfos][filter.colorTag];
+      FilterColorPopupInfo *info = [FilterColorPopupInfo colorPopupInfos][filter.colorTag];
       [coloredString addAttributes:@{NSForegroundColorAttributeName:info.color} range:rangeWithOffset];
       
       // Replace text if needed

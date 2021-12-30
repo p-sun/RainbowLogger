@@ -8,16 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "FilterColorPopupInfo.h"
+#import "FilterCondition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, FilterCondition) {
-  FilterConditionColorContainingText, // For coloring text only
-  FilterConditionContainsAll,
-  FilterConditionContainsAny,
-  FilterConditionNotContains
-};
-
+// TODO make Filter a readonly struct
 @interface Filter : NSObject <NSCoding, NSSecureCoding>
 
 @property (nonatomic, readwrite) FilterCondition condition;
@@ -29,18 +24,6 @@ typedef NS_ENUM(NSInteger, FilterCondition) {
 @property (nonatomic, readwrite) BOOL isEnabled;
 
 - (instancetype)initWithCondition:(FilterCondition)condition text:(NSString *)text colorTag:(NSUInteger)colorTag isEnabled:(BOOL)isEnabled;
-
-+ (NSArray*)filterPopupInfos;
-+ (NSArray*)colorPopupInfos;
-
-@end
-
-@interface FilterTypePopupInfo : NSObject
-
-@property FilterCondition type;
-@property NSString * _Nonnull name;
-
-- (instancetype)initWithCondition:(FilterCondition)condition name:(NSString*)name;
 
 @end
 

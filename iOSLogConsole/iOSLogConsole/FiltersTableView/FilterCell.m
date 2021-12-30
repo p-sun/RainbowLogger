@@ -9,6 +9,8 @@
 #import "FilterCell.h"
 #import "Filter.h"
 #import "NSColorExtensions.h"
+#import "FilterColorPopupInfo.h"
+#import "FilterConditionPopupInfo.h"
 
 @implementation FilterCell {
   struct FilterCellData _data;
@@ -18,13 +20,13 @@
   NSPopUpButtonCell *cell = (NSPopUpButtonCell *)_colorsPopup.cell;
   cell = (NSPopUpButtonCell *)_conditionPopup.cell;
   
-  [Filter.filterPopupInfos enumerateObjectsUsingBlock:^(FilterTypePopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
+  [FilterConditionPopupInfo.conditionPopupInfos enumerateObjectsUsingBlock:^(FilterConditionPopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
     NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
     menuItem.tag = idx;
     [_conditionPopup.menu addItem:menuItem];
   }];
   
-  [Filter.colorPopupInfos
+  [FilterColorPopupInfo.colorPopupInfos
    enumerateObjectsUsingBlock:^(FilterColorPopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
     NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
     menuItem.image = [self swatchForColor:info.color];

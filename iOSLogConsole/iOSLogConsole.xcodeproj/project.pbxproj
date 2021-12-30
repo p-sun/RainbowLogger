@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		25AF3EB2277BD9E30062D99C /* FiltersData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB0277BD9E30062D99C /* FiltersData.mm */; };
+		25AF3EB6277D84F10062D99C /* FilterConditionPopupInfo.h in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB5277D84F10062D99C /* FilterConditionPopupInfo.h */; };
+		25AF3EB8277D870E0062D99C /* FilterConditionPopupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB7277D870E0062D99C /* FilterConditionPopupInfo.m */; };
 		9B2D798D250E37DC00E39435 /* LogsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D798C250E37DC00E39435 /* LogsProcessor.m */; };
 		9B2D7996250E7E0100E39435 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D7995250E7E0100E39435 /* MainWindow.m */; };
 		9B83570A250DC55400D60206 /* LogsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B835709250DC55400D60206 /* LogsTextView.m */; };
@@ -34,6 +36,9 @@
 /* Begin PBXFileReference section */
 		25AF3EB0277BD9E30062D99C /* FiltersData.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FiltersData.mm; sourceTree = "<group>"; };
 		25AF3EB1277BD9E30062D99C /* FiltersData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersData.h; sourceTree = "<group>"; };
+		25AF3EB5277D84F10062D99C /* FilterConditionPopupInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterConditionPopupInfo.h; sourceTree = "<group>"; };
+		25AF3EB7277D870E0062D99C /* FilterConditionPopupInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterConditionPopupInfo.m; sourceTree = "<group>"; };
+		25AF3EB9277D883C0062D99C /* FilterCondition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterCondition.h; sourceTree = "<group>"; };
 		9B2D7988250E315B00E39435 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		9B2D798B250E37DC00E39435 /* LogsProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsProcessor.h; sourceTree = "<group>"; };
 		9B2D798C250E37DC00E39435 /* LogsProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsProcessor.m; sourceTree = "<group>"; };
@@ -180,9 +185,12 @@
 			isa = PBXGroup;
 			children = (
 				9BDE691F247C5F3600F7599F /* Filter.h */,
+				25AF3EB9277D883C0062D99C /* FilterCondition.h */,
 				9BDE6920247C5F3600F7599F /* Filter.m */,
 				9BDE6922247C690400F7599F /* FilterColorPopupInfo.h */,
 				9BDE6923247C690400F7599F /* FilterColorPopupInfo.m */,
+				25AF3EB5277D84F10062D99C /* FilterConditionPopupInfo.h */,
+				25AF3EB7277D870E0062D99C /* FilterConditionPopupInfo.m */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -334,8 +342,10 @@
 				9BC08BF7247E234E0088354B /* FiltersManager.mm in Sources */,
 				9BDE6921247C5F3600F7599F /* Filter.m in Sources */,
 				9B99B406247A58D100734B8E /* AppDelegate.m in Sources */,
+				25AF3EB8277D870E0062D99C /* FilterConditionPopupInfo.m in Sources */,
 				9BC08BEB247CA2050088354B /* NSColorExtensions.m in Sources */,
 				9B83570A250DC55400D60206 /* LogsTextView.m in Sources */,
+				25AF3EB6277D84F10062D99C /* FilterConditionPopupInfo.h in Sources */,
 				25AF3EB2277BD9E30062D99C /* FiltersData.mm in Sources */,
 				9BDE6924247C690400F7599F /* FilterColorPopupInfo.m in Sources */,
 			);
