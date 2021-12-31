@@ -76,7 +76,7 @@
   fileHandle_ = [p fileHandleForReading];
   [fileHandle_ waitForDataInBackgroundAndNotify];
   NSError *error;
-  [task launchAndReturnError:&error];
+//  [task launchAndReturnError:&error];
   if (error) {
     NSLog(@"**** Error %@", error);
   }

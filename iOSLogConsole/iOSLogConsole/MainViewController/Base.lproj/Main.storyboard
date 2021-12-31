@@ -708,219 +708,584 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="7273" height="695"/>
+                        <rect key="frame" x="0.0" y="0.0" width="7475" height="1221"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="1HU-qN-n6P">
-                                <rect key="frame" x="0.0" y="0.0" width="7273" height="695"/>
+                                <rect key="frame" x="0.0" y="0.0" width="7475" height="1221"/>
                                 <subviews>
                                     <customView id="vIg-Rw-KMT" userLabel="Top Half View">
-                                        <rect key="frame" x="0.0" y="0.0" width="7273" height="412"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="7475" height="870"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="eB9-E3-euI" userLabel="Background Color">
-                                                <rect key="frame" x="0.0" y="0.0" width="7273" height="412"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="7475" height="870"/>
                                                 <view key="contentView" id="G5J-Op-NYX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="7273" height="412"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="7475" height="870"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </view>
                                                 <color key="fillColor" red="0.045702435413438915" green="0.073477102561920568" blue="0.084451891712306715" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </box>
-                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="dre-lh-TMS" userLabel="Logs Menu View">
-                                                <rect key="frame" x="16" y="367" width="6957" height="45"/>
+                                            <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLI-rk-nFz">
+                                                <rect key="frame" x="0.0" y="0.0" width="7475" height="870"/>
                                                 <subviews>
-                                                    <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fwd-1y-Lwo" userLabel="Logs Menu Stack View">
-                                                        <rect key="frame" x="0.0" y="10" width="6957" height="25"/>
+                                                    <customView id="KLj-cF-hl3" userLabel="Main Logs Panel">
+                                                        <rect key="frame" x="0.0" y="0.0" width="3338" height="870"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TE3-Ub-eVG">
-                                                                <rect key="frame" x="-2" y="3" width="38" height="19"/>
-                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Logs" id="1zE-fh-egH">
-                                                                    <font key="font" metaFont="systemMedium" size="15"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                            <button identifier="Reattach to a process to display its logs. This runs a script that can be edited using Customize." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="CFx-X7-qsY">
-                                                                <rect key="frame" x="43" y="-7" width="134" height="37"/>
-                                                                <buttonCell key="cell" type="push" title="Attach Logger" bezelStyle="rounded" image="play.fill" catalog="system" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ie-iH-eNe">
-                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <string key="keyEquivalent">r</string>
-                                                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                                                </buttonCell>
-                                                                <color key="bezelColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
-                                                                <connections>
-                                                                    <action selector="restartPressed:" target="XfG-lQ-9wD" id="hpb-6E-zQp"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button toolTip="Customize the Command Line script that gets logs from a process. Can use any command that can output text." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="oKU-pU-bjr">
-                                                                <rect key="frame" x="179" y="-7" width="119" height="37"/>
-                                                                <buttonCell key="cell" type="push" title="Customize" bezelStyle="rounded" image="highlighter" catalog="system" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XtC-LU-a9X">
-                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <string key="keyEquivalent">r</string>
-                                                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                                                </buttonCell>
-                                                            </button>
-                                                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-t0-7Li">
-                                                                <rect key="frame" x="305" y="0.0" width="5" height="25"/>
-                                                            </box>
-                                                            <button toolTip="Clear all logs." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-eU-Zgo">
-                                                                <rect key="frame" x="317" y="-7" width="100" height="37"/>
-                                                                <buttonCell key="cell" type="push" title="Clear Logs" bezelStyle="rounded" imagePosition="leading" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="piN-n4-VBZ">
-                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="clearLogs:" target="XfG-lQ-9wD" id="DrO-zF-XhD"/>
-                                                                </connections>
-                                                            </button>
-                                                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="LwX-ue-TA9">
-                                                                <rect key="frame" x="424" y="0.0" width="5" height="25"/>
-                                                            </box>
-                                                            <button toolTip="Stop new logs from being displayed. When unpaused, logs that occurred during the pause will be displayed." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bY2-Oh-iS1" userLabel="Pause">
-                                                                <rect key="frame" x="440" y="-4" width="77" height="32"/>
-                                                                <buttonCell key="cell" type="check" title="Pause" bezelStyle="regularSquare" imagePosition="left" borderStyle="border" inset="2" id="tfk-fI-d62">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <color key="contentTintColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
-                                                                <connections>
-                                                                    <action selector="pauseButtonToggled:" target="XfG-lQ-9wD" id="tsj-H4-P5D"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button toolTip="Autoscroll to the bottom when new logs are added." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HI5-H6-78b" userLabel="Autoscroll">
-                                                                <rect key="frame" x="527" y="-4" width="101" height="32"/>
-                                                                <buttonCell key="cell" type="check" title="Autoscroll" bezelStyle="regularSquare" imagePosition="left" state="on" borderStyle="border" inset="2" id="fkf-G1-xF8">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <color key="contentTintColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
-                                                                <connections>
-                                                                    <action selector="autoscrollButtonToggled:" target="XfG-lQ-9wD" id="y3u-8b-uCh"/>
-                                                                </connections>
-                                                            </button>
-                                                            <customView horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="EzP-tQ-MvW">
-                                                                <rect key="frame" x="641" y="0.0" width="6316" height="25"/>
+                                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="dre-lh-TMS" userLabel="Logs Menu View">
+                                                                <rect key="frame" x="0.0" y="825" width="679" height="45"/>
+                                                                <subviews>
+                                                                    <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fwd-1y-Lwo" userLabel="Logs Menu Stack View">
+                                                                        <rect key="frame" x="16" y="10" width="647" height="25"/>
+                                                                        <subviews>
+                                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TE3-Ub-eVG">
+                                                                                <rect key="frame" x="-2" y="3" width="38" height="19"/>
+                                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Logs" id="1zE-fh-egH">
+                                                                                    <font key="font" metaFont="systemMedium" size="15"/>
+                                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                </textFieldCell>
+                                                                            </textField>
+                                                                            <button identifier="Reattach to a process to display its logs. This runs a script that can be edited using Customize." toolTip="Attach to a process to get its logs. Use Customize to edit the Command Line script that runs." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="CFx-X7-qsY">
+                                                                                <rect key="frame" x="43" y="-7" width="134" height="37"/>
+                                                                                <buttonCell key="cell" type="push" title="Attach Logger" bezelStyle="rounded" image="play.fill" catalog="system" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ie-iH-eNe">
+                                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                    <font key="font" metaFont="system"/>
+                                                                                    <string key="keyEquivalent">r</string>
+                                                                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                                                                </buttonCell>
+                                                                                <color key="bezelColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                                                                <connections>
+                                                                                    <action selector="restartPressed:" target="XfG-lQ-9wD" id="hpb-6E-zQp"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                            <button toolTip="Customize the Command Line script that gets logs from a process. Can use any command that can output text." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="oKU-pU-bjr">
+                                                                                <rect key="frame" x="179" y="-7" width="119" height="37"/>
+                                                                                <buttonCell key="cell" type="push" title="Customize" bezelStyle="rounded" image="highlighter" catalog="system" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XtC-LU-a9X">
+                                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                    <font key="font" metaFont="system"/>
+                                                                                    <string key="keyEquivalent">r</string>
+                                                                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                                                                </buttonCell>
+                                                                            </button>
+                                                                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-t0-7Li">
+                                                                                <rect key="frame" x="305" y="0.0" width="5" height="25"/>
+                                                                            </box>
+                                                                            <button toolTip="Clear all logs." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-eU-Zgo">
+                                                                                <rect key="frame" x="317" y="-7" width="122" height="37"/>
+                                                                                <buttonCell key="cell" type="push" title="🗑 Clear Logs" bezelStyle="rounded" imagePosition="leading" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="piN-n4-VBZ">
+                                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                    <font key="font" metaFont="system"/>
+                                                                                </buttonCell>
+                                                                                <connections>
+                                                                                    <action selector="clearLogs:" target="XfG-lQ-9wD" id="DrO-zF-XhD"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="LwX-ue-TA9">
+                                                                                <rect key="frame" x="446" y="0.0" width="5" height="25"/>
+                                                                            </box>
+                                                                            <button toolTip="Stop new logs from being displayed. When unpaused, logs that occurred during the pause will be displayed." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bY2-Oh-iS1" userLabel="Pause">
+                                                                                <rect key="frame" x="462" y="-4" width="77" height="32"/>
+                                                                                <buttonCell key="cell" type="check" title="Pause" bezelStyle="regularSquare" imagePosition="left" borderStyle="border" inset="2" id="tfk-fI-d62">
+                                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                                    <font key="font" metaFont="system"/>
+                                                                                </buttonCell>
+                                                                                <color key="contentTintColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                                                                <connections>
+                                                                                    <action selector="pauseButtonToggled:" target="XfG-lQ-9wD" id="tsj-H4-P5D"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                            <button toolTip="Autoscroll to the bottom when new logs are added." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HI5-H6-78b" userLabel="Autoscroll">
+                                                                                <rect key="frame" x="549" y="-4" width="101" height="32"/>
+                                                                                <buttonCell key="cell" type="check" title="Autoscroll" bezelStyle="regularSquare" imagePosition="left" state="on" borderStyle="border" inset="2" id="fkf-G1-xF8">
+                                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                                    <font key="font" metaFont="system"/>
+                                                                                </buttonCell>
+                                                                                <color key="contentTintColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                                                                <connections>
+                                                                                    <action selector="autoscrollButtonToggled:" target="XfG-lQ-9wD" id="y3u-8b-uCh"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstItem="TE3-Ub-eVG" firstAttribute="centerY" secondItem="fwd-1y-Lwo" secondAttribute="centerY" id="Bdt-Vi-xU2"/>
+                                                                            <constraint firstAttribute="height" constant="25" id="NZ7-Da-Hgr"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="qy0-eU-Zgo" secondAttribute="bottom" id="SbI-Iq-Nvb"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="HI5-H6-78b" secondAttribute="bottom" id="apw-DW-Lbn"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="bY2-Oh-iS1" secondAttribute="bottom" id="cUr-Sn-Vge"/>
+                                                                            <constraint firstItem="qy0-eU-Zgo" firstAttribute="top" secondItem="fwd-1y-Lwo" secondAttribute="top" id="fYr-XV-zmH"/>
+                                                                            <constraint firstItem="bY2-Oh-iS1" firstAttribute="centerY" secondItem="fwd-1y-Lwo" secondAttribute="centerY" id="gIv-Xn-Kfn"/>
+                                                                            <constraint firstItem="HI5-H6-78b" firstAttribute="centerY" secondItem="fwd-1y-Lwo" secondAttribute="centerY" id="l9j-1T-Ywx"/>
+                                                                            <constraint firstItem="bY2-Oh-iS1" firstAttribute="top" secondItem="fwd-1y-Lwo" secondAttribute="top" id="nCj-as-oUH"/>
+                                                                            <constraint firstItem="HI5-H6-78b" firstAttribute="top" secondItem="fwd-1y-Lwo" secondAttribute="top" id="oww-LY-dQJ"/>
+                                                                            <constraint firstItem="CFx-X7-qsY" firstAttribute="centerY" secondItem="fwd-1y-Lwo" secondAttribute="centerY" id="uFy-L8-ogK"/>
+                                                                        </constraints>
+                                                                        <visibilityPriorities>
+                                                                            <integer value="1000"/>
+                                                                            <integer value="1000"/>
+                                                                            <integer value="1000"/>
+                                                                            <integer value="1000"/>
+                                                                            <integer value="1000"/>
+                                                                            <integer value="1000"/>
+                                                                            <integer value="1000"/>
+                                                                            <integer value="1000"/>
+                                                                        </visibilityPriorities>
+                                                                        <customSpacing>
+                                                                            <real value="3.4028234663852886e+38"/>
+                                                                            <real value="3.4028234663852886e+38"/>
+                                                                            <real value="3.4028234663852886e+38"/>
+                                                                            <real value="3.4028234663852886e+38"/>
+                                                                            <real value="3.4028234663852886e+38"/>
+                                                                            <real value="3.4028234663852886e+38"/>
+                                                                            <real value="3.4028234663852886e+38"/>
+                                                                            <real value="3.4028234663852886e+38"/>
+                                                                        </customSpacing>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="fwd-1y-Lwo" firstAttribute="leading" secondItem="dre-lh-TMS" secondAttribute="leading" constant="16" id="C5k-Oq-ed1"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="fwd-1y-Lwo" secondAttribute="bottom" constant="10" id="Rh4-dj-lUG"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="fwd-1y-Lwo" secondAttribute="trailing" constant="16" id="gP0-yc-CW4"/>
+                                                                    <constraint firstAttribute="top" secondItem="fwd-1y-Lwo" secondAttribute="top" constant="-10" id="glc-sP-2qS"/>
+                                                                </constraints>
                                                             </customView>
+                                                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xL-fn-b8A">
+                                                                <rect key="frame" x="0.0" y="0.0" width="3338" height="825"/>
+                                                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qsv-01-jvj">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="3323" height="825"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="anf-7r-VvA" customClass="LogsTextView">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="3323" height="825"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <size key="minSize" width="3323" height="825"/>
+                                                                            <size key="maxSize" width="7450" height="10000000"/>
+                                                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                        </textView>
+                                                                    </subviews>
+                                                                </clipView>
+                                                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="6Q5-Gs-vep">
+                                                                    <rect key="frame" x="-100" y="-100" width="225" height="15"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                </scroller>
+                                                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Rw6-re-kfb">
+                                                                    <rect key="frame" x="3323" y="0.0" width="15" height="825"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                </scroller>
+                                                            </scrollView>
+                                                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="VBk-ch-x2L" userLabel="Horizontal Line Above Scrollview">
+                                                                <rect key="frame" x="0.0" y="822" width="3338" height="5"/>
+                                                            </box>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="TE3-Ub-eVG" firstAttribute="centerY" secondItem="fwd-1y-Lwo" secondAttribute="centerY" id="Bdt-Vi-xU2"/>
-                                                            <constraint firstAttribute="height" constant="25" id="NZ7-Da-Hgr"/>
-                                                            <constraint firstAttribute="bottom" secondItem="qy0-eU-Zgo" secondAttribute="bottom" id="SbI-Iq-Nvb"/>
-                                                            <constraint firstAttribute="bottom" secondItem="HI5-H6-78b" secondAttribute="bottom" id="apw-DW-Lbn"/>
-                                                            <constraint firstAttribute="bottom" secondItem="bY2-Oh-iS1" secondAttribute="bottom" id="cUr-Sn-Vge"/>
-                                                            <constraint firstItem="qy0-eU-Zgo" firstAttribute="top" secondItem="fwd-1y-Lwo" secondAttribute="top" id="fYr-XV-zmH"/>
-                                                            <constraint firstItem="bY2-Oh-iS1" firstAttribute="centerY" secondItem="fwd-1y-Lwo" secondAttribute="centerY" id="gIv-Xn-Kfn"/>
-                                                            <constraint firstItem="HI5-H6-78b" firstAttribute="centerY" secondItem="fwd-1y-Lwo" secondAttribute="centerY" id="l9j-1T-Ywx"/>
-                                                            <constraint firstItem="bY2-Oh-iS1" firstAttribute="top" secondItem="fwd-1y-Lwo" secondAttribute="top" id="nCj-as-oUH"/>
-                                                            <constraint firstItem="HI5-H6-78b" firstAttribute="top" secondItem="fwd-1y-Lwo" secondAttribute="top" id="oww-LY-dQJ"/>
-                                                            <constraint firstItem="CFx-X7-qsY" firstAttribute="centerY" secondItem="fwd-1y-Lwo" secondAttribute="centerY" id="uFy-L8-ogK"/>
+                                                            <constraint firstItem="0xL-fn-b8A" firstAttribute="top" secondItem="dre-lh-TMS" secondAttribute="bottom" id="2aK-vs-ScD"/>
+                                                            <constraint firstItem="VBk-ch-x2L" firstAttribute="top" secondItem="0xL-fn-b8A" secondAttribute="top" id="501-uj-XAG"/>
+                                                            <constraint firstItem="0xL-fn-b8A" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" id="BF5-vq-3iW"/>
+                                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dre-lh-TMS" secondAttribute="trailing" id="Vtx-jj-0Bs"/>
+                                                            <constraint firstItem="VBk-ch-x2L" firstAttribute="leading" secondItem="0xL-fn-b8A" secondAttribute="leading" id="kXD-Wa-Nh4"/>
+                                                            <constraint firstAttribute="trailing" secondItem="0xL-fn-b8A" secondAttribute="trailing" id="ngp-za-MTr"/>
+                                                            <constraint firstAttribute="bottom" secondItem="0xL-fn-b8A" secondAttribute="bottom" id="qRh-f8-mya"/>
+                                                            <constraint firstItem="dre-lh-TMS" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" id="r5k-5J-1bQ"/>
+                                                            <constraint firstItem="VBk-ch-x2L" firstAttribute="trailing" secondItem="0xL-fn-b8A" secondAttribute="trailing" id="x9b-5T-dSp"/>
+                                                            <constraint firstItem="dre-lh-TMS" firstAttribute="top" secondItem="KLj-cF-hl3" secondAttribute="top" id="zBx-zi-lKi"/>
                                                         </constraints>
-                                                        <visibilityPriorities>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                        </visibilityPriorities>
-                                                        <customSpacing>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                        </customSpacing>
-                                                    </stackView>
+                                                    </customView>
+                                                    <customView id="efX-zP-7sF" userLabel="Right Panel">
+                                                        <rect key="frame" x="3348" y="0.0" width="4127" height="870"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <subviews>
+                                                            <scrollView borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="juF-O1-BoW">
+                                                                <rect key="frame" x="0.0" y="0.0" width="4127" height="870"/>
+                                                                <clipView key="contentView" id="QZ4-nW-lr6">
+                                                                    <rect key="frame" x="1" y="1" width="4110" height="868"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <subviews>
+                                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="zj5-Pl-95Q" userLabel="Script Ediiting Container">
+                                                                            <rect key="frame" x="0.0" y="94" width="4110" height="774"/>
+                                                                            <subviews>
+                                                                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qx7-Vv-b1b" userLabel="Info Stack">
+                                                                                    <rect key="frame" x="20" y="20" width="4074" height="734"/>
+                                                                                    <subviews>
+                                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rfJ-Vc-0N6" userLabel="Title">
+                                                                                            <rect key="frame" x="-2" y="713" width="231" height="21"/>
+                                                                                            <textFieldCell key="cell" title="Displaying Logs from iOS App" id="wld-7l-qfy">
+                                                                                                <font key="font" textStyle="title2" name=".SFNS-Regular"/>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5VL-Vg-IdA">
+                                                                                            <rect key="frame" x="-2" y="653" width="822" height="48"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" id="Vyf-48-pQV">
+                                                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                                                <string key="title">You can use any Command Line process that outputs text to display logs in the main panel. The "Attach Logger" button runs this script.
+
+These logs can be further filtered and colored with filters added to the bottom panel with the "+" button.</string>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <box boxType="custom" borderType="line" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="7xY-wM-8ii" userLabel="Script Editing Box">
+                                                                                            <rect key="frame" x="0.0" y="448" width="536" height="193"/>
+                                                                                            <view key="contentView" id="IRW-BE-mSX">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="536" height="193"/>
+                                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                <subviews>
+                                                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kfn-Gs-QBi" userLabel="Script1 Edit Script Here">
+                                                                                                        <rect key="frame" x="14" y="158" width="112" height="19"/>
+                                                                                                        <textFieldCell key="cell" selectable="YES" title="Edit Script Here" id="Dw5-fa-9my">
+                                                                                                            <font key="font" textStyle="title3" name=".SFNS-Regular"/>
+                                                                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                                        </textFieldCell>
+                                                                                                    </textField>
+                                                                                                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMt-hW-Xs2" userLabel="Script2  Scroll View - Text View">
+                                                                                                        <rect key="frame" x="16" y="82" width="504" height="60"/>
+                                                                                                        <clipView key="contentView" drawsBackground="NO" id="be1-dL-ElP">
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="504" height="60"/>
+                                                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                            <subviews>
+                                                                                                                <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="dPO-Zb-qlw">
+                                                                                                                    <rect key="frame" x="0.0" y="0.0" width="504" height="60"/>
+                                                                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                                                                    <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                                                    <size key="minSize" width="504" height="60"/>
+                                                                                                                    <size key="maxSize" width="709" height="10000000"/>
+                                                                                                                    <attributedString key="textStorage">
+                                                                                                                        <fragment content="xcrun simctl spawn booted log stream --level=default --style=compact">
+                                                                                                                            <attributes>
+                                                                                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                                                                                <font key="NSFont" size="12" name="Helvetica"/>
+                                                                                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                                                            </attributes>
+                                                                                                                        </fragment>
+                                                                                                                    </attributedString>
+                                                                                                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                                                                </textView>
+                                                                                                            </subviews>
+                                                                                                        </clipView>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="height" constant="60" id="Zb6-Gn-01W"/>
+                                                                                                        </constraints>
+                                                                                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="kCX-ds-ZRd">
+                                                                                                            <rect key="frame" x="-100" y="-100" width="225" height="15"/>
+                                                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                                                        </scroller>
+                                                                                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="dJz-EN-n7z">
+                                                                                                            <rect key="frame" x="271" y="0.0" width="15" height="17"/>
+                                                                                                            <autoresizingMask key="autoresizingMask"/>
+                                                                                                        </scroller>
+                                                                                                    </scrollView>
+                                                                                                    <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0c9-MI-5Lm" userLabel="Script3 Bottom Button Stack View">
+                                                                                                        <rect key="frame" x="16" y="16" width="504" height="50"/>
+                                                                                                        <subviews>
+                                                                                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="QBx-pP-aYa">
+                                                                                                                <rect key="frame" x="0.0" y="0.0" width="274" height="50"/>
+                                                                                                            </customView>
+                                                                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6gZ-Jk-yD3">
+                                                                                                                <rect key="frame" x="283" y="8" width="76" height="32"/>
+                                                                                                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C9i-VH-iTG">
+                                                                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                                                    <font key="font" metaFont="system"/>
+                                                                                                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                                                                                </buttonCell>
+                                                                                                            </button>
+                                                                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cUT-qg-PRU">
+                                                                                                                <rect key="frame" x="361" y="8" width="78" height="32"/>
+                                                                                                                <buttonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZcX-kz-ArR">
+                                                                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                                                    <font key="font" metaFont="system"/>
+                                                                                                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                                                                                </buttonCell>
+                                                                                                            </button>
+                                                                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-Lp-wmo">
+                                                                                                                <rect key="frame" x="441" y="8" width="70" height="32"/>
+                                                                                                                <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dgF-c5-qLP">
+                                                                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                                                    <font key="font" metaFont="system"/>
+                                                                                                                </buttonCell>
+                                                                                                                <color key="bezelColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                                                                                            </button>
+                                                                                                        </subviews>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstItem="cUT-qg-PRU" firstAttribute="centerY" secondItem="0c9-MI-5Lm" secondAttribute="centerY" id="16I-dL-0ff"/>
+                                                                                                            <constraint firstItem="6gZ-Jk-yD3" firstAttribute="centerY" secondItem="0c9-MI-5Lm" secondAttribute="centerY" id="4Wa-uk-80u"/>
+                                                                                                            <constraint firstItem="d2Q-Lp-wmo" firstAttribute="centerY" secondItem="0c9-MI-5Lm" secondAttribute="centerY" id="v3T-TZ-cUN"/>
+                                                                                                        </constraints>
+                                                                                                        <visibilityPriorities>
+                                                                                                            <integer value="1000"/>
+                                                                                                            <integer value="1000"/>
+                                                                                                            <integer value="1000"/>
+                                                                                                            <integer value="1000"/>
+                                                                                                        </visibilityPriorities>
+                                                                                                        <customSpacing>
+                                                                                                            <real value="3.4028234663852886e+38"/>
+                                                                                                            <real value="3.4028234663852886e+38"/>
+                                                                                                            <real value="3.4028234663852886e+38"/>
+                                                                                                            <real value="3.4028234663852886e+38"/>
+                                                                                                        </customSpacing>
+                                                                                                    </stackView>
+                                                                                                </subviews>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="kfn-Gs-QBi" firstAttribute="top" secondItem="IRW-BE-mSX" secondAttribute="top" constant="16" id="4u9-6x-Ehi"/>
+                                                                                                    <constraint firstItem="pMt-hW-Xs2" firstAttribute="bottom" secondItem="0c9-MI-5Lm" secondAttribute="top" constant="-16" id="BG6-ol-K9V"/>
+                                                                                                    <constraint firstItem="0c9-MI-5Lm" firstAttribute="leading" secondItem="IRW-BE-mSX" secondAttribute="leading" constant="16" id="Btk-nz-y7H"/>
+                                                                                                    <constraint firstItem="kfn-Gs-QBi" firstAttribute="leading" secondItem="IRW-BE-mSX" secondAttribute="leading" constant="16" id="E1Z-e1-ku6"/>
+                                                                                                    <constraint firstAttribute="bottom" secondItem="0c9-MI-5Lm" secondAttribute="bottom" constant="16" id="Ji7-1Y-mCa"/>
+                                                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kfn-Gs-QBi" secondAttribute="trailing" constant="16" id="Pty-Jv-6Ea"/>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="0c9-MI-5Lm" secondAttribute="trailing" constant="16" id="QOC-9I-vEl"/>
+                                                                                                    <constraint firstItem="pMt-hW-Xs2" firstAttribute="top" secondItem="kfn-Gs-QBi" secondAttribute="bottom" constant="16" id="jEa-Aw-U4z"/>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="pMt-hW-Xs2" secondAttribute="trailing" constant="16" id="la8-N8-ubz"/>
+                                                                                                    <constraint firstItem="pMt-hW-Xs2" firstAttribute="leading" secondItem="IRW-BE-mSX" secondAttribute="leading" constant="16" id="n7h-hs-Arw"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <color key="fillColor" red="0.11913675008443823" green="0.51660360749234857" blue="0.45788008124528462" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        </box>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kut-OB-wsW">
+                                                                                            <rect key="frame" x="-2" y="420" width="206" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="Get NSLogs from iOS Simulator" id="kJW-iU-Aii">
+                                                                                                <font key="font" textStyle="headline" name=".SFNS-Bold"/>
+                                                                                                <color key="textColor" red="0.7125164692" green="0.98410490370000003" blue="0.93363949310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jjk-fh-LtO">
+                                                                                            <rect key="frame" x="-2" y="392" width="168" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="Install Apple's Xcode tools." id="DBc-aZ-vqR">
+                                                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Va5-m5-aUn">
+                                                                                            <rect key="frame" x="0.0" y="364" width="147" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="justified" title="$ xcode-select --install" drawsBackground="YES" allowsEditingTextAttributes="YES" id="uOL-yG-4I3">
+                                                                                                <font key="font" metaFont="system"/>
+                                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Jtc-u5-yVz">
+                                                                                            <rect key="frame" x="-2" y="336" width="59" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="Get logs." id="Oze-Xu-XXq">
+                                                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="J7b-dr-9MC">
+                                                                                            <rect key="frame" x="0.0" y="308" width="445" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="$ xcrun simctl spawn booted log stream --level=default --style=compact" drawsBackground="YES" id="Uby-zb-8d6">
+                                                                                                <font key="font" metaFont="system"/>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gNr-T2-DUK">
+                                                                                            <rect key="frame" x="-2" y="280" width="247" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="(Optional) Choose which process to log." id="8Py-q2-7cv">
+                                                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="VU0-b9-eZN">
+                                                                                            <rect key="frame" x="0.0" y="252" width="131" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="--process=Facebook" drawsBackground="YES" id="hxD-1i-172">
+                                                                                                <font key="font" metaFont="system"/>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3uj-Lu-twU">
+                                                                                            <rect key="frame" x="-2" y="224" width="1030" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" id="8oL-n4-lrH">
+                                                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                                                <string key="title">(Optional) Choose which logs to filter out. For example, display NSLogs that not logged from Apple's frameworks and contains "PAIGE". Use Apple's MacOS Console app </string>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RZ3-01-QVd">
+                                                                                            <rect key="frame" x="0.0" y="196" width="565" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="--predicate '(NOT (subsystem contains &quot;com.apple&quot;)) AND eventMessage contains &quot;PAIGE&quot;'" drawsBackground="YES" id="Gu9-di-wQN">
+                                                                                                <font key="font" metaFont="system"/>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7oS-b6-6YA">
+                                                                                            <rect key="frame" x="-2" y="168" width="187" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="Get NSLogs from iOS Device" id="jtF-0k-sop">
+                                                                                                <font key="font" textStyle="headline" name=".SFNS-Bold"/>
+                                                                                                <color key="textColor" red="0.7125164692" green="0.98410490370000003" blue="0.93363949310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3n5-dD-JB7">
+                                                                                            <rect key="frame" x="-2" y="140" width="684" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="To get NSLogs from a real device, Google &quot;Github libimobiledevice&quot; and follow the readme instructions to install." id="c7l-NX-aAk">
+                                                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sff-hh-Eha">
+                                                                                            <rect key="frame" x="0.0" y="112" width="98" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="justified" title="$ idevicesyslog" drawsBackground="YES" allowsEditingTextAttributes="YES" id="Gy8-aY-zue">
+                                                                                                <font key="font" metaFont="system"/>
+                                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="aoP-jK-ubY">
+                                                                                            <rect key="frame" x="-2" y="84" width="247" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="(Optional) Choose which process to log." id="GoJ-5Q-sjM">
+                                                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nR2-UU-oxw">
+                                                                                            <rect key="frame" x="0.0" y="56" width="81" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="justified" title="-p Facebook" drawsBackground="YES" allowsEditingTextAttributes="YES" id="vYs-Qh-GgE">
+                                                                                                <font key="font" metaFont="system"/>
+                                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AFO-L8-QPt">
+                                                                                            <rect key="frame" x="-2" y="28" width="602" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="(Optional) Choose which logs to filter out. For example, only display NSLogs that contains &quot;PAIGE&quot;." id="rGc-va-oJt">
+                                                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="maJ-5h-qN3">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="75" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="justified" title="-m &quot;PAIGE&quot;" drawsBackground="YES" allowsEditingTextAttributes="YES" id="unH-Xb-0qj">
+                                                                                                <font key="font" metaFont="system"/>
+                                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                    </subviews>
+                                                                                    <visibilityPriorities>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                        <integer value="1000"/>
+                                                                                    </visibilityPriorities>
+                                                                                    <customSpacing>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                        <real value="3.4028234663852886e+38"/>
+                                                                                    </customSpacing>
+                                                                                </stackView>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstItem="qx7-Vv-b1b" firstAttribute="top" secondItem="zj5-Pl-95Q" secondAttribute="top" constant="20" symbolic="YES" id="0wd-CK-bL0"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="qx7-Vv-b1b" secondAttribute="bottom" constant="20" symbolic="YES" id="8tJ-K8-420"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="qx7-Vv-b1b" secondAttribute="trailing" constant="16" id="BPe-ML-Tem"/>
+                                                                                <constraint firstItem="qx7-Vv-b1b" firstAttribute="leading" secondItem="zj5-Pl-95Q" secondAttribute="leading" constant="20" symbolic="YES" id="ekW-4Z-lPb"/>
+                                                                            </constraints>
+                                                                        </customView>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="zj5-Pl-95Q" firstAttribute="top" secondItem="QZ4-nW-lr6" secondAttribute="top" id="fNK-Sb-GI4"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="zj5-Pl-95Q" secondAttribute="trailing" id="v9w-ZH-vX3"/>
+                                                                        <constraint firstItem="zj5-Pl-95Q" firstAttribute="leading" secondItem="QZ4-nW-lr6" secondAttribute="leading" id="x4D-IR-K9g"/>
+                                                                    </constraints>
+                                                                    <color key="backgroundColor" red="0.072891566597547613" green="0.10186050958625827" blue="0.20409401175902064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </clipView>
+                                                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="3FA-MD-zhT">
+                                                                    <rect key="frame" x="-100" y="-100" width="4110" height="15"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                </scroller>
+                                                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="r9z-PV-ws8">
+                                                                    <rect key="frame" x="4111" y="1" width="15" height="868"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                </scroller>
+                                                            </scrollView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="juF-O1-BoW" secondAttribute="bottom" id="5xE-fu-XFC"/>
+                                                            <constraint firstItem="juF-O1-BoW" firstAttribute="leading" secondItem="efX-zP-7sF" secondAttribute="leading" id="BN4-VS-Po2"/>
+                                                            <constraint firstItem="juF-O1-BoW" firstAttribute="top" secondItem="efX-zP-7sF" secondAttribute="top" id="Ggk-7V-dxi"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="Hcs-yp-fM2"/>
+                                                            <constraint firstAttribute="trailing" secondItem="juF-O1-BoW" secondAttribute="trailing" id="bRc-ef-a7n"/>
+                                                        </constraints>
+                                                    </customView>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="fwd-1y-Lwo" firstAttribute="leading" secondItem="dre-lh-TMS" secondAttribute="leading" id="C5k-Oq-ed1"/>
-                                                    <constraint firstAttribute="bottom" secondItem="fwd-1y-Lwo" secondAttribute="bottom" constant="10" id="Rh4-dj-lUG"/>
-                                                    <constraint firstAttribute="trailing" secondItem="fwd-1y-Lwo" secondAttribute="trailing" id="gP0-yc-CW4"/>
-                                                    <constraint firstAttribute="top" secondItem="fwd-1y-Lwo" secondAttribute="top" constant="-10" id="glc-sP-2qS"/>
-                                                </constraints>
-                                            </customView>
-                                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xL-fn-b8A">
-                                                <rect key="frame" x="12" y="0.0" width="6961" height="367"/>
-                                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qsv-01-jvj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="6946" height="367"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <subviews>
-                                                        <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="anf-7r-VvA" customClass="LogsTextView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="6946" height="367"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <size key="minSize" width="6946" height="367"/>
-                                                            <size key="maxSize" width="6946" height="10000000"/>
-                                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        </textView>
-                                                    </subviews>
-                                                </clipView>
-                                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="6Q5-Gs-vep">
-                                                    <rect key="frame" x="-100" y="-100" width="225" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </scroller>
-                                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Rw6-re-kfb">
-                                                    <rect key="frame" x="6946" y="0.0" width="15" height="367"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </scroller>
-                                            </scrollView>
-                                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="VBk-ch-x2L" userLabel="Horizontal Line Above Scrollview">
-                                                <rect key="frame" x="12" y="364" width="6961" height="5"/>
-                                            </box>
-                                            <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="C8Y-z4-BC0" userLabel="Right Panel">
-                                                <rect key="frame" x="6973" y="0.0" width="300" height="412"/>
-                                                <view key="contentView" id="cFe-b0-xWF">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="412"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                </view>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="300" id="jtn-w3-pLy"/>
-                                                </constraints>
-                                                <color key="fillColor" red="0.077542923384796195" green="0.12393140332647494" blue="0.17302782510973747" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </box>
+                                                <holdingPriorities>
+                                                    <real value="250"/>
+                                                    <real value="250"/>
+                                                </holdingPriorities>
+                                            </splitView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="eB9-E3-euI" secondAttribute="bottom" id="14Z-nU-4N3"/>
                                             <constraint firstItem="eB9-E3-euI" firstAttribute="leading" secondItem="vIg-Rw-KMT" secondAttribute="leading" id="3CS-Ag-5bz"/>
-                                            <constraint firstItem="0xL-fn-b8A" firstAttribute="leading" secondItem="vIg-Rw-KMT" secondAttribute="leading" constant="12" id="4ym-gf-yGs"/>
-                                            <constraint firstItem="C8Y-z4-BC0" firstAttribute="leading" secondItem="dre-lh-TMS" secondAttribute="trailing" id="8zz-ub-Hyw"/>
-                                            <constraint firstItem="C8Y-z4-BC0" firstAttribute="top" secondItem="vIg-Rw-KMT" secondAttribute="top" id="A8I-Wy-f6d"/>
-                                            <constraint firstItem="VBk-ch-x2L" firstAttribute="top" secondItem="0xL-fn-b8A" secondAttribute="top" id="ASz-lO-QZ2"/>
-                                            <constraint firstAttribute="bottom" secondItem="0xL-fn-b8A" secondAttribute="bottom" id="BYc-7v-1Cz"/>
-                                            <constraint firstAttribute="trailing" secondItem="C8Y-z4-BC0" secondAttribute="trailing" id="DxH-dL-zjC"/>
-                                            <constraint firstItem="0xL-fn-b8A" firstAttribute="trailing" secondItem="dre-lh-TMS" secondAttribute="trailing" id="Ghj-ma-bzk"/>
-                                            <constraint firstItem="VBk-ch-x2L" firstAttribute="trailing" secondItem="0xL-fn-b8A" secondAttribute="trailing" id="JwF-Fy-aUs"/>
-                                            <constraint firstItem="0xL-fn-b8A" firstAttribute="top" secondItem="dre-lh-TMS" secondAttribute="bottom" id="KZJ-kQ-2Os"/>
-                                            <constraint firstItem="VBk-ch-x2L" firstAttribute="leading" secondItem="0xL-fn-b8A" secondAttribute="leading" id="Mtx-jw-XMG"/>
-                                            <constraint firstItem="dre-lh-TMS" firstAttribute="top" secondItem="vIg-Rw-KMT" secondAttribute="top" id="TlS-nq-rIB"/>
-                                            <constraint firstItem="dre-lh-TMS" firstAttribute="leading" secondItem="vIg-Rw-KMT" secondAttribute="leading" constant="16" id="co4-Zo-G7q"/>
-                                            <constraint firstAttribute="bottom" secondItem="C8Y-z4-BC0" secondAttribute="bottom" id="olK-qk-YJu"/>
+                                            <constraint firstAttribute="bottom" secondItem="JLI-rk-nFz" secondAttribute="bottom" id="3yF-Tf-coq"/>
+                                            <constraint firstItem="JLI-rk-nFz" firstAttribute="leading" secondItem="vIg-Rw-KMT" secondAttribute="leading" id="5NI-nI-M8n"/>
+                                            <constraint firstItem="JLI-rk-nFz" firstAttribute="top" secondItem="vIg-Rw-KMT" secondAttribute="top" id="WU8-Sv-a1k"/>
+                                            <constraint firstAttribute="trailing" secondItem="JLI-rk-nFz" secondAttribute="trailing" id="fWn-q0-GDz"/>
                                             <constraint firstAttribute="trailing" secondItem="eB9-E3-euI" secondAttribute="trailing" id="pPe-a1-fJN"/>
                                             <constraint firstItem="eB9-E3-euI" firstAttribute="top" secondItem="vIg-Rw-KMT" secondAttribute="top" id="qkz-v7-USm"/>
                                         </constraints>
                                     </customView>
                                     <customView id="Brm-11-Xg9" userLabel="Filters View">
-                                        <rect key="frame" x="0.0" y="422" width="7273" height="273"/>
+                                        <rect key="frame" x="0.0" y="880" width="7475" height="341"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="X4P-62-Fcn" userLabel="Header Box">
-                                                <rect key="frame" x="0.0" y="207" width="7273" height="66"/>
+                                                <rect key="frame" x="0.0" y="275" width="7475" height="66"/>
                                                 <view key="contentView" id="Nmc-Pr-t08">
-                                                    <rect key="frame" x="0.0" y="0.0" width="7273" height="66"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="7475" height="66"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1Q-0d-cXN">
-                                                            <rect key="frame" x="16" y="8" width="7239" height="50"/>
+                                                            <rect key="frame" x="16" y="8" width="7441" height="50"/>
                                                             <subviews>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="VZW-tN-rp6" userLabel="30 Move Icon">
                                                                     <rect key="frame" x="0.0" y="0.0" width="34" height="50"/>
@@ -970,7 +1335,7 @@ Each log displayed must not contain the Filter Text.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField toolTip="Customize logs using the Filter Text. When Filter Text is empty, the entire filter will be disabled." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="25c-8O-SJJ">
-                                                                    <rect key="frame" x="290" y="17" width="4480" height="16"/>
+                                                                    <rect key="frame" x="290" y="17" width="4615" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Filter Text" id="raG-Ws-lwE">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -978,7 +1343,7 @@ Each log displayed must not contain the Filter Text.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField toolTip="Use Filter Text as the Regex pattern to filter the logs." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSf-Kn-j0Y">
-                                                                    <rect key="frame" x="4782" y="17" width="72" height="16"/>
+                                                                    <rect key="frame" x="4917" y="17" width="72" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="68" id="Mec-F2-rnL"/>
                                                                     </constraints>
@@ -989,13 +1354,13 @@ Each log displayed must not contain the Filter Text.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="YcU-GL-oKv" userLabel="1 Divider">
-                                                                    <rect key="frame" x="4868" y="0.0" width="1" height="50"/>
+                                                                    <rect key="frame" x="5003" y="0.0" width="1" height="50"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="1" id="Drk-11-LML"/>
                                                                     </constraints>
                                                                 </customView>
                                                                 <textField toolTip="Color logs that contains Filter Text." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cgr-dW-soM">
-                                                                    <rect key="frame" x="4883" y="17" width="87" height="16"/>
+                                                                    <rect key="frame" x="5018" y="17" width="87" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="83" id="Vkh-00-wT3"/>
                                                                     </constraints>
@@ -1006,13 +1371,13 @@ Each log displayed must not contain the Filter Text.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="GFA-HN-UBo" userLabel="1 Divider">
-                                                                    <rect key="frame" x="4984" y="0.0" width="1" height="50"/>
+                                                                    <rect key="frame" x="5119" y="0.0" width="1" height="50"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="1" id="Tjg-0i-gXW"/>
                                                                     </constraints>
                                                                 </customView>
                                                                 <textField toolTip="Temporarily replace text in logs that match Filter Text. Clear this field to reset logs to their original text." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Em-Cc-Yfd">
-                                                                    <rect key="frame" x="4999" y="17" width="2242" height="16"/>
+                                                                    <rect key="frame" x="5134" y="17" width="2309" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Replace Text" id="ui1-q3-86F">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1064,7 +1429,7 @@ Each log displayed must not contain the Filter Text.</string>
                                                 </view>
                                             </box>
                                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x4V-x5-AFk">
-                                                <rect key="frame" x="0.0" y="0.0" width="7273" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="7475" height="30"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lTV-Rh-SIs">
                                                         <rect key="frame" x="10" y="4" width="430" height="22"/>
@@ -1109,7 +1474,7 @@ Each log displayed must not contain the Filter Text.</string>
                                                         </connections>
                                                     </button>
                                                     <customView horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="CGH-Bx-CJB">
-                                                        <rect key="frame" x="588" y="0.0" width="6675" height="30"/>
+                                                        <rect key="frame" x="588" y="0.0" width="6877" height="30"/>
                                                     </customView>
                                                 </subviews>
                                                 <edgeInsets key="edgeInsets" left="10" right="10" top="0.0" bottom="0.0"/>
@@ -1134,13 +1499,13 @@ Each log displayed must not contain the Filter Text.</string>
                                                 </customSpacing>
                                             </stackView>
                                             <scrollView autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T74-pn-Zb2">
-                                                <rect key="frame" x="0.0" y="30" width="7273" height="177"/>
+                                                <rect key="frame" x="0.0" y="30" width="7475" height="245"/>
                                                 <clipView key="contentView" drawsBackground="NO" id="PWz-NT-IL0">
-                                                    <rect key="frame" x="1" y="1" width="7271" height="175"/>
+                                                    <rect key="frame" x="1" y="1" width="7473" height="243"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" headerView="rUr-6a-bnv" id="o3l-qO-VAC" customClass="FiltersTableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="7271" height="150"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="7473" height="218"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1153,12 +1518,12 @@ Each log displayed must not contain the Filter Text.</string>
                                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
-                                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="PbK-tI-Msi">
-                                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.80645161290322576" horizontal="NO" id="PbK-tI-Msi">
+                                                    <rect key="frame" x="7459" y="26" width="15" height="11"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <tableHeaderView key="headerView" wantsLayer="YES" id="rUr-6a-bnv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="7271" height="25"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="7473" height="25"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableHeaderView>
                                             </scrollView>
@@ -1199,7 +1564,7 @@ Each log displayed must not contain the Filter Text.</string>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-288.5" y="1165.5"/>
+            <point key="canvasLocation" x="-4791.5" y="1211.5"/>
         </scene>
     </scenes>
     <resources>
