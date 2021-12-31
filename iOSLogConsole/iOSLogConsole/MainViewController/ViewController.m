@@ -61,18 +61,34 @@
    object:_logsTextView.enclosingScrollView];
 }
 
+#pragma mark - Logger Menu IBActions
+
+- (IBAction)attachLoggerPressed:(id)sender {
+  [self.fileReader reattachToSimulator];
+}
+
+- (IBAction)editAttachScriptPressed:(id)sender {
+  
+}
+
 - (IBAction)clearLogs:(id)sender {
   [_logsManager clearLogs];
   [self _updateLogsTable];
 }
 
-- (IBAction)deleteSelectedFilter:(id)sender {
-  NSIndexSet *selectedRows = _filtersTableView.selectedRowIndexes;
-  if (selectedRows.count >= 0) {
-    _previousSelectedRow = selectedRows.firstIndex;
-    [_filtersManager deleteFiltersAtIndexes:selectedRows];
+- (IBAction)pauseButtonToggled:(NSButton *)sender {
+  _isPaused = sender.state == NSControlStateValueOn;
+  if (!_isPaused) {
+    [self setAutoscrollState:true];
+    [self _updateLogsTable];
   }
 }
+
+- (IBAction)autoscrollButtonToggled:(NSButton *)sender {
+  _shouldAutoScroll = sender.state == NSControlStateValueOn;
+}
+
+#pragma mark - Filter Menu IBActions
 
 - (IBAction)addFilterButtonPressed:(id)sender {
   [self addFilterOnTextFieldEnter:_addFilterTextField];
@@ -97,20 +113,12 @@
   [_filtersManager appendFilter:filter];
 }
 
-- (IBAction)restartPressed:(id)sender {
-  [self.fileReader reattachToSimulator];
-}
-
-- (IBAction)pauseButtonToggled:(NSButton *)sender {
-  _isPaused = sender.state == NSControlStateValueOn;
-  if (!_isPaused) {
-    [self setAutoscrollState:true];
-    [self _updateLogsTable];
+- (IBAction)deleteSelectedFilter:(id)sender {
+  NSIndexSet *selectedRows = _filtersTableView.selectedRowIndexes;
+  if (selectedRows.count >= 0) {
+    _previousSelectedRow = selectedRows.firstIndex;
+    [_filtersManager deleteFiltersAtIndexes:selectedRows];
   }
-}
-
-- (IBAction)autoscrollButtonToggled:(NSButton *)sender {
-  _shouldAutoScroll = sender.state == NSControlStateValueOn;
 }
 
 #pragma mark - FileReaderDelegate

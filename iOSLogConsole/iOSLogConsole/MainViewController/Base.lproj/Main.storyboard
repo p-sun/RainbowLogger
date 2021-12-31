@@ -757,7 +757,7 @@
                                                                                 </buttonCell>
                                                                                 <color key="bezelColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
                                                                                 <connections>
-                                                                                    <action selector="restartPressed:" target="XfG-lQ-9wD" id="hpb-6E-zQp"/>
+                                                                                    <action selector="attachLoggerPressed:" target="XfG-lQ-9wD" id="hpb-6E-zQp"/>
                                                                                 </connections>
                                                                             </button>
                                                                             <button toolTip="Customize the Command Line script that gets logs from a process. Can use any command that can output text." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="oKU-pU-bjr">
@@ -768,6 +768,9 @@
                                                                                     <string key="keyEquivalent">r</string>
                                                                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                                 </buttonCell>
+                                                                                <connections>
+                                                                                    <action selector="editAttachScriptPressed:" target="XfG-lQ-9wD" id="bPJ-WC-F6s"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-t0-7Li">
                                                                                 <rect key="frame" x="305" y="0.0" width="5" height="25"/>

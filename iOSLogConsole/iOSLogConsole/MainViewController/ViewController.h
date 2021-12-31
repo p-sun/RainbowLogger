@@ -30,12 +30,16 @@
 @property (weak) IBOutlet NSTextField *addFilterTextField;
 @property (weak) IBOutlet NSButton *autoscrollButton;
 
-- (IBAction)addFilterButtonPressed:(id)sender;
-- (IBAction)addFilterOnTextFieldEnter:(NSTextField *)sender;
+// Logs IBActions
+- (IBAction)attachLoggerPressed:(id)sender;
+- (IBAction)editAttachScriptPressed:(id)sender;
 - (IBAction)clearLogs:(id)sender;
-- (IBAction)restartPressed:(id)sender;
 - (IBAction)pauseButtonToggled:(NSButton *)sender;
 - (IBAction)autoscrollButtonToggled:(NSButton *)sender;
+
+// Filter IBActions
+- (IBAction)addFilterButtonPressed:(id)sender;
+- (IBAction)addFilterOnTextFieldEnter:(NSTextField *)sender;
 - (IBAction)deleteSelectedFilter:(id)sender;
 
 @end
