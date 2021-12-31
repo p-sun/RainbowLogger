@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Quartz/Quartz.h>
+#import <QuartzCore/QuartzCore.h>
+
 #import "ViewController.h"
 #import "NSColorExtensions.h"
 #import "Filter.h"
@@ -39,6 +42,8 @@
   [_logsManager setDelegate:self];
   
   // Views
+  [_rightPanel setHidden:YES];
+  
   _filtersTableView.allowsMultipleSelection = YES;
   [_filtersTableView setFiltersDelegate:self];
   [_filtersTableView setFilters:[_filtersManager getFilters]];
@@ -61,14 +66,15 @@
    object:_logsTextView.enclosingScrollView];
 }
 
-#pragma mark - Logger Menu IBActions
+#pragma mark - IBActions - Top Logs Menu
 
 - (IBAction)attachLoggerPressed:(id)sender {
   [self.fileReader reattachToSimulator];
 }
 
 - (IBAction)editAttachScriptPressed:(id)sender {
-  
+  BOOL shouldHide = ![_verticalSplitView isSubviewCollapsed:_rightPanel];
+  [_rightPanel setHidden:shouldHide];
 }
 
 - (IBAction)clearLogs:(id)sender {
@@ -88,7 +94,7 @@
   _shouldAutoScroll = sender.state == NSControlStateValueOn;
 }
 
-#pragma mark - Filter Menu IBActions
+#pragma mark - IBActions - Bottom Filters Menu
 
 - (IBAction)addFilterButtonPressed:(id)sender {
   [self addFilterOnTextFieldEnter:_addFilterTextField];
@@ -119,6 +125,23 @@
     _previousSelectedRow = selectedRows.firstIndex;
     [_filtersManager deleteFiltersAtIndexes:selectedRows];
   }
+}
+
+#pragma mark - IBActions - Customize Script Right Panel
+
+- (IBAction)customizeCancelPressed:(id)sender {
+  // TODO discard text changes
+}
+
+- (IBAction)customizeDefaultPressed:(id)sender {
+}
+
+- (IBAction)customizeApplyPressed:(id)sender {
+  
+}
+
+- (IBAction)customizeClosePanelPressed:(id)sender {
+  [_rightPanel setHidden:YES];
 }
 
 #pragma mark - FileReaderDelegate

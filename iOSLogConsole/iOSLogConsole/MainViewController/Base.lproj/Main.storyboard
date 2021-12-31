@@ -998,6 +998,9 @@ These logs can be further filtered and colored with filters added to the bottom 
 Gw
 </string>
                                                                                                                 </buttonCell>
+                                                                                                                <connections>
+                                                                                                                    <action selector="customizeCancelPressed:" target="XfG-lQ-9wD" id="qKI-9F-QZY"/>
+                                                                                                                </connections>
                                                                                                             </button>
                                                                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cUT-qg-PRU">
                                                                                                                 <rect key="frame" x="361" y="8" width="78" height="32"/>
@@ -1008,6 +1011,9 @@ Gw
 Gw
 </string>
                                                                                                                 </buttonCell>
+                                                                                                                <connections>
+                                                                                                                    <action selector="customizeDefaultPressed:" target="XfG-lQ-9wD" id="0Hd-qX-e3x"/>
+                                                                                                                </connections>
                                                                                                             </button>
                                                                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-Lp-wmo">
                                                                                                                 <rect key="frame" x="441" y="8" width="70" height="32"/>
@@ -1016,6 +1022,9 @@ Gw
                                                                                                                     <font key="font" metaFont="system"/>
                                                                                                                 </buttonCell>
                                                                                                                 <color key="bezelColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                                                                                                <connections>
+                                                                                                                    <action selector="customizeApplyPressed:" target="XfG-lQ-9wD" id="rwJ-y9-nWe"/>
+                                                                                                                </connections>
                                                                                                             </button>
                                                                                                         </subviews>
                                                                                                         <constraints>
@@ -1109,10 +1118,10 @@ Gw
                                                                                             </textFieldCell>
                                                                                         </textField>
                                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="3uj-Lu-twU">
-                                                                                            <rect key="frame" x="-2" y="224" width="1030" height="16"/>
+                                                                                            <rect key="frame" x="-2" y="224" width="1463" height="16"/>
                                                                                             <textFieldCell key="cell" selectable="YES" id="8oL-n4-lrH">
                                                                                                 <font key="font" usesAppearanceFont="YES"/>
-                                                                                                <string key="title">(Optional) Choose which logs to filter out. For example, display NSLogs that not logged from Apple's frameworks and contains "PAIGE". Use Apple's MacOS Console app </string>
+                                                                                                <string key="title">(Optional) Choose which logs to filter out. For example, display NSLogs that not logged from Apple's frameworks and contains "PAIGE". Use Apple's MacOS Console app to read columns and data for NSLogs to futher customize the predicate.</string>
                                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                             </textFieldCell>
@@ -1250,10 +1259,22 @@ Gw
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                             </scrollView>
+                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DN7-Lb-sKb">
+                                                                <rect key="frame" x="4053" y="827" width="49" height="32"/>
+                                                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="sidebar.right" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xcd-Kz-oDG">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="customizeClosePanelPressed:" target="XfG-lQ-9wD" id="8Ge-Q4-Ung"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstItem="DN7-Lb-sKb" firstAttribute="top" secondItem="efX-zP-7sF" secondAttribute="top" constant="16" id="0gh-Gh-RBo"/>
                                                             <constraint firstAttribute="bottom" secondItem="juF-O1-BoW" secondAttribute="bottom" id="5xE-fu-XFC"/>
                                                             <constraint firstItem="juF-O1-BoW" firstAttribute="leading" secondItem="efX-zP-7sF" secondAttribute="leading" id="BN4-VS-Po2"/>
+                                                            <constraint firstAttribute="trailing" secondItem="DN7-Lb-sKb" secondAttribute="trailing" constant="32" id="BTL-It-AQb"/>
                                                             <constraint firstItem="juF-O1-BoW" firstAttribute="top" secondItem="efX-zP-7sF" secondAttribute="top" id="Ggk-7V-dxi"/>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="600" id="Hcs-yp-fM2"/>
                                                             <constraint firstAttribute="trailing" secondItem="juF-O1-BoW" secondAttribute="trailing" id="bRc-ef-a7n"/>
@@ -1563,6 +1584,8 @@ Each log displayed must not contain the Filter Text.</string>
                         <outlet property="autoscrollButton" destination="HI5-H6-78b" id="6zq-cs-jxO"/>
                         <outlet property="filtersTableView" destination="o3l-qO-VAC" id="MVr-xA-VT8"/>
                         <outlet property="logsTextView" destination="anf-7r-VvA" id="8gH-8N-teS"/>
+                        <outlet property="rightPanel" destination="efX-zP-7sF" id="81H-bT-RUQ"/>
+                        <outlet property="verticalSplitView" destination="JLI-rk-nFz" id="2ch-jc-HlF"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1573,5 +1596,6 @@ Each log displayed must not contain the Filter Text.</string>
     <resources>
         <image name="highlighter" catalog="system" width="18" height="16"/>
         <image name="play.fill" catalog="system" width="12" height="13"/>
+        <image name="sidebar.right" catalog="system" width="19" height="14"/>
     </resources>
 </document>

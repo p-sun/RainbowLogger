@@ -30,14 +30,23 @@
 @property (weak) IBOutlet NSTextField *addFilterTextField;
 @property (weak) IBOutlet NSButton *autoscrollButton;
 
-// Logs IBActions
+@property (weak) IBOutlet NSSplitView *verticalSplitView;
+@property (weak) IBOutlet NSView *rightPanel;
+
+// IBActions - Right Panel
+- (IBAction)customizeCancelPressed:(id)sender;
+- (IBAction)customizeDefaultPressed:(id)sender;
+- (IBAction)customizeApplyPressed:(id)sender;
+- (IBAction)customizeClosePanelPressed:(id)sender;
+
+// IBActions - Top Logs Menu
 - (IBAction)attachLoggerPressed:(id)sender;
 - (IBAction)editAttachScriptPressed:(id)sender;
 - (IBAction)clearLogs:(id)sender;
 - (IBAction)pauseButtonToggled:(NSButton *)sender;
 - (IBAction)autoscrollButtonToggled:(NSButton *)sender;
 
-// Filter IBActions
+// IBActions - Bottom Filters Menu
 - (IBAction)addFilterButtonPressed:(id)sender;
 - (IBAction)addFilterOnTextFieldEnter:(NSTextField *)sender;
 - (IBAction)deleteSelectedFilter:(id)sender;
