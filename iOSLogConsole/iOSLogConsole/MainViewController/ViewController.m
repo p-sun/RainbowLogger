@@ -32,6 +32,8 @@
   _nextColor = 6; // Mint Green
   _shouldScrollFiltersTable = NO;
   
+  [self setDedaultCustomizeScript];
+  
   _filtersManager = [[FiltersManager alloc] init];
   [_filtersManager setDelegate:self];
   
@@ -42,13 +44,16 @@
   [_logsManager setDelegate:self];
   
   // Views
-  [_rightPanel setHidden:YES];
-  
   _filtersTableView.allowsMultipleSelection = YES;
   [_filtersTableView setFiltersDelegate:self];
   [_filtersTableView setFilters:[_filtersManager getFilters]];
   
   [_logsTextView setScrollDelegate:self];
+  
+  [_rightPanel setHidden:YES];
+
+  // TODO enable/disable the save button
+  // _customizeScriptTextView.delegate = self
 }
 
 - (void)viewWillAppear {
@@ -128,20 +133,44 @@
 }
 
 #pragma mark - IBActions - Customize Script Right Panel
+// TODO Refactor script logic out of ViewController
 
 - (IBAction)customizeCancelPressed:(id)sender {
-  // TODO discard text changes
+  NSString *script = [self loadCustomizedScript];
+  if (script) {
+    _customizeScriptTextView.string = script;
+  }
 }
 
 - (IBAction)customizeDefaultPressed:(id)sender {
+  NSString *defaultScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --predicate '(NOT (subsystem contains \"com.apple\"))'";
+  _customizeScriptTextView.string = defaultScript;
+  [self saveCustomizedScript:defaultScript];
 }
 
 - (IBAction)customizeApplyPressed:(id)sender {
-  
+  [self saveCustomizedScript:_customizeScriptTextView.string];
 }
 
 - (IBAction)customizeClosePanelPressed:(id)sender {
+  [self customizeCancelPressed:nil];
   [_rightPanel setHidden:YES];
+}
+
+- (void)setDedaultCustomizeScript {
+  NSString *script = [self loadCustomizedScript];
+  if (script == nil) {
+    script = _customizeScriptTextView.string;
+    [self saveCustomizedScript:script];
+  }
+  _customizeScriptTextView.string = script;
+}
+- (void)saveCustomizedScript:(NSString*)newScript {
+  [[NSUserDefaults standardUserDefaults] setValue:newScript forKey:@"UserDefaultsKeyCustomizedScript"];
+}
+
+- (NSString*)loadCustomizedScript {
+  return [[NSUserDefaults standardUserDefaults] valueForKey:@"UserDefaultsKeyCustomizedScript"];
 }
 
 #pragma mark - FileReaderDelegate

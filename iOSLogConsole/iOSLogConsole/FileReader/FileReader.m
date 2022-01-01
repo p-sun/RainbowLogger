@@ -46,6 +46,7 @@
   return self;
 }
 
+
 - (void)reattachToSimulator {
   [task_ terminate];
   
@@ -56,32 +57,47 @@
   
   /*
    Really close to Flipper's logs. Still shows some Network and Security logs though.
-   
    Test command in terminal by removing the \ escape before the quotes.
-   ------- Escape characters removed ------
-     xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate '(NOT (subsystem contains "com.apple")) AND eventMessage contains "****"'
+
+   ----------------------------------------------------------
+   Override the saved script for the "Attach Logger" button
+   ----------------------------------------------------------
    
-   ------------ Device logs ---------------
-   task.arguments = @[@"-l",
-                      @"-c",
-                      @"idevicesyslog -p Facebook -m \"****\""];
+   --- Script for getting device logs ---
+   NSString *script = @"idevicesyslog -p Facebook -m \"****\"";
+   
+   --- My preferred log for getting logs from simulator ---
+   NSString *predicate = @"'(NOT (subsystem contains \"com.apple\")) AND eventMessage contains \"****\"'";
+   NSString *script = [@"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate " stringByAppendingString:predicate];
+   
+   --- Save script ---
+   [self saveCustomizedScript:script];
    **/
-  NSString *predicate = @"'(NOT (subsystem contains \"com.apple\")) AND eventMessage contains \"****\"'";
+  
+  NSString *script = [self loadCustomizedScript];
   task.arguments = @[@"-l",
                      @"-c",
-                     [@"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate " stringByAppendingString:predicate]];
-  
+                     script];
+
   NSPipe *p = [NSPipe pipe];
   [task setStandardOutput:p];
   fileHandle_ = [p fileHandleForReading];
   [fileHandle_ waitForDataInBackgroundAndNotify];
   NSError *error;
-//  [task launchAndReturnError:&error];
+  [task launchAndReturnError:&error];
   if (error) {
     NSLog(@"**** Error %@", error);
   }
   
   task_ = task;
+}
+
+- (void)saveCustomizedScript:(NSString*)newScript {
+  [[NSUserDefaults standardUserDefaults] setValue:newScript forKey:@"UserDefaultsKeyCustomizedScript"];
+}
+
+- (NSString*)loadCustomizedScript {
+  return [[NSUserDefaults standardUserDefaults] valueForKey:@"UserDefaultsKeyCustomizedScript"];
 }
 
 -(void)_onTick:(NSTimer *)timer {

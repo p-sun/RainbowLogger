@@ -932,9 +932,9 @@ These logs can be further filtered and colored with filters added to the bottom 
                                                                                             </textFieldCell>
                                                                                         </textField>
                                                                                         <box boxType="custom" borderType="line" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="7xY-wM-8ii" userLabel="Script Editing Box">
-                                                                                            <rect key="frame" x="0.0" y="448" width="536" height="193"/>
+                                                                                            <rect key="frame" x="0.0" y="448" width="592" height="193"/>
                                                                                             <view key="contentView" id="IRW-BE-mSX">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="536" height="193"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="592" height="193"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                 <subviews>
                                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kfn-Gs-QBi" userLabel="Script1 Edit Script Here">
@@ -946,20 +946,20 @@ These logs can be further filtered and colored with filters added to the bottom 
                                                                                                         </textFieldCell>
                                                                                                     </textField>
                                                                                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMt-hW-Xs2" userLabel="Script2  Scroll View - Text View">
-                                                                                                        <rect key="frame" x="16" y="82" width="504" height="60"/>
+                                                                                                        <rect key="frame" x="16" y="82" width="560" height="60"/>
                                                                                                         <clipView key="contentView" drawsBackground="NO" id="be1-dL-ElP">
-                                                                                                            <rect key="frame" x="0.0" y="0.0" width="504" height="60"/>
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
                                                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                             <subviews>
                                                                                                                 <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="dPO-Zb-qlw">
-                                                                                                                    <rect key="frame" x="0.0" y="0.0" width="504" height="60"/>
+                                                                                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
                                                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                                                     <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                                                    <size key="minSize" width="504" height="60"/>
+                                                                                                                    <size key="minSize" width="560" height="60"/>
                                                                                                                     <size key="maxSize" width="709" height="10000000"/>
                                                                                                                     <attributedString key="textStorage">
-                                                                                                                        <fragment content="xcrun simctl spawn booted log stream --level=default --style=compact">
+                                                                                                                        <fragment content="xcrun simctl spawn booted log stream --level=default --style=compact --predicate '(NOT (subsystem contains &quot;com.apple&quot;))'">
                                                                                                                             <attributes>
                                                                                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                                                                 <font key="NSFont" size="12" name="Helvetica"/>
@@ -984,7 +984,7 @@ These logs can be further filtered and colored with filters added to the bottom 
                                                                                                         </scroller>
                                                                                                     </scrollView>
                                                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0c9-MI-5Lm" userLabel="Script3 Bottom Button Stack View">
-                                                                                                        <rect key="frame" x="16" y="16" width="504" height="50"/>
+                                                                                                        <rect key="frame" x="16" y="16" width="560" height="50"/>
                                                                                                         <subviews>
                                                                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="QBx-pP-aYa">
                                                                                                                 <rect key="frame" x="0.0" y="0.0" width="274" height="50"/>
@@ -1016,8 +1016,8 @@ Gw
                                                                                                                 </connections>
                                                                                                             </button>
                                                                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-Lp-wmo">
-                                                                                                                <rect key="frame" x="441" y="8" width="70" height="32"/>
-                                                                                                                <buttonCell key="cell" type="push" title="Apply" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dgF-c5-qLP">
+                                                                                                                <rect key="frame" x="441" y="8" width="126" height="32"/>
+                                                                                                                <buttonCell key="cell" type="push" title="Apply Changes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dgF-c5-qLP">
                                                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                                                     <font key="font" metaFont="system"/>
                                                                                                                 </buttonCell>
@@ -1582,6 +1582,7 @@ Each log displayed must not contain the Filter Text.</string>
                     <connections>
                         <outlet property="addFilterTextField" destination="lTV-Rh-SIs" id="hOK-EJ-cTr"/>
                         <outlet property="autoscrollButton" destination="HI5-H6-78b" id="6zq-cs-jxO"/>
+                        <outlet property="customizeScriptTextView" destination="dPO-Zb-qlw" id="yXw-hO-TtO"/>
                         <outlet property="filtersTableView" destination="o3l-qO-VAC" id="MVr-xA-VT8"/>
                         <outlet property="logsTextView" destination="anf-7r-VvA" id="8gH-8N-teS"/>
                         <outlet property="rightPanel" destination="efX-zP-7sF" id="81H-bT-RUQ"/>

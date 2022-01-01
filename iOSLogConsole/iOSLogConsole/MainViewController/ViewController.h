@@ -17,6 +17,7 @@
 
 @interface ViewController : NSViewController <FileReaderDelegate, FiltersManagerDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate>
 
+// Data - Logs and Filter
 @property (nonatomic, strong) FileReader *fileReader;
 @property (nonatomic, readonly) BOOL hasReadLine;
 @property (nonatomic, readonly) BOOL isPaused;
@@ -25,15 +26,18 @@
 @property (nonatomic, readonly) FiltersManager *filtersManager;
 @property (nonatomic, readonly) LogsManager *logsManager;
 
+// Outlets - Logs and Filter
 @property (weak) IBOutlet LogsTextView *logsTextView;
 @property (weak) IBOutlet FiltersTableView *filtersTableView;
 @property (weak) IBOutlet NSTextField *addFilterTextField;
 @property (weak) IBOutlet NSButton *autoscrollButton;
 
+// Outlets - Customize Script
 @property (weak) IBOutlet NSSplitView *verticalSplitView;
 @property (weak) IBOutlet NSView *rightPanel;
+@property (unsafe_unretained) IBOutlet NSTextView *customizeScriptTextView;
 
-// IBActions - Right Panel
+// IBActions - Customize Script Panel
 - (IBAction)customizeCancelPressed:(id)sender;
 - (IBAction)customizeDefaultPressed:(id)sender;
 - (IBAction)customizeApplyPressed:(id)sender;
