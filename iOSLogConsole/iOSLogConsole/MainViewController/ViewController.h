@@ -15,7 +15,7 @@
 #import "LogsScrollView.h"
 #import "LogsTextView.h"
 
-@interface ViewController : NSViewController <FileReaderDelegate, FiltersManagerDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate>
+@interface ViewController : NSViewController <FileReaderDelegate, FiltersManagerDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate, NSTextViewDelegate>
 
 // Data - Logs and Filter
 @property (nonatomic, strong) FileReader *fileReader;
@@ -36,6 +36,8 @@
 @property (weak) IBOutlet NSSplitView *verticalSplitView;
 @property (weak) IBOutlet NSView *rightPanel;
 @property (unsafe_unretained) IBOutlet NSTextView *customizeScriptTextView;
+@property (weak) IBOutlet NSButton *customizeScriptApplyButton;
+@property (weak) IBOutlet NSButton *customizeScriptCancelChangesButton;
 
 // IBActions - Customize Script Panel
 - (IBAction)customizeCancelPressed:(id)sender;

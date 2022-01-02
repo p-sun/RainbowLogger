@@ -32,7 +32,7 @@
   _nextColor = 6; // Mint Green
   _shouldScrollFiltersTable = NO;
   
-  [self setDedaultCustomizeScript];
+  [self setupCustomizeScriptTextView];
   
   _filtersManager = [[FiltersManager alloc] init];
   [_filtersManager setDelegate:self];
@@ -52,8 +52,7 @@
   
   [_rightPanel setHidden:YES];
 
-  // TODO enable/disable the save button
-  // _customizeScriptTextView.delegate = self
+  _customizeScriptTextView.delegate = self;
 }
 
 - (void)viewWillAppear {
@@ -157,20 +156,61 @@
   [_rightPanel setHidden:YES];
 }
 
-- (void)setDedaultCustomizeScript {
+- (void)setupCustomizeScriptTextView {
+  //   ----------------------------------------------------------
+  //   Override the saved script for the "Attach Logger" button
+  //   ----------------------------------------------------------
+  
+  //   --- Script for getting device logs ---
+//     NSString *newScript = @"idevicesyslog -p Facebook -m \"****\"";
+  
+  //   --- My preferred log for getting logs from simulator ---
+  //   Really close to Flipper's logs. Still shows some Network and Security logs though.
+  //   Test command in terminal by removing the \ escape before the quotes.
+     NSString *newScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate '(NOT (subsystem contains \"com.apple\")) AND eventMessage contains \"****\"\'";
+
+  //   --- For testing new start ---
+//       NSString *newScript = nil;
+  
+  // --- Save script ---
+    [self saveCustomizedScript:newScript];
+  //   ----------------------------------------------------------
+  
   NSString *script = [self loadCustomizedScript];
   if (script == nil) {
-    script = _customizeScriptTextView.string;
-    [self saveCustomizedScript:script];
+    [self customizeDefaultPressed:nil];
+  } else if (![script isEqualToString:_customizeScriptTextView.string]) {
+    _customizeScriptTextView.string = script;
   }
-  _customizeScriptTextView.string = script;
+  
+  [self updateCustomizeScriptApplyButtonEnabled];
 }
+  
 - (void)saveCustomizedScript:(NSString*)newScript {
   [[NSUserDefaults standardUserDefaults] setValue:newScript forKey:@"UserDefaultsKeyCustomizedScript"];
+  [self updateCustomizeScriptApplyButtonEnabled];
 }
 
 - (NSString*)loadCustomizedScript {
   return [[NSUserDefaults standardUserDefaults] valueForKey:@"UserDefaultsKeyCustomizedScript"];
+}
+
+- (void)updateCustomizeScriptApplyButtonEnabled {
+  NSString *oldScript = [self loadCustomizedScript];
+  NSString *newScript = _customizeScriptTextView.string;
+  BOOL didTextChange = ![oldScript isEqualToString:newScript];
+  [_customizeScriptApplyButton setEnabled:didTextChange];
+  [_customizeScriptCancelChangesButton setEnabled:didTextChange];
+  NSLog(@"****");
+}
+
+#pragma mark - NSTextViewDelegate for the Customize panel
+// TODO Refactor it out of ViewController
+- (void)textDidChange:(NSNotification *)notification {
+  NSTextView *textView = notification.object;
+  if (textView == _customizeScriptTextView) {
+    [self updateCustomizeScriptApplyButtonEnabled];
+  }
 }
 
 #pragma mark - FileReaderDelegate

@@ -55,25 +55,6 @@
   NSString *shellString = [environmentDict objectForKey:@"SHELL"];
   [task setLaunchPath: shellString];
   
-  /*
-   Really close to Flipper's logs. Still shows some Network and Security logs though.
-   Test command in terminal by removing the \ escape before the quotes.
-
-   ----------------------------------------------------------
-   Override the saved script for the "Attach Logger" button
-   ----------------------------------------------------------
-   
-   --- Script for getting device logs ---
-   NSString *script = @"idevicesyslog -p Facebook -m \"****\"";
-   
-   --- My preferred log for getting logs from simulator ---
-   NSString *predicate = @"'(NOT (subsystem contains \"com.apple\")) AND eventMessage contains \"****\"'";
-   NSString *script = [@"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate " stringByAppendingString:predicate];
-   
-   --- Save script ---
-   [self saveCustomizedScript:script];
-   **/
-  
   NSString *script = [self loadCustomizedScript];
   task.arguments = @[@"-l",
                      @"-c",

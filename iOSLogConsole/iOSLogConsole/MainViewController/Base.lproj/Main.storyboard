@@ -734,10 +734,10 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="dre-lh-TMS" userLabel="Logs Menu View">
-                                                                <rect key="frame" x="0.0" y="825" width="679" height="45"/>
+                                                                <rect key="frame" x="0.0" y="825" width="654" height="45"/>
                                                                 <subviews>
                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fwd-1y-Lwo" userLabel="Logs Menu Stack View">
-                                                                        <rect key="frame" x="16" y="10" width="647" height="25"/>
+                                                                        <rect key="frame" x="16" y="10" width="622" height="25"/>
                                                                         <subviews>
                                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TE3-Ub-eVG">
                                                                                 <rect key="frame" x="-2" y="3" width="38" height="19"/>
@@ -748,8 +748,8 @@
                                                                                 </textFieldCell>
                                                                             </textField>
                                                                             <button identifier="Reattach to a process to display its logs. This runs a script that can be edited using Customize." toolTip="Attach to a process to get its logs. Use Customize to edit the Command Line script that runs." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="CFx-X7-qsY">
-                                                                                <rect key="frame" x="43" y="-7" width="134" height="37"/>
-                                                                                <buttonCell key="cell" type="push" title="Attach Logger" bezelStyle="rounded" image="play.fill" catalog="system" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ie-iH-eNe">
+                                                                                <rect key="frame" x="43" y="-7" width="111" height="37"/>
+                                                                                <buttonCell key="cell" type="push" title="Run Script" bezelStyle="rounded" image="play.fill" catalog="system" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ie-iH-eNe">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <string key="keyEquivalent">r</string>
@@ -761,8 +761,8 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button toolTip="Customize the Command Line script that gets logs from a process. Can use any command that can output text." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="oKU-pU-bjr">
-                                                                                <rect key="frame" x="179" y="-7" width="119" height="37"/>
-                                                                                <buttonCell key="cell" type="push" title="Customize" bezelStyle="rounded" image="highlighter" catalog="system" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XtC-LU-a9X">
+                                                                                <rect key="frame" x="156" y="-7" width="117" height="37"/>
+                                                                                <buttonCell key="cell" type="push" title="Edit Script" bezelStyle="rounded" image="highlighter" catalog="system" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XtC-LU-a9X">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <string key="keyEquivalent">r</string>
@@ -773,10 +773,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-t0-7Li">
-                                                                                <rect key="frame" x="305" y="0.0" width="5" height="25"/>
+                                                                                <rect key="frame" x="280" y="0.0" width="5" height="25"/>
                                                                             </box>
                                                                             <button toolTip="Clear all logs." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-eU-Zgo">
-                                                                                <rect key="frame" x="317" y="-7" width="122" height="37"/>
+                                                                                <rect key="frame" x="292" y="-7" width="122" height="37"/>
                                                                                 <buttonCell key="cell" type="push" title="🗑 Clear Logs" bezelStyle="rounded" imagePosition="leading" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="piN-n4-VBZ">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
@@ -786,10 +786,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="LwX-ue-TA9">
-                                                                                <rect key="frame" x="446" y="0.0" width="5" height="25"/>
+                                                                                <rect key="frame" x="421" y="0.0" width="5" height="25"/>
                                                                             </box>
                                                                             <button toolTip="Stop new logs from being displayed. When unpaused, logs that occurred during the pause will be displayed." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bY2-Oh-iS1" userLabel="Pause">
-                                                                                <rect key="frame" x="462" y="-4" width="77" height="32"/>
+                                                                                <rect key="frame" x="437" y="-4" width="77" height="32"/>
                                                                                 <buttonCell key="cell" type="check" title="Pause" bezelStyle="regularSquare" imagePosition="left" borderStyle="border" inset="2" id="tfk-fI-d62">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="system"/>
@@ -800,7 +800,7 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button toolTip="Autoscroll to the bottom when new logs are added." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HI5-H6-78b" userLabel="Autoscroll">
-                                                                                <rect key="frame" x="549" y="-4" width="101" height="32"/>
+                                                                                <rect key="frame" x="524" y="-4" width="101" height="32"/>
                                                                                 <buttonCell key="cell" type="check" title="Autoscroll" bezelStyle="regularSquare" imagePosition="left" state="on" borderStyle="border" inset="2" id="fkf-G1-xF8">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="system"/>
@@ -907,21 +907,21 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="zj5-Pl-95Q" userLabel="Script Ediiting Container">
-                                                                            <rect key="frame" x="0.0" y="94" width="4110" height="774"/>
+                                                                            <rect key="frame" x="0.0" y="44" width="4110" height="824"/>
                                                                             <subviews>
                                                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qx7-Vv-b1b" userLabel="Info Stack">
-                                                                                    <rect key="frame" x="20" y="20" width="4074" height="734"/>
+                                                                                    <rect key="frame" x="20" y="20" width="4074" height="784"/>
                                                                                     <subviews>
                                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rfJ-Vc-0N6" userLabel="Title">
-                                                                                            <rect key="frame" x="-2" y="713" width="231" height="21"/>
+                                                                                            <rect key="frame" x="-2" y="758" width="287" height="26"/>
                                                                                             <textFieldCell key="cell" title="Displaying Logs from iOS App" id="wld-7l-qfy">
-                                                                                                <font key="font" textStyle="title2" name=".SFNS-Regular"/>
+                                                                                                <font key="font" textStyle="title1" name=".SFNS-Regular"/>
                                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                             </textFieldCell>
                                                                                         </textField>
                                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5VL-Vg-IdA">
-                                                                                            <rect key="frame" x="-2" y="653" width="822" height="48"/>
+                                                                                            <rect key="frame" x="-2" y="698" width="822" height="48"/>
                                                                                             <textFieldCell key="cell" selectable="YES" id="Vyf-48-pQV">
                                                                                                 <font key="font" usesAppearanceFont="YES"/>
                                                                                                 <string key="title">You can use any Command Line process that outputs text to display logs in the main panel. The "Attach Logger" button runs this script.
@@ -932,34 +932,35 @@ These logs can be further filtered and colored with filters added to the bottom 
                                                                                             </textFieldCell>
                                                                                         </textField>
                                                                                         <box boxType="custom" borderType="line" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="7xY-wM-8ii" userLabel="Script Editing Box">
-                                                                                            <rect key="frame" x="0.0" y="448" width="592" height="193"/>
+                                                                                            <rect key="frame" x="0.0" y="486" width="650" height="200"/>
                                                                                             <view key="contentView" id="IRW-BE-mSX">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="592" height="193"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="650" height="200"/>
                                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                 <subviews>
                                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kfn-Gs-QBi" userLabel="Script1 Edit Script Here">
-                                                                                                        <rect key="frame" x="14" y="158" width="112" height="19"/>
+                                                                                                        <rect key="frame" x="14" y="158" width="153" height="26"/>
                                                                                                         <textFieldCell key="cell" selectable="YES" title="Edit Script Here" id="Dw5-fa-9my">
-                                                                                                            <font key="font" textStyle="title3" name=".SFNS-Regular"/>
+                                                                                                            <font key="font" textStyle="title1" name=".SFNS-Regular"/>
                                                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                                         </textFieldCell>
                                                                                                     </textField>
                                                                                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMt-hW-Xs2" userLabel="Script2  Scroll View - Text View">
-                                                                                                        <rect key="frame" x="16" y="82" width="560" height="60"/>
+                                                                                                        <rect key="frame" x="16" y="82" width="618" height="60"/>
                                                                                                         <clipView key="contentView" drawsBackground="NO" id="be1-dL-ElP">
-                                                                                                            <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
+                                                                                                            <rect key="frame" x="0.0" y="0.0" width="618" height="60"/>
                                                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                             <subviews>
                                                                                                                 <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="dPO-Zb-qlw">
-                                                                                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="60"/>
+                                                                                                                    <rect key="frame" x="0.0" y="0.0" width="618" height="60"/>
                                                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                                                     <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                                                    <size key="minSize" width="560" height="60"/>
+                                                                                                                    <size key="minSize" width="618" height="60"/>
                                                                                                                     <size key="maxSize" width="709" height="10000000"/>
                                                                                                                     <attributedString key="textStorage">
-                                                                                                                        <fragment content="xcrun simctl spawn booted log stream --level=default --style=compact --predicate '(NOT (subsystem contains &quot;com.apple&quot;))'">
+                                                                                                                        <fragment>
+                                                                                                                            <string key="content">xcrun simctl spawn booted log stream --level=default --style=compact --predicate '(NOT (subsystem contains "com.apple"))'   FOR DISPLAY IN STORYBOARD ONLY</string>
                                                                                                                             <attributes>
                                                                                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                                                                 <font key="NSFont" size="12" name="Helvetica"/>
@@ -984,26 +985,13 @@ These logs can be further filtered and colored with filters added to the bottom 
                                                                                                         </scroller>
                                                                                                     </scrollView>
                                                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0c9-MI-5Lm" userLabel="Script3 Bottom Button Stack View">
-                                                                                                        <rect key="frame" x="16" y="16" width="560" height="50"/>
+                                                                                                        <rect key="frame" x="16" y="16" width="618" height="50"/>
                                                                                                         <subviews>
                                                                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="QBx-pP-aYa">
-                                                                                                                <rect key="frame" x="0.0" y="0.0" width="274" height="50"/>
+                                                                                                                <rect key="frame" x="0.0" y="0.0" width="310" height="50"/>
                                                                                                             </customView>
-                                                                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6gZ-Jk-yD3">
-                                                                                                                <rect key="frame" x="283" y="8" width="76" height="32"/>
-                                                                                                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C9i-VH-iTG">
-                                                                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                                                    <font key="font" metaFont="system"/>
-                                                                                                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                                                                                                </buttonCell>
-                                                                                                                <connections>
-                                                                                                                    <action selector="customizeCancelPressed:" target="XfG-lQ-9wD" id="qKI-9F-QZY"/>
-                                                                                                                </connections>
-                                                                                                            </button>
                                                                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cUT-qg-PRU">
-                                                                                                                <rect key="frame" x="361" y="8" width="78" height="32"/>
+                                                                                                                <rect key="frame" x="319" y="8" width="78" height="32"/>
                                                                                                                 <buttonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZcX-kz-ArR">
                                                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                                                     <font key="font" metaFont="system"/>
@@ -1015,9 +1003,22 @@ Gw
                                                                                                                     <action selector="customizeDefaultPressed:" target="XfG-lQ-9wD" id="0Hd-qX-e3x"/>
                                                                                                                 </connections>
                                                                                                             </button>
+                                                                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6gZ-Jk-yD3">
+                                                                                                                <rect key="frame" x="399" y="8" width="126" height="32"/>
+                                                                                                                <buttonCell key="cell" type="push" title="Load Last Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C9i-VH-iTG">
+                                                                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                                                    <font key="font" metaFont="system"/>
+                                                                                                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                                                                                </buttonCell>
+                                                                                                                <connections>
+                                                                                                                    <action selector="customizeCancelPressed:" target="XfG-lQ-9wD" id="qKI-9F-QZY"/>
+                                                                                                                </connections>
+                                                                                                            </button>
                                                                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2Q-Lp-wmo">
-                                                                                                                <rect key="frame" x="441" y="8" width="126" height="32"/>
-                                                                                                                <buttonCell key="cell" type="push" title="Apply Changes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dgF-c5-qLP">
+                                                                                                                <rect key="frame" x="527" y="8" width="98" height="32"/>
+                                                                                                                <buttonCell key="cell" type="push" title="Run Script" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dgF-c5-qLP">
                                                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                                                     <font key="font" metaFont="system"/>
                                                                                                                 </buttonCell>
@@ -1062,8 +1063,16 @@ Gw
                                                                                             <color key="fillColor" red="0.11913675008443823" green="0.51660360749234857" blue="0.45788008124528462" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         </box>
                                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kut-OB-wsW">
-                                                                                            <rect key="frame" x="-2" y="420" width="206" height="16"/>
-                                                                                            <textFieldCell key="cell" selectable="YES" title="Get NSLogs from iOS Simulator" id="kJW-iU-Aii">
+                                                                                            <rect key="frame" x="-2" y="448" width="175" height="26"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="How to Edit Script" id="kJW-iU-Aii">
+                                                                                                <font key="font" textStyle="title1" name=".SFNS-Regular"/>
+                                                                                                <color key="textColor" red="0.7125164692" green="0.98410490370000003" blue="0.93363949310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                            </textFieldCell>
+                                                                                        </textField>
+                                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="c5e-ft-vCp">
+                                                                                            <rect key="frame" x="-2" y="420" width="273" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="Method 1: Get NSLogs from iOS Simulator" id="Y1U-Mc-EZs">
                                                                                                 <font key="font" textStyle="headline" name=".SFNS-Bold"/>
                                                                                                 <color key="textColor" red="0.7125164692" green="0.98410490370000003" blue="0.93363949310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1135,8 +1144,8 @@ Gw
                                                                                             </textFieldCell>
                                                                                         </textField>
                                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7oS-b6-6YA">
-                                                                                            <rect key="frame" x="-2" y="168" width="187" height="16"/>
-                                                                                            <textFieldCell key="cell" selectable="YES" title="Get NSLogs from iOS Device" id="jtF-0k-sop">
+                                                                                            <rect key="frame" x="-2" y="168" width="255" height="16"/>
+                                                                                            <textFieldCell key="cell" selectable="YES" title="Method 2: Get NSLogs from iOS Device" id="jtF-0k-sop">
                                                                                                 <font key="font" textStyle="headline" name=".SFNS-Bold"/>
                                                                                                 <color key="textColor" red="0.7125164692" green="0.98410490370000003" blue="0.93363949310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1211,8 +1220,10 @@ Gw
                                                                                         <integer value="1000"/>
                                                                                         <integer value="1000"/>
                                                                                         <integer value="1000"/>
+                                                                                        <integer value="1000"/>
                                                                                     </visibilityPriorities>
                                                                                     <customSpacing>
+                                                                                        <real value="3.4028234663852886e+38"/>
                                                                                         <real value="3.4028234663852886e+38"/>
                                                                                         <real value="3.4028234663852886e+38"/>
                                                                                         <real value="3.4028234663852886e+38"/>
@@ -1582,6 +1593,8 @@ Each log displayed must not contain the Filter Text.</string>
                     <connections>
                         <outlet property="addFilterTextField" destination="lTV-Rh-SIs" id="hOK-EJ-cTr"/>
                         <outlet property="autoscrollButton" destination="HI5-H6-78b" id="6zq-cs-jxO"/>
+                        <outlet property="customizeScriptApplyButton" destination="d2Q-Lp-wmo" id="jut-bm-r5A"/>
+                        <outlet property="customizeScriptCancelChangesButton" destination="6gZ-Jk-yD3" id="vp1-Zg-7gW"/>
                         <outlet property="customizeScriptTextView" destination="dPO-Zb-qlw" id="yXw-hO-TtO"/>
                         <outlet property="filtersTableView" destination="o3l-qO-VAC" id="MVr-xA-VT8"/>
                         <outlet property="logsTextView" destination="anf-7r-VvA" id="8gH-8N-teS"/>
