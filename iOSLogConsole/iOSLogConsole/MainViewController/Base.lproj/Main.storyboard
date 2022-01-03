@@ -729,8 +729,8 @@
                                             <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLI-rk-nFz">
                                                 <rect key="frame" x="0.0" y="0.0" width="7475" height="915"/>
                                                 <subviews>
-                                                    <customView misplaced="YES" id="KLj-cF-hl3" userLabel="Main Logs Panel">
-                                                        <rect key="frame" x="0.0" y="0.0" width="3338" height="915"/>
+                                                    <customView misplaced="YES" id="KLj-cF-hl3" userLabel="Main Logs Pane">
+                                                        <rect key="frame" x="0.0" y="0.0" width="6861" height="915"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="dre-lh-TMS" userLabel="Logs Menu View">
@@ -896,8 +896,8 @@
                                                             <constraint firstItem="dre-lh-TMS" firstAttribute="top" secondItem="KLj-cF-hl3" secondAttribute="top" id="zBx-zi-lKi"/>
                                                         </constraints>
                                                     </customView>
-                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="efX-zP-7sF" userLabel="Right Panel">
-                                                        <rect key="frame" x="3348" y="0.0" width="4127" height="915"/>
+                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="efX-zP-7sF" userLabel="Right Edit Script Pane">
+                                                        <rect key="frame" x="6871" y="0.0" width="604" height="915"/>
                                                         <subviews>
                                                             <scrollView borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="juF-O1-BoW">
                                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="915"/>
@@ -924,7 +924,7 @@
                                                                                                         <font key="font" metaFont="system"/>
                                                                                                     </buttonCell>
                                                                                                     <connections>
-                                                                                                        <action selector="customizeClosePanelPressed:" target="XfG-lQ-9wD" id="8Ge-Q4-Ung"/>
+                                                                                                        <action selector="editPaneClosePressed:" target="XfG-lQ-9wD" id="8Ge-Q4-Ung"/>
                                                                                                     </connections>
                                                                                                 </button>
                                                                                             </subviews>
@@ -949,11 +949,11 @@
                                                                                             <rect key="frame" x="-2" y="1026" width="551" height="144"/>
                                                                                             <textFieldCell key="cell" selectable="YES" id="Vyf-48-pQV">
                                                                                                 <font key="font" usesAppearanceFont="YES"/>
-                                                                                                <mutableString key="title">Use any script in the "Edit Script Here" box below, to output text to the left hand pane.
+                                                                                                <string key="title">Use any script in the "Edit Script Here" box below, to output text to the left hand pane.
 
 The output text can be colored and filtered, using filters added to the bottom pane. Press the "+" button to add a filter. Click filters to select them and press "🗑" to remove selected filters. Hover over each button to read its description.
 
-With an iOS Simulator running, click "Run Script" with the default script to display NSLogs from the Simulator in the left hand pane. Run the script in a Command Line to verify that it works.</mutableString>
+With an iOS Simulator running, click "Run Script" with the default script to display NSLogs from the Simulator in the left hand pane. Run the script in a Command Line to verify that it works.</string>
                                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                             </textFieldCell>
@@ -1041,7 +1041,7 @@ Gw
                                                                                                                 </buttonCell>
                                                                                                                 <color key="bezelColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
                                                                                                                 <connections>
-                                                                                                                    <action selector="editPanelRunScriptPressed:" target="XfG-lQ-9wD" id="rwJ-y9-nWe"/>
+                                                                                                                    <action selector="editPaneRunScriptPressed:" target="XfG-lQ-9wD" id="rwJ-y9-nWe"/>
                                                                                                                 </connections>
                                                                                                             </button>
                                                                                                         </subviews>
@@ -1360,7 +1360,7 @@ LOG(INFO) &lt;&lt; "YOUR_NAME Message";</string>
                                                                     <rect key="frame" x="-100" y="-100" width="4110" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
-                                                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.93450881612090675" horizontal="NO" id="r9z-PV-ws8">
+                                                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.99496221662468509" horizontal="NO" id="r9z-PV-ws8">
                                                                     <rect key="frame" x="584" y="1" width="15" height="913"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
@@ -1677,10 +1677,10 @@ Each log displayed must not contain the Filter Text.</string>
                         <outlet property="addFilterTextField" destination="lTV-Rh-SIs" id="hOK-EJ-cTr"/>
                         <outlet property="autoscrollButton" destination="HI5-H6-78b" id="6zq-cs-jxO"/>
                         <outlet property="customizeScriptTextView" destination="dPO-Zb-qlw" id="yXw-hO-TtO"/>
-                        <outlet property="editPanelRunScriptButton" destination="d2Q-Lp-wmo" id="jut-bm-r5A"/>
+                        <outlet property="editPaneRunScriptButton" destination="d2Q-Lp-wmo" id="jut-bm-r5A"/>
                         <outlet property="filtersTableView" destination="o3l-qO-VAC" id="MVr-xA-VT8"/>
                         <outlet property="logsTextView" destination="anf-7r-VvA" id="8gH-8N-teS"/>
-                        <outlet property="rightPanel" destination="efX-zP-7sF" id="81H-bT-RUQ"/>
+                        <outlet property="rightPane" destination="efX-zP-7sF" id="81H-bT-RUQ"/>
                         <outlet property="verticalSplitView" destination="JLI-rk-nFz" id="2ch-jc-HlF"/>
                     </connections>
                 </viewController>

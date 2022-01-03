@@ -34,14 +34,14 @@
 
 // Outlets - Customize Script
 @property (weak) IBOutlet NSSplitView *verticalSplitView;
-@property (weak) IBOutlet NSView *rightPanel;
+@property (weak) IBOutlet NSView *rightPane;
 @property (unsafe_unretained) IBOutlet NSTextView *customizeScriptTextView;
-@property (weak) IBOutlet NSButton *editPanelRunScriptButton;
+@property (weak) IBOutlet NSButton *editPaneRunScriptButton;
 
-// IBActions - Customize Script Panel
+// IBActions - Customize Script Pane
 - (IBAction)customizeDefaultPressed:(id)sender;
-- (IBAction)editPanelRunScriptPressed:(id)sender;
-- (IBAction)customizeClosePanelPressed:(id)sender;
+- (IBAction)editPaneRunScriptPressed:(id)sender;
+- (IBAction)editPaneClosePressed:(id)sender;
 
 // IBActions - Top Logs Menu
 - (IBAction)runScriptPressed:(id)sender;

@@ -50,7 +50,7 @@
   
   [_logsTextView setScrollDelegate:self];
   
-  [_rightPanel setHidden:YES];
+  [_rightPane setHidden:YES];
 
   _customizeScriptTextView.delegate = self;
   
@@ -80,8 +80,8 @@
 }
 
 - (IBAction)editScriptPressed:(id)sender {
-  BOOL shouldHide = ![_verticalSplitView isSubviewCollapsed:_rightPanel];
-  [_rightPanel setHidden:shouldHide];
+  BOOL shouldHide = ![_verticalSplitView isSubviewCollapsed:_rightPane];
+  [_rightPane setHidden:shouldHide];
 }
 
 - (IBAction)clearLogs:(id)sender {
@@ -134,7 +134,7 @@
   }
 }
 
-#pragma mark - IBActions - Customize Script Right Panel
+#pragma mark - IBActions for Edit Script Pane
 // TODO Refactor script logic out of ViewController
 
 - (IBAction)customizeDefaultPressed:(id)sender {
@@ -143,13 +143,13 @@
   [self saveCustomizedScript:defaultScript];
 }
 
-- (IBAction)editPanelRunScriptPressed:(id)sender {
+- (IBAction)editPaneRunScriptPressed:(id)sender {
   [self saveCustomizedScript:_customizeScriptTextView.string];
   [self runScriptPressed:nil];
 }
 
-- (IBAction)customizeClosePanelPressed:(id)sender {
-  [_rightPanel setHidden:YES];
+- (IBAction)editPaneClosePressed:(id)sender {
+  [_rightPane setHidden:YES];
 }
 
 - (void)setupCustomizeScriptTextView {
@@ -188,7 +188,7 @@
   return [[NSUserDefaults standardUserDefaults] valueForKey:@"UserDefaultsKeyCustomizedScript"];
 }
 
-#pragma mark - NSTextViewDelegate for the Customize panel
+#pragma mark - NSTextViewDelegate for Edit Script Pane
 // TODO Refactor it out of ViewController
 - (void)textDidChange:(NSNotification *)notification {
   NSTextView *textView = notification.object;
