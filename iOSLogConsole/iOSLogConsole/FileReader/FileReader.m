@@ -30,7 +30,6 @@
 - (id)init {
   self = [super init];
   if (self != nil) {
-    [self reattachToSimulator];
     dispatch_queue_attr_t qos = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_BACKGROUND, -1);
     fileReaderQueue_ = dispatch_queue_create("fileReaderQueue", qos);
   }
@@ -47,18 +46,14 @@
 }
 
 
-- (void)reattachToSimulator {
+- (void)runScript:(NSString *)script {
   [task_ terminate];
   
   NSTask *task = [[NSTask alloc] init];
   NSDictionary *environmentDict = [[NSProcessInfo processInfo] environment];
   NSString *shellString = [environmentDict objectForKey:@"SHELL"];
   [task setLaunchPath: shellString];
-  
-  NSString *script = [self loadCustomizedScript];
-  task.arguments = @[@"-l",
-                     @"-c",
-                     script];
+  task.arguments = @[@"-l", @"-c", script];
 
   NSPipe *p = [NSPipe pipe];
   [task setStandardOutput:p];
@@ -67,18 +62,10 @@
   NSError *error;
   [task launchAndReturnError:&error];
   if (error) {
-    NSLog(@"**** Error %@", error);
+    NSLog(@"(PAIGE) Error %@", error);
   }
   
   task_ = task;
-}
-
-- (void)saveCustomizedScript:(NSString*)newScript {
-  [[NSUserDefaults standardUserDefaults] setValue:newScript forKey:@"UserDefaultsKeyCustomizedScript"];
-}
-
-- (NSString*)loadCustomizedScript {
-  return [[NSUserDefaults standardUserDefaults] valueForKey:@"UserDefaultsKeyCustomizedScript"];
 }
 
 -(void)_onTick:(NSTimer *)timer {

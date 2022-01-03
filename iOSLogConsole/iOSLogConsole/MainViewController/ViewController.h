@@ -36,18 +36,16 @@
 @property (weak) IBOutlet NSSplitView *verticalSplitView;
 @property (weak) IBOutlet NSView *rightPanel;
 @property (unsafe_unretained) IBOutlet NSTextView *customizeScriptTextView;
-@property (weak) IBOutlet NSButton *customizeScriptApplyButton;
-@property (weak) IBOutlet NSButton *customizeScriptCancelChangesButton;
+@property (weak) IBOutlet NSButton *editPanelRunScriptButton;
 
 // IBActions - Customize Script Panel
-- (IBAction)customizeCancelPressed:(id)sender;
 - (IBAction)customizeDefaultPressed:(id)sender;
-- (IBAction)customizeApplyPressed:(id)sender;
+- (IBAction)editPanelRunScriptPressed:(id)sender;
 - (IBAction)customizeClosePanelPressed:(id)sender;
 
 // IBActions - Top Logs Menu
-- (IBAction)attachLoggerPressed:(id)sender;
-- (IBAction)editAttachScriptPressed:(id)sender;
+- (IBAction)runScriptPressed:(id)sender;
+- (IBAction)editScriptPressed:(id)sender;
 - (IBAction)clearLogs:(id)sender;
 - (IBAction)pauseButtonToggled:(NSButton *)sender;
 - (IBAction)autoscrollButtonToggled:(NSButton *)sender;

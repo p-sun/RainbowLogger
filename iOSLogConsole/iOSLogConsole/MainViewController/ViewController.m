@@ -53,6 +53,8 @@
   [_rightPanel setHidden:YES];
 
   _customizeScriptTextView.delegate = self;
+  
+  [self runScriptPressed:nil];
 }
 
 - (void)viewWillAppear {
@@ -72,11 +74,12 @@
 
 #pragma mark - IBActions - Top Logs Menu
 
-- (IBAction)attachLoggerPressed:(id)sender {
-  [self.fileReader reattachToSimulator];
+- (IBAction)runScriptPressed:(id)sender {
+  NSString *script = [self loadCustomizedScript];
+  [self.fileReader runScript:script];
 }
 
-- (IBAction)editAttachScriptPressed:(id)sender {
+- (IBAction)editScriptPressed:(id)sender {
   BOOL shouldHide = ![_verticalSplitView isSubviewCollapsed:_rightPanel];
   [_rightPanel setHidden:shouldHide];
 }
@@ -134,25 +137,18 @@
 #pragma mark - IBActions - Customize Script Right Panel
 // TODO Refactor script logic out of ViewController
 
-- (IBAction)customizeCancelPressed:(id)sender {
-  NSString *script = [self loadCustomizedScript];
-  if (script) {
-    _customizeScriptTextView.string = script;
-  }
-}
-
 - (IBAction)customizeDefaultPressed:(id)sender {
   NSString *defaultScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --predicate '(NOT (subsystem contains \"com.apple\"))'";
   _customizeScriptTextView.string = defaultScript;
   [self saveCustomizedScript:defaultScript];
 }
 
-- (IBAction)customizeApplyPressed:(id)sender {
+- (IBAction)editPanelRunScriptPressed:(id)sender {
   [self saveCustomizedScript:_customizeScriptTextView.string];
+  [self runScriptPressed:nil];
 }
 
 - (IBAction)customizeClosePanelPressed:(id)sender {
-  [self customizeCancelPressed:nil];
   [_rightPanel setHidden:YES];
 }
 
@@ -167,13 +163,13 @@
   //   --- My preferred log for getting logs from simulator ---
   //   Really close to Flipper's logs. Still shows some Network and Security logs though.
   //   Test command in terminal by removing the \ escape before the quotes.
-     NSString *newScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate '(NOT (subsystem contains \"com.apple\")) AND eventMessage contains \"****\"\'";
+//     NSString *newScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate '(NOT (subsystem contains \"com.apple\")) AND eventMessage contains \"****\"\'";
 
   //   --- For testing new start ---
 //       NSString *newScript = nil;
   
   // --- Save script ---
-    [self saveCustomizedScript:newScript];
+//    [self saveCustomizedScript:newScript];
   //   ----------------------------------------------------------
   
   NSString *script = [self loadCustomizedScript];
@@ -182,26 +178,14 @@
   } else if (![script isEqualToString:_customizeScriptTextView.string]) {
     _customizeScriptTextView.string = script;
   }
-  
-  [self updateCustomizeScriptApplyButtonEnabled];
 }
   
 - (void)saveCustomizedScript:(NSString*)newScript {
   [[NSUserDefaults standardUserDefaults] setValue:newScript forKey:@"UserDefaultsKeyCustomizedScript"];
-  [self updateCustomizeScriptApplyButtonEnabled];
 }
 
 - (NSString*)loadCustomizedScript {
   return [[NSUserDefaults standardUserDefaults] valueForKey:@"UserDefaultsKeyCustomizedScript"];
-}
-
-- (void)updateCustomizeScriptApplyButtonEnabled {
-  NSString *oldScript = [self loadCustomizedScript];
-  NSString *newScript = _customizeScriptTextView.string;
-  BOOL didTextChange = ![oldScript isEqualToString:newScript];
-  [_customizeScriptApplyButton setEnabled:didTextChange];
-  [_customizeScriptCancelChangesButton setEnabled:didTextChange];
-  NSLog(@"****");
 }
 
 #pragma mark - NSTextViewDelegate for the Customize panel
@@ -209,7 +193,12 @@
 - (void)textDidChange:(NSNotification *)notification {
   NSTextView *textView = notification.object;
   if (textView == _customizeScriptTextView) {
-    [self updateCustomizeScriptApplyButtonEnabled];
+    NSString *oldScript = [self loadCustomizedScript];
+    NSString *newScript = _customizeScriptTextView.string;
+    BOOL didTextChange = ![oldScript isEqualToString:newScript];
+    if (didTextChange) {
+      [self saveCustomizedScript:newScript];
+    }
   }
 }
 
