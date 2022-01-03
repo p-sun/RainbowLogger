@@ -12,6 +12,7 @@
 
 #import "ViewController.h"
 #import "NSColorExtensions.h"
+#import "NSViewExtensions.h"
 #import "Filter.h"
 #import "LogsProcessor.h"
 
@@ -19,6 +20,7 @@
   NSInteger _previousSelectedRow;
   NSInteger _nextColor;
   BOOL _shouldScrollFiltersTable;
+  EditScriptView *_editScriptView;
 }
 
 #pragma mark - View Controller Lifecycle
@@ -31,8 +33,6 @@
   _previousSelectedRow = -1;
   _nextColor = 6; // Mint Green
   _shouldScrollFiltersTable = NO;
-  
-  [self setupCustomizeScriptTextView];
   
   _filtersManager = [[FiltersManager alloc] init];
   [_filtersManager setDelegate:self];
@@ -50,20 +50,35 @@
   
   [_logsTextView setScrollDelegate:self];
   
+  _editScriptView = [NSView loadWithNibNamed:@"EditScriptView" class:EditScriptView.class owner:_editScriptView];
+  [_editScriptView setDelegate:self];
+  [_rightPaneScrollViewContents addSubview:_editScriptView];
+  [_editScriptView constrainToSuperview];
+  NSLog(@"**** view did load %@", _editScriptView);
+
   [_rightPane setHidden:YES];
 
-  _customizeScriptTextView.delegate = self;
-  
   [self runScriptPressed:nil];
 }
 
 - (void)viewWillAppear {
   [super viewWillAppear];
+
   [_filtersTableView resizeTableWidth];
+  
+
+//  [self setupCustomizeScriptTextView]; // TODO
 }
 
 - (void)viewDidAppear {
   [super viewDidAppear];
+
+  // Werid. The EditScriptViewDelegate doesn't work because the saved _editScriptView is different from the actual instance of EditScriptView. It's something to do with Nib instantization. Hack with notifications for now.
+  [[NSNotificationCenter defaultCenter]
+   addObserver:self
+   selector:@selector(editScriptViewDidPressCloseButton:)
+   name: EditScriptViewDidPressCloseButtonNotification
+   object:nil];
   
   [[NSNotificationCenter defaultCenter]
    addObserver:self
@@ -72,15 +87,21 @@
    object:_logsTextView.enclosingScrollView];
 }
 
+- (void)viewDidLayout {
+  [super viewDidLayout];
+}
+
+
 #pragma mark - IBActions - Top Logs Menu
 
 - (IBAction)runScriptPressed:(id)sender {
-  NSString *script = [self loadCustomizedScript];
-  [self.fileReader runScript:script];
+//  NSString *script = [self loadCustomizedScript]; // TODO
+//  [self.fileReader runScript:script]; // TODO
 }
 
 - (IBAction)editScriptPressed:(id)sender {
   BOOL shouldHide = ![_verticalSplitView isSubviewCollapsed:_rightPane];
+  NSLog(@"**** %@", [[_rightPaneScrollViewContents subviews] firstObject]);
   [_rightPane setHidden:shouldHide];
 }
 
@@ -99,6 +120,12 @@
 
 - (IBAction)autoscrollButtonToggled:(NSButton *)sender {
   _shouldAutoScroll = sender.state == NSControlStateValueOn;
+}
+
+#pragma mark - EditScriptViewDelegate
+
+-(void)editScriptViewDidPressCloseButton:(NSNotification *)aNotification {
+  [_rightPane setHidden:YES];
 }
 
 #pragma mark - IBActions - Bottom Filters Menu
@@ -131,74 +158,6 @@
   if (selectedRows.count >= 0) {
     _previousSelectedRow = selectedRows.firstIndex;
     [_filtersManager deleteFiltersAtIndexes:selectedRows];
-  }
-}
-
-#pragma mark - IBActions for Edit Script Pane
-// TODO Refactor script logic out of ViewController
-
-- (IBAction)customizeDefaultPressed:(id)sender {
-  NSString *defaultScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --predicate '(NOT (subsystem contains \"com.apple\"))'";
-  _customizeScriptTextView.string = defaultScript;
-  [self saveCustomizedScript:defaultScript];
-}
-
-- (IBAction)editPaneRunScriptPressed:(id)sender {
-  [self saveCustomizedScript:_customizeScriptTextView.string];
-  [self runScriptPressed:nil];
-}
-
-- (IBAction)editPaneClosePressed:(id)sender {
-  [_rightPane setHidden:YES];
-}
-
-- (void)setupCustomizeScriptTextView {
-  //   ----------------------------------------------------------
-  //   Override the saved script for the "Attach Logger" button
-  //   ----------------------------------------------------------
-  
-  //   --- Script for getting device logs ---
-//     NSString *newScript = @"idevicesyslog -p Facebook -m \"****\"";
-  
-  //   --- My preferred log for getting logs from simulator ---
-  //   Really close to Flipper's logs. Still shows some Network and Security logs though.
-  //   Test command in terminal by removing the \ escape before the quotes.
-//     NSString *newScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate '(NOT (subsystem contains \"com.apple\")) AND eventMessage contains \"****\"\'";
-
-  //   --- For testing new start ---
-//       NSString *newScript = nil;
-  
-  // --- Save script ---
-//    [self saveCustomizedScript:newScript];
-  //   ----------------------------------------------------------
-  
-  NSString *script = [self loadCustomizedScript];
-  if (script == nil) {
-    [self customizeDefaultPressed:nil];
-  } else if (![script isEqualToString:_customizeScriptTextView.string]) {
-    _customizeScriptTextView.string = script;
-  }
-}
-  
-- (void)saveCustomizedScript:(NSString*)newScript {
-  [[NSUserDefaults standardUserDefaults] setValue:newScript forKey:@"UserDefaultsKeyCustomizedScript"];
-}
-
-- (NSString*)loadCustomizedScript {
-  return [[NSUserDefaults standardUserDefaults] valueForKey:@"UserDefaultsKeyCustomizedScript"];
-}
-
-#pragma mark - NSTextViewDelegate for Edit Script Pane
-// TODO Refactor it out of ViewController
-- (void)textDidChange:(NSNotification *)notification {
-  NSTextView *textView = notification.object;
-  if (textView == _customizeScriptTextView) {
-    NSString *oldScript = [self loadCustomizedScript];
-    NSString *newScript = _customizeScriptTextView.string;
-    BOOL didTextChange = ![oldScript isEqualToString:newScript];
-    if (didTextChange) {
-      [self saveCustomizedScript:newScript];
-    }
   }
 }
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		259543102783ABDF00708D1D /* EditScriptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2595430F2783ABDF00708D1D /* EditScriptView.xib */; };
+		259543132783AE4300708D1D /* EditScriptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 259543122783AE4300708D1D /* EditScriptView.m */; };
+		259543172783B69200708D1D /* NSViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 259543152783B2C700708D1D /* NSViewExtensions.m */; };
 		25AF3EB2277BD9E30062D99C /* FiltersData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB0277BD9E30062D99C /* FiltersData.mm */; };
 		25AF3EB6277D84F10062D99C /* FilterConditionPopupInfo.h in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB5277D84F10062D99C /* FilterConditionPopupInfo.h */; };
 		25AF3EB8277D870E0062D99C /* FilterConditionPopupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB7277D870E0062D99C /* FilterConditionPopupInfo.m */; };
@@ -34,6 +37,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2595430F2783ABDF00708D1D /* EditScriptView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditScriptView.xib; sourceTree = "<group>"; };
+		259543112783AE4300708D1D /* EditScriptView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditScriptView.h; sourceTree = "<group>"; };
+		259543122783AE4300708D1D /* EditScriptView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditScriptView.m; sourceTree = "<group>"; };
+		259543152783B2C700708D1D /* NSViewExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSViewExtensions.m; sourceTree = "<group>"; };
+		259543162783B66E00708D1D /* NSViewExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSViewExtensions.h; sourceTree = "<group>"; };
 		25AF3EB0277BD9E30062D99C /* FiltersData.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FiltersData.mm; sourceTree = "<group>"; };
 		25AF3EB1277BD9E30062D99C /* FiltersData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersData.h; sourceTree = "<group>"; };
 		25AF3EB5277D84F10062D99C /* FilterConditionPopupInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterConditionPopupInfo.h; sourceTree = "<group>"; };
@@ -93,6 +101,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2595430E2783ABB400708D1D /* EditScriptView */ = {
+			isa = PBXGroup;
+			children = (
+				2595430F2783ABDF00708D1D /* EditScriptView.xib */,
+				259543112783AE4300708D1D /* EditScriptView.h */,
+				259543122783AE4300708D1D /* EditScriptView.m */,
+			);
+			path = EditScriptView;
+			sourceTree = "<group>";
+		};
 		9B2D798A250E37C900E39435 /* LogsColorer */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				9B99B41E247A6B4600734B8E /* MainViewController */,
+				2595430E2783ABB400708D1D /* EditScriptView */,
 				9B99B41D247A6B1600734B8E /* LogsTableView */,
 				9B835707250DC4A000D60206 /* LogsTextView */,
 				9BDE6905247BB27400F7599F /* FiltersTableView */,
@@ -200,6 +219,8 @@
 			children = (
 				9BC08BE8247CA0B60088354B /* NSColorExtensions.h */,
 				9BC08BEA247CA2050088354B /* NSColorExtensions.m */,
+				259543162783B66E00708D1D /* NSViewExtensions.h */,
+				259543152783B2C700708D1D /* NSViewExtensions.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -315,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B99B40B247A58D200734B8E /* Assets.xcassets in Resources */,
+				259543102783ABDF00708D1D /* EditScriptView.xib in Resources */,
 				9B99B40E247A58D200734B8E /* Main.storyboard in Resources */,
 				9BDE691B247C54D800F7599F /* FilterCell.xib in Resources */,
 			);
@@ -330,6 +352,8 @@
 				9BDE6915247BE0D400F7599F /* FileReader.m in Sources */,
 				9BC08BE9247CA0B60088354B /* NSColorExtensions.h in Sources */,
 				9B2D7996250E7E0100E39435 /* MainWindow.m in Sources */,
+				259543132783AE4300708D1D /* EditScriptView.m in Sources */,
+				259543172783B69200708D1D /* NSViewExtensions.m in Sources */,
 				9B2D798D250E37DC00E39435 /* LogsProcessor.m in Sources */,
 				9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */,
 				9B99B409247A58D100734B8E /* ViewController.m in Sources */,

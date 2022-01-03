@@ -8,14 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 #import "LogsTableView.h"
-#import "FiltersTableView.h"
+#import "EditScriptView.h"
 #import "FileReader.h"
-#import "LogsManager.h"
 #import "FiltersManager.h"
+#import "FiltersTableView.h"
+#import "LogsManager.h"
 #import "LogsScrollView.h"
 #import "LogsTextView.h"
 
-@interface ViewController : NSViewController <FileReaderDelegate, FiltersManagerDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate, NSTextViewDelegate>
+@interface ViewController : NSViewController <FileReaderDelegate, FiltersManagerDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate, EditScriptViewDelegate>
 
 // Data - Logs and Filter
 @property (nonatomic, strong) FileReader *fileReader;
@@ -32,16 +33,10 @@
 @property (weak) IBOutlet NSTextField *addFilterTextField;
 @property (weak) IBOutlet NSButton *autoscrollButton;
 
-// Outlets - Customize Script
+// Outlets - Right Pane Edit Script
 @property (weak) IBOutlet NSSplitView *verticalSplitView;
 @property (weak) IBOutlet NSView *rightPane;
-@property (unsafe_unretained) IBOutlet NSTextView *customizeScriptTextView;
-@property (weak) IBOutlet NSButton *editPaneRunScriptButton;
-
-// IBActions - Customize Script Pane
-- (IBAction)customizeDefaultPressed:(id)sender;
-- (IBAction)editPaneRunScriptPressed:(id)sender;
-- (IBAction)editPaneClosePressed:(id)sender;
+@property (weak) IBOutlet NSView *rightPaneScrollViewContents;
 
 // IBActions - Top Logs Menu
 - (IBAction)runScriptPressed:(id)sender;
