@@ -30,7 +30,8 @@
 - (void)awakeFromNib {
   [super awakeFromNib];
   
-  // with this set to YES, quotes typed into the NSTextView are different from \"
+  // with this set to YES, quotes typed into the NSTextView are different
+  // from escaped quotes set in defaultScript      i.e.  \"
   _customizeScriptTextView.automaticQuoteSubstitutionEnabled = NO;
   
   _customizeScriptTextView.delegate = self;
