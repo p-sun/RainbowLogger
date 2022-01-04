@@ -86,8 +86,15 @@
 #pragma mark - IBActions - Top Logs Menu
 
 - (IBAction)runScriptPressed:(id)sender {
-  NSString *script = [EditScriptView loadCustomizedScript];
-  [self.fileReader runScript:script];
+  if ([_topMenuRunScriptButton.title isEqualToString:@"Stop Script"]) {
+    [self.fileReader stopScript];
+  } else {
+    NSString *script = [EditScriptView loadCustomizedScript];
+    [self.fileReader runScript:script];
+  }
+  
+  [self updateRunScriptButton:_topMenuRunScriptButton];
+  [self updateRunScriptButton:_editScriptView.runScriptButton];
 }
 
 - (IBAction)editScriptPressed:(id)sender {
@@ -119,6 +126,22 @@
   NSPoint point = NSMakePoint(0.0,
                               [[_rightPanelScrollView documentView] bounds].size.height);
   [_rightPanelScrollView.documentView scrollPoint:point];
+}
+
+#pragma mark - Run Script Button
+
+-(void)updateRunScriptButton:(NSButton *)button {
+  if ([self.fileReader isScriptRunning]) {
+    [button setTitle:@"Stop Script"];
+    if (@available(macOS 11.0, *)) {
+      [button setImage:[NSImage imageWithSystemSymbolName:@"stop.fill" accessibilityDescription:nil]];
+    }
+  } else {
+    [button setTitle:@" Run Script"];
+    if (@available(macOS 11.0, *)) {
+      [button setImage:[NSImage imageWithSystemSymbolName:@"play.fill" accessibilityDescription:nil]];
+    }
+  }
 }
 
 #pragma mark - EditScriptViewDelegate

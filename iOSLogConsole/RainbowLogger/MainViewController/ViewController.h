@@ -33,6 +33,9 @@
 @property (weak) IBOutlet NSTextField *addFilterTextField;
 @property (weak) IBOutlet NSButton *autoscrollButton;
 
+// Outlets - Top Menu
+@property (weak) IBOutlet NSButton *topMenuRunScriptButton;
+
 // Outlets - Right Pane Edit Script
 @property (weak) IBOutlet NSSplitView *verticalSplitView;
 @property (weak) IBOutlet NSView *rightPane;

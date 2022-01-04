@@ -17,8 +17,7 @@
 }
 
 - (void)dealloc {
-  [task_ terminate];
-  fileHandle_ = nil;
+  [self stopScript];
 }
 
 /**
@@ -43,7 +42,6 @@
   return self;
 }
 
-
 - (void)runScript:(NSString *)script {
   [task_ terminate];
   
@@ -64,6 +62,18 @@
   }
   
   task_ = task;
+}
+
+- (BOOL)isScriptRunning {
+  return task_ && [task_ isRunning];
+}
+
+- (void)stopScript {
+  if ([self isScriptRunning]) {
+    [task_ terminate];
+    task_ = nil;
+    fileHandle_ = nil;
+  }
 }
 
 -(void)_onTick:(NSTimer *)timer {

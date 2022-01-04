@@ -734,10 +734,10 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="dre-lh-TMS" userLabel="Logs Menu View">
-                                                                <rect key="frame" x="0.0" y="743" width="654" height="45"/>
+                                                                <rect key="frame" x="0.0" y="743" width="658" height="45"/>
                                                                 <subviews>
                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fwd-1y-Lwo" userLabel="Logs Menu Stack View">
-                                                                        <rect key="frame" x="16" y="10" width="622" height="25"/>
+                                                                        <rect key="frame" x="16" y="10" width="626" height="25"/>
                                                                         <subviews>
                                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TE3-Ub-eVG">
                                                                                 <rect key="frame" x="-2" y="3" width="38" height="19"/>
@@ -748,8 +748,8 @@
                                                                                 </textFieldCell>
                                                                             </textField>
                                                                             <button identifier="Run a script to display logs from an app into the main area below." toolTip="Attach to a process to get its logs. Use Customize to edit the Command Line script that runs." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="CFx-X7-qsY">
-                                                                                <rect key="frame" x="43" y="-7" width="111" height="37"/>
-                                                                                <buttonCell key="cell" type="push" title="Run Script" bezelStyle="rounded" image="play.fill" catalog="system" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ie-iH-eNe">
+                                                                                <rect key="frame" x="43" y="-7" width="115" height="37"/>
+                                                                                <buttonCell key="cell" type="push" title=" Run Script" bezelStyle="rounded" image="play.fill" catalog="system" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ie-iH-eNe">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <string key="keyEquivalent">r</string>
@@ -761,7 +761,7 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button toolTip="Edit the Command Line script that gets logs from an app." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="oKU-pU-bjr">
-                                                                                <rect key="frame" x="156" y="-7" width="117" height="37"/>
+                                                                                <rect key="frame" x="160" y="-7" width="117" height="37"/>
                                                                                 <buttonCell key="cell" type="push" title="Edit Script" bezelStyle="rounded" image="highlighter" catalog="system" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XtC-LU-a9X">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
@@ -773,10 +773,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-t0-7Li">
-                                                                                <rect key="frame" x="280" y="0.0" width="5" height="25"/>
+                                                                                <rect key="frame" x="284" y="0.0" width="5" height="25"/>
                                                                             </box>
                                                                             <button toolTip="Clear all logs in the main pane below." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-eU-Zgo">
-                                                                                <rect key="frame" x="292" y="-7" width="122" height="37"/>
+                                                                                <rect key="frame" x="296" y="-7" width="122" height="37"/>
                                                                                 <buttonCell key="cell" type="push" title="🗑 Clear Logs" bezelStyle="rounded" imagePosition="leading" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="piN-n4-VBZ">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
@@ -786,10 +786,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="LwX-ue-TA9">
-                                                                                <rect key="frame" x="421" y="0.0" width="5" height="25"/>
+                                                                                <rect key="frame" x="425" y="0.0" width="5" height="25"/>
                                                                             </box>
                                                                             <button toolTip="Stop new logs from being displayed. When unpaused, logs that occurred during the pause will be displayed." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bY2-Oh-iS1" userLabel="Pause">
-                                                                                <rect key="frame" x="437" y="-4" width="77" height="32"/>
+                                                                                <rect key="frame" x="441" y="-4" width="77" height="32"/>
                                                                                 <buttonCell key="cell" type="check" title="Pause" bezelStyle="regularSquare" imagePosition="left" borderStyle="border" inset="2" id="tfk-fI-d62">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="system"/>
@@ -800,7 +800,7 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button toolTip="In the pane below, autoscroll to the bottom whenever new logs are added." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HI5-H6-78b" userLabel="Autoscroll">
-                                                                                <rect key="frame" x="524" y="-4" width="101" height="32"/>
+                                                                                <rect key="frame" x="528" y="-4" width="101" height="32"/>
                                                                                 <buttonCell key="cell" type="check" title="Autoscroll" bezelStyle="regularSquare" imagePosition="left" state="on" borderStyle="border" inset="2" id="fkf-G1-xF8">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="system"/>
@@ -1246,6 +1246,7 @@ Each log displayed must not contain the Filter Text.</string>
                         <outlet property="rightPane" destination="efX-zP-7sF" id="81H-bT-RUQ"/>
                         <outlet property="rightPaneScrollViewContents" destination="zj5-Pl-95Q" id="NUS-qI-GCx"/>
                         <outlet property="rightPanelScrollView" destination="juF-O1-BoW" id="3iV-Gh-2sP"/>
+                        <outlet property="topMenuRunScriptButton" destination="CFx-X7-qsY" id="Bza-yx-glz"/>
                         <outlet property="verticalSplitView" destination="JLI-rk-nFz" id="2ch-jc-HlF"/>
                     </connections>
                 </viewController>

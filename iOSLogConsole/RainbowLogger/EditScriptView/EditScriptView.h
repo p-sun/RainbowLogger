@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (unsafe_unretained) IBOutlet NSTextView *customizeScriptTextView;
 @property (strong) IBOutlet NSView *containerView;
+@property (weak) IBOutlet NSButton *runScriptButton;
 
 + (NSString*)loadCustomizedScript;
 
