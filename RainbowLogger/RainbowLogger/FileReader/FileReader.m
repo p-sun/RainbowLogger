@@ -55,13 +55,19 @@
   [task setStandardOutput:p];
   fileHandle_ = [p fileHandleForReading];
   [fileHandle_ waitForDataInBackgroundAndNotify];
+
+  [self.delegate fileReaderDidReadLines:@[@"---------------------------------------------------",
+                                          @"Running Script: ",
+                                          script,
+                                          @""]];
   NSError *error;
   [task launchAndReturnError:&error];
+  
   if (error) {
     NSLog(@"(PAIGE) Error %@", error);
+  } else {
+    task_ = task;
   }
-  
-  task_ = task;
 }
 
 - (BOOL)isScriptRunning {

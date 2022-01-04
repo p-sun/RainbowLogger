@@ -1071,7 +1071,7 @@ Gw
                                                                     <action selector="customizeDefaultPressed:" target="-2" id="Gre-bv-cxK"/>
                                                                 </connections>
                                                             </button>
-                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tpv-lu-gHb">
+                                                            <button toolTip="Same as the other &quot;Run Script&quot; or &quot;Stop Script&quot; button." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Tpv-lu-gHb">
                                                                 <rect key="frame" x="179" y="-7" width="111" height="32"/>
                                                                 <buttonCell key="cell" type="push" title="Run Script" bezelStyle="rounded" image="play.fill" catalog="system" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GDV-x4-IOz">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
