@@ -50,13 +50,12 @@
   
   [_logsTextView setScrollDelegate:self];
   
-  _editScriptView = [NSView loadWithNibNamed:@"EditScriptView" class:EditScriptView.class owner:_editScriptView];
+  _editScriptView = [[EditScriptView alloc] initWithFrame: NSMakeRect(0, 0, 88, 88)];
   [_editScriptView setDelegate:self];
   [_rightPaneScrollViewContents addSubview:_editScriptView];
   [_editScriptView constrainToSuperview];
-  NSLog(@"**** view did load %@", _editScriptView);
 
-  [_rightPane setHidden:YES];
+  //  [_rightPane setHidden:YES];
 
   [self runScriptPressed:nil];
 }
@@ -65,20 +64,10 @@
   [super viewWillAppear];
 
   [_filtersTableView resizeTableWidth];
-  
-
-//  [self setupCustomizeScriptTextView]; // TODO
 }
 
 - (void)viewDidAppear {
   [super viewDidAppear];
-
-  // Werid. The EditScriptViewDelegate doesn't work because the saved _editScriptView is different from the actual instance of EditScriptView. It's something to do with Nib instantization. Hack with notifications for now.
-  [[NSNotificationCenter defaultCenter]
-   addObserver:self
-   selector:@selector(editScriptViewDidPressCloseButton:)
-   name: EditScriptViewDidPressCloseButtonNotification
-   object:nil];
   
   [[NSNotificationCenter defaultCenter]
    addObserver:self
@@ -95,13 +84,12 @@
 #pragma mark - IBActions - Top Logs Menu
 
 - (IBAction)runScriptPressed:(id)sender {
-//  NSString *script = [self loadCustomizedScript]; // TODO
-//  [self.fileReader runScript:script]; // TODO
+  NSString *script = [EditScriptView loadCustomizedScript];
+  [self.fileReader runScript:script];
 }
 
 - (IBAction)editScriptPressed:(id)sender {
   BOOL shouldHide = ![_verticalSplitView isSubviewCollapsed:_rightPane];
-  NSLog(@"**** %@", [[_rightPaneScrollViewContents subviews] firstObject]);
   [_rightPane setHidden:shouldHide];
 }
 
@@ -124,8 +112,12 @@
 
 #pragma mark - EditScriptViewDelegate
 
--(void)editScriptViewDidPressCloseButton:(NSNotification *)aNotification {
+-(void)editScriptViewDidPressClose {
   [_rightPane setHidden:YES];
+}
+
+-(void)editScriptViewDidPressRunScript {
+  [self runScriptPressed:nil];
 }
 
 #pragma mark - IBActions - Bottom Filters Menu

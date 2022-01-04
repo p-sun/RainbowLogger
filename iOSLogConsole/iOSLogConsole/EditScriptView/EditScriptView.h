@@ -10,11 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString *EditScriptViewDidPressCloseButtonNotification = @"EditScriptViewDidPressCloseButtonNotification";
-
 @protocol EditScriptViewDelegate <NSObject>
 
--(void)editScriptViewDidPressCloseButton;
+-(void)editScriptViewDidPressClose;
+-(void)editScriptViewDidPressRunScript;
 
 @end
 
@@ -25,10 +24,12 @@ static NSString *EditScriptViewDidPressCloseButtonNotification = @"EditScriptVie
 @property (unsafe_unretained) IBOutlet NSTextView *customizeScriptTextView;
 @property (strong) IBOutlet NSView *containerView;
 
++ (NSString*)loadCustomizedScript;
+
 // IBActions - Customize Script Pane
-- (IBAction)customizeDefaultPressed:(id)sender;
-- (IBAction)editPaneRunScriptPressed:(id)sender;
-- (IBAction)editPaneClosePressed:(id)sender;
+- (IBAction)customizeDefaultPressed:(nullable id)sender;
+- (IBAction)editPaneRunScriptPressed:(nullable id)sender;
+- (IBAction)editPaneClosePressed:(nullable id)sender;
 
 @end
 

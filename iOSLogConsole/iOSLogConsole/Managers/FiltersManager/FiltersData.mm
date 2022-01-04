@@ -53,7 +53,7 @@
   NSData *encodedFilters = [NSKeyedArchiver archivedDataWithRootObject:myFilters requiringSecureCoding:YES error:&error];
   [NSUserDefaults.standardUserDefaults setObject:encodedFilters forKey:@"filters"];
   if (error) {
-    NSLog(@"Error with saving filters: %@", error);
+    NSLog(@"(PAIGE) Error with saving filters: %@", error);
   }
   pthread_mutex_unlock(&_mutex);
 }
@@ -67,7 +67,7 @@
   NSSet *classes = [[NSSet alloc] initWithArray:@[Filter.class, NSArray.class]];
   NSArray *storedFilters = [NSKeyedUnarchiver unarchivedObjectOfClasses:classes fromData:data error:&error];
   if (error) {
-    NSLog(@"Error with loading filters: %@", error.localizedDescription);
+    NSLog(@"(PAIGE) Error with loading filters: %@", error.localizedDescription);
   }
   return storedFilters != nil ? storedFilters : [[NSArray alloc] init];
 }

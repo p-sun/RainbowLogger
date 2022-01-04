@@ -16,7 +16,7 @@
     
     NSArray * objects;
     if (![nib instantiateWithOwner:owner topLevelObjects:&objects]) {
-        NSLog(@"Couldn't load nib named %@", nibNamed);
+        NSLog(@"(PAIGE) Couldn't load nib named %@", nibNamed);
         return nil;
     }
     
