@@ -708,33 +708,33 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="7475" height="1128"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1218" height="1160"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="1HU-qN-n6P">
-                                <rect key="frame" x="0.0" y="0.0" width="7475" height="1128"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1218" height="1160"/>
                                 <subviews>
                                     <customView id="vIg-Rw-KMT" userLabel="Top Half View">
-                                        <rect key="frame" x="0.0" y="0.0" width="7475" height="915"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1218" height="788"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="eB9-E3-euI" userLabel="Background Color">
-                                                <rect key="frame" x="0.0" y="0.0" width="7475" height="915"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="1218" height="788"/>
                                                 <view key="contentView" id="G5J-Op-NYX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="7475" height="915"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="1218" height="788"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </view>
                                                 <color key="fillColor" red="0.045702435413438915" green="0.073477102561920568" blue="0.084451891712306715" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </box>
                                             <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JLI-rk-nFz">
-                                                <rect key="frame" x="0.0" y="0.0" width="7475" height="915"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="1218" height="788"/>
                                                 <subviews>
                                                     <customView id="KLj-cF-hl3" userLabel="Main Logs Pane">
-                                                        <rect key="frame" x="0.0" y="0.0" width="6865" height="915"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1111" height="788"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="dre-lh-TMS" userLabel="Logs Menu View">
-                                                                <rect key="frame" x="0.0" y="870" width="654" height="45"/>
+                                                                <rect key="frame" x="0.0" y="743" width="654" height="45"/>
                                                                 <subviews>
                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fwd-1y-Lwo" userLabel="Logs Menu Stack View">
                                                                         <rect key="frame" x="16" y="10" width="622" height="25"/>
@@ -747,7 +747,7 @@
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textFieldCell>
                                                                             </textField>
-                                                                            <button identifier="Reattach to a process to display its logs. This runs a script that can be edited using Customize." toolTip="Attach to a process to get its logs. Use Customize to edit the Command Line script that runs." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="CFx-X7-qsY">
+                                                                            <button identifier="Run a script to display logs from an app into the main area below." toolTip="Attach to a process to get its logs. Use Customize to edit the Command Line script that runs." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="CFx-X7-qsY">
                                                                                 <rect key="frame" x="43" y="-7" width="111" height="37"/>
                                                                                 <buttonCell key="cell" type="push" title="Run Script" bezelStyle="rounded" image="play.fill" catalog="system" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ie-iH-eNe">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -760,7 +760,7 @@
                                                                                     <action selector="runScriptPressed:" target="XfG-lQ-9wD" id="hpb-6E-zQp"/>
                                                                                 </connections>
                                                                             </button>
-                                                                            <button toolTip="Customize the Command Line script that gets logs from a process. Can use any command that can output text." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="oKU-pU-bjr">
+                                                                            <button toolTip="Edit the Command Line script that gets logs from an app." verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="oKU-pU-bjr">
                                                                                 <rect key="frame" x="156" y="-7" width="117" height="37"/>
                                                                                 <buttonCell key="cell" type="push" title="Edit Script" bezelStyle="rounded" image="highlighter" catalog="system" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XtC-LU-a9X">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -775,7 +775,7 @@
                                                                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-t0-7Li">
                                                                                 <rect key="frame" x="280" y="0.0" width="5" height="25"/>
                                                                             </box>
-                                                                            <button toolTip="Clear all logs." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-eU-Zgo">
+                                                                            <button toolTip="Clear all logs in the main pane below." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-eU-Zgo">
                                                                                 <rect key="frame" x="292" y="-7" width="122" height="37"/>
                                                                                 <buttonCell key="cell" type="push" title="🗑 Clear Logs" bezelStyle="rounded" imagePosition="leading" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="piN-n4-VBZ">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -799,7 +799,7 @@
                                                                                     <action selector="pauseButtonToggled:" target="XfG-lQ-9wD" id="tsj-H4-P5D"/>
                                                                                 </connections>
                                                                             </button>
-                                                                            <button toolTip="Autoscroll to the bottom when new logs are added." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HI5-H6-78b" userLabel="Autoscroll">
+                                                                            <button toolTip="In the pane below, autoscroll to the bottom whenever new logs are added." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HI5-H6-78b" userLabel="Autoscroll">
                                                                                 <rect key="frame" x="524" y="-4" width="101" height="32"/>
                                                                                 <buttonCell key="cell" type="check" title="Autoscroll" bezelStyle="regularSquare" imagePosition="left" state="on" borderStyle="border" inset="2" id="fkf-G1-xF8">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -854,59 +854,60 @@
                                                                 </constraints>
                                                             </customView>
                                                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xL-fn-b8A">
-                                                                <rect key="frame" x="0.0" y="0.0" width="6865" height="870"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="1111" height="743"/>
                                                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qsv-01-jvj">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="6850" height="870"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="1096" height="743"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="anf-7r-VvA" customClass="LogsTextView">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="6850" height="870"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="1080" height="731"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <size key="minSize" width="6850" height="870"/>
+                                                                            <size key="minSize" width="1084" height="731"/>
                                                                             <size key="maxSize" width="7450" height="10000000"/>
                                                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                         </textView>
                                                                     </subviews>
                                                                 </clipView>
+                                                                <edgeInsets key="contentInsets" left="12" right="0.0" top="12" bottom="0.0"/>
                                                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="6Q5-Gs-vep">
                                                                     <rect key="frame" x="-100" y="-100" width="225" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Rw6-re-kfb">
-                                                                    <rect key="frame" x="6850" y="0.0" width="15" height="870"/>
+                                                                    <rect key="frame" x="1096" y="12" width="15" height="731"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                             </scrollView>
                                                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="VBk-ch-x2L" userLabel="Horizontal Line Above Scrollview">
-                                                                <rect key="frame" x="0.0" y="867" width="6865" height="5"/>
+                                                                <rect key="frame" x="0.0" y="740" width="1111" height="5"/>
                                                             </box>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="0xL-fn-b8A" firstAttribute="top" secondItem="dre-lh-TMS" secondAttribute="bottom" id="2aK-vs-ScD"/>
                                                             <constraint firstItem="VBk-ch-x2L" firstAttribute="top" secondItem="0xL-fn-b8A" secondAttribute="top" id="501-uj-XAG"/>
                                                             <constraint firstItem="0xL-fn-b8A" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" id="BF5-vq-3iW"/>
+                                                            <constraint firstAttribute="trailing" secondItem="VBk-ch-x2L" secondAttribute="trailing" id="J4G-AW-hit"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dre-lh-TMS" secondAttribute="trailing" id="Vtx-jj-0Bs"/>
-                                                            <constraint firstItem="VBk-ch-x2L" firstAttribute="leading" secondItem="0xL-fn-b8A" secondAttribute="leading" id="kXD-Wa-Nh4"/>
                                                             <constraint firstAttribute="trailing" secondItem="0xL-fn-b8A" secondAttribute="trailing" id="ngp-za-MTr"/>
                                                             <constraint firstAttribute="bottom" secondItem="0xL-fn-b8A" secondAttribute="bottom" id="qRh-f8-mya"/>
                                                             <constraint firstItem="dre-lh-TMS" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" id="r5k-5J-1bQ"/>
-                                                            <constraint firstItem="VBk-ch-x2L" firstAttribute="trailing" secondItem="0xL-fn-b8A" secondAttribute="trailing" id="x9b-5T-dSp"/>
+                                                            <constraint firstItem="VBk-ch-x2L" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" id="uYP-rt-pKH"/>
                                                             <constraint firstItem="dre-lh-TMS" firstAttribute="top" secondItem="KLj-cF-hl3" secondAttribute="top" id="zBx-zi-lKi"/>
                                                         </constraints>
                                                     </customView>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="efX-zP-7sF" userLabel="Right Edit Script Pane">
-                                                        <rect key="frame" x="6875" y="0.0" width="600" height="915"/>
+                                                        <rect key="frame" x="1121" y="0.0" width="97" height="788"/>
                                                         <subviews>
                                                             <scrollView borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="juF-O1-BoW">
-                                                                <rect key="frame" x="0.0" y="0.0" width="600" height="915"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="97" height="788"/>
                                                                 <clipView key="contentView" id="QZ4-nW-lr6">
-                                                                    <rect key="frame" x="1" y="1" width="583" height="913"/>
+                                                                    <rect key="frame" x="1" y="1" width="80" height="786"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zj5-Pl-95Q" userLabel="Script Ediiting Container">
-                                                                            <rect key="frame" x="0.0" y="-397" width="583" height="1310"/>
+                                                                            <rect key="frame" x="0.0" y="-524" width="80" height="1310"/>
                                                                         </customView>
                                                                     </subviews>
                                                                     <constraints>
@@ -914,14 +915,13 @@
                                                                         <constraint firstItem="zj5-Pl-95Q" firstAttribute="top" secondItem="QZ4-nW-lr6" secondAttribute="top" id="fNK-Sb-GI4"/>
                                                                         <constraint firstItem="zj5-Pl-95Q" firstAttribute="leading" secondItem="QZ4-nW-lr6" secondAttribute="leading" id="x4D-IR-K9g"/>
                                                                     </constraints>
-                                                                    <color key="backgroundColor" red="0.072891566597547613" green="0.10186050958625827" blue="0.20409401175902064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </clipView>
                                                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="3FA-MD-zhT">
                                                                     <rect key="frame" x="-100" y="-100" width="4110" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
-                                                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.94962216624685136" horizontal="NO" id="r9z-PV-ws8">
-                                                                    <rect key="frame" x="584" y="1" width="15" height="913"/>
+                                                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.69656488549618323" horizontal="NO" id="r9z-PV-ws8">
+                                                                    <rect key="frame" x="81" y="1" width="15" height="786"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                             </scrollView>
@@ -953,17 +953,25 @@
                                         </constraints>
                                     </customView>
                                     <customView id="Brm-11-Xg9" userLabel="Filters View">
-                                        <rect key="frame" x="0.0" y="925" width="7475" height="203"/>
+                                        <rect key="frame" x="0.0" y="798" width="1218" height="362"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
+                                            <box boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="tfm-Hi-rgH">
+                                                <rect key="frame" x="0.0" y="0.0" width="1218" height="362"/>
+                                                <view key="contentView" id="z3w-4x-Y1M">
+                                                    <rect key="frame" x="1" y="1" width="1216" height="360"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </view>
+                                                <color key="fillColor" red="0.19900455004522477" green="0.18248657473824575" blue="0.29209286404639179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </box>
                                             <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="X4P-62-Fcn" userLabel="Header Box">
-                                                <rect key="frame" x="0.0" y="137" width="7475" height="66"/>
+                                                <rect key="frame" x="0.0" y="296" width="1218" height="66"/>
                                                 <view key="contentView" id="Nmc-Pr-t08">
-                                                    <rect key="frame" x="0.0" y="0.0" width="7475" height="66"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="1218" height="66"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1Q-0d-cXN">
-                                                            <rect key="frame" x="16" y="8" width="7441" height="50"/>
+                                                            <rect key="frame" x="16" y="8" width="1184" height="50"/>
                                                             <subviews>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="VZW-tN-rp6" userLabel="30 Move Icon">
                                                                     <rect key="frame" x="0.0" y="0.0" width="34" height="50"/>
@@ -1013,7 +1021,7 @@ Each log displayed must not contain the Filter Text.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField toolTip="Customize logs using the Filter Text. When Filter Text is empty, the entire filter will be disabled." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="25c-8O-SJJ">
-                                                                    <rect key="frame" x="290" y="17" width="4615" height="16"/>
+                                                                    <rect key="frame" x="290" y="17" width="443" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Filter Text" id="raG-Ws-lwE">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1021,7 +1029,7 @@ Each log displayed must not contain the Filter Text.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField toolTip="Use Filter Text as the Regex pattern to filter the logs." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSf-Kn-j0Y">
-                                                                    <rect key="frame" x="4917" y="17" width="72" height="16"/>
+                                                                    <rect key="frame" x="745" y="17" width="72" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="68" id="Mec-F2-rnL"/>
                                                                     </constraints>
@@ -1032,13 +1040,13 @@ Each log displayed must not contain the Filter Text.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="YcU-GL-oKv" userLabel="1 Divider">
-                                                                    <rect key="frame" x="5003" y="0.0" width="1" height="50"/>
+                                                                    <rect key="frame" x="831" y="0.0" width="1" height="50"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="1" id="Drk-11-LML"/>
                                                                     </constraints>
                                                                 </customView>
                                                                 <textField toolTip="Color logs that contains Filter Text." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cgr-dW-soM">
-                                                                    <rect key="frame" x="5018" y="17" width="87" height="16"/>
+                                                                    <rect key="frame" x="846" y="17" width="87" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="83" id="Vkh-00-wT3"/>
                                                                     </constraints>
@@ -1049,13 +1057,13 @@ Each log displayed must not contain the Filter Text.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="GFA-HN-UBo" userLabel="1 Divider">
-                                                                    <rect key="frame" x="5119" y="0.0" width="1" height="50"/>
+                                                                    <rect key="frame" x="947" y="0.0" width="1" height="50"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="1" id="Tjg-0i-gXW"/>
                                                                     </constraints>
                                                                 </customView>
                                                                 <textField toolTip="Temporarily replace text in logs that match Filter Text. Clear this field to reset logs to their original text." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Em-Cc-Yfd">
-                                                                    <rect key="frame" x="5134" y="17" width="2309" height="16"/>
+                                                                    <rect key="frame" x="962" y="17" width="224" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Replace Text" id="ui1-q3-86F">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1107,10 +1115,10 @@ Each log displayed must not contain the Filter Text.</string>
                                                 </view>
                                             </box>
                                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x4V-x5-AFk">
-                                                <rect key="frame" x="0.0" y="0.0" width="7475" height="30"/>
+                                                <rect key="frame" x="16" y="8" width="572" height="30"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lTV-Rh-SIs">
-                                                        <rect key="frame" x="10" y="4" width="430" height="22"/>
+                                                        <rect key="frame" x="0.0" y="4" width="430" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="430" id="gjD-3T-b8H"/>
                                                         </constraints>
@@ -1124,7 +1132,7 @@ Each log displayed must not contain the Filter Text.</string>
                                                         </connections>
                                                     </textField>
                                                     <button toolTip="Add a filter with the given Filter Text." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lGW-YR-kAj">
-                                                        <rect key="frame" x="449" y="-2" width="64" height="32"/>
+                                                        <rect key="frame" x="439" y="-2" width="64" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="6Rr-Z0-UK1"/>
                                                         </constraints>
@@ -1138,7 +1146,7 @@ Each log displayed must not contain the Filter Text.</string>
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JxZ-z8-zQP">
-                                                        <rect key="frame" x="515" y="-3" width="64" height="34"/>
+                                                        <rect key="frame" x="505" y="-2" width="64" height="32"/>
                                                         <string key="toolTip">Delete selected filters. Tip: Click a filter to select it. Can use Command, Shift, and Up and Down Arrows to select multiple filters.</string>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="pKP-RJ-LO3"/>
@@ -1151,20 +1159,15 @@ Each log displayed must not contain the Filter Text.</string>
                                                             <action selector="deleteSelectedFilter:" target="XfG-lQ-9wD" id="MeA-UP-WUu"/>
                                                         </connections>
                                                     </button>
-                                                    <customView horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="CGH-Bx-CJB">
-                                                        <rect key="frame" x="588" y="0.0" width="6877" height="30"/>
-                                                    </customView>
                                                 </subviews>
-                                                <edgeInsets key="edgeInsets" left="10" right="10" top="0.0" bottom="0.0"/>
+                                                <edgeInsets key="edgeInsets" left="0.0" right="10" top="0.0" bottom="0.0"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="JxZ-z8-zQP" secondAttribute="bottom" constant="4" id="99g-CV-rKE"/>
+                                                    <constraint firstItem="JxZ-z8-zQP" firstAttribute="centerY" secondItem="x4V-x5-AFk" secondAttribute="centerY" id="EiF-DN-1va"/>
                                                     <constraint firstItem="lGW-YR-kAj" firstAttribute="centerY" secondItem="x4V-x5-AFk" secondAttribute="centerY" id="YB7-O3-cxG"/>
-                                                    <constraint firstItem="JxZ-z8-zQP" firstAttribute="top" secondItem="x4V-x5-AFk" secondAttribute="top" constant="4" id="bos-U4-zSN"/>
                                                     <constraint firstItem="lTV-Rh-SIs" firstAttribute="centerY" secondItem="x4V-x5-AFk" secondAttribute="centerY" id="eyZ-Jc-yqT"/>
                                                     <constraint firstAttribute="bottom" secondItem="lTV-Rh-SIs" secondAttribute="bottom" constant="4" id="k8a-Sk-ERn"/>
                                                 </constraints>
                                                 <visibilityPriorities>
-                                                    <integer value="1000"/>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
@@ -1173,24 +1176,22 @@ Each log displayed must not contain the Filter Text.</string>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
-                                                    <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
                                             <scrollView autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T74-pn-Zb2">
-                                                <rect key="frame" x="0.0" y="30" width="7475" height="107"/>
+                                                <rect key="frame" x="0.0" y="46" width="1218" height="250"/>
                                                 <clipView key="contentView" drawsBackground="NO" id="PWz-NT-IL0">
-                                                    <rect key="frame" x="1" y="1" width="7473" height="105"/>
+                                                    <rect key="frame" x="1" y="1" width="1216" height="248"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" headerView="rUr-6a-bnv" id="o3l-qO-VAC" customClass="FiltersTableView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="7473" height="80"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="1216" height="223"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
-                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="gridColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         </tableView>
                                                     </subviews>
-                                                    <nil key="backgroundColor"/>
                                                 </clipView>
                                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="J3t-hT-h9X">
                                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
@@ -1201,21 +1202,25 @@ Each log displayed must not contain the Filter Text.</string>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <tableHeaderView key="headerView" wantsLayer="YES" id="rUr-6a-bnv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="7473" height="25"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="1216" height="25"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableHeaderView>
                                             </scrollView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="tfm-Hi-rgH" secondAttribute="trailing" id="0gJ-hG-OrA"/>
                                             <constraint firstItem="X4P-62-Fcn" firstAttribute="leading" secondItem="Brm-11-Xg9" secondAttribute="leading" id="0lr-Z5-bZT"/>
-                                            <constraint firstAttribute="trailing" secondItem="x4V-x5-AFk" secondAttribute="trailing" id="4U9-eM-bCj"/>
-                                            <constraint firstItem="x4V-x5-AFk" firstAttribute="top" secondItem="T74-pn-Zb2" secondAttribute="bottom" id="App-62-jd9"/>
-                                            <constraint firstItem="x4V-x5-AFk" firstAttribute="leading" secondItem="Brm-11-Xg9" secondAttribute="leading" id="MzW-Db-HvE"/>
-                                            <constraint firstAttribute="bottom" secondItem="x4V-x5-AFk" secondAttribute="bottom" id="NyY-wZ-D3c"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="x4V-x5-AFk" secondAttribute="trailing" id="4U9-eM-bCj"/>
+                                            <constraint firstItem="tfm-Hi-rgH" firstAttribute="top" secondItem="Brm-11-Xg9" secondAttribute="top" id="A7v-dp-Hen"/>
+                                            <constraint firstItem="x4V-x5-AFk" firstAttribute="top" secondItem="T74-pn-Zb2" secondAttribute="bottom" constant="8" id="App-62-jd9"/>
+                                            <constraint firstItem="x4V-x5-AFk" firstAttribute="leading" secondItem="Brm-11-Xg9" secondAttribute="leading" constant="16" id="MzW-Db-HvE"/>
+                                            <constraint firstAttribute="bottom" secondItem="x4V-x5-AFk" secondAttribute="bottom" constant="8" id="NyY-wZ-D3c"/>
                                             <constraint firstAttribute="trailing" secondItem="T74-pn-Zb2" secondAttribute="trailing" id="PCL-yO-gz5"/>
+                                            <constraint firstItem="tfm-Hi-rgH" firstAttribute="leading" secondItem="Brm-11-Xg9" secondAttribute="leading" id="Xq9-1j-6Lc"/>
                                             <constraint firstAttribute="trailing" secondItem="X4P-62-Fcn" secondAttribute="trailing" id="ac7-ET-OdB"/>
                                             <constraint firstItem="X4P-62-Fcn" firstAttribute="top" secondItem="Brm-11-Xg9" secondAttribute="top" id="hqu-IG-Sou"/>
                                             <constraint firstItem="X4P-62-Fcn" firstAttribute="bottom" secondItem="T74-pn-Zb2" secondAttribute="top" id="jsE-p0-ldz"/>
+                                            <constraint firstAttribute="bottom" secondItem="tfm-Hi-rgH" secondAttribute="bottom" id="l5s-ME-xFS"/>
                                             <constraint firstItem="T74-pn-Zb2" firstAttribute="leading" secondItem="Brm-11-Xg9" secondAttribute="leading" id="nAK-nQ-GbS"/>
                                         </constraints>
                                     </customView>
@@ -1246,7 +1251,7 @@ Each log displayed must not contain the Filter Text.</string>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-8987.5" y="1165"/>
+            <point key="canvasLocation" x="-8988" y="1129"/>
         </scene>
     </scenes>
     <resources>

@@ -57,6 +57,7 @@
   [_editScriptView constrainToSuperview];
   
   [self rightPaneScrollToTop];
+  [_rightPane setHidden:YES];
   
   [self runScriptPressed:nil];
 }
