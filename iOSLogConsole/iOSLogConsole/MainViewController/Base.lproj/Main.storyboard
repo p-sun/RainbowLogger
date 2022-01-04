@@ -1240,6 +1240,7 @@ Each log displayed must not contain the Filter Text.</string>
                         <outlet property="logsTextView" destination="anf-7r-VvA" id="8gH-8N-teS"/>
                         <outlet property="rightPane" destination="efX-zP-7sF" id="81H-bT-RUQ"/>
                         <outlet property="rightPaneScrollViewContents" destination="zj5-Pl-95Q" id="NUS-qI-GCx"/>
+                        <outlet property="rightPanelScrollView" destination="juF-O1-BoW" id="3iV-Gh-2sP"/>
                         <outlet property="verticalSplitView" destination="JLI-rk-nFz" id="2ch-jc-HlF"/>
                     </connections>
                 </viewController>

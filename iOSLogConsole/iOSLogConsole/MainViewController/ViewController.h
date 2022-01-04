@@ -37,6 +37,7 @@
 @property (weak) IBOutlet NSSplitView *verticalSplitView;
 @property (weak) IBOutlet NSView *rightPane;
 @property (weak) IBOutlet NSView *rightPaneScrollViewContents;
+@property (weak) IBOutlet NSScrollView *rightPanelScrollView;
 
 // IBActions - Top Logs Menu
 - (IBAction)runScriptPressed:(id)sender;

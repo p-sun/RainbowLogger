@@ -52,17 +52,18 @@
   
   _editScriptView = [[EditScriptView alloc] initWithFrame: NSMakeRect(0, 0, 88, 88)];
   [_editScriptView setDelegate:self];
+  
   [_rightPaneScrollViewContents addSubview:_editScriptView];
   [_editScriptView constrainToSuperview];
-
-  //  [_rightPane setHidden:YES];
-
+  
+  [self rightPaneScrollToTop];
+  
   [self runScriptPressed:nil];
 }
 
 - (void)viewWillAppear {
   [super viewWillAppear];
-
+  
   [_filtersTableView resizeTableWidth];
 }
 
@@ -91,6 +92,9 @@
 - (IBAction)editScriptPressed:(id)sender {
   BOOL shouldHide = ![_verticalSplitView isSubviewCollapsed:_rightPane];
   [_rightPane setHidden:shouldHide];
+  if (!shouldHide) {
+    [self rightPaneScrollToTop];
+  }
 }
 
 - (IBAction)clearLogs:(id)sender {
@@ -108,6 +112,12 @@
 
 - (IBAction)autoscrollButtonToggled:(NSButton *)sender {
   _shouldAutoScroll = sender.state == NSControlStateValueOn;
+}
+
+- (void)rightPaneScrollToTop {
+  NSPoint point = NSMakePoint(0.0,
+                              [[_rightPanelScrollView documentView] bounds].size.height);
+  [_rightPanelScrollView.documentView scrollPoint:point];
 }
 
 #pragma mark - EditScriptViewDelegate
