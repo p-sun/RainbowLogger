@@ -1,0 +1,571 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		259543102783ABDF00708D1D /* EditScriptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2595430F2783ABDF00708D1D /* EditScriptView.xib */; };
+		259543132783AE4300708D1D /* EditScriptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 259543122783AE4300708D1D /* EditScriptView.m */; };
+		259543172783B69200708D1D /* NSViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 259543152783B2C700708D1D /* NSViewExtensions.m */; };
+		25AF3EB2277BD9E30062D99C /* FiltersData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB0277BD9E30062D99C /* FiltersData.mm */; };
+		25AF3EB6277D84F10062D99C /* FilterConditionPopupInfo.h in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB5277D84F10062D99C /* FilterConditionPopupInfo.h */; };
+		25AF3EB8277D870E0062D99C /* FilterConditionPopupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB7277D870E0062D99C /* FilterConditionPopupInfo.m */; };
+		9B2D798D250E37DC00E39435 /* LogsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D798C250E37DC00E39435 /* LogsProcessor.m */; };
+		9B2D7996250E7E0100E39435 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D7995250E7E0100E39435 /* MainWindow.m */; };
+		9B83570A250DC55400D60206 /* LogsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B835709250DC55400D60206 /* LogsTextView.m */; };
+		9B99B406247A58D100734B8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B405247A58D100734B8E /* AppDelegate.m */; };
+		9B99B409247A58D100734B8E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B408247A58D100734B8E /* ViewController.m */; };
+		9B99B40B247A58D200734B8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B99B40A247A58D200734B8E /* Assets.xcassets */; };
+		9B99B40E247A58D200734B8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B99B40C247A58D200734B8E /* Main.storyboard */; };
+		9B99B411247A58D200734B8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B410247A58D200734B8E /* main.m */; };
+		9B99B41A247A5C4F00734B8E /* LogsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B99B419247A5C4F00734B8E /* LogsTableView.m */; };
+		9BC08BE9247CA0B60088354B /* NSColorExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BE8247CA0B60088354B /* NSColorExtensions.h */; };
+		9BC08BEB247CA2050088354B /* NSColorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BEA247CA2050088354B /* NSColorExtensions.m */; };
+		9BC08BF4247E11170088354B /* LogsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BF3247E11170088354B /* LogsManager.m */; };
+		9BC08BF7247E234E0088354B /* FiltersManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BF6247E234E0088354B /* FiltersManager.mm */; };
+		9BC08C07247E60D60088354B /* LogsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08C06247E60D60088354B /* LogsScrollView.m */; };
+		9BDE6908247BB2D600F7599F /* FiltersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6907247BB2D600F7599F /* FiltersTableView.m */; };
+		9BDE6915247BE0D400F7599F /* FileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6914247BE0D400F7599F /* FileReader.m */; };
+		9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6917247BE17300F7599F /* NSDataExtensions.m */; };
+		9BDE691B247C54D800F7599F /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BDE691A247C54D800F7599F /* FilterCell.xib */; };
+		9BDE691E247C5E7900F7599F /* FilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE691D247C5E7900F7599F /* FilterCell.m */; };
+		9BDE6921247C5F3600F7599F /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6920247C5F3600F7599F /* Filter.m */; };
+		9BDE6924247C690400F7599F /* FilterColorPopupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6923247C690400F7599F /* FilterColorPopupInfo.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2595430F2783ABDF00708D1D /* EditScriptView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditScriptView.xib; sourceTree = "<group>"; };
+		259543112783AE4300708D1D /* EditScriptView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditScriptView.h; sourceTree = "<group>"; };
+		259543122783AE4300708D1D /* EditScriptView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditScriptView.m; sourceTree = "<group>"; };
+		259543152783B2C700708D1D /* NSViewExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSViewExtensions.m; sourceTree = "<group>"; };
+		259543162783B66E00708D1D /* NSViewExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSViewExtensions.h; sourceTree = "<group>"; };
+		25AF3EB0277BD9E30062D99C /* FiltersData.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FiltersData.mm; sourceTree = "<group>"; };
+		25AF3EB1277BD9E30062D99C /* FiltersData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersData.h; sourceTree = "<group>"; };
+		25AF3EB5277D84F10062D99C /* FilterConditionPopupInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterConditionPopupInfo.h; sourceTree = "<group>"; };
+		25AF3EB7277D870E0062D99C /* FilterConditionPopupInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterConditionPopupInfo.m; sourceTree = "<group>"; };
+		25AF3EB9277D883C0062D99C /* FilterCondition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterCondition.h; sourceTree = "<group>"; };
+		9B2D7988250E315B00E39435 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		9B2D798B250E37DC00E39435 /* LogsProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsProcessor.h; sourceTree = "<group>"; };
+		9B2D798C250E37DC00E39435 /* LogsProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsProcessor.m; sourceTree = "<group>"; };
+		9B2D7994250E7E0100E39435 /* MainWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainWindow.h; sourceTree = "<group>"; };
+		9B2D7995250E7E0100E39435 /* MainWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainWindow.m; sourceTree = "<group>"; };
+		9B835708250DC55400D60206 /* LogsTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsTextView.h; sourceTree = "<group>"; };
+		9B835709250DC55400D60206 /* LogsTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsTextView.m; sourceTree = "<group>"; };
+		9B83570B250E1BA600D60206 /* LogsScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsScrollViewDelegate.h; sourceTree = "<group>"; };
+		9B99B401247A58D100734B8E /* RainbowLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainbowLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B99B404247A58D100734B8E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9B99B405247A58D100734B8E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9B99B407247A58D100734B8E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9B99B408247A58D100734B8E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9B99B40A247A58D200734B8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9B99B40D247A58D200734B8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9B99B40F247A58D200734B8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B99B410247A58D200734B8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9B99B412247A58D200734B8E /* iOSLogConsole.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSLogConsole.entitlements; sourceTree = "<group>"; };
+		9B99B418247A5C4F00734B8E /* LogsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsTableView.h; sourceTree = "<group>"; };
+		9B99B419247A5C4F00734B8E /* LogsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsTableView.m; sourceTree = "<group>"; };
+		9BC08BE8247CA0B60088354B /* NSColorExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSColorExtensions.h; sourceTree = "<group>"; };
+		9BC08BEA247CA2050088354B /* NSColorExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSColorExtensions.m; sourceTree = "<group>"; };
+		9BC08BF2247E11170088354B /* LogsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsManager.h; sourceTree = "<group>"; };
+		9BC08BF3247E11170088354B /* LogsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsManager.m; sourceTree = "<group>"; };
+		9BC08BF5247E234E0088354B /* FiltersManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersManager.h; sourceTree = "<group>"; };
+		9BC08BF6247E234E0088354B /* FiltersManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FiltersManager.mm; sourceTree = "<group>"; };
+		9BC08C05247E60D60088354B /* LogsScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogsScrollView.h; sourceTree = "<group>"; };
+		9BC08C06247E60D60088354B /* LogsScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsScrollView.m; sourceTree = "<group>"; };
+		9BDE6906247BB2D600F7599F /* FiltersTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersTableView.h; sourceTree = "<group>"; };
+		9BDE6907247BB2D600F7599F /* FiltersTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltersTableView.m; sourceTree = "<group>"; };
+		9BDE6913247BE0D400F7599F /* FileReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileReader.h; sourceTree = "<group>"; };
+		9BDE6914247BE0D400F7599F /* FileReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileReader.m; sourceTree = "<group>"; };
+		9BDE6917247BE17300F7599F /* NSDataExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataExtensions.m; sourceTree = "<group>"; };
+		9BDE6919247BE18A00F7599F /* NSDataExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDataExtensions.h; sourceTree = "<group>"; };
+		9BDE691A247C54D800F7599F /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
+		9BDE691C247C5E7900F7599F /* FilterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterCell.h; sourceTree = "<group>"; };
+		9BDE691D247C5E7900F7599F /* FilterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterCell.m; sourceTree = "<group>"; };
+		9BDE691F247C5F3600F7599F /* Filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		9BDE6920247C5F3600F7599F /* Filter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
+		9BDE6922247C690400F7599F /* FilterColorPopupInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterColorPopupInfo.h; sourceTree = "<group>"; };
+		9BDE6923247C690400F7599F /* FilterColorPopupInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterColorPopupInfo.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9B99B3FE247A58D100734B8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2595430E2783ABB400708D1D /* EditScriptView */ = {
+			isa = PBXGroup;
+			children = (
+				2595430F2783ABDF00708D1D /* EditScriptView.xib */,
+				259543112783AE4300708D1D /* EditScriptView.h */,
+				259543122783AE4300708D1D /* EditScriptView.m */,
+			);
+			path = EditScriptView;
+			sourceTree = "<group>";
+		};
+		9B2D798A250E37C900E39435 /* LogsColorer */ = {
+			isa = PBXGroup;
+			children = (
+				9B2D798B250E37DC00E39435 /* LogsProcessor.h */,
+				9B2D798C250E37DC00E39435 /* LogsProcessor.m */,
+			);
+			path = LogsColorer;
+			sourceTree = "<group>";
+		};
+		9B835707250DC4A000D60206 /* LogsTextView */ = {
+			isa = PBXGroup;
+			children = (
+				9B835708250DC55400D60206 /* LogsTextView.h */,
+				9B835709250DC55400D60206 /* LogsTextView.m */,
+				9B83570B250E1BA600D60206 /* LogsScrollViewDelegate.h */,
+			);
+			path = LogsTextView;
+			sourceTree = "<group>";
+		};
+		9B99B3F8247A58D100734B8E = {
+			isa = PBXGroup;
+			children = (
+				9B99B403247A58D100734B8E /* RainbowLogger */,
+				9B99B402247A58D100734B8E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9B99B402247A58D100734B8E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9B99B401247A58D100734B8E /* RainbowLogger.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9B99B403247A58D100734B8E /* RainbowLogger */ = {
+			isa = PBXGroup;
+			children = (
+				9B99B41E247A6B4600734B8E /* MainViewController */,
+				2595430E2783ABB400708D1D /* EditScriptView */,
+				9B99B41D247A6B1600734B8E /* LogsTableView */,
+				9B835707250DC4A000D60206 /* LogsTextView */,
+				9BDE6905247BB27400F7599F /* FiltersTableView */,
+				9BDE6916247BE15500F7599F /* FileReader */,
+				9BC08BEE247E0FB20088354B /* Managers */,
+				9B99B444247BA56600734B8E /* Models */,
+				9BC08BED247CA7780088354B /* Extensions */,
+				9B99B40A247A58D200734B8E /* Assets.xcassets */,
+				9B99B40F247A58D200734B8E /* Info.plist */,
+				9B99B412247A58D200734B8E /* iOSLogConsole.entitlements */,
+			);
+			path = RainbowLogger;
+			sourceTree = "<group>";
+		};
+		9B99B41D247A6B1600734B8E /* LogsTableView */ = {
+			isa = PBXGroup;
+			children = (
+				9B99B418247A5C4F00734B8E /* LogsTableView.h */,
+				9B99B419247A5C4F00734B8E /* LogsTableView.m */,
+				9BC08C05247E60D60088354B /* LogsScrollView.h */,
+				9BC08C06247E60D60088354B /* LogsScrollView.m */,
+			);
+			path = LogsTableView;
+			sourceTree = "<group>";
+		};
+		9B99B41E247A6B4600734B8E /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9B99B410247A58D200734B8E /* main.m */,
+				9B99B404247A58D100734B8E /* AppDelegate.h */,
+				9B99B405247A58D100734B8E /* AppDelegate.m */,
+				9B99B407247A58D100734B8E /* ViewController.h */,
+				9B2D7994250E7E0100E39435 /* MainWindow.h */,
+				9B2D7995250E7E0100E39435 /* MainWindow.m */,
+				9B99B408247A58D100734B8E /* ViewController.m */,
+				9B99B40C247A58D200734B8E /* Main.storyboard */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		9B99B444247BA56600734B8E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9BC08BEC247CA7530088354B /* Filters */,
+				9B2D7988250E315B00E39435 /* Log.h */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9BC08BEC247CA7530088354B /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				9BDE691F247C5F3600F7599F /* Filter.h */,
+				25AF3EB9277D883C0062D99C /* FilterCondition.h */,
+				9BDE6920247C5F3600F7599F /* Filter.m */,
+				9BDE6922247C690400F7599F /* FilterColorPopupInfo.h */,
+				9BDE6923247C690400F7599F /* FilterColorPopupInfo.m */,
+				25AF3EB5277D84F10062D99C /* FilterConditionPopupInfo.h */,
+				25AF3EB7277D870E0062D99C /* FilterConditionPopupInfo.m */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		9BC08BED247CA7780088354B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9BC08BE8247CA0B60088354B /* NSColorExtensions.h */,
+				9BC08BEA247CA2050088354B /* NSColorExtensions.m */,
+				259543162783B66E00708D1D /* NSViewExtensions.h */,
+				259543152783B2C700708D1D /* NSViewExtensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9BC08BEE247E0FB20088354B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				9B2D798A250E37C900E39435 /* LogsColorer */,
+				9BC08BFB247E33070088354B /* LogsManager */,
+				9BC08BFC247E330E0088354B /* FiltersManager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		9BC08BFB247E33070088354B /* LogsManager */ = {
+			isa = PBXGroup;
+			children = (
+				9BC08BF2247E11170088354B /* LogsManager.h */,
+				9BC08BF3247E11170088354B /* LogsManager.m */,
+			);
+			path = LogsManager;
+			sourceTree = "<group>";
+		};
+		9BC08BFC247E330E0088354B /* FiltersManager */ = {
+			isa = PBXGroup;
+			children = (
+				9BC08BF5247E234E0088354B /* FiltersManager.h */,
+				9BC08BF6247E234E0088354B /* FiltersManager.mm */,
+				25AF3EB1277BD9E30062D99C /* FiltersData.h */,
+				25AF3EB0277BD9E30062D99C /* FiltersData.mm */,
+			);
+			path = FiltersManager;
+			sourceTree = "<group>";
+		};
+		9BDE6905247BB27400F7599F /* FiltersTableView */ = {
+			isa = PBXGroup;
+			children = (
+				9BDE6906247BB2D600F7599F /* FiltersTableView.h */,
+				9BDE6907247BB2D600F7599F /* FiltersTableView.m */,
+				9BDE691A247C54D800F7599F /* FilterCell.xib */,
+				9BDE691C247C5E7900F7599F /* FilterCell.h */,
+				9BDE691D247C5E7900F7599F /* FilterCell.m */,
+			);
+			path = FiltersTableView;
+			sourceTree = "<group>";
+		};
+		9BDE6916247BE15500F7599F /* FileReader */ = {
+			isa = PBXGroup;
+			children = (
+				9BDE6913247BE0D400F7599F /* FileReader.h */,
+				9BDE6914247BE0D400F7599F /* FileReader.m */,
+				9BDE6919247BE18A00F7599F /* NSDataExtensions.h */,
+				9BDE6917247BE17300F7599F /* NSDataExtensions.m */,
+			);
+			path = FileReader;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9B99B400247A58D100734B8E /* RainbowLogger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B99B415247A58D200734B8E /* Build configuration list for PBXNativeTarget "RainbowLogger" */;
+			buildPhases = (
+				9B99B3FD247A58D100734B8E /* Sources */,
+				9B99B3FE247A58D100734B8E /* Frameworks */,
+				9B99B3FF247A58D100734B8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RainbowLogger;
+			productName = iOSLogConsole;
+			productReference = 9B99B401247A58D100734B8E /* RainbowLogger.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9B99B3F9247A58D100734B8E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1300;
+				ORGANIZATIONNAME = "Paige Sun";
+				TargetAttributes = {
+					9B99B400247A58D100734B8E = {
+						CreatedOnToolsVersion = 11.3;
+					};
+				};
+			};
+			buildConfigurationList = 9B99B3FC247A58D100734B8E /* Build configuration list for PBXProject "RainbowLogger" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9B99B3F8247A58D100734B8E;
+			productRefGroup = 9B99B402247A58D100734B8E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9B99B400247A58D100734B8E /* RainbowLogger */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9B99B3FF247A58D100734B8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B99B40B247A58D200734B8E /* Assets.xcassets in Resources */,
+				259543102783ABDF00708D1D /* EditScriptView.xib in Resources */,
+				9B99B40E247A58D200734B8E /* Main.storyboard in Resources */,
+				9BDE691B247C54D800F7599F /* FilterCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9B99B3FD247A58D100734B8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BDE6915247BE0D400F7599F /* FileReader.m in Sources */,
+				9BC08BE9247CA0B60088354B /* NSColorExtensions.h in Sources */,
+				9B2D7996250E7E0100E39435 /* MainWindow.m in Sources */,
+				259543132783AE4300708D1D /* EditScriptView.m in Sources */,
+				259543172783B69200708D1D /* NSViewExtensions.m in Sources */,
+				9B2D798D250E37DC00E39435 /* LogsProcessor.m in Sources */,
+				9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */,
+				9B99B409247A58D100734B8E /* ViewController.m in Sources */,
+				9BDE6908247BB2D600F7599F /* FiltersTableView.m in Sources */,
+				9BC08C07247E60D60088354B /* LogsScrollView.m in Sources */,
+				9B99B411247A58D200734B8E /* main.m in Sources */,
+				9BDE691E247C5E7900F7599F /* FilterCell.m in Sources */,
+				9BC08BF4247E11170088354B /* LogsManager.m in Sources */,
+				9B99B41A247A5C4F00734B8E /* LogsTableView.m in Sources */,
+				9BC08BF7247E234E0088354B /* FiltersManager.mm in Sources */,
+				9BDE6921247C5F3600F7599F /* Filter.m in Sources */,
+				9B99B406247A58D100734B8E /* AppDelegate.m in Sources */,
+				25AF3EB8277D870E0062D99C /* FilterConditionPopupInfo.m in Sources */,
+				9BC08BEB247CA2050088354B /* NSColorExtensions.m in Sources */,
+				9B83570A250DC55400D60206 /* LogsTextView.m in Sources */,
+				25AF3EB6277D84F10062D99C /* FilterConditionPopupInfo.h in Sources */,
+				25AF3EB2277BD9E30062D99C /* FiltersData.mm in Sources */,
+				9BDE6924247C690400F7599F /* FilterColorPopupInfo.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9B99B40C247A58D200734B8E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B99B40D247A58D200734B8E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9B99B413247A58D200734B8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9B99B414247A58D200734B8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9B99B416247A58D200734B8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RainbowLogger/RainbowLogger.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 66T4X4PK9Q;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = RainbowLogger/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paigesun.RainbowLogger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9B99B417247A58D200734B8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RainbowLogger/RainbowLogger.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 66T4X4PK9Q;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = RainbowLogger/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paigesun.RainbowLogger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9B99B3FC247A58D100734B8E /* Build configuration list for PBXProject "RainbowLogger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B99B413247A58D200734B8E /* Debug */,
+				9B99B414247A58D200734B8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B99B415247A58D200734B8E /* Build configuration list for PBXNativeTarget "RainbowLogger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B99B416247A58D200734B8E /* Debug */,
+				9B99B417247A58D200734B8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9B99B3F9247A58D100734B8E /* Project object */;
+}
