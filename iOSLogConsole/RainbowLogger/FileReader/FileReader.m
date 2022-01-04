@@ -7,9 +7,7 @@
 #import "NSDataExtensions.h"
 
 /**
- A file reader.
- Files can be read forwards or backwards by calling the
- corresponding function multiple times.
+ Takes an NSString Command Line script, and runs it.
  */
 @implementation FileReader {
   NSTask *task_;

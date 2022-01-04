@@ -16,17 +16,17 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="795" height="1230"/>
+            <rect key="frame" x="0.0" y="0.0" width="795" height="1338"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="nOP-uN-B1a" userLabel="Script Editing Container View">
-                    <rect key="frame" x="0.0" y="0.0" width="795" height="1230"/>
+                    <rect key="frame" x="0.0" y="0.0" width="795" height="1338"/>
                     <subviews>
                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mEa-qC-hMx" userLabel="Info Stack">
-                            <rect key="frame" x="20" y="20" width="759" height="1190"/>
+                            <rect key="frame" x="20" y="20" width="759" height="1298"/>
                             <subviews>
                                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xy9-5m-fav">
-                                    <rect key="frame" x="0.0" y="1140" width="202" height="50"/>
+                                    <rect key="frame" x="0.0" y="1248" width="202" height="50"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="D6E-Se-PeH">
                                             <rect key="frame" x="0.0" y="0.0" width="163" height="50"/>
@@ -52,18 +52,18 @@
                                     </customSpacing>
                                 </stackView>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LRP-i2-E4d" userLabel="Title">
-                                    <rect key="frame" x="-2" y="1102" width="340" height="26"/>
-                                    <textFieldCell key="cell" title="How to Color Logs from an iOS App" id="pft-9v-QLL">
+                                    <rect key="frame" x="-2" y="1210" width="372" height="26"/>
+                                    <textFieldCell key="cell" title="How to Color Logs from iOS or Android" id="pft-9v-QLL">
                                         <font key="font" textStyle="title1" name=".SFNS-Regular"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SRC-lp-Kd4">
-                                    <rect key="frame" x="-2" y="978" width="763" height="112"/>
+                                    <rect key="frame" x="-2" y="1086" width="763" height="112"/>
                                     <textFieldCell key="cell" selectable="YES" id="HQf-Kn-nlf">
                                         <font key="font" usesAppearanceFont="YES"/>
-                                        <mutableString key="title">Use any script in the "Edit Script Here" box below, to output text to the left hand pane.
+                                        <mutableString key="title">Enter any script in the "Edit Script Here" box below, to output text to the left hand pane.
 
 The output text can be colored and filtered, using filters added to the bottom pane. Press the "+" button to add a filter. Click filters to select them and press "🗑" to remove selected filters. Hover over each button to read its description.
 
@@ -73,10 +73,10 @@ With an iOS Simulator running, click "Run Script" with the default script to dis
                                     </textFieldCell>
                                 </textField>
                                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="b3j-8D-kSK">
-                                    <rect key="frame" x="0.0" y="963" width="96" height="5"/>
+                                    <rect key="frame" x="0.0" y="1071" width="96" height="5"/>
                                 </box>
                                 <box boxType="custom" borderType="line" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Ixf-WW-fvY" userLabel="Script Editing Box">
-                                    <rect key="frame" x="0.0" y="753" width="547" height="200"/>
+                                    <rect key="frame" x="0.0" y="861" width="547" height="200"/>
                                     <view key="contentView" id="vFU-Qy-r6j">
                                         <rect key="frame" x="0.0" y="0.0" width="547" height="200"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1130,7 +1130,7 @@ Gw
                                     <color key="fillColor" red="0.11913675009999999" green="0.51660360750000001" blue="0.45788008120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </box>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0v4-g9-wU0">
-                                    <rect key="frame" x="-2" y="715" width="175" height="26"/>
+                                    <rect key="frame" x="-2" y="823" width="175" height="26"/>
                                     <textFieldCell key="cell" selectable="YES" title="How to Edit Script" id="UIw-Vl-dN6">
                                         <font key="font" textStyle="title1" name=".SFNS-Regular"/>
                                         <color key="textColor" red="0.7125164692" green="0.98410490370000003" blue="0.93363949310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1138,7 +1138,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ajw-wc-tEW">
-                                    <rect key="frame" x="-2" y="687" width="254" height="16"/>
+                                    <rect key="frame" x="-2" y="795" width="254" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" title="Method 1: Get Logs from iOS Simulator" id="IZH-Oh-g6S">
                                         <font key="font" textStyle="headline" name=".SFNS-Bold"/>
                                         <color key="textColor" red="0.7125164692" green="0.98410490370000003" blue="0.93363949310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1146,7 +1146,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="KPc-7Q-9eO">
-                                    <rect key="frame" x="-2" y="659" width="168" height="16"/>
+                                    <rect key="frame" x="-2" y="767" width="168" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" title="Install Apple's Xcode tools." id="cvc-tQ-X7a">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1154,7 +1154,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4zr-B1-QmP">
-                                    <rect key="frame" x="0.0" y="631" width="147" height="16"/>
+                                    <rect key="frame" x="0.0" y="739" width="147" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="justified" title="$ xcode-select --install" drawsBackground="YES" allowsEditingTextAttributes="YES" id="obG-pt-69o">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1162,7 +1162,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pFu-p5-1K0">
-                                    <rect key="frame" x="-2" y="603" width="284" height="16"/>
+                                    <rect key="frame" x="-2" y="711" width="284" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" title="Enter script into the box above to display logs." id="pNR-yF-1cG">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1170,48 +1170,32 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qei-Cv-IvJ">
-                                    <rect key="frame" x="0.0" y="575" width="445" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" title="$ xcrun simctl spawn booted log stream --level=default --style=compact" drawsBackground="YES" id="xVr-Vr-NZb">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MXe-3D-cbD">
-                                    <rect key="frame" x="-2" y="547" width="222" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" title="(Optional) Choose which app to log." id="M2h-7B-jlT">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8Mh-Ed-mGN">
-                                    <rect key="frame" x="0.0" y="519" width="131" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" title="--process=Facebook" drawsBackground="YES" id="NdE-88-ETq">
+                                    <rect key="frame" x="0.0" y="683" width="628" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" title="$ xcrun simctl spawn booted log stream --level=default --style=compact --process=YOUR_APP_NAME" drawsBackground="YES" id="xVr-Vr-NZb">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MEd-d6-u43">
-                                    <rect key="frame" x="-2" y="459" width="763" height="48"/>
+                                    <rect key="frame" x="-2" y="623" width="763" height="48"/>
                                     <textFieldCell key="cell" selectable="YES" id="bAw-bk-Fwa">
                                         <font key="font" usesAppearanceFont="YES"/>
-                                        <string key="title">(Optional) Choose which logs to filter out. For example, display NSLogs that not logged from Apple's frameworks and contains "YOUR_NAME". Use Apple's MacOS Console app to read columns and data for NSLogs to futher customize the predicate.</string>
+                                        <string key="title">(Optional) Choose which logs to filter out. For example, display NSLogs that not logged from Apple's frameworks and contains "YOUR_TAG". Use Apple's MacOS Console app to read columns and data for NSLogs to futher customize the predicate.</string>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Kbl-An-zfc">
-                                    <rect key="frame" x="0.0" y="431" width="609" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" title="--predicate '(NOT (subsystem contains &quot;com.apple&quot;)) AND eventMessage contains &quot;YOUR_NAME&quot;'" drawsBackground="YES" id="VaV-t9-wAj">
+                                    <rect key="frame" x="0.0" y="595" width="596" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" title="--predicate '(NOT (subsystem contains &quot;com.apple&quot;)) AND eventMessage contains &quot;YOUR_TAG&quot;'" drawsBackground="YES" id="VaV-t9-wAj">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="UgG-cD-ULK">
-                                    <rect key="frame" x="-2" y="403" width="237" height="16"/>
+                                    <rect key="frame" x="-2" y="567" width="237" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" title="Method 2: Get Logs from iOS Device" id="CKh-8N-XXb">
                                         <font key="font" textStyle="headline" name=".SFNS-Bold"/>
                                         <color key="textColor" red="0.7125164692" green="0.98410490370000003" blue="0.93363949310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1219,58 +1203,54 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="r7H-e9-Jvo">
-                                    <rect key="frame" x="-2" y="375" width="684" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" title="To get NSLogs from a real device, Google &quot;Github libimobiledevice&quot; and follow the readme instructions to install." id="dkp-zK-eUj">
+                                    <rect key="frame" x="-2" y="507" width="684" height="48"/>
+                                    <textFieldCell key="cell" selectable="YES" id="dkp-zK-eUj">
                                         <font key="font" usesAppearanceFont="YES"/>
+                                        <string key="title">To get NSLogs from a real device, Google "Github libimobiledevice" and follow the readme instructions to install.  The "-m" lets you choose which logs to filter out. For example, only display logs that contains "YOUR_TAG".</string>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Myx-sl-Q5w">
-                                    <rect key="frame" x="0.0" y="347" width="98" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="justified" title="$ idevicesyslog" drawsBackground="YES" allowsEditingTextAttributes="YES" id="T9o-T6-hG7">
+                                    <rect key="frame" x="0.0" y="479" width="323" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="justified" title="$ idevicesyslog -p YOUR_APP_NAME -m YOUR_TAG" drawsBackground="YES" allowsEditingTextAttributes="YES" id="T9o-T6-hG7">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bY0-Xm-unZ">
-                                    <rect key="frame" x="-2" y="319" width="222" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" title="(Optional) Choose which app to log." id="Y3Z-4Z-CjY">
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="c1X-WP-cKJ">
+                                    <rect key="frame" x="-2" y="451" width="344" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" title="Method 3: Get Logs from Android Emulator or Device" id="i97-3b-iVw">
+                                        <font key="font" textStyle="headline" name=".SFNS-Bold"/>
+                                        <color key="textColor" red="0.7125164692" green="0.98410490370000003" blue="0.93363949310000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Wcb-D7-zbz">
+                                    <rect key="frame" x="-2" y="375" width="763" height="64"/>
+                                    <textFieldCell key="cell" selectable="YES" id="vpT-b8-6Eg">
                                         <font key="font" usesAppearanceFont="YES"/>
+                                        <string key="title">To setup, run an Android emulator or connect an Android device, then run "adb devices" in command line. If "adb devices" doesn't print a list of emulators and devices, Google "MacOS setup ADB".
+
+Enter script into the box above to display logs.</string>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WUF-45-GLH">
-                                    <rect key="frame" x="0.0" y="291" width="81" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="justified" title="-p Facebook" drawsBackground="YES" allowsEditingTextAttributes="YES" id="O0L-8P-Muq">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0bq-tF-VAY">
-                                    <rect key="frame" x="-2" y="263" width="646" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" title="(Optional) Choose which logs to filter out. For example, only display NSLogs that contains &quot;YOUR_NAME&quot;." id="8LK-iS-f2W">
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="37F-xe-qap">
-                                    <rect key="frame" x="0.0" y="235" width="118" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="justified" title="-m &quot;YOUR_NAME&quot;" drawsBackground="YES" allowsEditingTextAttributes="YES" id="7Sw-XG-n5Z">
+                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b0d-6t-A6a">
+                                    <rect key="frame" x="0.0" y="347" width="190" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="$ adb logcat | grep YOUR_TAG" drawsBackground="YES" allowsEditingTextAttributes="YES" id="Jhf-BV-Yxg">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </textFieldCell>
                                 </textField>
                                 <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Soj-lx-H05">
-                                    <rect key="frame" x="0.0" y="220" width="96" height="5"/>
+                                    <rect key="frame" x="0.0" y="332" width="96" height="5"/>
                                 </box>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="I8l-W9-nMe">
-                                    <rect key="frame" x="-2" y="184" width="218" height="26"/>
+                                    <rect key="frame" x="-2" y="296" width="218" height="26"/>
                                     <textFieldCell key="cell" selectable="YES" title="How to Log from Code" id="cVf-lx-Le7">
                                         <font key="font" textStyle="title1" name=".SFNS-Regular"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1278,7 +1258,7 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QQr-Ds-Wnx">
-                                    <rect key="frame" x="-2" y="156" width="35" height="16"/>
+                                    <rect key="frame" x="-2" y="268" width="35" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" title="Swift" id="OXP-Lm-hv4">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1286,15 +1266,15 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Gw-q2-dmL">
-                                    <rect key="frame" x="0.0" y="128" width="205" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="NSLog(&quot;YOUR_NAME Message&quot;)" drawsBackground="YES" allowsEditingTextAttributes="YES" id="hSe-iT-Rup">
+                                    <rect key="frame" x="0.0" y="240" width="192" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="NSLog(&quot;YOUR_TAG message&quot;)" drawsBackground="YES" allowsEditingTextAttributes="YES" id="hSe-iT-Rup">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rUe-hS-h3D">
-                                    <rect key="frame" x="-2" y="100" width="77" height="16"/>
+                                    <rect key="frame" x="-2" y="212" width="77" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" title="Objective-C" id="MKu-lm-Mzm">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1302,15 +1282,15 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8sW-7a-n52">
-                                    <rect key="frame" x="0.0" y="72" width="221" height="16"/>
-                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="NSLog(@&quot;YOUR_NAME Message&quot;);" drawsBackground="YES" allowsEditingTextAttributes="YES" id="LZG-Yp-wO8">
+                                    <rect key="frame" x="0.0" y="184" width="208" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="NSLog(@&quot;YOUR_TAG message&quot;);" drawsBackground="YES" allowsEditingTextAttributes="YES" id="LZG-Yp-wO8">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MFq-da-3qu">
-                                    <rect key="frame" x="-2" y="44" width="30" height="16"/>
+                                    <rect key="frame" x="-2" y="156" width="30" height="16"/>
                                     <textFieldCell key="cell" selectable="YES" title="C++" id="YF3-Qg-rZC">
                                         <font key="font" usesAppearanceFont="YES"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1318,11 +1298,43 @@ Gw
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K8m-F4-Vj4">
-                                    <rect key="frame" x="0.0" y="0.0" width="249" height="32"/>
+                                    <rect key="frame" x="0.0" y="112" width="236" height="32"/>
                                     <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="justified" drawsBackground="YES" allowsEditingTextAttributes="YES" id="NYw-S9-vJu">
                                         <font key="font" metaFont="system"/>
                                         <string key="title">#include &lt;glog/logging.h&gt;
-LOG(INFO) &lt;&lt; "YOUR_NAME Message";</string>
+LOG(INFO) &lt;&lt; "YOUR_TAG message";</string>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="hJk-FS-V2h">
+                                    <rect key="frame" x="-2" y="84" width="284" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" title="JavaScript in React Native with Metro Running" id="DE7-at-Ggf">
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rqD-bG-JDd">
+                                    <rect key="frame" x="0.0" y="56" width="225" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="console.log(&quot;YOUR_TAG message&quot;);" drawsBackground="YES" allowsEditingTextAttributes="YES" id="R1N-j2-XWu">
+                                        <font key="font" metaFont="system"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W9N-wg-cfh">
+                                    <rect key="frame" x="-2" y="28" width="115" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" title="Java from Android" id="hMH-bH-1lL">
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
+                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="606-SE-yeP">
+                                    <rect key="frame" x="0.0" y="0.0" width="266" height="16"/>
+                                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="System.out.println(&quot;YOUR_TAG message&quot;);" drawsBackground="YES" allowsEditingTextAttributes="YES" id="DuX-ad-td0">
+                                        <font key="font" metaFont="system"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </textFieldCell>
@@ -1359,8 +1371,10 @@ LOG(INFO) &lt;&lt; "YOUR_NAME Message";</string>
                                 <integer value="1000"/>
                                 <integer value="1000"/>
                                 <integer value="1000"/>
+                                <integer value="1000"/>
                             </visibilityPriorities>
                             <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>
