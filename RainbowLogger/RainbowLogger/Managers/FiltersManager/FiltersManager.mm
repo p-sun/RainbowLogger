@@ -26,6 +26,10 @@
   return [_filtersData getFilters];
 }
 
+- (NSString*)getFiltersSummary {
+  return [_filtersData getFiltersSummary];
+}
+
 # pragma mark Filter Modifications
 
 - (void)clearFilters {

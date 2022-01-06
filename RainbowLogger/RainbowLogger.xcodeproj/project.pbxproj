@@ -10,6 +10,7 @@
 		259543102783ABDF00708D1D /* EditScriptView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2595430F2783ABDF00708D1D /* EditScriptView.xib */; };
 		259543132783AE4300708D1D /* EditScriptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 259543122783AE4300708D1D /* EditScriptView.m */; };
 		259543172783B69200708D1D /* NSViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 259543152783B2C700708D1D /* NSViewExtensions.m */; };
+		259ADDE72786B2B5000FE338 /* FiltersDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 259ADDE62786B2B5000FE338 /* FiltersDataTests.m */; };
 		25AF3EB2277BD9E30062D99C /* FiltersData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB0277BD9E30062D99C /* FiltersData.mm */; };
 		25AF3EB6277D84F10062D99C /* FilterConditionPopupInfo.h in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB5277D84F10062D99C /* FilterConditionPopupInfo.h */; };
 		25AF3EB8277D870E0062D99C /* FilterConditionPopupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 25AF3EB7277D870E0062D99C /* FilterConditionPopupInfo.m */; };
@@ -36,12 +37,24 @@
 		9BDE6924247C690400F7599F /* FilterColorPopupInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6923247C690400F7599F /* FilterColorPopupInfo.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		259ADDE82786B2B5000FE338 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B99B3F9247A58D100734B8E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B99B400247A58D100734B8E;
+			remoteInfo = RainbowLogger;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2595430F2783ABDF00708D1D /* EditScriptView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditScriptView.xib; sourceTree = "<group>"; };
 		259543112783AE4300708D1D /* EditScriptView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditScriptView.h; sourceTree = "<group>"; };
 		259543122783AE4300708D1D /* EditScriptView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditScriptView.m; sourceTree = "<group>"; };
 		259543152783B2C700708D1D /* NSViewExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSViewExtensions.m; sourceTree = "<group>"; };
 		259543162783B66E00708D1D /* NSViewExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSViewExtensions.h; sourceTree = "<group>"; };
+		259ADDE42786B2B5000FE338 /* RainbowLoggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RainbowLoggerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		259ADDE62786B2B5000FE338 /* FiltersDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltersDataTests.m; sourceTree = "<group>"; };
 		25AF3EB0277BD9E30062D99C /* FiltersData.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FiltersData.mm; sourceTree = "<group>"; };
 		25AF3EB1277BD9E30062D99C /* FiltersData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersData.h; sourceTree = "<group>"; };
 		25AF3EB5277D84F10062D99C /* FilterConditionPopupInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterConditionPopupInfo.h; sourceTree = "<group>"; };
@@ -91,6 +104,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		259ADDE12786B2B5000FE338 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9B99B3FE247A58D100734B8E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -109,6 +129,14 @@
 				259543122783AE4300708D1D /* EditScriptView.m */,
 			);
 			path = EditScriptView;
+			sourceTree = "<group>";
+		};
+		259ADDE52786B2B5000FE338 /* RainbowLoggerTests */ = {
+			isa = PBXGroup;
+			children = (
+				259ADDE62786B2B5000FE338 /* FiltersDataTests.m */,
+			);
+			path = RainbowLoggerTests;
 			sourceTree = "<group>";
 		};
 		9B2D798A250E37C900E39435 /* LogsColorer */ = {
@@ -134,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				9B99B403247A58D100734B8E /* RainbowLogger */,
+				259ADDE52786B2B5000FE338 /* RainbowLoggerTests */,
 				9B99B402247A58D100734B8E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -142,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				9B99B401247A58D100734B8E /* RainbowLogger.app */,
+				259ADDE42786B2B5000FE338 /* RainbowLoggerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -281,6 +311,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		259ADDE32786B2B5000FE338 /* RainbowLoggerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 259ADDEC2786B2B5000FE338 /* Build configuration list for PBXNativeTarget "RainbowLoggerTests" */;
+			buildPhases = (
+				259ADDE02786B2B5000FE338 /* Sources */,
+				259ADDE12786B2B5000FE338 /* Frameworks */,
+				259ADDE22786B2B5000FE338 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				259ADDE92786B2B5000FE338 /* PBXTargetDependency */,
+			);
+			name = RainbowLoggerTests;
+			productName = RainbowLoggerTests;
+			productReference = 259ADDE42786B2B5000FE338 /* RainbowLoggerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9B99B400247A58D100734B8E /* RainbowLogger */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B99B415247A58D200734B8E /* Build configuration list for PBXNativeTarget "RainbowLogger" */;
@@ -307,6 +355,10 @@
 				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Paige Sun";
 				TargetAttributes = {
+					259ADDE32786B2B5000FE338 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 9B99B400247A58D100734B8E;
+					};
 					9B99B400247A58D100734B8E = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -326,11 +378,19 @@
 			projectRoot = "";
 			targets = (
 				9B99B400247A58D100734B8E /* RainbowLogger */,
+				259ADDE32786B2B5000FE338 /* RainbowLoggerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		259ADDE22786B2B5000FE338 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9B99B3FF247A58D100734B8E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -345,6 +405,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		259ADDE02786B2B5000FE338 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				259ADDE72786B2B5000FE338 /* FiltersDataTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9B99B3FD247A58D100734B8E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,6 +445,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		259ADDE92786B2B5000FE338 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9B99B400247A58D100734B8E /* RainbowLogger */;
+			targetProxy = 259ADDE82786B2B5000FE338 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		9B99B40C247A58D200734B8E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -389,6 +465,58 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		259ADDEA2786B2B5000FE338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paigesun.RainbowLoggerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RainbowLogger.app/Contents/MacOS/RainbowLogger";
+			};
+			name = Debug;
+		};
+		259ADDEB2786B2B5000FE338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paigesun.RainbowLoggerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RainbowLogger.app/Contents/MacOS/RainbowLogger";
+			};
+			name = Release;
+		};
 		9B99B413247A58D200734B8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -509,7 +637,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 66T4X4PK9Q;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = RainbowLogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -519,6 +647,7 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paigesun.RainbowLogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -531,7 +660,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 66T4X4PK9Q;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = RainbowLogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -541,12 +670,22 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paigesun.RainbowLogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		259ADDEC2786B2B5000FE338 /* Build configuration list for PBXNativeTarget "RainbowLoggerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				259ADDEA2786B2B5000FE338 /* Debug */,
+				259ADDEB2786B2B5000FE338 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9B99B3FC247A58D100734B8E /* Build configuration list for PBXProject "RainbowLogger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

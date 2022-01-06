@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray<Filter *>*)getFilters;
 
+- (NSString*)getFiltersSummary;
+
 - (void)clearFilters;
 
 - (void)appendFilter:(Filter *)filter;

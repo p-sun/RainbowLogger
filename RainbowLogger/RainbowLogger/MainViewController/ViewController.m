@@ -48,6 +48,8 @@
   [_filtersTableView setFiltersDelegate:self];
   [_filtersTableView setFilters:[_filtersManager getFilters]];
   
+  _filtersSummaryLabel.stringValue = [_filtersManager getFiltersSummary];
+
   [_logsTextView setScrollDelegate:self];
   
   _editScriptView = [[EditScriptView alloc] initWithFrame: NSMakeRect(0, 0, 88, 88)];
@@ -219,7 +221,7 @@
 
 #pragma mark - FiltersManagerDelegate
 
--(void)filtersDidUpdate: (NSArray<Filter *>*) filters {
+-(void)filtersDidUpdate:(NSArray<Filter *>*)filters {
   [_filtersTableView setFilters:filters];
   dispatch_async(dispatch_get_main_queue(), ^{
     // Update Filters Table
@@ -275,6 +277,8 @@
 - (void)_updateLogsTable {
   NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:_logsManager.getLogs filteredBy:[_filtersManager getFilters]];
   [_logsTextView setAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
+  
+  _filtersSummaryLabel.stringValue = [_filtersManager getFiltersSummary];
 }
 
 #pragma mark - Select Next Row After Deleting a Row

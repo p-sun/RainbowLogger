@@ -85,8 +85,9 @@
  - A log that satisfies any "Contains Any" condition is displayed.
  - A "None" conditions does not remove any logs. It is only used for the Color and Replace Text features.
  
- Run this Script to test:
+ TODO: Write test for filtering logs.
  
+ Run this Script to test:
  "(MustContain1 AND MustContain2 AND MustNotContain3) ContainsAny4 OR ContainsAny5"
  echo "MustContain1 MustContain2 -- should pass"
  echo "MustContain1 MustContain2 ContainsAny4 -- should pass"
@@ -102,7 +103,6 @@
 + (BOOL)doesLog:(NSString *)log passFilters:(NSArray<Filter *>*)filters {
   BOOL hasMustContainFilter = NO;
   BOOL hasContainsAnyFilter = NO;
-  
   for (Filter *filter in filters) {
     if (!filter.isEnabled) {
       continue;

@@ -857,17 +857,17 @@ The app does not need to be running, but the iOS Simulator, Android Emulator, or
                                                                 </constraints>
                                                             </customView>
                                                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xL-fn-b8A">
-                                                                <rect key="frame" x="0.0" y="0.0" width="1111" height="743"/>
+                                                                <rect key="frame" x="0.0" y="28" width="1111" height="715"/>
                                                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qsv-01-jvj">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="1096" height="743"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="1096" height="715"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="anf-7r-VvA" customClass="LogsTextView">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="1080" height="731"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="1080" height="703"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <size key="minSize" width="1080" height="731"/>
+                                                                            <size key="minSize" width="1084" height="703"/>
                                                                             <size key="maxSize" width="7450" height="10000000"/>
                                                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                         </textView>
@@ -879,10 +879,18 @@ The app does not need to be running, but the iOS Simulator, Android Emulator, or
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Rw6-re-kfb">
-                                                                    <rect key="frame" x="1096" y="12" width="15" height="731"/>
+                                                                    <rect key="frame" x="1096" y="12" width="15" height="703"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                             </scrollView>
+                                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="JBM-1V-XBv">
+                                                                <rect key="frame" x="14" y="4" width="1083" height="16"/>
+                                                                <textFieldCell key="cell" selectable="YES" alignment="left" title="Filters applied on logs" id="OEw-q6-I1T">
+                                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                                    <color key="textColor" red="0.57439996778350522" green="0.57439996778350522" blue="0.57439996778350522" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
                                                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="VBk-ch-x2L" userLabel="Horizontal Line Above Scrollview">
                                                                 <rect key="frame" x="0.0" y="740" width="1111" height="5"/>
                                                             </box>
@@ -891,12 +899,15 @@ The app does not need to be running, but the iOS Simulator, Android Emulator, or
                                                             <constraint firstItem="0xL-fn-b8A" firstAttribute="top" secondItem="dre-lh-TMS" secondAttribute="bottom" id="2aK-vs-ScD"/>
                                                             <constraint firstItem="VBk-ch-x2L" firstAttribute="top" secondItem="0xL-fn-b8A" secondAttribute="top" id="501-uj-XAG"/>
                                                             <constraint firstItem="0xL-fn-b8A" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" id="BF5-vq-3iW"/>
+                                                            <constraint firstItem="JBM-1V-XBv" firstAttribute="top" secondItem="0xL-fn-b8A" secondAttribute="bottom" constant="8" id="Cpl-H5-KBt"/>
                                                             <constraint firstAttribute="trailing" secondItem="VBk-ch-x2L" secondAttribute="trailing" id="J4G-AW-hit"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dre-lh-TMS" secondAttribute="trailing" id="Vtx-jj-0Bs"/>
                                                             <constraint firstAttribute="trailing" secondItem="0xL-fn-b8A" secondAttribute="trailing" id="ngp-za-MTr"/>
-                                                            <constraint firstAttribute="bottom" secondItem="0xL-fn-b8A" secondAttribute="bottom" id="qRh-f8-mya"/>
+                                                            <constraint firstAttribute="bottom" secondItem="JBM-1V-XBv" secondAttribute="bottom" constant="4" id="pPM-uO-37O"/>
                                                             <constraint firstItem="dre-lh-TMS" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" id="r5k-5J-1bQ"/>
                                                             <constraint firstItem="VBk-ch-x2L" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" id="uYP-rt-pKH"/>
+                                                            <constraint firstAttribute="trailing" secondItem="JBM-1V-XBv" secondAttribute="trailing" constant="16" id="uy2-Xm-3D1"/>
+                                                            <constraint firstItem="JBM-1V-XBv" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" constant="16" id="vp5-38-uES"/>
                                                             <constraint firstItem="dre-lh-TMS" firstAttribute="top" secondItem="KLj-cF-hl3" secondAttribute="top" id="zBx-zi-lKi"/>
                                                         </constraints>
                                                     </customView>
@@ -1111,10 +1122,10 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="h1Q-0d-cXN" firstAttribute="top" secondItem="Nmc-Pr-t08" secondAttribute="top" constant="8" id="20p-DL-M05"/>
                                                         <constraint firstAttribute="trailing" secondItem="h1Q-0d-cXN" secondAttribute="trailing" constant="18" id="8JR-s2-Zms"/>
                                                         <constraint firstItem="h1Q-0d-cXN" firstAttribute="leading" secondItem="Nmc-Pr-t08" secondAttribute="leading" constant="16" id="8bE-yf-frh"/>
                                                         <constraint firstItem="h1Q-0d-cXN" firstAttribute="bottom" secondItem="Nmc-Pr-t08" secondAttribute="bottom" constant="-8" id="OBG-6V-1Jx"/>
-                                                        <constraint firstAttribute="top" secondItem="h1Q-0d-cXN" secondAttribute="top" constant="-8" id="d55-fW-ZlM"/>
                                                     </constraints>
                                                 </view>
                                             </box>
@@ -1245,6 +1256,7 @@ When Filter Text is empty, the entire filter is disabled.</string>
                     <connections>
                         <outlet property="addFilterTextField" destination="lTV-Rh-SIs" id="hOK-EJ-cTr"/>
                         <outlet property="autoscrollButton" destination="HI5-H6-78b" id="6zq-cs-jxO"/>
+                        <outlet property="filtersSummaryLabel" destination="JBM-1V-XBv" id="qNU-12-YtJ"/>
                         <outlet property="filtersTableView" destination="o3l-qO-VAC" id="MVr-xA-VT8"/>
                         <outlet property="logsTextView" destination="anf-7r-VvA" id="8gH-8N-teS"/>
                         <outlet property="rightPane" destination="efX-zP-7sF" id="81H-bT-RUQ"/>

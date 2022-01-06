@@ -30,6 +30,7 @@
 // Outlets - Logs and Filter
 @property (weak) IBOutlet LogsTextView *logsTextView;
 @property (weak) IBOutlet FiltersTableView *filtersTableView;
+@property (weak) IBOutlet NSTextField *filtersSummaryLabel;
 @property (weak) IBOutlet NSTextField *addFilterTextField;
 @property (weak) IBOutlet NSButton *autoscrollButton;
 

@@ -26,6 +26,8 @@ typedef NSArray<Filter *>* _Nonnull (^new_filters_provider)(NSArray<Filter *>* c
 
 - (NSArray<Filter *>*)getFilters;
 
+- (NSString*)getFiltersSummary;
+
 - (void)setFilters:(new_filters_provider)getNewFilters;
 
 - (void)saveFilters;
