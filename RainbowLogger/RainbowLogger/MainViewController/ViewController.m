@@ -278,6 +278,8 @@
   NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:_logsManager.getLogs filteredBy:[_filtersManager getFilters]];
   [_logsTextView setAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
   
+  NSString *newSummary = [_filtersManager getFiltersSummary];
+  [_filtersSummaryLabel setHidden:[newSummary length] == 0];
   _filtersSummaryLabel.stringValue = [_filtersManager getFiltersSummary];
 }
 
