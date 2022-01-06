@@ -68,6 +68,7 @@
   [super viewWillAppear];
   
   [_filtersTableView resizeTableWidth];
+  [self _updateLogsTable];
 }
 
 - (void)viewDidAppear {

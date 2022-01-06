@@ -730,7 +730,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="1218" height="788"/>
                                                 <subviews>
                                                     <customView id="KLj-cF-hl3" userLabel="Main Logs Pane">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1111" height="788"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1126" height="788"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="dre-lh-TMS" userLabel="Logs Menu View">
@@ -749,9 +749,11 @@
                                                                             </textField>
                                                                             <button verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="CFx-X7-qsY">
                                                                                 <rect key="frame" x="43" y="-7" width="115" height="37"/>
-                                                                                <string key="toolTip">Attach to a process to get its logs. Use Customize to edit the Command Line script that runs.
+                                                                                <mutableString key="toolTip">Attach to iOS or Android to get its logs. ⌘R
 
-The app does not need to be running, but the iOS Simulator, Android Emulator, or device need to be running before pressing this button.</string>
+Use Edit Script to edit the command line script that this runs. 
+
+The app you want to log does not need to run, but the iOS Simulator, Android Emulator, or device need to run first before this button is pressed.</mutableString>
                                                                                 <buttonCell key="cell" type="push" title=" Run Script" bezelStyle="rounded" image="play.fill" catalog="system" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ie-iH-eNe">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
@@ -778,11 +780,15 @@ The app does not need to be running, but the iOS Simulator, Android Emulator, or
                                                                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-t0-7Li">
                                                                                 <rect key="frame" x="284" y="0.0" width="5" height="25"/>
                                                                             </box>
-                                                                            <button toolTip="Clear all logs in the main pane below." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-eU-Zgo">
+                                                                            <button toolTip="Clear all logs in the main pane below. ⌘K" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-eU-Zgo">
                                                                                 <rect key="frame" x="296" y="-7" width="122" height="37"/>
                                                                                 <buttonCell key="cell" type="push" title="🗑 Clear Logs" bezelStyle="rounded" imagePosition="leading" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="piN-n4-VBZ">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
+                                                                                    <string key="keyEquivalent" base64-UTF8="YES">
+CQ
+</string>
+                                                                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                                 </buttonCell>
                                                                                 <connections>
                                                                                     <action selector="clearLogs:" target="XfG-lQ-9wD" id="DrO-zF-XhD"/>
@@ -857,10 +863,10 @@ The app does not need to be running, but the iOS Simulator, Android Emulator, or
                                                                 </constraints>
                                                             </customView>
                                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KH0-Lz-M00">
-                                                                <rect key="frame" x="16" y="4" width="1111" height="739"/>
+                                                                <rect key="frame" x="0.0" y="4" width="1126" height="739"/>
                                                                 <subviews>
                                                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xL-fn-b8A">
-                                                                        <rect key="frame" x="0.0" y="24" width="1111" height="715"/>
+                                                                        <rect key="frame" x="8" y="24" width="1111" height="715"/>
                                                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qsv-01-jvj">
                                                                             <rect key="frame" x="0.0" y="0.0" width="1096" height="715"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -887,7 +893,7 @@ The app does not need to be running, but the iOS Simulator, Android Emulator, or
                                                                         </scroller>
                                                                     </scrollView>
                                                                     <textField verticalHuggingPriority="999" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="JBM-1V-XBv">
-                                                                        <rect key="frame" x="6" y="0.0" width="1099" height="16"/>
+                                                                        <rect key="frame" x="6" y="0.0" width="1114" height="16"/>
                                                                         <textFieldCell key="cell" selectable="YES" alignment="center" title="Filters applied on logs" id="OEw-q6-I1T">
                                                                             <font key="font" usesAppearanceFont="YES"/>
                                                                             <color key="textColor" red="0.57439996778350522" green="0.57439996778350522" blue="0.57439996778350522" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
@@ -908,13 +914,13 @@ The app does not need to be running, but the iOS Simulator, Android Emulator, or
                                                                 </customSpacing>
                                                             </stackView>
                                                             <box verticalHuggingPriority="750" ambiguous="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="VBk-ch-x2L" userLabel="Horizontal Line Above Scrollview">
-                                                                <rect key="frame" x="0.0" y="740" width="1127" height="5"/>
+                                                                <rect key="frame" x="0.0" y="740" width="1126" height="5"/>
                                                             </box>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="VBk-ch-x2L" secondAttribute="trailing" id="J4G-AW-hit"/>
                                                             <constraint firstItem="KH0-Lz-M00" firstAttribute="top" secondItem="dre-lh-TMS" secondAttribute="bottom" id="N1M-5s-aJP"/>
-                                                            <constraint firstItem="KH0-Lz-M00" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" constant="16" id="TxV-3W-FV1"/>
+                                                            <constraint firstItem="KH0-Lz-M00" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" id="TxV-3W-FV1"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dre-lh-TMS" secondAttribute="trailing" id="Vtx-jj-0Bs"/>
                                                             <constraint firstAttribute="trailing" secondItem="KH0-Lz-M00" secondAttribute="trailing" id="kmt-JS-bgC"/>
                                                             <constraint firstAttribute="bottom" secondItem="KH0-Lz-M00" secondAttribute="bottom" constant="4" id="nyS-Pq-iuy"/>
@@ -924,16 +930,16 @@ The app does not need to be running, but the iOS Simulator, Android Emulator, or
                                                         </constraints>
                                                     </customView>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="efX-zP-7sF" userLabel="Right Edit Script Pane">
-                                                        <rect key="frame" x="1121" y="0.0" width="97" height="788"/>
+                                                        <rect key="frame" x="1136" y="0.0" width="82" height="788"/>
                                                         <subviews>
                                                             <scrollView borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="juF-O1-BoW">
-                                                                <rect key="frame" x="0.0" y="0.0" width="81" height="788"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="82" height="788"/>
                                                                 <clipView key="contentView" id="QZ4-nW-lr6">
-                                                                    <rect key="frame" x="1" y="1" width="64" height="786"/>
+                                                                    <rect key="frame" x="1" y="1" width="65" height="786"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zj5-Pl-95Q" userLabel="Script Ediiting Container">
-                                                                            <rect key="frame" x="0.0" y="-524" width="64" height="1310"/>
+                                                                            <rect key="frame" x="0.0" y="-524" width="65" height="1310"/>
                                                                         </customView>
                                                                     </subviews>
                                                                     <constraints>
@@ -947,7 +953,7 @@ The app does not need to be running, but the iOS Simulator, Android Emulator, or
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.99618320610687028" horizontal="NO" id="r9z-PV-ws8">
-                                                                    <rect key="frame" x="65" y="1" width="15" height="786"/>
+                                                                    <rect key="frame" x="66" y="1" width="15" height="786"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                             </scrollView>
