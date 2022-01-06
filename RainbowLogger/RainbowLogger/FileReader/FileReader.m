@@ -55,11 +55,12 @@
   [task setStandardOutput:p];
   fileHandle_ = [p fileHandleForReading];
   [fileHandle_ waitForDataInBackgroundAndNotify];
-
-  [self.delegate fileReaderDidReadLines:@[@"---------------------------------------------------",
-                                          @"Running Script: ",
-                                          script,
-                                          @""]];
+  
+  // Make this all single string so it's easy to filter out
+  [self.delegate fileReaderDidReadLines:@[[[
+    @"-------------------------------------------------\nCurrent Script:\n"
+    stringByAppendingString:script] stringByAppendingString:@"\n\nRunning Script..."
+  ]]];
   NSError *error;
   [task launchAndReturnError:&error];
   

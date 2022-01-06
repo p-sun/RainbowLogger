@@ -16,20 +16,37 @@ static NSArray<FilterConditionPopupInfo *> *conditionPopupInfosArray;
 
 +(void)initialize {
   if (self == [FilterConditionPopupInfo class]) {
-    conditionPopupInfosArray = [NSArray arrayWithObjects:
-                                [[FilterConditionPopupInfo alloc] initWithCondition:FilterConditionColorContainingText name:@"None"],
-                                [[FilterConditionPopupInfo alloc] initWithCondition:FilterConditionContainsAll name:@"Must Contain"],
-                                [[FilterConditionPopupInfo alloc] initWithCondition:FilterConditionContainsAny name:@"Contains Any"],
-                                [[FilterConditionPopupInfo alloc] initWithCondition:FilterConditionNotContains name:@"Not Contain"],
-                                nil];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (int i=0; i< FilterConditionSize; i++) {
+      FilterCondition cond = i;
+      NSString *name = [FilterConditionPopupInfo nameForCondition: cond];
+      [array addObject:[[FilterConditionPopupInfo alloc] initWithCondition:cond name:name]];
+    }
+    conditionPopupInfosArray = array;
   }
 }
 
-- (instancetype)initWithCondition:(FilterCondition)type name:(NSString*)name
++(NSString*)nameForCondition:(FilterCondition)condition {
+  switch (condition) {
+    case FilterConditionMustContain:
+      return @"Must Contain";
+    case FilterConditionMustNotContain:
+      return @"Must Not Contain";
+    case FilterConditionContainsAny:
+      return @"Contains Any";
+    case FilterConditionColorContainingText:
+      return @"None";
+    case FilterConditionSize:
+      NSAssert(NO, @"(PAIGE) FilterConditionSize should be used for enum size only");
+      return @"";
+  }
+}
+
+- (instancetype)initWithCondition:(FilterCondition)condition name:(NSString*)name
 {
   self = [super init];
   if (self) {
-    self.type = type;
+    self.condition = condition;
     self.name = name;
   }
   return self;

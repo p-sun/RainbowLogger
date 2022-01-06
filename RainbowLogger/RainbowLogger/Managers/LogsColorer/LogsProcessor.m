@@ -78,37 +78,101 @@
 
 #pragma mark - Filter Logs
 
+/*
+ Each log displayed must pass the set of all filters.
+
+ - Each log must satisfy all "Must Contain" and all "Must Not Contain" conditions.
+ - A log that satisfies any "Contains Any" condition is displayed.
+ - A "None" conditions does not remove any logs. It is only used for the Color and Replace Text features.
+ 
+ Run this Script to test:
+ 
+ "(MustContain1 AND MustContain2 AND MustNotContain3) ContainsAny4 OR ContainsAny5"
+ echo "MustContain1 MustContain2 -- should pass"
+ echo "MustContain1 MustContain2 ContainsAny4 -- should pass"
+ echo "ContainsAny4 -- should pass"
+ echo "ContainsAny5 -- should pass"
+ echo "MustNotContain3 MustContain1 ContainsAny4 -- should pass"
+ echo "MustContain1 MustContain2 MustNotContain3 -- should NOT pass"
+ echo "MustContain1 -- should NOT pass"
+ echo "MustContain2 -- should NOT pass"
+ echo "MustNotContain3 -- should NOT pass"
+
+ **/
 + (BOOL)doesLog:(NSString *)log passFilters:(NSArray<Filter *>*)filters {
+  BOOL hasMustContainFilter = NO;
   BOOL hasContainsAnyFilter = NO;
-  BOOL passContainsAnyFilter = NO;
   
   for (Filter *filter in filters) {
     if (!filter.isEnabled) {
       continue;
     }
     switch (filter.condition) {
-      case FilterConditionContainsAll:
-        if (![LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
-          return NO;
-        }
+      case FilterConditionMustContain:
+        hasMustContainFilter = YES;
         break;
-      case FilterConditionNotContains:
-        if ([LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
-          return NO;
-        }
+      case FilterConditionMustNotContain:
+        hasMustContainFilter = YES;
         break;
       case FilterConditionContainsAny:
         hasContainsAnyFilter = YES;
-        if (!passContainsAnyFilter && [LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
-          passContainsAnyFilter = YES;
+        break;
+      case FilterConditionColorContainingText:
+        break; // For coloring text only, no filter
+      case FilterConditionSize:
+        NSAssert(NO, @"(PAIGE) FilterConditionSize should be used for enum size only");
+        break;
+    }
+  }
+  
+  BOOL passMustContainFilter = hasMustContainFilter;
+  BOOL passMustNotContainFilter = hasMustContainFilter;
+  for (Filter *filter in filters) {
+    if (!filter.isEnabled) {
+      continue;
+    }
+    
+    switch (filter.condition) {
+      case FilterConditionMustContain:
+        if (!hasContainsAnyFilter) {
+          if (![LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
+            return NO;
+          }
+        } else {
+          // If there is a ContainsAny filter, for-loop through all filters to allow ContainsAny to to return early
+          if (passMustContainFilter && ![LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
+            passMustContainFilter = NO;
+          }
+        }
+        break;
+      case FilterConditionMustNotContain:
+        if (!hasContainsAnyFilter) {
+          if ([LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
+            return NO;
+          }
+        } else {
+          // If there is a ContainsAny filter, for-loop through all filters to allow ContainsAny to to return early
+          if (passMustNotContainFilter && [LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
+            passMustNotContainFilter = NO;
+          }
+        }
+        break;
+        
+        // A Log that passes any ContainsAny Filter always passes this method, even if it doesn't pass any MustContain filters
+      case FilterConditionContainsAny:
+        if ([LogsProcessor matchesPattern:filter.text isRegex:filter.isRegex forLog:log]) {
+          return YES;
         }
         break;
       case FilterConditionColorContainingText:
         break; // For coloring text only, no filter
+      case FilterConditionSize:
+        NSAssert(NO, @"(PAIGE) FilterConditionSize should be used for enum size only");
+        break;
     }
   }
   
-  return hasContainsAnyFilter ? passContainsAnyFilter : YES;
+  return (hasMustContainFilter && passMustContainFilter && passMustNotContainFilter) || !hasContainsAnyFilter;
 }
 
 + (BOOL)matchesPattern:(NSString*)pattern isRegex:(BOOL)isRegex forLog:(NSString *)log {

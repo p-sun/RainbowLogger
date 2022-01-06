@@ -8,7 +8,8 @@
 
 typedef NS_ENUM(NSInteger, FilterCondition) {
   FilterConditionColorContainingText, // For coloring text only
-  FilterConditionContainsAll,
+  FilterConditionMustContain,
+  FilterConditionMustNotContain,
   FilterConditionContainsAny,
-  FilterConditionNotContains
+  FilterConditionSize // For enum size only
 };

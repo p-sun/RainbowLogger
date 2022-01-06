@@ -83,7 +83,7 @@ With an iOS Simulator running, click "Run Script" with the default script to dis
                                                             <rect key="frame" x="0.0" y="0.0" width="285" height="60"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Xqb-tR-al8">
+                                                                <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" id="Xqb-tR-al8">
                                                                     <rect key="frame" x="0.0" y="0.0" width="285" height="60"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

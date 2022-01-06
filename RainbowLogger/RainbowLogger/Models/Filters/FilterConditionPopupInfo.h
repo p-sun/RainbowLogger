@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FilterConditionPopupInfo : NSObject
 
-@property FilterCondition type;
+@property FilterCondition condition;
 @property NSString * _Nonnull name;
 
 + (NSArray*)conditionPopupInfos;
