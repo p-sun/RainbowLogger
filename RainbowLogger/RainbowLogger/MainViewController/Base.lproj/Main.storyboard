@@ -749,11 +749,11 @@
                                                                             </textField>
                                                                             <button verticalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="CFx-X7-qsY">
                                                                                 <rect key="frame" x="43" y="-7" width="115" height="37"/>
-                                                                                <mutableString key="toolTip">Attach to iOS or Android to get its logs. ⌘R
+                                                                                <string key="toolTip">Attach to iOS or Android to get its logs. ⌘R
 
 Use Edit Script to edit the command line script that this runs. 
 
-The app you want to log does not need to run, but the iOS Simulator, Android Emulator, or device need to run first before this button is pressed.</mutableString>
+The app you want to log does not need to run, but the iOS Simulator, Android Emulator, or device need to run first before this button is pressed.</string>
                                                                                 <buttonCell key="cell" type="push" title=" Run Script" bezelStyle="rounded" image="play.fill" catalog="system" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1ie-iH-eNe">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
@@ -862,7 +862,10 @@ CQ
                                                                     <constraint firstAttribute="top" secondItem="fwd-1y-Lwo" secondAttribute="top" constant="-10" id="glc-sP-2qS"/>
                                                                 </constraints>
                                                             </customView>
-                                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KH0-Lz-M00">
+                                                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="VBk-ch-x2L" userLabel="Horizontal Line Above Scrollview">
+                                                                <rect key="frame" x="0.0" y="740" width="1126" height="5"/>
+                                                            </box>
+                                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KH0-Lz-M00" userLabel="Logs Main View">
                                                                 <rect key="frame" x="0.0" y="4" width="1126" height="739"/>
                                                                 <subviews>
                                                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xL-fn-b8A">
@@ -913,11 +916,9 @@ CQ
                                                                     <real value="3.4028234663852886e+38"/>
                                                                 </customSpacing>
                                                             </stackView>
-                                                            <box verticalHuggingPriority="750" ambiguous="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="VBk-ch-x2L" userLabel="Horizontal Line Above Scrollview">
-                                                                <rect key="frame" x="0.0" y="740" width="1126" height="5"/>
-                                                            </box>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstItem="VBk-ch-x2L" firstAttribute="top" secondItem="KH0-Lz-M00" secondAttribute="top" id="D1g-TV-RY2"/>
                                                             <constraint firstAttribute="trailing" secondItem="VBk-ch-x2L" secondAttribute="trailing" id="J4G-AW-hit"/>
                                                             <constraint firstItem="KH0-Lz-M00" firstAttribute="top" secondItem="dre-lh-TMS" secondAttribute="bottom" id="N1M-5s-aJP"/>
                                                             <constraint firstItem="KH0-Lz-M00" firstAttribute="leading" secondItem="KLj-cF-hl3" secondAttribute="leading" id="TxV-3W-FV1"/>
