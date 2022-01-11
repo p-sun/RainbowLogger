@@ -8,6 +8,7 @@
 
 #import "FiltersTableView.h"
 #import "FilterCell.h"
+#include <pthread.h>
 
 @implementation FiltersTableView {
   NSInteger _columnsCount;
@@ -15,6 +16,7 @@
   NSArray *_filters;
   NSInteger _sourceDragRow;
   NSIndexSet *_previousShiftSelection;
+  pthread_mutex_t _mutex;
 }
 
 # pragma mark - Setup
@@ -23,6 +25,8 @@
   self.delegate = self;
   self.dataSource = self;
   
+  pthread_mutex_init(&_mutex, NULL);
+
   if (_filters == nil) {
     _filters = [[NSArray alloc] init];
   }
@@ -54,11 +58,18 @@
 }
 
 - (void)setFilters:(NSArray<Filter *>*)filters {
+  pthread_mutex_lock(&_mutex);
   if (![_filters isEqualToArray:filters]) {
     _filters = filters;
     __weak __typeof__(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-      [weakSelf reloadData];
+      __strong __typeof(weakSelf) strongSelf = weakSelf;
+      if (!strongSelf) { return; }
+      
+      [strongSelf reloadData];
+      
+      // This isn't exactly when reloadData is done, may need improvement.
+      pthread_mutex_unlock(&strongSelf->_mutex);
     });
   }
 }
