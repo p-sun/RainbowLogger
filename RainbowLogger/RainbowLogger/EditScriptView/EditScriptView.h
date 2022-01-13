@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)editScriptViewDidPressClose;
 -(void)editScriptViewDidPressRunScript;
+-(void)editScriptViewDidPressAddFiltersForMetro;
 
 @end
 
@@ -31,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)customizeDefaultPressed:(nullable id)sender;
 - (IBAction)editPaneRunScriptPressed:(nullable id)sender;
 - (IBAction)editPaneClosePressed:(nullable id)sender;
+- (IBAction)addFiltersForMetroPressed:(id)sender;
 
 @end
 

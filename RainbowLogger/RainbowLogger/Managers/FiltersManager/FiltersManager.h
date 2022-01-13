@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)appendFilter:(Filter *)filter;
 
+- (void)insertAtBeginningFilters:(NSArray<Filter *> *)filters;
+
 - (void)toggleRegexForFilterAtIndex:(NSInteger)index;
 
 - (void)deleteFiltersAtIndexes:(NSIndexSet*)indexes;

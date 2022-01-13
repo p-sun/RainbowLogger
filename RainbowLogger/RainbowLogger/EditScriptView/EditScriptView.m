@@ -52,6 +52,10 @@
   [_delegate editScriptViewDidPressRunScript];
 }
 
+- (IBAction)addFiltersForMetroPressed:(id)sender {
+  [_delegate editScriptViewDidPressAddFiltersForMetro];
+}
+
 - (IBAction)editPaneClosePressed:(nullable id)sender {
   [_delegate editScriptViewDidPressClose];
 }

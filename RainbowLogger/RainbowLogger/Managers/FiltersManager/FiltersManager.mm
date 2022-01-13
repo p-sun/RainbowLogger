@@ -44,6 +44,12 @@
   }];
 }
 
+- (void)insertAtBeginningFilters:(NSArray<Filter *> *)filters {
+  [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
+    return [filters arrayByAddingObjectsFromArray:currentFilters];
+  }];
+}
+
 - (void)toggleRegexForFilterAtIndex:(NSInteger)index {
   [_filtersData setFilters:^NSArray<Filter *> * _Nonnull(NSArray<Filter *> * _Nonnull currentFilters) {
     NSMutableArray<Filter *> *filters = [[NSMutableArray alloc] initWithArray:currentFilters];

@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readwrite) BOOL isEnabled;
 
 - (instancetype)initWithCondition:(FilterCondition)condition text:(NSString *)text colorTag:(NSUInteger)colorTag isEnabled:(BOOL)isEnabled;
+- (instancetype)initWithCondition:(FilterCondition)condition text:(NSString *)text isRegex:(BOOL)isRegex colorTag:(NSUInteger)colorTag replacementText:(nullable NSString *)replacementText isEnabled:(BOOL)isEnabled;
 
 @end
 

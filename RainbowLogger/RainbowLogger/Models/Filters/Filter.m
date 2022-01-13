@@ -11,6 +11,19 @@
 
 @implementation Filter
 
+- (instancetype)initWithCondition:(FilterCondition)condition text:(NSString *)text isRegex:(BOOL)isRegex colorTag:(NSUInteger)colorTag replacementText:(nullable NSString *)replacementText isEnabled:(BOOL)isEnabled {
+  self = [super init];
+  if (self) {
+    _condition = condition;
+    _text = text;
+    _replacementText = replacementText;
+    _isRegex = isRegex;
+    _colorTag = colorTag;
+    _isEnabled = isEnabled;
+  }
+  return self;
+}
+
 - (instancetype)initWithCondition:(FilterCondition)condition text:(NSString *)text colorTag:(NSUInteger)colorTag isEnabled:(BOOL)isEnabled {
   self = [super init];
   if (self) {
