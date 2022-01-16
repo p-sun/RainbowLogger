@@ -47,11 +47,16 @@
   [self saveCustomizedScript:defaultScript];
 }
 
+- (IBAction)scriptForFbiosPressed:(id)sender {
+  NSString *defaultScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate '(NOT (subsystem contains \"com.apple\")) AND (eventMessage contains \"****\" OR eventMessage contains \"RCTStaticInjectionAutoInit()_block_invoke_2\")'";
+  _customizeScriptTextView.string = defaultScript;
+  [self saveCustomizedScript:defaultScript];
+}
+
 - (IBAction)editPaneRunScriptPressed:(nullable id)sender {
   [self saveCustomizedScript:_customizeScriptTextView.string];
   [_delegate editScriptViewDidPressRunScript];
 }
-
 - (IBAction)addFiltersForMetroPressed:(id)sender {
   [_delegate editScriptViewDidPressAddFiltersForMetro];
 }

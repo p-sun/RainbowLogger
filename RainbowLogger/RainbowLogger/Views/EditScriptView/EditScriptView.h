@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)editPaneRunScriptPressed:(nullable id)sender;
 - (IBAction)editPaneClosePressed:(nullable id)sender;
 - (IBAction)addFiltersForMetroPressed:(id)sender;
+- (IBAction)scriptForFbiosPressed:(id)sender;
 
 @end
 
