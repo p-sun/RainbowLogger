@@ -16,15 +16,27 @@
 
 + (NSAttributedString *)coloredLinesFromLogs:(NSArray<NSString *>*)logs filteredBy:(NSArray<Filter *>*)filters {
   NSMutableAttributedString *lines = [[NSMutableAttributedString alloc] initWithString:@""];
+  NSArray *enabledFilters = [LogsProcessor getEnabledFiltersFrom:filters];
+  
   for (NSString *log in logs) {
-    if ([LogsProcessor doesLog:log passFilters:filters]) {
-      NSAttributedString *coloredLog = [LogsProcessor coloredLog:log usingFilters:filters];
+    if ([LogsProcessor doesLog:log passFilters:enabledFilters]) {
+      NSAttributedString *coloredLog = [LogsProcessor coloredLog:log usingFilters:enabledFilters];
       [lines appendAttributedString:coloredLog];
       [lines appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
     }
   }
   
   return lines;
+}
+
++ (NSArray<Filter *>*)getEnabledFiltersFrom:(NSArray<Filter *>*)filters {
+  NSMutableArray *enabledFilers = [NSMutableArray new];
+  for (Filter *filter in filters) {
+    if (filter.isEnabled) {
+      [enabledFilers addObject:filter];
+    }
+  }
+  return enabledFilers;
 }
 
 + (NSAttributedString *)coloredLog:(NSString *)log usingFilters:(NSArray<Filter *>*)filters {
@@ -38,9 +50,6 @@
   } range:NSMakeRange(0, [newLog length])];
   
   for (Filter* filter in filters) {
-    if (!filter.isEnabled) {
-      continue;
-    }
     NSString *regexPattern;
     if (filter.isRegex) {
       regexPattern = filter.text;
@@ -103,9 +112,6 @@
   BOOL hasMustContainFilter = NO;
   BOOL hasContainsAnyFilter = NO;
   for (Filter *filter in filters) {
-    if (!filter.isEnabled) {
-      continue;
-    }
     switch (filter.condition) {
       case FilterConditionMustContain:
         hasMustContainFilter = YES;
@@ -127,10 +133,6 @@
   BOOL passMustContainFilter = hasMustContainFilter;
   BOOL passMustNotContainFilter = hasMustContainFilter;
   for (Filter *filter in filters) {
-    if (!filter.isEnabled) {
-      continue;
-    }
-    
     switch (filter.condition) {
       case FilterConditionMustContain:
         if (!hasContainsAnyFilter) {
