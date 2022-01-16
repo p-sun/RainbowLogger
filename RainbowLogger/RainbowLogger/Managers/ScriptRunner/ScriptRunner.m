@@ -1,20 +1,20 @@
 //
-//  FileReader.m
+//  ScriptRunner.m
 //  RainbowLogger
 //  https://stackoverflow.com/questions/3707427/how-to-read-data-from-nsfilehandle-line-by-line
 
-#import "FileReader.h"
+#import "ScriptRunner.h"
 #import "NSDataExtensions.h"
 
 /**
  Takes an NSString Command Line script, and runs it.
  */
-@implementation FileReader {
+@implementation ScriptRunner {
   NSTask *task_;
   NSFileHandle* fileHandle_;
   dispatch_queue_t fileReaderQueue_;
+  BOOL isReadingFile_;
   NSString *lastLine_;
-  BOOL isRunning_;
 }
 
 - (void)dealloc {
@@ -23,13 +23,13 @@
 
 /**
  Initialized a file reader object.
- @returns An initialized FileReader object or nil if the object could not be created.
+ @returns An initialized ScriptRunner object or nil if the object could not be created.
  */
 - (id)init {
   self = [super init];
   if (self != nil) {
     dispatch_queue_attr_t qos = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, -1);
-    fileReaderQueue_ = dispatch_queue_create("fileReaderQueue", qos);
+    fileReaderQueue_ = dispatch_queue_create("scriptRunnerQueue", qos);
   }
   
   [self _readLines];
@@ -58,7 +58,7 @@
   [fileHandle_ waitForDataInBackgroundAndNotify];
   
   // Make this all single string so it's easy to filter out
-  [self.delegate fileReaderDidReadLines:@[[[
+  [self.delegate scriptRunnerDidReadLines:@[[[
     @"-------------------------------------------------\nCurrent Script:\n"
     stringByAppendingString:script] stringByAppendingString:@"\n\nRunning Script..."
   ]]];
@@ -108,7 +108,7 @@
  **/
 -(void)_readLines {
   __weak __typeof__(self) weakSelf = self;
-  if (isRunning_) {
+  if (isReadingFile_) {
     return;
   }
   dispatch_async(fileReaderQueue_, ^{
@@ -116,7 +116,7 @@
     if (!strongSelf) {
       return;
     }
-    strongSelf->isRunning_ = YES;
+    strongSelf->isReadingFile_ = YES;
     
     int dataCount = 0;
     int maxDataCount = 20;
@@ -138,10 +138,10 @@
         data = [[NSData alloc] init];
       }
     }
-    strongSelf->isRunning_ = NO;
+    strongSelf->isReadingFile_ = NO;
 
     if (allLines.count > 0) {
-      [strongSelf.delegate fileReaderDidReadLines:allLines];
+      [strongSelf.delegate scriptRunnerDidReadLines:allLines];
     }
   });
 }

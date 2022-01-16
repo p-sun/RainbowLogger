@@ -9,17 +9,17 @@
 #import <Cocoa/Cocoa.h>
 #import "LogsTableView.h"
 #import "EditScriptView.h"
-#import "FileReader.h"
+#import "ScriptRunner.h"
 #import "FiltersManager.h"
 #import "FiltersTableView.h"
 #import "LogsManager.h"
 #import "LogsScrollView.h"
 #import "LogsTextView.h"
 
-@interface ViewController : NSViewController <FileReaderDelegate, FiltersManagerDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate, EditScriptViewDelegate>
+@interface ViewController : NSViewController <ScriptRunnerDelegate, FiltersManagerDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate, EditScriptViewDelegate>
 
 // Data - Logs and Filter
-@property (nonatomic, strong) FileReader *fileReader;
+@property (nonatomic, strong) ScriptRunner *scriptRunner;
 @property (nonatomic, readonly) BOOL hasReadLine;
 @property (nonatomic, readonly) BOOL isPaused;
 @property (nonatomic, readonly) BOOL shouldAutoScroll;

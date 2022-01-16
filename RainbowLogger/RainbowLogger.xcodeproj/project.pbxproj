@@ -29,7 +29,7 @@
 		9BC08BF7247E234E0088354B /* FiltersManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08BF6247E234E0088354B /* FiltersManager.mm */; };
 		9BC08C07247E60D60088354B /* LogsScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC08C06247E60D60088354B /* LogsScrollView.m */; };
 		9BDE6908247BB2D600F7599F /* FiltersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6907247BB2D600F7599F /* FiltersTableView.m */; };
-		9BDE6915247BE0D400F7599F /* FileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6914247BE0D400F7599F /* FileReader.m */; };
+		9BDE6915247BE0D400F7599F /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6914247BE0D400F7599F /* ScriptRunner.m */; };
 		9BDE6918247BE17300F7599F /* NSDataExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE6917247BE17300F7599F /* NSDataExtensions.m */; };
 		9BDE691B247C54D800F7599F /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BDE691A247C54D800F7599F /* FilterCell.xib */; };
 		9BDE691E247C5E7900F7599F /* FilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE691D247C5E7900F7599F /* FilterCell.m */; };
@@ -90,8 +90,8 @@
 		9BC08C06247E60D60088354B /* LogsScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogsScrollView.m; sourceTree = "<group>"; };
 		9BDE6906247BB2D600F7599F /* FiltersTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiltersTableView.h; sourceTree = "<group>"; };
 		9BDE6907247BB2D600F7599F /* FiltersTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiltersTableView.m; sourceTree = "<group>"; };
-		9BDE6913247BE0D400F7599F /* FileReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileReader.h; sourceTree = "<group>"; };
-		9BDE6914247BE0D400F7599F /* FileReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileReader.m; sourceTree = "<group>"; };
+		9BDE6913247BE0D400F7599F /* ScriptRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptRunner.h; sourceTree = "<group>"; };
+		9BDE6914247BE0D400F7599F /* ScriptRunner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptRunner.m; sourceTree = "<group>"; };
 		9BDE6917247BE17300F7599F /* NSDataExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataExtensions.m; sourceTree = "<group>"; };
 		9BDE6919247BE18A00F7599F /* NSDataExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDataExtensions.h; sourceTree = "<group>"; };
 		9BDE691A247C54D800F7599F /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
@@ -121,6 +121,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25329C762794A5F800C13171 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2595430E2783ABB400708D1D /* EditScriptView */,
+				9B99B41D247A6B1600734B8E /* LogsTableView */,
+				9B835707250DC4A000D60206 /* LogsTextView */,
+				9BDE6905247BB27400F7599F /* FiltersTableView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2595430E2783ABB400708D1D /* EditScriptView */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,13 +150,13 @@
 			path = RainbowLoggerTests;
 			sourceTree = "<group>";
 		};
-		9B2D798A250E37C900E39435 /* LogsColorer */ = {
+		9B2D798A250E37C900E39435 /* LogsProcessor */ = {
 			isa = PBXGroup;
 			children = (
 				9B2D798B250E37DC00E39435 /* LogsProcessor.h */,
 				9B2D798C250E37DC00E39435 /* LogsProcessor.m */,
 			);
-			path = LogsColorer;
+			path = LogsProcessor;
 			sourceTree = "<group>";
 		};
 		9B835707250DC4A000D60206 /* LogsTextView */ = {
@@ -180,11 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				9B99B41E247A6B4600734B8E /* MainViewController */,
-				2595430E2783ABB400708D1D /* EditScriptView */,
-				9B99B41D247A6B1600734B8E /* LogsTableView */,
-				9B835707250DC4A000D60206 /* LogsTextView */,
-				9BDE6905247BB27400F7599F /* FiltersTableView */,
-				9BDE6916247BE15500F7599F /* FileReader */,
+				25329C762794A5F800C13171 /* Views */,
 				9BC08BEE247E0FB20088354B /* Managers */,
 				9B99B444247BA56600734B8E /* Models */,
 				9BC08BED247CA7780088354B /* Extensions */,
@@ -258,7 +265,8 @@
 		9BC08BEE247E0FB20088354B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				9B2D798A250E37C900E39435 /* LogsColorer */,
+				9BDE6916247BE15500F7599F /* ScriptRunner */,
+				9B2D798A250E37C900E39435 /* LogsProcessor */,
 				9BC08BFB247E33070088354B /* LogsManager */,
 				9BC08BFC247E330E0088354B /* FiltersManager */,
 			);
@@ -297,15 +305,15 @@
 			path = FiltersTableView;
 			sourceTree = "<group>";
 		};
-		9BDE6916247BE15500F7599F /* FileReader */ = {
+		9BDE6916247BE15500F7599F /* ScriptRunner */ = {
 			isa = PBXGroup;
 			children = (
-				9BDE6913247BE0D400F7599F /* FileReader.h */,
-				9BDE6914247BE0D400F7599F /* FileReader.m */,
+				9BDE6913247BE0D400F7599F /* ScriptRunner.h */,
+				9BDE6914247BE0D400F7599F /* ScriptRunner.m */,
 				9BDE6919247BE18A00F7599F /* NSDataExtensions.h */,
 				9BDE6917247BE17300F7599F /* NSDataExtensions.m */,
 			);
-			path = FileReader;
+			path = ScriptRunner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,7 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BDE6915247BE0D400F7599F /* FileReader.m in Sources */,
+				9BDE6915247BE0D400F7599F /* ScriptRunner.m in Sources */,
 				9BC08BE9247CA0B60088354B /* NSColorExtensions.h in Sources */,
 				9B2D7996250E7E0100E39435 /* MainWindow.m in Sources */,
 				259543132783AE4300708D1D /* EditScriptView.m in Sources */,

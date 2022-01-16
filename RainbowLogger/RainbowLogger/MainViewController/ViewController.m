@@ -37,8 +37,8 @@
   _filtersManager = [[FiltersManager alloc] init];
   [_filtersManager setDelegate:self];
   
-  _fileReader = [[FileReader alloc] init];
-  [_fileReader setDelegate:self];
+  _scriptRunner = [[ScriptRunner alloc] init];
+  [_scriptRunner setDelegate:self];
   
   _logsManager = [[LogsManager alloc] init];
   [_logsManager setDelegate:self];
@@ -90,10 +90,10 @@
 
 - (IBAction)runScriptPressed:(id)sender {
   if ([_topMenuRunScriptButton.title isEqualToString:@"Stop Script"]) {
-    [self.fileReader stopScript];
+    [self.scriptRunner stopScript];
   } else {
     NSString *script = [EditScriptView loadCustomizedScript];
-    [self.fileReader runScript:script];
+    [self.scriptRunner runScript:script];
   }
   
   [self updateRunScriptButton:_topMenuRunScriptButton];
@@ -134,7 +134,7 @@
 #pragma mark - Run Script Button
 
 -(void)updateRunScriptButton:(NSButton *)button {
-  if ([self.fileReader isScriptRunning]) {
+  if ([self.scriptRunner isScriptRunning]) {
     [button setTitle:@"Stop Script"];
     if (@available(macOS 11.0, *)) {
       [button setImage:[NSImage imageWithSystemSymbolName:@"stop.fill" accessibilityDescription:nil]];
@@ -218,9 +218,9 @@
   }
 }
 
-#pragma mark - FileReaderDelegate
+#pragma mark - ScriptRunnerDelegate
 
--(void)fileReaderDidReadLines:(NSArray<NSString *>*)lines {
+-(void)scriptRunnerDidReadLines:(NSArray<NSString *>*)lines {
   _hasReadLine = YES;
   [_logsManager appendLogs:lines];
 }
