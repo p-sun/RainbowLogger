@@ -54,6 +54,7 @@
 
   NSPipe *p = [NSPipe pipe];
   [task setStandardOutput:p];
+  [task setStandardError:p];
   fileHandle_ = [p fileHandleForReading];
   [fileHandle_ waitForDataInBackgroundAndNotify];
   
@@ -66,7 +67,8 @@
   [task launchAndReturnError:&error];
   
   if (error) {
-    NSLog(@"(PAIGE) Error %@", error);
+    [self.delegate scriptRunnerDidReadLines:@[[
+      @"Error with script: " stringByAppendingString:error.localizedDescription]]];
   } else {
     task_ = task;
   }
