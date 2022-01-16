@@ -308,8 +308,16 @@
   [_logsTextView setAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
   
   NSString *newSummary = [_filtersManager getFiltersSummary];
-  [_filtersSummaryLabel setHidden:[newSummary length] == 0];
-  _filtersSummaryLabel.stringValue = [_filtersManager getFiltersSummary];
+  __weak __typeof__(self) weakSelf = self;
+  dispatch_async(dispatch_get_main_queue(), ^{
+    __strong __typeof__(self) strongSelf = weakSelf;
+    if (!strongSelf) {
+      return;
+    }
+
+    [strongSelf->_filtersSummaryLabel setHidden:[newSummary length] == 0];
+    strongSelf->_filtersSummaryLabel.stringValue = [strongSelf->_filtersManager getFiltersSummary];
+  });
 }
 
 #pragma mark - Select Next Row After Deleting a Row

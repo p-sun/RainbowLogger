@@ -15,7 +15,6 @@
 #pragma mark - Color Logs with Filters
 
 + (NSAttributedString *)coloredLinesFromLogs:(NSArray<NSString *>*)logs filteredBy:(NSArray<Filter *>*)filters {
-  
   NSMutableAttributedString *lines = [[NSMutableAttributedString alloc] initWithString:@""];
   for (NSString *log in logs) {
     if ([LogsProcessor doesLog:log passFilters:filters]) {
