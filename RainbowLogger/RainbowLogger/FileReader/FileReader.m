@@ -138,12 +138,11 @@
         data = [[NSData alloc] init];
       }
     }
+    strongSelf->isRunning_ = NO;
 
     if (allLines.count > 0) {
       [strongSelf.delegate fileReaderDidReadLines:allLines];
     }
-    
-    strongSelf->isRunning_ = NO;
   });
 }
 
