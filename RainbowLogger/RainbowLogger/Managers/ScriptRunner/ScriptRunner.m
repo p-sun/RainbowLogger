@@ -10,7 +10,10 @@
  Takes an NSString Command Line script, and runs it.
  */
 @implementation ScriptRunner {
+  // Run script with task
   NSTask *task_;
+  
+  // Read output from task
   NSFileHandle* fileHandle_;
   dispatch_queue_t fileReaderQueue_;
   BOOL isReadingFile_;
@@ -28,12 +31,11 @@
 - (id)init {
   self = [super init];
   if (self != nil) {
-    dispatch_queue_attr_t qos = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, -1);
-    fileReaderQueue_ = dispatch_queue_create("scriptRunnerQueue", qos);
+    dispatch_queue_attr_t utilityQOS = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, -1);
+    fileReaderQueue_ = dispatch_queue_create("fileReaderQueue", utilityQOS);
   }
   
-  [self _readLines];
-  
+  [self _onTick:nil];
   [NSTimer scheduledTimerWithTimeInterval:0.05
                                    target:self
                                  selector:@selector(_onTick:)
@@ -44,7 +46,7 @@
 }
 
 - (void)runScript:(NSString *)script {
-  [task_ terminate];
+  [self stopScript];
   
   NSTask *task = [[NSTask alloc] init];
   NSDictionary *environmentDict = [[NSProcessInfo processInfo] environment];
@@ -61,16 +63,20 @@
   // Make this all single string so it's easy to filter out
   [self.delegate scriptRunnerDidReadLines:@[[[
     @"-------------------------------------------------\nCurrent Script:\n"
-    stringByAppendingString:script] stringByAppendingString:@"\n\nRunning Script..."
+    stringByAppendingString:script] stringByAppendingString:@"\n\nRunning Script...\n"
   ]]];
+  
+  task_ = task;
+
   NSError *error;
   [task launchAndReturnError:&error];
   
   if (error) {
     [self.delegate scriptRunnerDidReadLines:@[[
       @"Error with script: " stringByAppendingString:error.localizedDescription]]];
+    [self stopScript];
   } else {
-    task_ = task;
+    [_delegate scriptRunnerDidUpdateScriptStatus];
   }
 }
 
@@ -81,8 +87,11 @@
 - (void)stopScript {
   if ([self isScriptRunning]) {
     [task_ terminate];
+  }
+  if (task_ || fileHandle_) {
     task_ = nil;
     fileHandle_ = nil;
+    [_delegate scriptRunnerDidUpdateScriptStatus];
   }
 }
 
@@ -124,6 +133,13 @@
     int maxDataCount = 20;
     
     NSData *data = [strongSelf->fileHandle_ availableData];
+    if (data.length == 0) {
+      if (strongSelf->task_ && ![strongSelf->task_ isRunning]) {
+        [strongSelf.delegate scriptRunnerDidReadLines:@[@"\nScript Finished.\n"]];
+        [strongSelf stopScript];
+      }
+    }
+    
     NSMutableArray *allLines = [[NSMutableArray alloc] init];
 
     while (data.length > 0) {

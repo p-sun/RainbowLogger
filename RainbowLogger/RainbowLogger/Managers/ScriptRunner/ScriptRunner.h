@@ -8,6 +8,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ScriptRunnerDelegate <NSObject>
 
+-(void)scriptRunnerDidUpdateScriptStatus;
+
 -(void)scriptRunnerDidReadLines:(NSArray<NSString *>*)lines;
 
 @end

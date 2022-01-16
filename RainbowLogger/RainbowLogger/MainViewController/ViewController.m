@@ -95,9 +95,6 @@
     NSString *script = [EditScriptView loadCustomizedScript];
     [self.scriptRunner runScript:script];
   }
-  
-  [self updateRunScriptButton:_topMenuRunScriptButton];
-  [self updateRunScriptButton:_editScriptView.runScriptButton];
 }
 
 - (IBAction)editScriptPressed:(id)sender {
@@ -129,22 +126,6 @@
   NSPoint point = NSMakePoint(0.0,
                               [[_rightPanelScrollView documentView] bounds].size.height);
   [_rightPanelScrollView.documentView scrollPoint:point];
-}
-
-#pragma mark - Run Script Button
-
--(void)updateRunScriptButton:(NSButton *)button {
-  if ([self.scriptRunner isScriptRunning]) {
-    [button setTitle:@"Stop Script"];
-    if (@available(macOS 11.0, *)) {
-      [button setImage:[NSImage imageWithSystemSymbolName:@"stop.fill" accessibilityDescription:nil]];
-    }
-  } else {
-    [button setTitle:@" Run Script"];
-    if (@available(macOS 11.0, *)) {
-      [button setImage:[NSImage imageWithSystemSymbolName:@"play.fill" accessibilityDescription:nil]];
-    }
-  }
 }
 
 #pragma mark - EditScriptViewDelegate
@@ -223,6 +204,27 @@
 -(void)scriptRunnerDidReadLines:(NSArray<NSString *>*)lines {
   _hasReadLine = YES;
   [_logsManager appendLogs:lines];
+}
+
+-(void)scriptRunnerDidUpdateScriptStatus {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self updateRunScriptButton:self->_topMenuRunScriptButton];
+    [self updateRunScriptButton:self->_editScriptView.runScriptButton];
+  });
+}
+
+-(void)updateRunScriptButton:(NSButton *)button {
+  if ([self.scriptRunner isScriptRunning]) {
+    [button setTitle:@"Stop Script"];
+    if (@available(macOS 11.0, *)) {
+      [button setImage:[NSImage imageWithSystemSymbolName:@"stop.fill" accessibilityDescription:nil]];
+    }
+  } else {
+    [button setTitle:@" Run Script"];
+    if (@available(macOS 11.0, *)) {
+      [button setImage:[NSImage imageWithSystemSymbolName:@"play.fill" accessibilityDescription:nil]];
+    }
+  }
 }
 
 #pragma mark - Autoscroll
