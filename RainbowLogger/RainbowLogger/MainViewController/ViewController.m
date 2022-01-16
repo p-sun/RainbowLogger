@@ -21,6 +21,7 @@
   NSInteger _nextColor;
   BOOL _shouldScrollFiltersTable;
   EditScriptView *_editScriptView;
+  dispatch_queue_t _logsProcessingQueue;
 }
 
 #pragma mark - View Controller Lifecycle
@@ -43,6 +44,9 @@
   _logsManager = [[LogsManager alloc] init];
   [_logsManager setDelegate:self];
   
+  dispatch_queue_attr_t utilityQOS = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, -1);
+  _logsProcessingQueue = dispatch_queue_create("logsProcessingQueue", utilityQOS);
+  
   // Views
   _filtersTableView.allowsMultipleSelection = YES;
   [_filtersTableView setFiltersDelegate:self];
@@ -61,6 +65,7 @@
   [self rightPaneScrollToTop];
   [_rightPane setHidden:YES];
   
+  // Start
   [self runScriptPressed:nil];
 }
 
@@ -294,8 +299,16 @@
 
 - (void)didAppendLogs:(NSArray<Log *>*)logs {
   if (!_isPaused) {
-    NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:logs filteredBy:[_filtersManager getFilters]];
-    [_logsTextView addAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
+    __weak __typeof__(self) weakSelf = self;
+    dispatch_async(_logsProcessingQueue, ^{
+      __strong __typeof(weakSelf) strongSelf = weakSelf;
+      if (!strongSelf) {
+        return;
+      }
+      
+      NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:logs filteredBy:[strongSelf->_filtersManager getFilters]];
+      [strongSelf->_logsTextView addAttributedLines:lines shouldAutoscroll:strongSelf->_shouldAutoScroll];
+    });
   }
 }
 
@@ -306,11 +319,18 @@
 }
 
 - (void)_updateLogsTable {
-  NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:_logsManager.getLogs filteredBy:[_filtersManager getFilters]];
-  [_logsTextView setAttributedLines:lines shouldAutoscroll:_shouldAutoScroll];
+  __weak __typeof__(self) weakSelf = self;
+  dispatch_async(_logsProcessingQueue, ^{
+    __strong __typeof(weakSelf) strongSelf = weakSelf;
+    if (!strongSelf) {
+      return;
+    }
+    
+    NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:strongSelf->_logsManager.getLogs filteredBy:[strongSelf->_filtersManager getFilters]];
+    [strongSelf->_logsTextView setAttributedLines:lines shouldAutoscroll:strongSelf->_shouldAutoScroll];
+  });
   
   NSString *newSummary = [_filtersManager getFiltersSummary];
-  __weak __typeof__(self) weakSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
     __strong __typeof__(self) strongSelf = weakSelf;
     if (!strongSelf) {

@@ -27,7 +27,7 @@
 }
 
 - (NSArray<Log *>*)getLogs {
-  return _allLogs;
+  return [_allLogs copy];
 }
 
 - (void)appendLogs:(NSArray<Log *>*)logs {
