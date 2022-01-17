@@ -1345,8 +1345,8 @@ Gw
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="380-FB-GZN">
-                                    <rect key="frame" x="-7" y="-7" width="334" height="32"/>
-                                    <buttonCell key="cell" type="push" title="Recommended Filters for React Native JavaScript" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ePf-Wz-ypJ">
+                                    <rect key="frame" x="-7" y="-7" width="308" height="32"/>
+                                    <buttonCell key="cell" type="push" title="Recommended Filters for FBiOS React Native" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ePf-Wz-ypJ">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                         <string key="keyEquivalent" base64-UTF8="YES">
