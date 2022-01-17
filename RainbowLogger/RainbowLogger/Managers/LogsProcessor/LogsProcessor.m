@@ -85,8 +85,36 @@
       }
     }
   }
+    
+  return [LogsProcessor padLogByAligningString:@"******" toLocation:8 fromLog:newLog];
+}
+
+/*
+ If the first occurence of "******"s starts before toLocation, then add spaces to bring it to that location.
+ e.g. if position = 8
+ "> CPP ****** message"   --becomes-->    "> CPP   ****** message"
+ **/
++ (NSAttributedString *)padLogByAligningString:(NSString*)string toLocation:(NSUInteger)toLocation fromLog:(NSMutableAttributedString*)log {
+  NSError *error = NULL;
+  NSRegularExpression *regex = [NSRegularExpression
+                                regularExpressionWithPattern:[NSRegularExpression escapedPatternForString:string]
+                                options:NSRegularExpressionCaseInsensitive
+                                error:&error];
+  NSRange searchedRange = NSMakeRange(0, [[log string] length]);
+  NSArray* matches = [regex matchesInString:[log string] options:0 range:searchedRange];
+  NSTextCheckingResult *firstMatch = matches.firstObject;
   
-  return newLog;
+  if (firstMatch) {
+    NSUInteger dx = toLocation - firstMatch.range.location;
+    
+    // If the string starts before the toLocation, add spaces before the string
+    if (dx > 0) {
+      NSString *spacesToAdd = [@"" stringByPaddingToLength:dx withString: @" " startingAtIndex:0];
+      [log replaceCharactersInRange:NSMakeRange(1, 0) withString:spacesToAdd];
+    }
+  }
+
+  return log;
 }
 
 #pragma mark - Filter Logs
