@@ -75,8 +75,13 @@
       
       // Replace text if needed
       if ([filter.replacementText length] > 0) {
-        [newLog replaceCharactersInRange:rangeWithOffset withString:filter.replacementText];
-        locationOffset += filter.replacementText.length - rangeWithOffset.length;
+        if ([filter.replacementText isEqualToString:@"EMPTY"]) {
+          [newLog deleteCharactersInRange:rangeWithOffset];
+          locationOffset -= rangeWithOffset.length;
+        } else {
+          [newLog replaceCharactersInRange:rangeWithOffset withString:filter.replacementText];
+          locationOffset += filter.replacementText.length - rangeWithOffset.length;
+        }
       }
     }
   }
