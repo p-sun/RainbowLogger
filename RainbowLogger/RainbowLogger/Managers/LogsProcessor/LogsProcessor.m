@@ -101,14 +101,12 @@
                                 options:NSRegularExpressionCaseInsensitive
                                 error:&error];
   NSRange searchedRange = NSMakeRange(0, [[log string] length]);
-  NSArray* matches = [regex matchesInString:[log string] options:0 range:searchedRange];
-  NSTextCheckingResult *firstMatch = matches.firstObject;
   
+  NSTextCheckingResult* firstMatch = [regex firstMatchInString:[log string] options:0 range:searchedRange];
   if (firstMatch) {
-    NSUInteger dx = toLocation - firstMatch.range.location;
-    
     // If the string starts before the toLocation, add spaces before the string
-    if (dx > 0) {
+    if (firstMatch.range.location < toLocation) {
+      NSUInteger dx = toLocation - firstMatch.range.location;
       NSString *spacesToAdd = [@"" stringByPaddingToLength:dx withString: @" " startingAtIndex:0];
       [log replaceCharactersInRange:NSMakeRange(1, 0) withString:spacesToAdd];
     }

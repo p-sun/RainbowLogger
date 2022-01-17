@@ -146,9 +146,11 @@
 
 -(void)editScriptViewDidPressAddFiltersForMetro {
   NSArray<Filter* > *filters = @[
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"---------------- Filters for FBiOS ----------------" colorTag:15 isEnabled:NO],
+    [[Filter alloc] initWithCondition:FilterConditionContainsAny text:@"******" colorTag:14 isEnabled:NO],
+    [[Filter alloc] initWithCondition:FilterConditionContainsAny text:@"******" colorTag:14 isEnabled:NO],
+
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"2022-.*?] " isRegex:YES colorTag:10 replacementText:@"> " isEnabled:YES],
-    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"******" colorTag:14 isEnabled:NO],
-    
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"\\(XPLAT_.{0,1}_Framework\\) " isRegex:YES colorTag:15 replacementText:@"EMPTY" isEnabled:YES],
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"(UI_INFRAFramework) " isRegex:NO colorTag:15 replacementText:@"EMPTY" isEnabled:YES],
     
@@ -156,16 +158,20 @@
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"[warn]" isRegex:NO colorTag:4 replacementText:@"WARN" isEnabled:YES],
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"[error]" isRegex:NO colorTag:3 replacementText:@"ERROR" isEnabled:YES],
     
-    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"[tid:main]" isRegex:NO colorTag:12 replacementText:@"UI" isEnabled:YES],
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"[tid:main]" isRegex:NO colorTag:14 replacementText:@"UI" isEnabled:YES],
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"[tid:com.facebook" isRegex:NO colorTag:14 replacementText:@"%" isEnabled:YES],
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"%.react.JavaScript]" isRegex:NO colorTag:5 replacementText:@"JS" isEnabled:YES],
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"%.react.bridgeless.JavaScript]" isRegex:NO colorTag:4 replacementText:@"VJ" isEnabled:YES],
-    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"%.react.background]" isRegex:NO colorTag:6 replacementText:@"BG" isEnabled:YES],
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"%.react.background]" isRegex:NO colorTag:14 replacementText:@"BG" isEnabled:YES],
     
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"_invoke_2] '" isRegex:NO colorTag:14 replacementText:@"_invoke_2] " isEnabled:YES],
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"[void RCTStaticInjectionAutoInit()_block_invoke_2]" isRegex:NO colorTag:15 replacementText:@"EMPTY" isEnabled:YES],
 
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"\\[.*?cpp:.*?\\]" isRegex:YES colorTag:9 replacementText:@"CPP" isEnabled:YES],
+    
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"> ******" isRegex:NO colorTag:14 replacementText:@"> IOS ******" isEnabled:YES],
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"^>" isRegex:YES colorTag:10 replacementText:nil isEnabled:YES],
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"----------------------------------------------------" colorTag:15 isEnabled:NO],
   ];
   [_filtersManager insertAtBeginningFilters:filters];
 }
