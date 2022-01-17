@@ -86,20 +86,10 @@ With an iOS Simulator running, click "Run Script" with the default script to dis
                                                                 <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" id="Xqb-tR-al8">
                                                                     <rect key="frame" x="0.0" y="0.0" width="285" height="80"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" red="0.26026531339999998" green="0.30642073269999998" blue="0.39291287450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <size key="minSize" width="285" height="80"/>
                                                                     <size key="maxSize" width="737" height="10000000"/>
-                                                                    <attributedString key="textStorage">
-                                                                        <fragment>
-                                                                            <string key="content">xcrun simctl spawn booted log stream --level=default --style=compact --predicate '(NOT (subsystem contains "com.apple"))'   FOR DISPLAY IN STORYBOARD ONLY</string>
-                                                                            <attributes>
-                                                                                <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                <font key="NSFont" size="12" name="Helvetica"/>
-                                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                            </attributes>
-                                                                        </fragment>
-                                                                    </attributedString>
                                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                     <allowedInputSourceLocales>
                                                                         <string>eu</string>
