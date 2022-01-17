@@ -52,7 +52,7 @@
   [_filtersTableView setFiltersDelegate:self];
   [_filtersTableView setFilters:[_filtersManager getFilters]];
   
-  _filtersSummaryLabel.stringValue = [_filtersManager getFiltersSummary];
+  [_filtersSummaryLabel setAttributedStringValue:[_filtersManager getFiltersSummary]];
 
   [_logsTextView setScrollDelegate:self];
   
@@ -330,7 +330,7 @@
     [strongSelf->_logsTextView setAttributedLines:lines shouldAutoscroll:strongSelf->_shouldAutoScroll];
   });
   
-  NSString *newSummary = [_filtersManager getFiltersSummary];
+  NSAttributedString *newSummary = [_filtersManager getFiltersSummary];
   dispatch_async(dispatch_get_main_queue(), ^{
     __strong __typeof__(self) strongSelf = weakSelf;
     if (!strongSelf) {
@@ -338,7 +338,7 @@
     }
 
     [strongSelf->_filtersSummaryLabel setHidden:[newSummary length] == 0];
-    strongSelf->_filtersSummaryLabel.stringValue = [strongSelf->_filtersManager getFiltersSummary];
+    [strongSelf->_filtersSummaryLabel setAttributedStringValue:newSummary];
   });
 }
 

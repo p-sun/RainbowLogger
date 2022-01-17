@@ -117,7 +117,7 @@ Filter *containsAny6;
     return filters;
   }];
   
-  return [filtersData getFiltersSummary];
+  return [[filtersData getFiltersSummary] string];
 }
 
 @end

@@ -895,11 +895,11 @@ CQ
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </scroller>
                                                                     </scrollView>
-                                                                    <textField verticalHuggingPriority="999" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="200" translatesAutoresizingMaskIntoConstraints="NO" id="JBM-1V-XBv">
+                                                                    <textField verticalHuggingPriority="999" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="200" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBM-1V-XBv">
                                                                         <rect key="frame" x="6" y="0.0" width="1114" height="16"/>
-                                                                        <textFieldCell key="cell" selectable="YES" alignment="center" title="Filters applied on logs" id="OEw-q6-I1T">
+                                                                        <textFieldCell key="cell" alignment="left" title="Filters applied on logs" id="OEw-q6-I1T">
                                                                             <font key="font" usesAppearanceFont="YES"/>
-                                                                            <color key="textColor" red="0.57439996778350522" green="0.57439996778350522" blue="0.57439996778350522" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="textColor" red="0.62388713089461179" green="0.62388713089461179" blue="0.62388713089461179" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                     </textField>

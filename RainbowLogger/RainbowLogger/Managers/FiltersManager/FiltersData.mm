@@ -75,7 +75,7 @@
 # pragma mark Filters Summary
 
 // See tests in FilterDataTests
-- (NSString*)getFiltersSummary {
+- (NSAttributedString *)getFiltersSummary {
   NSArray *filters = [_filters copy];
   NSMutableArray<Filter *> *mustContain = [[NSMutableArray alloc] init];
   NSMutableArray<Filter *> *containsAny = [[NSMutableArray alloc] init];
@@ -103,56 +103,64 @@
   }
   
   // e.g. @"(MustContain1 && MustContain2 && MustNotContain3)"
-  NSMutableString *mcSummary;
+  NSMutableAttributedString *mcSummary;
   if ([mustContain count] > 0) {
-    mcSummary = [[NSMutableString alloc] init];
-    [mcSummary appendString:@"("];
+    mcSummary = [[NSMutableAttributedString alloc] initWithString:@""];
+    [mcSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@"("]];    
     Filter *firstFilter = [mustContain firstObject];
     if (firstFilter.condition == FilterConditionMustNotContain) {
-      [mcSummary appendString:@"!"];
+      [mcSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@"!"]];
     }
-    [mcSummary appendString:firstFilter.text];
+    [mcSummary appendAttributedString:[self coloredStringFrom:firstFilter]];
     
     for (int i=1; i<mustContain.count; i++) {
-      [mcSummary appendString:@" AND "];
+      [mcSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@" AND "]];
       Filter *nextFilter = [mustContain objectAtIndex:i];
       if (nextFilter.condition == FilterConditionMustNotContain) {
-        [mcSummary appendString:@"!"];
+        [mcSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@"!"]];
       }
-      [mcSummary appendString:nextFilter.text];
+      [mcSummary appendAttributedString:[self coloredStringFrom:nextFilter]];
     }
-    [mcSummary appendString:@")"];
+    [mcSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@")"]];
   }
   
   // e.g. @"ContainsAny5 OR ContainsAny6"
-  NSMutableString *caSummary;
+  NSMutableAttributedString *caSummary;
   if ([containsAny count] > 0) {
-    caSummary = [[NSMutableString alloc] init];
+    caSummary = [[NSMutableAttributedString alloc] init];
     if (mcSummary) {
-      [caSummary appendString:@" OR "];
+      [caSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@" OR "]];
     }
-    [caSummary appendString:[containsAny firstObject].text];
+    Filter *firstFilter = [containsAny firstObject];
+    [caSummary appendAttributedString:[self coloredStringFrom:firstFilter]];
     
     for (int i=1; i<containsAny.count; i++) {
-      [caSummary appendString:@" OR "];
-      [caSummary appendString:[containsAny objectAtIndex:i].text];
+      [caSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@" OR "]];
+      [caSummary appendAttributedString:[self coloredStringFrom:[containsAny objectAtIndex:i]]];
     }
   }
   
   // e.g. @"Logs are filtered with condition: ": (MustContain1 && MustContain2 && MustNotContain3) OR ContainsAny5 OR ContainsAny6"
   NSString *prefix = @"Logs are filtered with condition: ";
 
-  NSMutableString *summary = [[NSMutableString alloc] initWithString:prefix];
+  NSMutableAttributedString *summary = [[NSMutableAttributedString alloc] initWithString:prefix];
   if (!mcSummary && !caSummary) {
-    return @"";
+    return [[NSAttributedString alloc] initWithString:@""];
   }
   if (mcSummary) {
-    [summary appendString:mcSummary];
+    [summary appendAttributedString:mcSummary];
   }
   if (caSummary) {
-    [summary appendString:caSummary];
+    [summary appendAttributedString:caSummary];
   }
   return summary;
+}
+
+- (NSAttributedString *)coloredStringFrom:(Filter *)filter {
+  NSMutableAttributedString *coloredString = [[NSMutableAttributedString alloc] initWithString:filter.text];
+  FilterColorPopupInfo *info = [FilterColorPopupInfo colorPopupInfos][filter.colorTag];
+  [coloredString addAttributes:@{NSForegroundColorAttributeName:info.color} range:NSMakeRange(0, [filter.text length])];
+  return coloredString;
 }
 
 @end

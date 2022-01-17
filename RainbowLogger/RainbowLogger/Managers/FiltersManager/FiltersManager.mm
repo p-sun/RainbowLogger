@@ -26,7 +26,7 @@
   return [_filtersData getFilters];
 }
 
-- (NSString*)getFiltersSummary {
+- (NSAttributedString *)getFiltersSummary {
   return [_filtersData getFiltersSummary];
 }
 
