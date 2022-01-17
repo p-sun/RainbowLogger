@@ -99,6 +99,7 @@
   } else {
     NSString *script = [EditScriptView loadCustomizedScript];
     [self.scriptRunner runScript:script];
+    [_rightPane setHidden:YES];
   }
 }
 
