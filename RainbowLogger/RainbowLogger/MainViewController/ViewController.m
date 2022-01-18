@@ -149,7 +149,6 @@
   NSArray<Filter* > *filters = @[
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"---------------- Filters for FBiOS ----------------" colorTag:15 isEnabled:NO],
     [[Filter alloc] initWithCondition:FilterConditionContainsAny text:@"******" colorTag:14 isEnabled:NO],
-    [[Filter alloc] initWithCondition:FilterConditionContainsAny text:@"******" colorTag:14 isEnabled:NO],
 
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"2022-.*?] " isRegex:YES colorTag:10 replacementText:@"> " isEnabled:YES],
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"\\(XPLAT_.{0,1}_Framework\\) " isRegex:YES colorTag:15 replacementText:@"EMPTY" isEnabled:YES],

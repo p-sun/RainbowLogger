@@ -6,7 +6,8 @@
 //  Copyright © 2021 Paige Sun. All rights reserved.
 //
 
-#include "FiltersData.h"
+#import "NSStringExtensions.h"
+#import "FiltersData.h"
 #include <pthread.h>
 
 @implementation FiltersData{
@@ -79,7 +80,8 @@
   NSArray *filters = [_filters copy];
   NSMutableArray<Filter *> *mustContain = [[NSMutableArray alloc] init];
   NSMutableArray<Filter *> *containsAny = [[NSMutableArray alloc] init];
-  
+  NSMutableArray<Filter *> *containsOnly = [[NSMutableArray alloc] init];
+
   for (Filter *filter in filters) {
     if (!filter.isEnabled) {
       continue;
@@ -94,6 +96,9 @@
       case FilterConditionContainsAny:
         [containsAny addObject:filter];
         break;
+      case FilterConditionContainsOnly:
+        [containsOnly addObject:filter];
+        break;
       case FilterConditionColorContainingText:
         break;
       case FilterConditionSize:
@@ -102,26 +107,41 @@
     }
   }
   
-  // e.g. @"(MustContain1 && MustContain2 && MustNotContain3)"
+  // e.g. @"Logs displayed above pass Filter Conditions: ContainsOnly7 OR ContainsOnly8"  
+  if ([containsOnly count] > 0) {
+    NSMutableAttributedString *coSummary;
+    coSummary = [[NSMutableAttributedString alloc] init];
+    [coSummary appendString:@"Logs displayed above pass Filter Only Conditions: "];
+    Filter *firstFilter = [containsOnly firstObject];
+    [coSummary appendAttributedString:[self coloredStringFrom:firstFilter]];
+    
+    for (int i=1; i<containsOnly.count; i++) {
+      [coSummary appendString:@" OR "];
+      [coSummary appendAttributedString:[self coloredStringFrom:[containsOnly objectAtIndex:i]]];
+    }
+    return coSummary;
+  }
+  
+  // e.g. @"(MustContain1 AND MustContain2 AND MustNotContain3)"
   NSMutableAttributedString *mcSummary;
   if ([mustContain count] > 0) {
     mcSummary = [[NSMutableAttributedString alloc] initWithString:@""];
-    [mcSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@"("]];    
+    [mcSummary appendString:@"("];
     Filter *firstFilter = [mustContain firstObject];
     if (firstFilter.condition == FilterConditionMustNotContain) {
-      [mcSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@"!"]];
+      [mcSummary appendString:@"NOT "];
     }
     [mcSummary appendAttributedString:[self coloredStringFrom:firstFilter]];
     
     for (int i=1; i<mustContain.count; i++) {
-      [mcSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@" AND "]];
+      [mcSummary appendString:@" AND "];
       Filter *nextFilter = [mustContain objectAtIndex:i];
       if (nextFilter.condition == FilterConditionMustNotContain) {
-        [mcSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@"!"]];
+        [mcSummary appendString:@"NOT "];
       }
       [mcSummary appendAttributedString:[self coloredStringFrom:nextFilter]];
     }
-    [mcSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@")"]];
+    [mcSummary appendString:@")"];
   }
   
   // e.g. @"ContainsAny5 OR ContainsAny6"
@@ -129,20 +149,18 @@
   if ([containsAny count] > 0) {
     caSummary = [[NSMutableAttributedString alloc] init];
     if (mcSummary) {
-      [caSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@" OR "]];
+      [caSummary appendString:@" OR "];
     }
     Filter *firstFilter = [containsAny firstObject];
     [caSummary appendAttributedString:[self coloredStringFrom:firstFilter]];
     
     for (int i=1; i<containsAny.count; i++) {
-      [caSummary appendAttributedString:[[NSAttributedString alloc] initWithString:@" OR "]];
+      [caSummary appendString:@" OR "];
       [caSummary appendAttributedString:[self coloredStringFrom:[containsAny objectAtIndex:i]]];
     }
   }
-  
-  // e.g. @"Logs are filtered with condition: ": (MustContain1 && MustContain2 && MustNotContain3) OR ContainsAny5 OR ContainsAny6"
-  NSString *prefix = @"Logs are filtered with condition: ";
 
+  NSString *prefix = @"Logs displayed above pass Filter Conditions: ";
   NSMutableAttributedString *summary = [[NSMutableAttributedString alloc] initWithString:prefix];
   if (!mcSummary && !caSummary) {
     return [[NSAttributedString alloc] initWithString:@""];

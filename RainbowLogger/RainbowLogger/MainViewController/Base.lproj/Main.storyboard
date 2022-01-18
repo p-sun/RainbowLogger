@@ -1004,7 +1004,7 @@ CQ
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1Q-0d-cXN">
-                                                            <rect key="frame" x="16" y="8" width="1184" height="50"/>
+                                                            <rect key="frame" x="16" y="8" width="1174" height="50"/>
                                                             <subviews>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="VZW-tN-rp6" userLabel="30 Move Icon">
                                                                     <rect key="frame" x="0.0" y="0.0" width="34" height="50"/>
@@ -1030,20 +1030,19 @@ CQ
                                                                     </constraints>
                                                                 </customView>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S0T-qT-tgh">
-                                                                    <rect key="frame" x="141" y="17" width="137" height="16"/>
-                                                                    <string key="toolTip">Each log displayed must pass the set of all filters.
+                                                                    <rect key="frame" x="141" y="17" width="177" height="16"/>
+                                                                    <mutableString key="toolTip">Each log displayed must pass the set of all filters. See the grey text above the filters table for the set of Filter Conditions that each log must pass.
 
-Each log must satisfy all "Must Contain" and all "Must Not Contain" conditions.
+Each log must satisfy: 
+- All "[and ] Contain" and all "[and ] Not Contain" conditions.
+- OR any "[or  ] Contain" conditions.
+- OR if there are one or more "[only] Contain" conditions, only the "[only] Contain" conditions are applied.
 
-A log that satisfies any "Contains Any" condition is displayed.
+A blank Filter Condition does not remove logs. It is only used for Coloring and Replacing Text.
 
-A "None" conditions does not remove any logs. It is only used for the Color and Replace Text features.
-
-e.g. (MustContain1 AND MustContain2 AND MustNotContain3) ContainsAny4 OR ContainsAny5
-
-The order of filters does not affect whether each log is displayed. The order of filters only affects the order the colors are applied.</string>
+The order of filters does not affect whether each log is displayed. The order of filters only affects the order that colors are applied.</mutableString>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="133" id="Kck-II-3TA"/>
+                                                                        <constraint firstAttribute="width" constant="173" id="Kck-II-3TA"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Filter Condition" id="nLV-qe-6Eo">
                                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -1052,7 +1051,7 @@ The order of filters does not affect whether each log is displayed. The order of
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="25c-8O-SJJ">
-                                                                    <rect key="frame" x="290" y="17" width="443" height="16"/>
+                                                                    <rect key="frame" x="330" y="17" width="410" height="16"/>
                                                                     <string key="toolTip">If a log contains the Filter Text and satisfies the set of all filters, Color and Replace text is applied on the substring of the log that satisfies each filter. 
 
 When Filter Text is empty, the entire filter is disabled.</string>
@@ -1063,7 +1062,7 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField toolTip="Use Filter Text as the Regex pattern to filter the logs." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSf-Kn-j0Y">
-                                                                    <rect key="frame" x="745" y="17" width="72" height="16"/>
+                                                                    <rect key="frame" x="752" y="17" width="72" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="68" id="Mec-F2-rnL"/>
                                                                     </constraints>
@@ -1074,13 +1073,13 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="YcU-GL-oKv" userLabel="1 Divider">
-                                                                    <rect key="frame" x="831" y="0.0" width="1" height="50"/>
+                                                                    <rect key="frame" x="838" y="0.0" width="1" height="50"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="1" id="Drk-11-LML"/>
                                                                     </constraints>
                                                                 </customView>
                                                                 <textField toolTip="Color logs that contains Filter Text. Colors are applied in the order of the filters from top to bottom." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cgr-dW-soM">
-                                                                    <rect key="frame" x="846" y="17" width="87" height="16"/>
+                                                                    <rect key="frame" x="853" y="17" width="87" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="83" id="Vkh-00-wT3"/>
                                                                     </constraints>
@@ -1091,13 +1090,13 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="GFA-HN-UBo" userLabel="1 Divider">
-                                                                    <rect key="frame" x="947" y="0.0" width="1" height="50"/>
+                                                                    <rect key="frame" x="954" y="0.0" width="1" height="50"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="1" id="Tjg-0i-gXW"/>
                                                                     </constraints>
                                                                 </customView>
                                                                 <textField toolTip="Temporarily replace text in logs that match Filter Text. Clear this field to reset logs to their original text." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Em-Cc-Yfd">
-                                                                    <rect key="frame" x="962" y="17" width="224" height="16"/>
+                                                                    <rect key="frame" x="969" y="17" width="207" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Replace Text" id="ui1-q3-86F">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1142,7 +1141,7 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="h1Q-0d-cXN" firstAttribute="top" secondItem="Nmc-Pr-t08" secondAttribute="top" constant="8" id="20p-DL-M05"/>
-                                                        <constraint firstAttribute="trailing" secondItem="h1Q-0d-cXN" secondAttribute="trailing" constant="18" id="8JR-s2-Zms"/>
+                                                        <constraint firstAttribute="trailing" secondItem="h1Q-0d-cXN" secondAttribute="trailing" constant="28" id="8JR-s2-Zms"/>
                                                         <constraint firstItem="h1Q-0d-cXN" firstAttribute="leading" secondItem="Nmc-Pr-t08" secondAttribute="leading" constant="16" id="8bE-yf-frh"/>
                                                         <constraint firstItem="h1Q-0d-cXN" firstAttribute="bottom" secondItem="Nmc-Pr-t08" secondAttribute="bottom" constant="-8" id="OBG-6V-1Jx"/>
                                                     </constraints>

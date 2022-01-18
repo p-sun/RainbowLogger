@@ -11,5 +11,6 @@ typedef NS_ENUM(NSInteger, FilterCondition) {
   FilterConditionMustContain,
   FilterConditionMustNotContain,
   FilterConditionContainsAny,
+  FilterConditionContainsOnly,
   FilterConditionSize // For enum size only
 };

@@ -8,7 +8,6 @@
 
 #import "NSViewExtensions.h"
 
-//@implementation NSViewExtensions
 @implementation NSView (Additions)
 
 + (id)loadWithNibNamed:(NSString *)nibNamed class:(Class)loadClass owner:(id)owner {

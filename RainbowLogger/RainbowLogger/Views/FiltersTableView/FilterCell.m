@@ -21,7 +21,13 @@
   cell = (NSPopUpButtonCell *)_conditionPopup.cell;
   
   [FilterConditionPopupInfo.conditionPopupInfos enumerateObjectsUsingBlock:^(FilterConditionPopupInfo* info, NSUInteger idx, BOOL * _Nonnull stop) {
-    NSMenuItem *menuItem = [[NSMenuItem alloc] initWithTitle:info.name action:nil keyEquivalent:@""];
+    NSMenuItem *menuItem = [[NSMenuItem alloc] init];
+    NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] initWithString:info.name];
+    [attributedTitle addAttributes:@{
+      NSFontAttributeName:[NSFont monospacedSystemFontOfSize:12 weight:NSFontWeightRegular],
+    } range:NSMakeRange(0, [info.name length])];
+    [menuItem setAttributedTitle:attributedTitle];
+    
     menuItem.tag = idx;
     [_conditionPopup.menu addItem:menuItem];
   }];

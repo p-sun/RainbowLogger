@@ -29,13 +29,15 @@ static NSArray<FilterConditionPopupInfo *> *conditionPopupInfosArray;
 +(NSString*)nameForCondition:(FilterCondition)condition {
   switch (condition) {
     case FilterConditionMustContain:
-      return @"Must Contain";
+      return @"[and ] Contain";
     case FilterConditionMustNotContain:
-      return @"Must Not Contain";
+      return @"[and ] Not Contain";
     case FilterConditionContainsAny:
-      return @"Contains Any";
+      return @"[or  ] Contain";
+    case FilterConditionContainsOnly:
+      return @"[only] Contain";
     case FilterConditionColorContainingText:
-      return @"None";
+      return @" ";
     case FilterConditionSize:
       NSAssert(NO, @"(PAIGE) FilterConditionSize should be used for enum size only");
       return @"";
