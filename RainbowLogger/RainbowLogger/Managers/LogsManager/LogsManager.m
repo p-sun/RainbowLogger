@@ -8,9 +8,12 @@
 
 #import "LogsManager.h"
 #import <Foundation/Foundation.h>
+#include <pthread.h>
 
 @implementation LogsManager {
-  NSMutableArray<NSString *> *_allLogs;
+  NSMutableArray<Log *> *_allLogs;
+  NSMutableArray<Log *> *_nextLogs;
+  pthread_mutex_t _nextLogsMutex;
 }
 
 - (instancetype)init
@@ -18,12 +21,33 @@
   self = [super init];
   if (self) {
     _allLogs = [[NSMutableArray alloc] init];
+    _nextLogs = [[NSMutableArray alloc] init];
+    pthread_mutex_init(&_nextLogsMutex, NULL);
   }
   return self;
 }
 
 - (void)clearLogs {
   _allLogs = [[NSMutableArray alloc] init];
+  _nextLogs = [[NSMutableArray alloc] init];
+}
+
+- (NSArray<Log *>*)getNextLogs {
+  NSUInteger MAX_LOGS_TO_RETURN = 300;
+  pthread_mutex_lock(&_nextLogsMutex);
+
+  NSArray *nextLogs;
+  if ([_nextLogs count] <= MAX_LOGS_TO_RETURN) {
+    nextLogs = [_nextLogs copy];
+    [_nextLogs removeAllObjects];
+  } else {
+    NSRange range = NSMakeRange(0, MAX_LOGS_TO_RETURN - 1);
+    nextLogs = [_nextLogs subarrayWithRange:range];
+    [_nextLogs removeObjectsInRange:range];
+  }
+  
+  pthread_mutex_unlock(&_nextLogsMutex);
+  return nextLogs;
 }
 
 - (NSArray<Log *>*)getLogs {
@@ -31,7 +55,10 @@
 }
 
 - (void)appendLogs:(NSArray<Log *>*)logs {
+  pthread_mutex_lock(&_nextLogsMutex);
   [_allLogs addObjectsFromArray:logs];
+  [_nextLogs addObjectsFromArray:logs];
+  pthread_mutex_unlock(&_nextLogsMutex);
   
   // To limit memeory usage,
   // if we exceed the max number of lines, keep only the last half of the logs in memory

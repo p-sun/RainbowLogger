@@ -11,18 +11,15 @@
  */
 @implementation ScriptRunner {
   // Run script with task
-  NSTask *task_;
+  NSTask *_task;
   
-  // Read output from task
-  NSFileHandle* fileHandle_;
-  dispatch_queue_t fileReaderQueue_;
-  BOOL isReadingFile_;
-  NSString *lastLine_;
+  // File Reading
+  NSThread *_fileReadingThread;
+  NSFileHandle* _fileHandle;
+  NSString *_lastLine;
 }
 
-- (void)dealloc {
-  [self stopScript];
-}
+#pragma mark - Init & Dealloc
 
 /**
  Initialized a file reader object.
@@ -31,21 +28,58 @@
 - (id)init {
   self = [super init];
   if (self != nil) {
-    dispatch_queue_attr_t utilityQOS = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, -1);
-    fileReaderQueue_ = dispatch_queue_create("fileReaderQueue", utilityQOS);
+    _fileReadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(runBufferReadThread) object:nil];
+    [_fileReadingThread setName:@"FileReadThread"];
+    [_fileReadingThread start];
   }
-  
-  [self _onTick:nil];
-  [NSTimer scheduledTimerWithTimeInterval:0.05
-                                   target:self
-                                 selector:@selector(_onTick:)
-                                 userInfo:nil
-                                  repeats:YES];
-  
   return self;
 }
 
+- (void)dealloc {
+  [self stopScript];
+}
+
+#pragma mark - Public APIs
+
 - (void)runScript:(NSString *)script {
+  [self performSelector:@selector(runScriptOnThread:) onThread:_fileReadingThread withObject:script waitUntilDone:NO];
+}
+
+- (void)stopScript {
+  [self performSelector:@selector(stopScriptOnThread) onThread:_fileReadingThread withObject:nil waitUntilDone:YES];
+}
+
+- (BOOL)isScriptRunning {
+  return _task != nil;
+}
+
+- (void)runBufferReadThread
+{
+  // onTick is supposed to do nothing. It's only purpose is to keep the NSRunLoop alive.
+  NSTimer *_linesBufferTimer = [NSTimer timerWithTimeInterval:100000 target:self selector:@selector(onTick:) userInfo:nil repeats:YES];
+  [[NSRunLoop currentRunLoop] addTimer:_linesBufferTimer forMode:NSRunLoopCommonModes];
+  [[NSRunLoop currentRunLoop] run];
+}
+
+#pragma mark - Private Threading & Script Management
+
+-(void)onTick:(NSTimer *)timer {
+}
+
+- (void)stopScriptOnThread {
+  if ([self isScriptRunning]) {
+    [_task terminate];
+  }
+
+  if (_task) {
+    [[NSNotificationCenter defaultCenter] removeObserver:_fileHandle];
+    _fileHandle = nil;
+    _lastLine = nil;
+    _task = nil;
+  }
+}
+
+- (void)runScriptOnThread:(NSString *)script {
   [self stopScript];
   
   NSTask *task = [[NSTask alloc] init];
@@ -57,8 +91,13 @@
   NSPipe *p = [NSPipe pipe];
   [task setStandardOutput:p];
   [task setStandardError:p];
-  fileHandle_ = [p fileHandleForReading];
-  [fileHandle_ waitForDataInBackgroundAndNotify];
+  _task = task;
+
+  _fileHandle = [p fileHandleForReading];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readLogsFromFileOnThread:) name:NSFileHandleDataAvailableNotification object:_fileHandle];
+  
+  // Need to be called from a thread with a RunLoop
+  [_fileHandle waitForDataInBackgroundAndNotify];
   
   // Make this all single string so it's easy to filter out
   [self.delegate scriptRunnerDidReadLines:@[[[
@@ -66,8 +105,6 @@
     stringByAppendingString:script] stringByAppendingString:@"\n\nRunning Script...\n"
   ]]];
   
-  task_ = task;
-
   NSError *error;
   [task launchAndReturnError:&error];
   
@@ -80,26 +117,11 @@
   }
 }
 
-- (BOOL)isScriptRunning {
-  return task_ && [task_ isRunning];
-}
-
-- (void)stopScript {
-  if ([self isScriptRunning]) {
-    [task_ terminate];
-  }
-  if (task_ || fileHandle_) {
-    task_ = nil;
-    fileHandle_ = nil;
-    [_delegate scriptRunnerDidUpdateScriptStatus];
-  }
-}
-
--(void)_onTick:(NSTimer *)timer {
-  [self _readLines];
-}
+#pragma mark - Reading Logs from File
 
 /*
+ Read lines from file, and write to LinesBuffer
+ --------
  Get data from file an arbitary # of times before batching new lines to the delegate.
  
  Useful for when there are a lot of logs in the file.
@@ -117,59 +139,43 @@
  echoLogs
  ```
  **/
--(void)_readLines {
-  __weak __typeof__(self) weakSelf = self;
-  if (isReadingFile_) {
-    return;
+- (void)readLogsFromFileOnThread:(NSNotification *)aNotification {
+  // Blocks thread until there is data
+  NSData *data = [_fileHandle availableData];
+  
+  // When there is no more data left to read in the file,
+  // and the NSTask has finished, append "Script Finished" to the logs.
+  if (data.length == 0) {
+    if (_task && ![_task isRunning]) {
+      [_delegate scriptRunnerDidReadLines:@[@"\nScript Finished.\n"]];
+      [self stopScript];
+    }
   }
-  dispatch_async(fileReaderQueue_, ^{
-    __strong __typeof(weakSelf) strongSelf = weakSelf;
-    if (!strongSelf) {
-      return;
-    }
-    strongSelf->isReadingFile_ = YES;
-    
-    int dataCount = 0;
-    int maxDataCount = 20;
-    
-    NSData *data = [strongSelf->fileHandle_ availableData];
-    if (data.length == 0) {
-      if (strongSelf->task_ && ![strongSelf->task_ isRunning]) {
-        [strongSelf.delegate scriptRunnerDidReadLines:@[@"\nScript Finished.\n"]];
-        [strongSelf stopScript];
-      }
-    }
-    
-    NSMutableArray *allLines = [[NSMutableArray alloc] init];
-
-    while (data.length > 0) {
-      NSString *longString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-      if (!longString) {
-        return;
-      }
-      NSArray *newLines = [strongSelf _parseLinesFromString:longString];
-      [allLines addObjectsFromArray:newLines];
-      if (dataCount < maxDataCount) {
-        dataCount++;
-        data = [strongSelf->fileHandle_ availableData];
-      } else {
-        data = [[NSData alloc] init];
-      }
-    }
-    strongSelf->isReadingFile_ = NO;
-
-    if (allLines.count > 0) {
-      [strongSelf.delegate scriptRunnerDidReadLines:allLines];
-    }
-  });
+  
+  NSArray *lines = [self getLinesFromData:data];
+  if (lines && lines.count > 0) {
+    [_delegate scriptRunnerDidReadLines:[lines copy]];
+  }
+  
+  // Calls NSFileHandleDataAvailableNotification when there is more data
+  [_fileHandle waitForDataInBackgroundAndNotify];
 }
 
-- (NSArray*)_parseLinesFromString:(NSString *)concatenatedLines {
-  NSString *newConcatenatedLines = lastLine_ ? [lastLine_ stringByAppendingString:concatenatedLines] : concatenatedLines;
+-(NSArray *)getLinesFromData:(NSData *)data {
+  NSString *longString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+  if (!longString) {
+    NSLog(@"(PAIGE) ERROR: Could not get UTF8 string from data");
+    return nil;
+  }
+  return [self parseLinesFromString:longString];
+}
+
+- (NSArray *)parseLinesFromString:(NSString *)concatenatedLines {
+  NSString *newConcatenatedLines = _lastLine ? [_lastLine stringByAppendingString:concatenatedLines] : concatenatedLines;
   NSArray *linesArray = [newConcatenatedLines componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet];
   if (linesArray.count > 0) {
     // The last object is often half a line, so append it to the beginning of the next concatenatedLines
-    lastLine_ = linesArray.lastObject;
+    _lastLine = linesArray.lastObject;
     NSArray *removingLast = [linesArray subarrayWithRange:NSMakeRange(0, linesArray.count - 1)];
     return removingLast;
   }

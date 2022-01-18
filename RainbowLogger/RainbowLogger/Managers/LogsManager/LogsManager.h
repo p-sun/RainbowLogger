@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray<Log *>*)getLogs;
 
+- (NSArray<Log *>*)getNextLogs;
+
 - (void)appendLogs:(NSArray<Log *>*)logs;
 
 - (void)clearLogs;

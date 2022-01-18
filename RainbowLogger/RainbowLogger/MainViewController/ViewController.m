@@ -22,6 +22,7 @@
   BOOL _shouldScrollFiltersTable;
   EditScriptView *_editScriptView;
   dispatch_queue_t _logsProcessingQueue;
+  BOOL _isProcessingLogs;
 }
 
 #pragma mark - View Controller Lifecycle
@@ -44,7 +45,7 @@
   _logsManager = [[LogsManager alloc] init];
   [_logsManager setDelegate:self];
   
-  dispatch_queue_attr_t utilityQOS = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_UTILITY, -1);
+  dispatch_queue_attr_t utilityQOS = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_DEFAULT, 0);
   _logsProcessingQueue = dispatch_queue_create("logsProcessingQueue", utilityQOS);
   
   // Views
@@ -90,15 +91,15 @@
   [super viewDidLayout];
 }
 
-
 #pragma mark - IBActions - Top Logs Menu
 
 - (IBAction)runScriptPressed:(id)sender {
   if ([_topMenuRunScriptButton.title isEqualToString:@"Stop Script"]) {
-    [self.scriptRunner stopScript];
+    [_scriptRunner stopScript];
+    [self scriptRunnerDidUpdateScriptStatus];
   } else {
     NSString *script = [EditScriptView loadCustomizedScript];
-    [self.scriptRunner runScript:script];
+    [_scriptRunner runScript:script];
     [_rightPane setHidden:YES];
   }
 }
@@ -217,23 +218,24 @@
 }
 
 -(void)scriptRunnerDidUpdateScriptStatus {
+  BOOL isRunning = [_scriptRunner isScriptRunning];
   dispatch_async(dispatch_get_main_queue(), ^{
-    [self updateRunScriptButton:self->_topMenuRunScriptButton];
-    [self updateRunScriptButton:self->_editScriptView.runScriptButton];
+    [self updateRunScriptButton:self->_topMenuRunScriptButton isRunning:isRunning];
+    [self updateRunScriptButton:self->_editScriptView.runScriptButton isRunning:isRunning];
   });
 }
 
--(void)updateRunScriptButton:(NSButton *)button {
-  if ([self.scriptRunner isScriptRunning]) {
-    [button setTitle:@"Stop Script"];
-    if (@available(macOS 11.0, *)) {
-      [button setImage:[NSImage imageWithSystemSymbolName:@"stop.fill" accessibilityDescription:nil]];
-    }
+-(void)updateRunScriptButton:(NSButton *)button isRunning:(BOOL)isRunning {
+  if (isRunning) {
+      [button setTitle:@"Stop Script"];
+      if (@available(macOS 11.0, *)) {
+        [button setImage:[NSImage imageWithSystemSymbolName:@"stop.fill" accessibilityDescription:nil]];
+      }
   } else {
-    [button setTitle:@" Run Script"];
-    if (@available(macOS 11.0, *)) {
-      [button setImage:[NSImage imageWithSystemSymbolName:@"play.fill" accessibilityDescription:nil]];
-    }
+      [button setTitle:@" Run Script"];
+      if (@available(macOS 11.0, *)) {
+        [button setImage:[NSImage imageWithSystemSymbolName:@"play.fill" accessibilityDescription:nil]];
+      }
   }
 }
 
@@ -304,6 +306,10 @@
 
 - (void)didAppendLogs:(NSArray<Log *>*)logs {
   if (!_isPaused) {
+    if (_isProcessingLogs) {
+      return;
+    }
+
     __weak __typeof__(self) weakSelf = self;
     dispatch_async(_logsProcessingQueue, ^{
       __strong __typeof(weakSelf) strongSelf = weakSelf;
@@ -311,8 +317,24 @@
         return;
       }
       
-      NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:logs filteredBy:[strongSelf->_filtersManager getFilters]];
-      [strongSelf->_logsTextView addAttributedLines:lines shouldAutoscroll:strongSelf->_shouldAutoScroll];
+      strongSelf->_isProcessingLogs = YES;
+      
+      BOOL shouldProcessLogs = YES;
+      while(shouldProcessLogs) {
+        NSArray *logs = [strongSelf->_logsManager getNextLogs];
+        if ([logs count] > 0) {
+          NSAttributedString *lines = [LogsProcessor coloredLinesFromLogs:logs filteredBy:[strongSelf->_filtersManager getFilters]];
+          [strongSelf->_logsTextView addAttributedLines:lines shouldAutoscroll:strongSelf->_shouldAutoScroll];
+        } else {
+          shouldProcessLogs = NO;
+          BOOL isRunning = [strongSelf->_scriptRunner isScriptRunning];
+          if (!isRunning) {
+            [strongSelf scriptRunnerDidUpdateScriptStatus];
+          }
+        }
+      }
+      
+      strongSelf->_isProcessingLogs = NO;
     });
   }
 }
