@@ -770,7 +770,7 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                                                 <buttonCell key="cell" type="push" title="Edit Script" bezelStyle="rounded" image="highlighter" catalog="system" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XtC-LU-a9X">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
-                                                                                    <string key="keyEquivalent">r</string>
+                                                                                    <string key="keyEquivalent">e</string>
                                                                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                                 </buttonCell>
                                                                                 <connections>
@@ -785,9 +785,7 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                                                 <buttonCell key="cell" type="push" title="🗑 Clear Logs" bezelStyle="rounded" imagePosition="leading" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="piN-n4-VBZ">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="system"/>
-                                                                                    <string key="keyEquivalent" base64-UTF8="YES">
-CQ
-</string>
+                                                                                    <string key="keyEquivalent">k</string>
                                                                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                                 </buttonCell>
                                                                                 <connections>
@@ -802,6 +800,8 @@ CQ
                                                                                 <buttonCell key="cell" type="check" title="Pause" bezelStyle="regularSquare" imagePosition="left" borderStyle="border" inset="2" id="tfk-fI-d62">
                                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                                     <font key="font" metaFont="system"/>
+                                                                                    <string key="keyEquivalent">p</string>
+                                                                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                                                 </buttonCell>
                                                                                 <color key="contentTintColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
                                                                                 <connections>
@@ -1031,7 +1031,7 @@ CQ
                                                                 </customView>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S0T-qT-tgh">
                                                                     <rect key="frame" x="141" y="17" width="177" height="16"/>
-                                                                    <mutableString key="toolTip">Each log displayed must pass the set of all filters. See the grey text above the filters table for the set of Filter Conditions that each log must pass.
+                                                                    <string key="toolTip">Each log displayed must pass the set of all filters. See the grey text above the filters table for the set of Filter Conditions that each log must pass.
 
 Each log must satisfy: 
 - All "[and ] Contain" and all "[and ] Not Contain" conditions.
@@ -1040,7 +1040,7 @@ Each log must satisfy:
 
 A blank Filter Condition does not remove logs. It is only used for Coloring and Replacing Text.
 
-The order of filters does not affect whether each log is displayed. The order of filters only affects the order that colors are applied.</mutableString>
+The order of filters does not affect whether each log is displayed. The order of filters only affects the order that colors are applied.</string>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="173" id="Kck-II-3TA"/>
                                                                     </constraints>
