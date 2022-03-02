@@ -86,7 +86,7 @@
     }
   }
     
-  return [LogsProcessor padLogByAligningString:@"******" toLocation:8 fromLog:newLog];
+  return [LogsProcessor padLogByAligningString:@"******" toLocation:10 fromLog:newLog];
 }
 
 /*

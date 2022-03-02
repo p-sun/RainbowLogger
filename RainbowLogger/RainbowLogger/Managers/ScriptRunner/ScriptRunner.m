@@ -67,16 +67,12 @@
 }
 
 - (void)stopScriptOnThread {
-  if ([self isScriptRunning]) {
-    [_task terminate];
-  }
-
-  if (_task) {
-    [[NSNotificationCenter defaultCenter] removeObserver:_fileHandle];
-    _fileHandle = nil;
-    _lastLine = nil;
-    _task = nil;
-  }
+  [_task terminate];
+  [[NSNotificationCenter defaultCenter] removeObserver:_fileHandle];
+  [_fileHandle closeFile];
+  _fileHandle = nil;
+  _lastLine = nil;
+  _task = nil;
 }
 
 - (void)runScriptOnThread:(NSString *)script {

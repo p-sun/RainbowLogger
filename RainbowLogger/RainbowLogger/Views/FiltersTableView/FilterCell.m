@@ -17,6 +17,8 @@
 }
 
 - (void)awakeFromNib {
+  [super awakeFromNib];
+  
   NSPopUpButtonCell *cell = (NSPopUpButtonCell *)_colorsPopup.cell;
   cell = (NSPopUpButtonCell *)_conditionPopup.cell;
   
