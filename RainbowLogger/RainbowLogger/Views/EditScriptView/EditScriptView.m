@@ -48,7 +48,7 @@
 }
 
 - (IBAction)scriptForFbiosPressed:(id)sender {
-  NSString *defaultScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate '(NOT (subsystem contains \"com.apple\")) AND (eventMessage contains \"****\" OR eventMessage contains \"RCTStaticInjectionAutoInit()_block_invoke_2\")'";
+  NSString *defaultScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate '(NOT (subsystem contains \"com.apple\")) AND (eventMessage contains \"****\" OR eventMessage contains \"RCTStaticInjectionAutoInit()_block_invoke_2\" OR eventMessage contains \"FBReactModule\")'";
   [_customizeScriptTextView setString:defaultScript];
   [self saveCustomizedScript:defaultScript];
 }
