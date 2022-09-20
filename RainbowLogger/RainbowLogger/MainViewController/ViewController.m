@@ -151,6 +151,8 @@
     [[Filter alloc] initWithCondition:FilterConditionContainsAny text:@"******" colorTag:14 isEnabled:NO],
 
     [[Filter alloc] initWithCondition:FilterConditionContainsAny text:@"FBReactModule.mm" colorTag:6 isEnabled:YES],
+    [[Filter alloc] initWithCondition:FilterConditionContainsAny text:@"FBNewNavigationController.mm" colorTag:9 isEnabled:YES],
+
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"(?<=\"routeName\":)\".*?\"" isRegex:YES colorTag:6 replacementText:nil isEnabled:YES],
 
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"2022-.*?] " isRegex:YES colorTag:10 replacementText:@"> " isEnabled:YES],
