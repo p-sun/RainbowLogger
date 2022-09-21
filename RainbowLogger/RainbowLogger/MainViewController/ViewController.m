@@ -148,10 +148,10 @@
 -(void)editScriptViewDidPressAddFiltersForMetro {
   NSArray<Filter* > *filters = @[
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"---------------- Filters for FBiOS ----------------" colorTag:15 isEnabled:NO],
-    [[Filter alloc] initWithCondition:FilterConditionContainsAny text:@"******" colorTag:14 isEnabled:NO],
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"******" colorTag:14 isEnabled:NO],
 
-    [[Filter alloc] initWithCondition:FilterConditionContainsAny text:@"FBReactModule.mm" colorTag:6 isEnabled:YES],
-    [[Filter alloc] initWithCondition:FilterConditionContainsAny text:@"FBNewNavigationController.mm" colorTag:9 isEnabled:YES],
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"FBReactModule.mm" colorTag:6 isEnabled:YES],
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"FBNewNavigationController.mm" colorTag:9 isEnabled:YES],
 
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"(?<=\"routeName\":)\".*?\"" isRegex:YES colorTag:6 replacementText:nil isEnabled:YES],
 
