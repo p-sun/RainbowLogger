@@ -15,7 +15,7 @@
   
   // File Reading
   NSThread *_fileReadingThread;
-  NSFileHandle* _fileHandle;
+  NSFileHandle* _outputHandle;
   NSString *_lastLine;
 }
 
@@ -68,9 +68,9 @@
 
 - (void)stopScriptOnThread {
   [_task terminate];
-  [[NSNotificationCenter defaultCenter] removeObserver:_fileHandle];
-  [_fileHandle closeFile];
-  _fileHandle = nil;
+  [[NSNotificationCenter defaultCenter] removeObserver:_outputHandle];
+  [_outputHandle closeFile];
+  _outputHandle = nil;
   _lastLine = nil;
   _task = nil;
 }
@@ -84,16 +84,16 @@
   [task setLaunchPath: shellString];
   task.arguments = @[@"-l", @"-c", script];
 
-  NSPipe *p = [NSPipe pipe];
-  [task setStandardOutput:p];
-  [task setStandardError:p];
+  NSPipe *outputPipe = [NSPipe pipe];
+  [task setStandardOutput:outputPipe];
+  [task setStandardError:outputPipe];
   _task = task;
 
-  _fileHandle = [p fileHandleForReading];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readLogsFromFileOnThread:) name:NSFileHandleDataAvailableNotification object:_fileHandle];
+  _outputHandle = [outputPipe fileHandleForReading];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readLogsFromFileOnThread:) name:NSFileHandleDataAvailableNotification object:_outputHandle];
   
   // Need to be called from a thread with a RunLoop
-  [_fileHandle waitForDataInBackgroundAndNotify];
+  [_outputHandle waitForDataInBackgroundAndNotify];
   
   // Make this all single string so it's easy to filter out
   [self.delegate scriptRunnerDidReadLines:@[[[
@@ -137,7 +137,7 @@
  **/
 - (void)readLogsFromFileOnThread:(NSNotification *)aNotification {
   // Blocks thread until there is data
-  NSData *data = [_fileHandle availableData];
+  NSData *data = [_outputHandle availableData];
   
   // When there is no more data left to read in the file,
   // and the NSTask has finished, append "Script Finished" to the logs.
@@ -154,7 +154,7 @@
   }
   
   // Calls NSFileHandleDataAvailableNotification when there is more data
-  [_fileHandle waitForDataInBackgroundAndNotify];
+  [_outputHandle waitForDataInBackgroundAndNotify];
 }
 
 -(NSArray *)getLinesFromData:(NSData *)data {
