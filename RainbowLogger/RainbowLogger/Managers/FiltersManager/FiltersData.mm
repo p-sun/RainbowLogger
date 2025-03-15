@@ -65,7 +65,7 @@
   NSSet *set = [[NSSet alloc] init];
   [set setByAddingObject:[Filter class]];
   
-  NSSet *classes = [[NSSet alloc] initWithArray:@[Filter.class, NSArray.class]];
+  NSSet *classes = [[NSSet alloc] initWithArray:@[Filter.class, NSArray.class, NSNumber.class, NSString.class]];
   NSArray *storedFilters = [NSKeyedUnarchiver unarchivedObjectOfClasses:classes fromData:data error:&error];
   if (error) {
     NSLog(@"(PAIGE) Error with loading filters: %@", error.localizedDescription);
