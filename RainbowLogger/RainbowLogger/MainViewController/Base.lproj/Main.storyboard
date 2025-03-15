@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23094"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -739,7 +739,7 @@
                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fwd-1y-Lwo" userLabel="Logs Menu Stack View">
                                                                         <rect key="frame" x="16" y="10" width="626" height="25"/>
                                                                         <subviews>
-                                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TE3-Ub-eVG">
+                                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TE3-Ub-eVG">
                                                                                 <rect key="frame" x="-2" y="3" width="38" height="19"/>
                                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Logs" id="1zE-fh-egH">
                                                                                     <font key="font" metaFont="systemMedium" size="15"/>
@@ -863,23 +863,23 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                                 </constraints>
                                                             </customView>
                                                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="VBk-ch-x2L" userLabel="Horizontal Line Above Scrollview">
-                                                                <rect key="frame" x="0.0" y="740" width="1126" height="5"/>
+                                                                <rect key="frame" x="0.0" y="740" width="1154" height="5"/>
                                                             </box>
                                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KH0-Lz-M00" userLabel="Logs Main View">
-                                                                <rect key="frame" x="0.0" y="4" width="1126" height="739"/>
+                                                                <rect key="frame" x="0.0" y="4" width="1154" height="739"/>
                                                                 <subviews>
                                                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xL-fn-b8A">
-                                                                        <rect key="frame" x="8" y="24" width="1111" height="715"/>
+                                                                        <rect key="frame" x="22" y="48" width="1110" height="691"/>
                                                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qsv-01-jvj">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="1096" height="715"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="1095" height="691"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="anf-7r-VvA" customClass="LogsTextView">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="1080" height="703"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="1079" height="679"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                    <size key="minSize" width="1080" height="703"/>
+                                                                                    <size key="minSize" width="1083" height="679"/>
                                                                                     <size key="maxSize" width="7450" height="10000000"/>
                                                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textView>
@@ -891,12 +891,20 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </scroller>
                                                                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Rw6-re-kfb">
-                                                                            <rect key="frame" x="1096" y="12" width="15" height="703"/>
+                                                                            <rect key="frame" x="1095" y="12" width="15" height="679"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </scroller>
                                                                     </scrollView>
-                                                                    <textField verticalHuggingPriority="999" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="200" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBM-1V-XBv">
-                                                                        <rect key="frame" x="6" y="0.0" width="1114" height="16"/>
+                                                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KvW-ac-9FP" userLabel="Script Input TextField">
+                                                                        <rect key="frame" x="8" y="24" width="1126" height="16"/>
+                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" drawsBackground="YES" id="qoe-wS-ayl">
+                                                                            <font key="font" metaFont="system"/>
+                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        </textFieldCell>
+                                                                    </textField>
+                                                                    <textField focusRingType="none" verticalHuggingPriority="999" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="200" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBM-1V-XBv">
+                                                                        <rect key="frame" x="6" y="0.0" width="1142" height="16"/>
                                                                         <textFieldCell key="cell" alignment="left" title="Filters applied on logs" id="OEw-q6-I1T">
                                                                             <font key="font" usesAppearanceFont="YES"/>
                                                                             <color key="textColor" red="0.62388713089461179" green="0.62388713089461179" blue="0.62388713089461179" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
@@ -906,12 +914,16 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="JBM-1V-XBv" secondAttribute="trailing" constant="8" id="364-2D-Vg0"/>
+                                                                    <constraint firstItem="KvW-ac-9FP" firstAttribute="leading" secondItem="JBM-1V-XBv" secondAttribute="leading" id="YbI-8x-cwk"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="KvW-ac-9FP" secondAttribute="trailing" constant="20" id="eUj-WE-MNT"/>
                                                                 </constraints>
                                                                 <visibilityPriorities>
                                                                     <integer value="1000"/>
                                                                     <integer value="1000"/>
+                                                                    <integer value="1000"/>
                                                                 </visibilityPriorities>
                                                                 <customSpacing>
+                                                                    <real value="3.4028234663852886e+38"/>
                                                                     <real value="3.4028234663852886e+38"/>
                                                                     <real value="3.4028234663852886e+38"/>
                                                                 </customSpacing>
@@ -934,13 +946,13 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                         <rect key="frame" x="1136" y="0.0" width="82" height="788"/>
                                                         <subviews>
                                                             <scrollView borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="juF-O1-BoW">
-                                                                <rect key="frame" x="0.0" y="0.0" width="82" height="788"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="54" height="788"/>
                                                                 <clipView key="contentView" id="QZ4-nW-lr6">
-                                                                    <rect key="frame" x="1" y="1" width="65" height="786"/>
+                                                                    <rect key="frame" x="1" y="1" width="37" height="786"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <customView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zj5-Pl-95Q" userLabel="Script Ediiting Container">
-                                                                            <rect key="frame" x="0.0" y="-524" width="65" height="1310"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="37" height="786"/>
                                                                         </customView>
                                                                     </subviews>
                                                                     <constraints>
@@ -953,8 +965,8 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                                     <rect key="frame" x="-100" y="-100" width="4110" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
-                                                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.99618320610687028" horizontal="NO" id="r9z-PV-ws8">
-                                                                    <rect key="frame" x="66" y="1" width="15" height="786"/>
+                                                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="r9z-PV-ws8">
+                                                                    <rect key="frame" x="38" y="1" width="15" height="786"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                             </scrollView>
@@ -1012,7 +1024,7 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                                         <constraint firstAttribute="width" constant="34" id="VHM-0L-InC"/>
                                                                     </constraints>
                                                                 </customView>
-                                                                <textField toolTip="Enable Filter Text to be applied on the logs." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tSO-14-eB4" userLabel="Enabled">
+                                                                <textField toolTip="Enable Filter Text to be applied on the logs." focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tSO-14-eB4" userLabel="Enabled">
                                                                     <rect key="frame" x="48" y="17" width="64" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="60" id="81x-tQ-0eR"/>
@@ -1029,7 +1041,7 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                                         <constraint firstAttribute="width" constant="1" id="tA7-9Z-A8I"/>
                                                                     </constraints>
                                                                 </customView>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S0T-qT-tgh">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S0T-qT-tgh">
                                                                     <rect key="frame" x="141" y="17" width="177" height="16"/>
                                                                     <string key="toolTip">Each log displayed must pass the set of all filters. See the grey text above the filters table for the set of Filter Conditions that each log must pass.
 
@@ -1050,7 +1062,7 @@ The order of filters does not affect whether each log is displayed. The order of
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="25c-8O-SJJ">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="25c-8O-SJJ">
                                                                     <rect key="frame" x="330" y="17" width="410" height="16"/>
                                                                     <string key="toolTip">If a log contains the Filter Text and satisfies the set of all filters, Color and Replace text is applied on the substring of the log that satisfies each filter. 
 
@@ -1061,7 +1073,7 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <textField toolTip="Use Filter Text as the Regex pattern to filter the logs." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSf-Kn-j0Y">
+                                                                <textField toolTip="Use Filter Text as the Regex pattern to filter the logs." focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSf-Kn-j0Y">
                                                                     <rect key="frame" x="752" y="17" width="72" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="68" id="Mec-F2-rnL"/>
@@ -1078,7 +1090,7 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                                                         <constraint firstAttribute="width" constant="1" id="Drk-11-LML"/>
                                                                     </constraints>
                                                                 </customView>
-                                                                <textField toolTip="Color logs that contains Filter Text. Colors are applied in the order of the filters from top to bottom." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cgr-dW-soM">
+                                                                <textField toolTip="Color logs that contains Filter Text. Colors are applied in the order of the filters from top to bottom." focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cgr-dW-soM">
                                                                     <rect key="frame" x="853" y="17" width="87" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="83" id="Vkh-00-wT3"/>
@@ -1095,7 +1107,7 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                                                         <constraint firstAttribute="width" constant="1" id="Tjg-0i-gXW"/>
                                                                     </constraints>
                                                                 </customView>
-                                                                <textField toolTip="Temporarily replace text in logs that match Filter Text. Clear this field to reset logs to their original text." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Em-Cc-Yfd">
+                                                                <textField toolTip="Temporarily replace text in logs that match Filter Text. Clear this field to reset logs to their original text." focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Em-Cc-Yfd">
                                                                     <rect key="frame" x="969" y="17" width="207" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Replace Text" id="ui1-q3-86F">
                                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -1150,7 +1162,7 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x4V-x5-AFk">
                                                 <rect key="frame" x="16" y="8" width="572" height="30"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lTV-Rh-SIs">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lTV-Rh-SIs">
                                                         <rect key="frame" x="0.0" y="4" width="430" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="430" id="gjD-3T-b8H"/>
@@ -1166,14 +1178,14 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                                     </textField>
                                                     <button toolTip="Add a filter with the given Filter Text." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lGW-YR-kAj">
                                                         <rect key="frame" x="439" y="-2" width="64" height="32"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="6Rr-Z0-UK1"/>
-                                                        </constraints>
                                                         <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PET-fc-hrF">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <color key="bezelColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="6Rr-Z0-UK1"/>
+                                                        </constraints>
                                                         <connections>
                                                             <action selector="addFilterButtonPressed:" target="XfG-lQ-9wD" id="q0h-Z9-r1h"/>
                                                         </connections>
@@ -1181,13 +1193,13 @@ When Filter Text is empty, the entire filter is disabled.</string>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JxZ-z8-zQP">
                                                         <rect key="frame" x="505" y="-2" width="64" height="32"/>
                                                         <string key="toolTip">Delete selected filters. Tip: Click a filter to select it. Can use Command, Shift, and Up and Down Arrows to select multiple filters.</string>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="pKP-RJ-LO3"/>
-                                                        </constraints>
                                                         <buttonCell key="cell" type="push" title="🗑" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K3C-Er-jh5">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="pKP-RJ-LO3"/>
+                                                        </constraints>
                                                         <connections>
                                                             <action selector="deleteSelectedFilter:" target="XfG-lQ-9wD" id="MeA-UP-WUu"/>
                                                         </connections>
@@ -1280,6 +1292,7 @@ When Filter Text is empty, the entire filter is disabled.</string>
                         <outlet property="rightPane" destination="efX-zP-7sF" id="81H-bT-RUQ"/>
                         <outlet property="rightPaneScrollViewContents" destination="zj5-Pl-95Q" id="NUS-qI-GCx"/>
                         <outlet property="rightPanelScrollView" destination="juF-O1-BoW" id="3iV-Gh-2sP"/>
+                        <outlet property="scriptInputTextField" destination="KvW-ac-9FP" id="0iD-xk-ZCr"/>
                         <outlet property="topMenuRunScriptButton" destination="CFx-X7-qsY" id="Bza-yx-glz"/>
                         <outlet property="verticalSplitView" destination="JLI-rk-nFz" id="2ch-jc-HlF"/>
                     </connections>

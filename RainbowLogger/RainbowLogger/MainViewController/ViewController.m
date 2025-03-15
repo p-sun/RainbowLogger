@@ -63,6 +63,8 @@
   [_rightPaneScrollViewContents addSubview:_editScriptView];
   [_editScriptView constrainToSuperview];
   
+  [_scriptInputTextField setDelegate:self];
+  
   [self rightPaneScrollToTop];
   [_rightPane setHidden:YES];
   
@@ -241,6 +243,16 @@
       if (@available(macOS 11.0, *)) {
         [button setImage:[NSImage imageWithSystemSymbolName:@"play.fill" accessibilityDescription:nil]];
       }
+  }
+}
+
+#pragma mark - NSTextFieldDelegate for Script Input View
+
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
+  NSTextField *textField = obj.object;
+  if (textField == _scriptInputTextField) {
+    [_scriptRunner sendInput:textField.stringValue];
+    textField.stringValue = @"";
   }
 }
 

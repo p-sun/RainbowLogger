@@ -16,7 +16,7 @@
 #import "LogsScrollView.h"
 #import "LogsTextView.h"
 
-@interface ViewController : NSViewController <ScriptRunnerDelegate, FiltersManagerDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate, EditScriptViewDelegate>
+@interface ViewController : NSViewController <ScriptRunnerDelegate, FiltersManagerDelegate, FiltersTableViewDelegate, LogsManagerDelegate, LogsScrollViewDelegate, EditScriptViewDelegate, NSTextFieldDelegate>
 
 // Data - Logs and Filter
 @property (nonatomic, strong) ScriptRunner *scriptRunner;
@@ -34,8 +34,9 @@
 @property (weak) IBOutlet NSTextField *addFilterTextField;
 @property (weak) IBOutlet NSButton *autoscrollButton;
 
-// Outlets - Top Menu
+// Outlets - Script
 @property (weak) IBOutlet NSButton *topMenuRunScriptButton;
+@property (weak) IBOutlet NSTextField *scriptInputTextField;
 
 // Outlets - Right Pane Edit Script
 @property (weak) IBOutlet NSSplitView *verticalSplitView;

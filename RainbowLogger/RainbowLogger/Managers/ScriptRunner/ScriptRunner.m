@@ -15,6 +15,7 @@
   
   // File Reading
   NSThread *_fileReadingThread;
+  NSFileHandle* _inputHandle;
   NSFileHandle* _outputHandle;
   NSString *_lastLine;
 }
@@ -83,17 +84,22 @@
   NSString *shellString = [environmentDict objectForKey:@"SHELL"];
   [task setLaunchPath: shellString];
   task.arguments = @[@"-l", @"-c", script];
+  
+  // MARK: Input Pipe
+  NSPipe *inputPipe = [NSPipe pipe];
+  [task setStandardInput:inputPipe];
+  _inputHandle = [inputPipe fileHandleForWriting];
 
+  // MARK: Output Pipe
   NSPipe *outputPipe = [NSPipe pipe];
   [task setStandardOutput:outputPipe];
   [task setStandardError:outputPipe];
-  _task = task;
-
   _outputHandle = [outputPipe fileHandleForReading];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(readLogsFromFileOnThread:) name:NSFileHandleDataAvailableNotification object:_outputHandle];
-  
   // Need to be called from a thread with a RunLoop
   [_outputHandle waitForDataInBackgroundAndNotify];
+  
+  _task = task;
   
   // Make this all single string so it's easy to filter out
   [self.delegate scriptRunnerDidReadLines:@[[[
@@ -110,6 +116,15 @@
     [self stopScript];
   } else {
     [_delegate scriptRunnerDidUpdateScriptStatus];
+  }
+}
+
+- (void)sendInput:(NSString *)input {
+  if (_inputHandle) {
+    NSString *inputWithNewline = [input stringByAppendingString:@"\n"];
+    NSData *inputData = [inputWithNewline dataUsingEncoding:NSUTF8StringEncoding];
+    [_inputHandle writeData:inputData];
+    [_delegate scriptRunnerDidReadLines:@[[@"> " stringByAppendingString:input]]];
   }
 }
 
