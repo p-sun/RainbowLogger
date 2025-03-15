@@ -730,7 +730,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="1218" height="788"/>
                                                 <subviews>
                                                     <customView id="KLj-cF-hl3" userLabel="Main Logs Pane">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1126" height="788"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1153" height="788"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="dre-lh-TMS" userLabel="Logs Menu View">
@@ -879,7 +879,7 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                    <size key="minSize" width="1083" height="679"/>
+                                                                                    <size key="minSize" width="1079" height="679"/>
                                                                                     <size key="maxSize" width="7450" height="10000000"/>
                                                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                                 </textView>
@@ -943,7 +943,7 @@ The app you want to log does not need to run, but the iOS Simulator, Android Emu
                                                         </constraints>
                                                     </customView>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="efX-zP-7sF" userLabel="Right Edit Script Pane">
-                                                        <rect key="frame" x="1136" y="0.0" width="82" height="788"/>
+                                                        <rect key="frame" x="1163" y="0.0" width="55" height="788"/>
                                                         <subviews>
                                                             <scrollView borderType="line" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" findBarPosition="belowContent" translatesAutoresizingMaskIntoConstraints="NO" id="juF-O1-BoW">
                                                                 <rect key="frame" x="0.0" y="0.0" width="54" height="788"/>
