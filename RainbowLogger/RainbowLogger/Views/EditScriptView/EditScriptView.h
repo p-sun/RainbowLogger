@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)editScriptViewDidPressClose;
 -(void)editScriptViewDidPressRunScript;
 -(void)editScriptViewDidPressAddFiltersForMetro;
+-(void)editScriptViewDidPressAddFiltersForValdi;
 
 @end
 

@@ -47,6 +47,18 @@
   [self saveCustomizedScript:defaultScript];
 }
 
+- (IBAction)scriptForValidPressed:(id)sender {
+  NSString *defaultScript = @"cd ~/Snapchat/Dev/mobile/client/src/composer_modules; ./scripts/show_logs.py";
+  [_customizeScriptTextView setString:defaultScript];
+  [self saveCustomizedScript:defaultScript];
+}
+
+- (IBAction)scriptForPhantomPressed:(id)sender {
+  NSString *defaultScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --process=Snapchat --predicate '(NOT (subsystem contains \"com.apple\")) AND (NOT (eventType == \"activityCreateEvent\"))'";
+  [_customizeScriptTextView setString:defaultScript];
+  [self saveCustomizedScript:defaultScript];
+}
+
 - (IBAction)scriptForFbiosPressed:(id)sender {
   NSString *defaultScript = @"xcrun simctl spawn booted log stream --level=default --style=compact --process=Facebook --predicate '(NOT (subsystem contains \"com.apple\")) AND (eventMessage contains \"****\" OR eventMessage contains \"RCTStaticInjectionAutoInit()_block_invoke_2\" OR eventMessage contains \"FBReactModule\")'";
   [_customizeScriptTextView setString:defaultScript];
@@ -59,6 +71,10 @@
 }
 - (IBAction)addFiltersForMetroPressed:(id)sender {
   [_delegate editScriptViewDidPressAddFiltersForMetro];
+}
+
+- (IBAction)addFiltersForValdiPressed:(id)sender {
+  [_delegate editScriptViewDidPressAddFiltersForValdi];
 }
 
 - (IBAction)editPaneClosePressed:(nullable id)sender {
