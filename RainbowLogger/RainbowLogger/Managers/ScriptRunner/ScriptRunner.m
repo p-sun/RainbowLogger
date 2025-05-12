@@ -74,6 +74,7 @@
   _outputHandle = nil;
   _lastLine = nil;
   _task = nil;
+  [_delegate scriptRunnerDidUpdateScriptStatus];
 }
 
 - (void)runScriptOnThread:(NSString *)script {
@@ -114,9 +115,8 @@
     [self.delegate scriptRunnerDidReadLines:@[[
       @"Error with script: " stringByAppendingString:error.localizedDescription]]];
     [self stopScript];
-  } else {
-    [_delegate scriptRunnerDidUpdateScriptStatus];
   }
+  [_delegate scriptRunnerDidUpdateScriptStatus];
 }
 
 - (void)sendInput:(NSString *)input {
