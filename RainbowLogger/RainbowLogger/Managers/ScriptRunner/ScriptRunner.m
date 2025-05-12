@@ -81,7 +81,11 @@
   [self stopScript];
   
   NSTask *task = [[NSTask alloc] init];
-  NSDictionary *environmentDict = [[NSProcessInfo processInfo] environment];
+
+  NSMutableDictionary *environmentDict = [NSMutableDictionary dictionaryWithDictionary:[[NSProcessInfo processInfo] environment]];
+  environmentDict[@"PYTHONUNBUFFERED"] = @"1"; // Disable Python output buffering
+  [task setEnvironment:environmentDict];
+    
   NSString *shellString = [environmentDict objectForKey:@"SHELL"];
   [task setLaunchPath: shellString];
   task.arguments = @[@"-l", @"-c", script];
