@@ -72,7 +72,7 @@
     _allLogs = [NSMutableArray arrayWithArray:subArrayLogs];
     [_delegate didChangeLogs:@[]];
   } else {
-    [_delegate didAppendLogs:logs];
+    [_delegate didAppendLogs];
   }
 }
 

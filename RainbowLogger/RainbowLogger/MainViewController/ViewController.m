@@ -329,7 +329,7 @@
 
 #pragma mark - LogsManagerDelegate
 
-- (void)didAppendLogs:(NSArray<Log *>*)logs {
+- (void)didAppendLogs {
   if (!_isPaused) {
     if (_isProcessingLogs) {
       return;
