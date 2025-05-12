@@ -1,3 +1,5 @@
+# Test RainbowLogger's ability to deal with huge outputs with `python3 read-file.py veryLargeFile.txt`
+
 def generate_large_file(filename: str, num_lines: int) -> None:
     with open(filename, 'w') as f:
         for i in range(num_lines):
