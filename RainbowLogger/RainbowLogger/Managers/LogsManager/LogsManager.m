@@ -28,8 +28,10 @@
 }
 
 - (void)clearLogs {
+  pthread_mutex_lock(&_nextLogsMutex);
   _allLogs = [[NSMutableArray alloc] init];
   _nextLogs = [[NSMutableArray alloc] init];
+  pthread_mutex_unlock(&_nextLogsMutex);
 }
 
 - (NSArray<Log *>*)getNextLogs {
@@ -51,14 +53,16 @@
 }
 
 - (NSArray<Log *>*)getLogs {
-  return [_allLogs copy];
+    pthread_mutex_lock(&_nextLogsMutex);
+    NSArray<Log *>* logsCopy = [_allLogs copy];
+    [_nextLogs removeAllObjects];
+    pthread_mutex_unlock(&_nextLogsMutex);
+    return logsCopy;
 }
 
 - (void)appendLogs:(NSArray<Log *>*)logs {
   pthread_mutex_lock(&_nextLogsMutex);
   [_allLogs addObjectsFromArray:logs];
-  [_nextLogs addObjectsFromArray:logs];
-  pthread_mutex_unlock(&_nextLogsMutex);
   
   // To limit memeory usage,
   // if we exceed the max number of lines, keep only 3000 lines in memory
@@ -69,9 +73,13 @@
     // So to get last 4 elements in an array of length 10: NSMakeRange{10 - 4, 4}
     // to get items at index 6, 7, 8, 9
     NSArray *subArrayLogs = [_allLogs subarrayWithRange:NSMakeRange(([_allLogs count] - remainingLines), remainingLines)];
+    [_nextLogs removeAllObjects];
     _allLogs = [NSMutableArray arrayWithArray:subArrayLogs];
+    pthread_mutex_unlock(&_nextLogsMutex);
     [_delegate didChangeLogs:@[]];
   } else {
+    [_nextLogs addObjectsFromArray:logs];
+    pthread_mutex_unlock(&_nextLogsMutex);
     [_delegate didAppendLogs];
   }
 }
