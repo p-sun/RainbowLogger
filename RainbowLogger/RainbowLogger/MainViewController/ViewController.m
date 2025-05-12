@@ -150,11 +150,10 @@
 -(void)editScriptViewDidPressAddFiltersForValdi {
   NSArray<Filter* > *filters = @[
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"---------------- Filters for Valdi ----------------" colorTag:15 isEnabled:NO],
-    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"******" colorTag:14 isEnabled:NO],
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"^202.*?//+/d{4}" isRegex:YES colorTag:5 replacementText:@">" isEnabled:NO],
-    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"[info]" isRegex:NO colorTag:15 replacementText:@"EMPTY" isEnabled:YES],
-    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"[warn]" isRegex:NO colorTag:4 replacementText:@"WARN" isEnabled:YES],
-    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"[error]" isRegex:NO colorTag:3 replacementText:@"ERROR" isEnabled:YES],
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"info" isRegex:NO colorTag:15 replacementText:@"EMPTY" isEnabled:YES],
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"warn" isRegex:NO colorTag:4 replacementText:@"WARN" isEnabled:YES],
+    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"error" isRegex:NO colorTag:3 replacementText:@"ERROR" isEnabled:YES],
   ];
   [_filtersManager insertAtBeginningFilters:filters];
 }
@@ -162,8 +161,6 @@
 -(void)editScriptViewDidPressAddFiltersForMetro {
   NSArray<Filter* > *filters = @[
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"---------------- Filters for FBiOS ----------------" colorTag:15 isEnabled:NO],
-    [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"******" colorTag:14 isEnabled:NO],
-
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"FBReactModule.mm" colorTag:6 isEnabled:YES],
     [[Filter alloc] initWithCondition:FilterConditionColorContainingText text:@"FBNewNavigationController.mm" colorTag:9 isEnabled:YES],
 
