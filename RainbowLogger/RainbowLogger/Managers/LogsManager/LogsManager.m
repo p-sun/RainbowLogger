@@ -61,9 +61,9 @@
   pthread_mutex_unlock(&_nextLogsMutex);
   
   // To limit memeory usage,
-  // if we exceed the max number of lines, keep only the last half of the logs in memory
+  // if we exceed the max number of lines, keep only 3000 lines in memory
   int maxLines = 10000; // Around 70mb
-  int remainingLines = 1000;
+  int remainingLines = 3000;
   if ([_allLogs count] > maxLines) {
     // The first value of NSRange is the start index, second is the length
     // So to get last 4 elements in an array of length 10: NSMakeRange{10 - 4, 4}
